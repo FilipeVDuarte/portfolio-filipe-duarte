@@ -39,9 +39,9 @@
   --text-lg: clamp(1.125rem, 2.2vw, 1.375rem);
   --text-xl: clamp(1.375rem, 2.5vw, 1.75rem);
   --text-2xl: clamp(1.75rem, 3.5vw, 2.5rem);
-  --text-3xl: clamp(2.25rem, 5vw, 3.5rem);
-  --text-4xl: clamp(3rem, 7vw, 5.5rem);
-  --text-hero: clamp(3.5rem, 10vw, 8rem);
+  --text-3xl: clamp(1.375rem, 5vw, 3.5rem);
+  --text-4xl: clamp(2rem, 7vw, 5.5rem);
+  --text-hero: clamp(2rem, 6vw, 8rem);
 
   /* --- Espaçamentos --- */
   --space-1: 0.25rem;
@@ -97,6 +97,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -114,6 +115,7 @@ video,
 svg {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
 a {
@@ -342,7 +344,7 @@ button {
   .nav__mobile {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
+    gap: var(--space-3);
     padding: var(--space-6) var(--container-pad);
     background: var(--color-bg);
     border-bottom: var(--border);
@@ -353,6 +355,23 @@ button {
     font-size: var(--text-sm);
     padding: var(--space-3) var(--space-4);
     border: var(--border);
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav__mobile .nav__cta {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Previne menu mobile travado em telas maiores */
+@media (min-width: 769px) {
+  .nav__mobile {
+    display: none !important;
   }
 }
 
@@ -364,10 +383,14 @@ button {
   padding-top: 60px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center removido — causa "flexbox data loss":
+     quando o conteúdo excede min-height, o algoritmo de centralização
+     posiciona o primeiro item em coordenadas negativas (acima do topo
+     da página), tornando-o inacessível mesmo com overflow: visible.
+     A centralização segura é feita via margin-block: auto no .hero__inner. */
   border-bottom: var(--border-thick);
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
 }
 
 .hero__inner {
@@ -377,6 +400,50 @@ button {
   gap: var(--space-12);
   position: relative;
   z-index: 1;
+  margin-block: auto;
+  /* centralização segura: absorve espaço livre quando cabe,
+                         colapsa a zero quando o conteúdo excede — sem data loss */
+}
+
+.hero__inner>* {
+  min-width: 0;
+}
+
+@media (min-width: 992px) {
+
+  /*
+   * Garante que o hero NUNCA use height fixo no desktop —
+   * apenas min-height, deixando o conteúdo das colunas esticar
+   * livremente quando necessário.
+   */
+  .hero {
+    min-height: 100svh;
+    height: auto;
+  }
+
+  .hero__inner {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: var(--space-16);
+    /*
+     * Padding fluido por viewport height:
+     *   1080p (vh=1080) → 6vh ≈ 65px ≈ 4rem
+     *   1440p (vh=1440) → capped em 5rem = 80px
+     *   Laptop (vh=768) → clamped no mínimo 3rem = 48px
+     * Garante que o grid respire sem colar nas bordas.
+     */
+    padding-block: clamp(3rem, 6vh, 5rem);
+  }
+
+  /*
+   * Headline contida na coluna esquerda:
+   * usa metade do vw (~coluna) para nunca vazar sobre o bio.
+   * clamp(3.5rem, 4.8vw, 7rem):
+   *   992px → 56px | 1280px → 61px | 1568px → 75px
+   */
+  .hero__headline {
+    font-size: clamp(3.5rem, 4.8vw, 7rem);
+  }
 }
 
 .hero__eyebrow {
@@ -612,17 +679,21 @@ button {
   gap: var(--space-12);
 }
 
-@media (min-width: 900px) {
+.sobre__grid>* {
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
   .sobre__grid {
     grid-template-columns: 1fr 1fr;
     align-items: start;
-    gap: var(--space-16);
+    gap: var(--space-12);
   }
 }
 
 .sobre__heading {
   font-family: var(--font-display);
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -813,6 +884,10 @@ button {
   margin-bottom: var(--space-8);
   overflow: hidden;
   transition: var(--transition-base);
+}
+
+.projeto-destaque>* {
+  min-width: 0;
 }
 
 .projeto-destaque:hover {
@@ -1475,6 +1550,10 @@ button {
   gap: var(--space-12);
 }
 
+.contato__inner>* {
+  min-width: 0;
+}
+
 @media (min-width: 900px) {
   .contato__inner {
     grid-template-columns: 1fr 1fr;
@@ -1551,6 +1630,11 @@ button {
   background: var(--color-yellow);
 }
 
+.contact-link>div {
+  min-width: 0;
+  flex: 1;
+}
+
 .contact-link__icon {
   font-size: 1.5rem;
   flex-shrink: 0;
@@ -1574,6 +1658,9 @@ button {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .contact-link__arrow {
@@ -1734,4 +1821,141 @@ button {
 ::-webkit-scrollbar-thumb {
   background: var(--color-ink);
   border: 2px solid var(--color-bg);
+}
+
+/* ============================================
+   RESPONSIVIDADE — MOBILE (≤ 599px)
+   Hero como cartão de visitas digital
+   ============================================ */
+@media (max-width: 599px) {
+
+  /* Hero: tela cheia, padding reduzido */
+  .hero {
+    min-height: 100svh;
+  }
+
+  /*
+   * Menos espaço vertical no mobile para mostrar mais
+   * conteúdo acima da dobra sem scroll horizontal.
+   */
+  .hero__inner {
+    padding-block: var(--space-8);
+    gap: var(--space-6);
+  }
+
+  /*
+   * Eyebrow — previne overflow de tags longas (ex.: "Porto Alegre
+   * e Região Metropolitana") em viewports estreitos.
+   * inline-flex não encolhe por padrão; max-width + white-space
+   * garantem que o texto quebre dentro do badge em vez de vazar.
+   */
+  .hero__eyebrow {
+    gap: var(--space-2);
+  }
+
+  .hero__eyebrow>* {
+    max-width: 100%;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  /* Tags e chips: previne que strings longas (ex.: "Gravataí / Porto Alegre
+     e Região Metropolitana") vazem além da largura do container em 320px. */
+  .tag,
+  .hero__role {
+    max-width: 100%;
+    white-space: normal;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .tool-chip {
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  /*
+   * Headline fluida: escala com o viewport para nunca
+   * cortar "DIRETOR" ou "CRIATIVO" em telas pequenas.
+   * clamp(mín, 11vw, 3.5rem):
+   *   320px → 35px  |  375px → 41px  |  480px → 53px  |  568px→ cap
+   * Margem de segurança extra (-1vw) vs versão anterior.
+   */
+  .hero__headline {
+    font-size: clamp(1.8rem, 9vw, 3.5rem);
+  }
+
+  .hero__headline em {
+    -webkit-text-stroke-width: 2px;
+  }
+
+  .hero__bio {
+    font-size: var(--text-base);
+    max-width: 100%;
+  }
+
+  /* Botões: touch target mínimo de 48px, padding horizontal comprimido */
+  .btn {
+    padding: var(--space-3) var(--space-4);
+    min-height: 48px;
+  }
+
+  /* Projetos: padding lateral reduzido */
+  .projeto__info {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  /* Timeline: padding lateral reduzido */
+  .timeline__content {
+    padding: var(--space-5) var(--space-5);
+  }
+
+  .timeline__role {
+    font-size: var(--text-lg);
+  }
+
+  /* Depoimentos */
+  .depoimento-card {
+    padding: var(--space-6);
+  }
+
+  /* Contato */
+  .contact-link {
+    padding: var(--space-4) var(--space-4);
+    gap: var(--space-3);
+  }
+
+  /* Footer: empilha verticalmente e alinha à esquerda */
+  .footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  /* Scroll-to-top: mais compacto */
+  .scroll-top {
+    bottom: var(--space-4);
+    right: var(--space-4);
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+  }
+}
+
+/* ============================================
+   RESPONSIVIDADE — TABLET (600px–991px)
+   ============================================ */
+@media (min-width: 600px) and (max-width: 991px) {
+
+  .hero__inner {
+    padding-block: var(--space-12);
+  }
+
+  .projeto__info {
+    padding: var(--space-8) var(--space-6);
+  }
+
+  .timeline__content {
+    padding: var(--space-6) var(--space-6);
+  }
 }

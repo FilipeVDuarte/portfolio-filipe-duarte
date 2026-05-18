@@ -76,45 +76,6 @@
   revealEls.forEach(el => revealObserver.observe(el));
 
   /* ------------------------------------------
-     COUNTER ANIMATION para métricas do hero
-  ------------------------------------------ */
-  function animateCounter(el, target, suffix, duration) {
-    const start     = performance.now();
-    const isDecimal = target % 1 !== 0;
-
-    function step(now) {
-      const elapsed  = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased    = 1 - Math.pow(1 - progress, 3);
-      const current  = isDecimal
-        ? (eased * target).toFixed(2)
-        : Math.round(eased * target);
-
-      el.textContent = current + (suffix || '');
-
-      if (progress < 1) requestAnimationFrame(step);
-    }
-
-    requestAnimationFrame(step);
-  }
-
-  const metricCards = document.querySelectorAll('.metric-card[data-count]');
-
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el     = entry.target.querySelector('.metric-card__number');
-        const target = parseFloat(entry.target.dataset.count);
-        const suffix = entry.target.dataset.suffix || '';
-        animateCounter(el, target, suffix, 1400);
-        counterObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  metricCards.forEach(card => counterObserver.observe(card));
-
-  /* ------------------------------------------
      TOOL CHIPS: hover tooltip com nível
   ------------------------------------------ */
   const toolChips = document.querySelectorAll('.tool-chip[data-level]');
@@ -154,6 +115,20 @@
   window.addEventListener('scroll', () => {
     onScroll();
     onParallax();
+  }, { passive: true });
+
+  /*
+   * Fecha o menu mobile ao redimensionar para desktop.
+   * CSS !important não sobrepõe inline styles setados por JS,
+   * então este listener garante que o menu feche mesmo que
+   * o celular seja girado ou a janela seja alargada.
+   */
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 769) {
+      hamburger.classList.remove('open');
+      if (navMobile) navMobile.style.display = 'none';
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
   }, { passive: true });
 
   /* Inicializar estado */
