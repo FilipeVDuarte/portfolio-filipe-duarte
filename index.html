@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Filipe Duarte — Diretor Criativo & Desenvolvedor. Design + Código + IA Generativa. Adobe Certified. Portfólio de projetos e experiências em Porto Alegre, RS." />
+  <meta name="author" content="Filipe Velasco Duarte Delfino" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Filipe Duarte — Diretor Criativo & Desenvolvedor" />
+  <meta property="og:description" content="Híbrido raro: Design + Código + IA Generativa. Adobe Certified. Nota 9,56/10. MobiStudio. Porto Alegre, RS." />
+  <meta property="og:type" content="website" />
+
+  <title>Filipe Duarte — Diretor Criativo & Desenvolvedor</title>
+
+  <!-- Preconnect para Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- ==========================================
+       NAVEGAÇÃO
+  ========================================== -->
+  <header class="nav" role="banner">
+    <div class="container nav__inner">
+      <a href="#hero" class="nav__logo" aria-label="Filipe Duarte — início">
+        <span>FD</span> Filipe Duarte
+      </a>
+
+      <!-- Desktop -->
+      <nav class="nav__links" aria-label="Menu principal">
+        <a class="nav__link" href="#sobre">Sobre</a>
+        <a class="nav__link" href="#stack">Stack</a>
+        <a class="nav__link" href="#projetos">Projetos</a>
+        <a class="nav__link" href="#experiencia">Experiência</a>
+        <a class="nav__link" href="#formacao">Formação</a>
+        <a class="nav__cta" href="#contato">Contato →</a>
+      </nav>
+
+      <!-- Mobile toggle -->
+      <button class="nav__hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu (hidden by default via JS) -->
+    <nav class="nav__mobile" id="mobile-menu" aria-label="Menu mobile" style="display:none;">
+      <a class="nav__link" href="#sobre">Sobre</a>
+      <a class="nav__link" href="#stack">Stack</a>
+      <a class="nav__link" href="#projetos">Projetos</a>
+      <a class="nav__link" href="#experiencia">Experiência</a>
+      <a class="nav__link" href="#formacao">Formação</a>
+      <a class="nav__cta" href="#contato">Contato →</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ==========================================
+         HERO
+    ========================================== -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+
+        <div>
+          <div class="hero__eyebrow">
+            <span class="hero__status-dot">Disponível para oportunidades</span>
+            <span class="tag tag--dark">Porto Alegre, RS</span>
+            <span class="tag">Adobe Certified ✦</span>
+          </div>
+
+          <h1 class="hero__headline" id="hero-title">
+            Diretor
+            <em>Criativo</em>
+            &amp; Dev
+          </h1>
+
+          <div class="hero__roles">
+            <span class="hero__role">Design</span>
+            <span class="hero__role">Código</span>
+            <span class="hero__role">IA Generativa</span>
+            <span class="hero__role">Audiovisual</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="hero__bio">
+            Designer Multimídia com <strong>4+ anos</strong> de experiência. Atuo do briefing ao deploy —
+            do Figma ao código funcional em produção.
+            Uso <strong>IA generativa estrategicamente</strong>, não como tendência.
+          </p>
+
+          <!-- Métricas de impacto -->
+          <div class="hero__metrics" role="list" aria-label="Resultados concretos">
+
+            <article class="metric-card" data-count="9.56" data-suffix="/10" role="listitem">
+              <div class="metric-card__number" aria-label="Nota 9,56 de 10">9,56</div>
+              <div class="metric-card__label">Avaliação interna</div>
+            </article>
+
+            <article class="metric-card" data-count="5" data-suffix=" meses" role="listitem">
+              <div class="metric-card__number" aria-label="5 meses">5</div>
+              <div class="metric-card__label">Operação solo</div>
+            </article>
+
+            <article class="metric-card" role="listitem">
+              <div class="metric-card__number">50%+</div>
+              <div class="metric-card__label">Redução com IA</div>
+            </article>
+
+            <article class="metric-card" data-count="5000" data-suffix="+" role="listitem">
+              <div class="metric-card__number" aria-label="5000 arquivos">5000+</div>
+              <div class="metric-card__label">Arquivos geridos</div>
+            </article>
+
+          </div>
+
+          <div class="hero__actions">
+            <a href="#projetos" class="btn btn--primary">
+              Ver Projetos ↓
+            </a>
+            <a href="https://linkedin.com/in/filipevelascoduarte" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">
+              LinkedIn ↗
+            </a>
+            <a href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer" class="btn btn--yellow">
+              Behance ↗
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <span class="hero__decoration" aria-hidden="true">FD</span>
+    </section>
+
+    <!-- ==========================================
+         SOBRE MIM
+    ========================================== -->
+    <section class="sobre" id="sobre" aria-labelledby="sobre-title">
+      <div class="container">
+        <p class="section-label">01 — Sobre Mim</p>
+
+        <div class="sobre__grid">
+
+          <div data-reveal>
+            <h2 class="sobre__heading" id="sobre-title">
+              Não sou só designer.<br />
+              Não sou só dev.<br />
+              <span class="highlight">Sou os dois.</span>
+            </h2>
+
+            <p class="sobre__text">
+              Designer Multimídia com mais de <strong>4 anos de experiência</strong> em identidade visual,
+              produção gráfica e audiovisual. Atuo como guardião da marca em todas as aplicações — do
+              digital ao impresso, do conceito ao arquivo final.
+            </p>
+            <p class="sobre__text">
+              Nos últimos anos na <strong>Mobifans/Customic</strong>, desenvolvi e apliquei a identidade
+              visual da marca em múltiplos canais. Quando a equipe principal se ausentou por
+              <strong>5 meses</strong>, assumi 100% da operação sem perder um prazo —
+              e saí com nota <strong>9,56/10</strong>.
+            </p>
+            <p class="sobre__text">
+              Construí o <strong>MobiStudio</strong> do zero: Figma → Canvas API → deploy em produção no Netlify.
+              Esse projeto resume quem eu sou: alguém que <span class="highlight-yellow">fecha o ciclo inteiro</span>.
+            </p>
+
+            <div class="sobre__pills">
+              <span class="tag">Gravataí / Porto Alegre, RS</span>
+              <span class="tag tag--dark">Presencial · Híbrido · Remoto</span>
+              <span class="tag tag--green">4+ anos exp.</span>
+            </div>
+          </div>
+
+          <div class="value-boxes" data-reveal data-reveal-delay="2">
+
+            <article class="value-box">
+              <div class="value-box__icon">🎨</div>
+              <h3 class="value-box__title">Pipeline completo de design</h3>
+              <p class="value-box__text">
+                Do brief ao Brandbook, do conceito ao arquivo CMYK pronto para impressão.
+                Não preciso de revisão técnica antes de mandar para o fornecedor.
+              </p>
+            </article>
+
+            <article class="value-box">
+              <div class="value-box__icon">💻</div>
+              <h3 class="value-box__title">Design que vira produto</h3>
+              <p class="value-box__text">
+                A maioria dos designers entrega no Figma. Eu entrego funcionando no navegador.
+                Figma → código → produção, sem intermediários.
+              </p>
+            </article>
+
+            <article class="value-box">
+              <div class="value-box__icon">🤖</div>
+              <h3 class="value-box__title">IA como ferramenta real</h3>
+              <p class="value-box__text">
+                Uso Claude Pro diariamente para geração de assets, variações visuais e refinamento de
+                código. Reduzi tempo manual em 50%+ em projetos de grande volume.
+              </p>
+            </article>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STACK
+    ========================================== -->
+    <section class="stack" id="stack" aria-labelledby="stack-title">
+      <div class="container">
+        <p class="section-label">02 — Ferramentas & Competências</p>
+
+        <h2 class="stack__heading" id="stack-title">
+          Meu <em>arsenal</em><br />
+          completo
+        </h2>
+
+        <div class="stack__categories">
+
+          <div data-reveal>
+            <p class="stack__category-title">✦ Design Gráfico & Visual</p>
+            <div class="stack__tools">
+              <span class="tool-chip tool-chip--certified" data-level="Avançado — Certificado">
+                Adobe Photoshop <span class="tool-chip__level">✦ Certificado</span>
+              </span>
+              <span class="tool-chip tool-chip--certified" data-level="Avançado">Adobe Illustrator</span>
+              <span class="tool-chip" data-level="Avançado">Figma</span>
+              <span class="tool-chip" data-level="Sólido">Adobe After Effects</span>
+              <span class="tool-chip" data-level="Sólido">Adobe Premiere Pro</span>
+              <span class="tool-chip" data-level="Sólido">Adobe Lightroom</span>
+              <span class="tool-chip" data-level="Avançado">Canva</span>
+              <span class="tool-chip" data-level="Em estudo">Cavalry</span>
+            </div>
+          </div>
+
+          <div data-reveal data-reveal-delay="1">
+            <p class="stack__category-title">✦ Desenvolvimento Web</p>
+            <div class="stack__tools">
+              <span class="tool-chip" data-level="Intermediário">HTML5</span>
+              <span class="tool-chip" data-level="Intermediário">CSS3</span>
+              <span class="tool-chip" data-level="Intermediário">JavaScript Vanilla</span>
+              <span class="tool-chip" data-level="Intermediário">Canvas API</span>
+              <span class="tool-chip" data-level="Intermediário">SVG</span>
+              <span class="tool-chip" data-level="Intermediário">Netlify Deploy</span>
+              <span class="tool-chip" data-level="Intermediário">Builder.io</span>
+            </div>
+          </div>
+
+          <div data-reveal data-reveal-delay="2">
+            <p class="stack__category-title">✦ IA Generativa & Workflow</p>
+            <div class="stack__tools">
+              <span class="tool-chip tool-chip--certified" data-level="Uso estratégico diário — Certificado Anthropic">
+                Claude (Pro) <span class="tool-chip__level">✦ Anthropic Certified</span>
+              </span>
+              <span class="tool-chip" data-level="Uso estratégico diário">Claude Code</span>
+              <span class="tool-chip" data-level="Intermediário">Engenharia de Prompts</span>
+              <span class="tool-chip" data-level="Intermediário">Geração de Assets com IA</span>
+              <span class="tool-chip" data-level="Intermediário">Figma → Builder.io</span>
+            </div>
+          </div>
+
+          <div data-reveal data-reveal-delay="3">
+            <p class="stack__category-title">✦ 3D, Audiovisual & Outros</p>
+            <div class="stack__tools">
+              <span class="tool-chip" data-level="Sólido">Blender</span>
+              <span class="tool-chip" data-level="Intermediário">Autodesk Maya</span>
+              <span class="tool-chip" data-level="Intermediário">Captação DSLR/Mirrorless</span>
+              <span class="tool-chip" data-level="Intermediário">Color Grading</span>
+              <span class="tool-chip" data-level="Intermediário">Motion Graphics</span>
+              <span class="tool-chip" data-level="Intermediário">Corte a Laser (MDF)</span>
+              <span class="tool-chip" data-level="Intermediário">CMYK / Pré-impressão</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PROJETOS EM DESTAQUE
+    ========================================== -->
+    <section class="projetos" id="projetos" aria-labelledby="projetos-title">
+      <div class="container">
+
+        <div class="projetos__header">
+          <div>
+            <p class="section-label">03 — Projetos em Destaque</p>
+            <h2 class="projetos__heading" id="projetos-title">
+              O que eu<br />construí
+            </h2>
+          </div>
+          <a href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer"
+             class="btn btn--secondary">
+            Ver Behance ↗
+          </a>
+        </div>
+
+        <!-- PROJETO 1: MobiStudio -->
+        <article class="projeto-destaque" data-reveal aria-labelledby="mobistudio-title">
+
+          <div class="projeto__visual projeto__visual--yellow">
+            <span class="projeto__icon" role="img" aria-label="Ferramenta web">📱</span>
+            <span class="projeto__bg-text" aria-hidden="true">STUDIO</span>
+          </div>
+
+          <div class="projeto__info">
+            <div class="projeto__meta">
+              <span class="tag tag--dark">Projeto Autoral</span>
+              <span class="tag">Abr/2026 — atual</span>
+            </div>
+
+            <h3 class="projeto__title" id="mobistudio-title">MobiStudio</h3>
+            <p class="projeto__subtitle">Customizador Interativo de Capinhas — v1.6.9</p>
+
+            <p class="projeto__desc">
+              Ferramenta web proprietária para quiosques da Mobifans visualizarem, em tempo real,
+              a foto do cliente aplicada à capinha — com zoom, rotação, arraste e suporte a até
+              6 fotos por capa. Construída do zero: do problema ao deploy em produção.
+            </p>
+
+            <ul class="projeto__highlights" aria-label="Destaques do projeto">
+              <li class="projeto__highlight">Prototipagem no Figma → Builder.io → código limpo</li>
+              <li class="projeto__highlight">Motor Canvas API com zoom, rotação e arraste fluidos</li>
+              <li class="projeto__highlight">Sistema reconhece posição da câmera de cada modelo de celular</li>
+              <li class="projeto__highlight">Migração de stack para carregamento instantâneo</li>
+              <li class="projeto__highlight">Deploy estável no Netlify para múltiplos acessos simultâneos</li>
+              <li class="projeto__highlight">70+ combinações de estampas em desenvolvimento</li>
+            </ul>
+
+            <div class="projeto__tech" aria-label="Tecnologias utilizadas">
+              <span class="tech-tag">HTML5</span>
+              <span class="tech-tag">CSS3</span>
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Canvas API</span>
+              <span class="tech-tag">Figma</span>
+              <span class="tech-tag">Builder.io</span>
+              <span class="tech-tag">Claude Code</span>
+              <span class="tech-tag">Netlify</span>
+            </div>
+
+            <div class="projeto__actions">
+              <a href="https://lnkd.in/d6wt9thK" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+                Acessar MobiStudio ↗
+              </a>
+            </div>
+          </div>
+
+        </article>
+
+        <!-- PROJETO 2: Rap in Cena -->
+        <article class="projeto-destaque projeto-destaque--reverse" data-reveal aria-labelledby="rapincena-title">
+
+          <div class="projeto__visual projeto__visual--red">
+            <span class="projeto__icon" role="img" aria-label="Microfone">🎤</span>
+            <span class="projeto__bg-text" aria-hidden="true">HIP-HOP</span>
+          </div>
+
+          <div class="projeto__info">
+            <div class="projeto__meta">
+              <span class="tag tag--dark">Identidade de Evento</span>
+              <span class="tag">Set–Out/2025</span>
+            </div>
+
+            <h3 class="projeto__title" id="rapincena-title">Rap In Cena</h3>
+            <p class="projeto__subtitle">Enxoval visual — Maior festival de Hip-Hop do Brasil</p>
+
+            <p class="projeto__desc">
+              Material visual completo desenvolvido para a participação da Mobifans no Rap in Cena —
+              do briefing ao arquivo final, cobrindo todos os pontos de contato digitais e físicos do evento.
+            </p>
+
+            <ul class="projeto__highlights" aria-label="Destaques do projeto">
+              <li class="projeto__highlight">Artes para redes sociais: pré-evento, durante e pós</li>
+              <li class="projeto__highlight">Banners e peças de comunicação impressa</li>
+              <li class="projeto__highlight">Sinalização física e ambientação do stand</li>
+              <li class="projeto__highlight">Artes oficiais do festival para capinhas personalizadas</li>
+              <li class="projeto__highlight">Stand entre os mais movimentados do evento</li>
+              <li class="projeto__highlight">Parceria consolidada para edições futuras</li>
+            </ul>
+
+            <div class="projeto__tech" aria-label="Ferramentas utilizadas">
+              <span class="tech-tag">Illustrator</span>
+              <span class="tech-tag">Photoshop</span>
+              <span class="tech-tag">Figma</span>
+              <span class="tech-tag">Canva</span>
+              <span class="tech-tag">CMYK / Impressão</span>
+              <span class="tech-tag">Sinalização Física</span>
+            </div>
+
+            <div class="projeto__actions">
+              <a href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+                Ver no Behance ↗
+              </a>
+            </div>
+          </div>
+
+        </article>
+
+        <!-- Projetos secundários -->
+        <p class="section-label" style="margin-top: var(--space-12);">Outros projetos</p>
+        <div class="projetos__grid-secondary">
+
+          <article class="projeto-card" data-reveal>
+            <div class="projeto-card__emoji" role="img" aria-label="Design">🎨</div>
+            <h3 class="projeto-card__title">Estampas MobiStudio</h3>
+            <p class="projeto-card__desc">
+              Desenvolvimento manual de 70+ artes para estampas personalizadas dentro do MobiStudio.
+              Une produção gráfica tradicional com ferramenta interativa proprietária.
+            </p>
+            <div class="projeto__tech">
+              <span class="tech-tag">Illustrator</span>
+              <span class="tech-tag">Photoshop</span>
+              <span class="tech-tag">IA Generativa</span>
+            </div>
+          </article>
+
+          <article class="projeto-card" data-reveal data-reveal-delay="1">
+            <div class="projeto-card__emoji" role="img" aria-label="Jogo de tabuleiro">🎲</div>
+            <h3 class="projeto-card__title">Carcassonne Físico</h3>
+            <p class="projeto-card__desc">
+              Versão física personalizada do jogo Carcassonne — planejamento em escala,
+              modelagem 3D, cálculo de materiais e corte a laser em MDF. Design digital × manufatura real.
+            </p>
+            <div class="projeto__tech">
+              <span class="tech-tag">Blender</span>
+              <span class="tech-tag">Corte a Laser</span>
+              <span class="tech-tag">MDF</span>
+            </div>
+          </article>
+
+          <article class="projeto-card" data-reveal data-reveal-delay="2">
+            <div class="projeto-card__emoji" role="img" aria-label="Câmera fotográfica">📸</div>
+            <h3 class="projeto-card__title">Foto — Correio do Povo</h3>
+            <p class="projeto-card__desc">
+              Convidado para fotografar a fachada do Centro Universitário Senac Porto Alegre.
+              Imagem publicada e creditada em matéria do jornal Correio do Povo.
+            </p>
+            <div class="projeto__tech">
+              <span class="tech-tag">Fotografia</span>
+              <span class="tech-tag">Lightroom</span>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         EXPERIÊNCIA PROFISSIONAL
+    ========================================== -->
+    <section class="experiencia" id="experiencia" aria-labelledby="experiencia-title">
+      <div class="container">
+        <p class="section-label">04 — Experiência Profissional</p>
+        <h2 class="experiencia__heading" id="experiencia-title">
+          Onde criei<br />impacto real
+        </h2>
+
+        <div class="timeline" role="list">
+
+          <!-- Mobifans — CLT -->
+          <article class="timeline__item" data-reveal role="listitem">
+            <div class="timeline__date">
+              <span class="timeline__period">Set/2024 — Atual</span>
+              <span class="timeline__duration">1 ano e 9 meses</span>
+            </div>
+            <div class="timeline__content">
+              <p class="timeline__company">Customic / Mobifans · Porto Alegre, RS · Presencial</p>
+              <h3 class="timeline__role">Auxiliar de Marketing</h3>
+              <ul class="timeline__highlights" aria-label="Realizações">
+                <li class="timeline__highlight">
+                  Enxoval completo para o Rap in Cena — artes, banners, sinalização física e ambientação do stand.
+                </li>
+                <li class="timeline__highlight">
+                  Desenvolvimento ponta a ponta do MobiStudio: Figma → Canvas API → deploy em produção.
+                </li>
+                <li class="timeline__highlight">
+                  Gestão e organização de acervo digital com 5.000+ arquivos, mantendo fluxo ágil de colaboração.
+                </li>
+                <li class="timeline__highlight">
+                  Uso estratégico de IA generativa com redução de 50%+ no tempo manual em projetos de grande volume.
+                </li>
+                <li class="timeline__highlight">
+                  Sustentou 100% da operação de design solo por 5 meses — zero atrasos, nota 9,56/10.
+                </li>
+              </ul>
+              <div class="timeline__badge" role="note">
+                ⭐ 9,56 / 10 — Avaliação interna de desempenho
+              </div>
+            </div>
+          </article>
+
+          <!-- Mobifans — Estágio -->
+          <article class="timeline__item" data-reveal role="listitem">
+            <div class="timeline__date">
+              <span class="timeline__period">Out/2022 — Set/2024</span>
+              <span class="timeline__duration">2 anos</span>
+            </div>
+            <div class="timeline__content">
+              <p class="timeline__company">Customic / Mobifans · Híbrido</p>
+              <h3 class="timeline__role">Estágio — Design de Mídias Sociais & Design de Produto</h3>
+              <ul class="timeline__highlights" aria-label="Realizações">
+                <li class="timeline__highlight">
+                  Criação de peças on e offline seguindo Brandbook: banners, posts, mockups, impressos.
+                </li>
+                <li class="timeline__highlight">
+                  Fechamento de arquivos para impressão com gestão correta de CMYK, sangria e DPI.
+                </li>
+                <li class="timeline__highlight">
+                  Estruturação do acervo digital, reduzindo tempo de busca de materiais pelo time.
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Vitalis -->
+          <article class="timeline__item" data-reveal role="listitem">
+            <div class="timeline__date">
+              <span class="timeline__period">Nov/2021 — Jul/2022</span>
+              <span class="timeline__duration">9 meses</span>
+            </div>
+            <div class="timeline__content">
+              <p class="timeline__company">Centro de Psicologia Vitalis · Porto Alegre, RS · Presencial</p>
+              <h3 class="timeline__role">Estágio — Design de Criação & Web Design</h3>
+              <ul class="timeline__highlights" aria-label="Realizações">
+                <li class="timeline__highlight">
+                  Criação de artes para redes sociais, folders e cartazes alinhados ao posicionamento da marca.
+                </li>
+                <li class="timeline__highlight">
+                  Manutenção do site e calendário de postagens nas redes sociais.
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Autônomo -->
+          <article class="timeline__item" data-reveal role="listitem">
+            <div class="timeline__date">
+              <span class="timeline__period">Mai/2020 — Out/2021</span>
+              <span class="timeline__duration">1 ano e 6 meses</span>
+            </div>
+            <div class="timeline__content">
+              <p class="timeline__company">Atuação Autônoma · Rio Grande do Norte, Brasil</p>
+              <h3 class="timeline__role">Designer Gráfico Freelancer</h3>
+              <ul class="timeline__highlights" aria-label="Realizações">
+                <li class="timeline__highlight">
+                  Criação de identidades visuais e logotipos para pequenos negócios e criadores.
+                </li>
+                <li class="timeline__highlight">
+                  Artes para redes sociais, vetorização e ilustração para mídias online e impressas.
+                </li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FORMAÇÃO & CERTIFICAÇÕES
+    ========================================== -->
+    <section class="formacao" id="formacao" aria-labelledby="formacao-title">
+      <div class="container">
+        <p class="section-label">05 — Formação & Certificações</p>
+        <h2 class="formacao__heading" id="formacao-title">
+          Base sólida,<br />aprendizado contínuo
+        </h2>
+
+        <div class="formacao__grid">
+
+          <article class="edu-card" data-reveal>
+            <div class="edu-card__type">🎓 Graduação</div>
+            <h3 class="edu-card__title">Tecnologia em Produção Multimídia</h3>
+            <p class="edu-card__institution">Centro Universitário Senac-RS — UniSenac</p>
+            <p class="edu-card__period">Ago/2021 – Out/2024 · Concluído</p>
+            <p class="edu-card__desc">
+              UX/UI · Design Gráfico · Fotografia · Audiovisual · 3D.
+              Monitor voluntário Adobe/Maya por 1 ano e 8 meses.
+              Palestrante na 1ª Semana Conecta Unisenac.
+            </p>
+          </article>
+
+          <article class="edu-card" data-reveal data-reveal-delay="1">
+            <div class="edu-card__type">🎓 Extensão</div>
+            <h3 class="edu-card__title">Design Centrado no Usuário</h3>
+            <p class="edu-card__institution">PUCRS — Escola Politécnica</p>
+            <p class="edu-card__period">Fevereiro/2026 · 10h · Cert. nº 229559-2853-1</p>
+            <p class="edu-card__desc">
+              Ministrado por <strong>Don Norman</strong> (referência mundial em UX).
+              Lei de Norman · Acessibilidade · Prototipação · UX remoto.
+            </p>
+          </article>
+
+          <article class="edu-card" data-reveal data-reveal-delay="2">
+            <div class="edu-card__type">🏅 Certificação Oficial</div>
+            <h3 class="edu-card__title">Adobe Certified Professional</h3>
+            <p class="edu-card__institution">Adobe / Certiport — Verificável no Credly</p>
+            <p class="edu-card__period">Visual Design Using Adobe Photoshop v24.x</p>
+            <p class="edu-card__desc">
+              Exame oficial Certiport. Valida domínio técnico avançado em Adobe Photoshop.
+              Verificável publicamente via Credly.
+            </p>
+          </article>
+
+          <article class="edu-card" data-reveal data-reveal-delay="1">
+            <div class="edu-card__type">🤖 Certificação</div>
+            <h3 class="edu-card__title">Claude 101</h3>
+            <p class="edu-card__institution">Anthropic</p>
+            <p class="edu-card__period">Março/2026 · Código: h3g5tvwk9vhb</p>
+            <p class="edu-card__desc">
+              Certificate of Completion em uso estratégico do Claude.
+              Fundamentos de IA generativa e engenharia de prompts.
+            </p>
+          </article>
+
+          <article class="edu-card" data-reveal data-reveal-delay="2">
+            <div class="edu-card__type">🤖 Certificação</div>
+            <h3 class="edu-card__title">Introduction to Agent Skills</h3>
+            <p class="edu-card__institution">Anthropic</p>
+            <p class="edu-card__period">Março/2026 · Código: h465qxd4a28s</p>
+            <p class="edu-card__desc">
+              Certificação em construção e uso de Agent Skills.
+              Workflows com IA generativa aplicados a problemas reais.
+            </p>
+          </article>
+
+          <article class="edu-card" data-reveal data-reveal-delay="3">
+            <div class="edu-card__type">🎓 Imersão</div>
+            <h3 class="edu-card__title">Santander Imersão Digital</h3>
+            <p class="edu-card__institution">Santander / Alura · Bolsista</p>
+            <p class="edu-card__period">Setembro/2025</p>
+            <p class="edu-card__desc">
+              Bolsista selecionado para imersão digital com foco em tecnologia e inovação.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         DEPOIMENTOS
+    ========================================== -->
+    <section class="depoimentos" aria-labelledby="depoimentos-title">
+      <div class="container">
+        <p class="section-label">06 — Depoimentos</p>
+        <h2 class="depoimentos__heading" id="depoimentos-title">
+          O que dizem<br />sobre mim
+        </h2>
+
+        <div class="depoimentos__grid">
+
+          <article class="depoimento-card" data-reveal>
+            <blockquote>
+              <p class="depoimento-card__text">
+                "Filipe foi a melhor pessoa com quem já trabalhei, profissional dedicado e sempre disposto
+                a aprender mais! Excepcional em tudo que se propõe a fazer e é incrivelmente talentoso
+                em tudo que faz!"
+              </p>
+              <footer class="depoimento-card__author">
+                <cite class="depoimento-card__name">Kamila Oliveira</cite>
+                <span class="depoimento-card__role">Design Gráfico · UX/UI Designer · Colega de equipe (set/2025)</span>
+              </footer>
+            </blockquote>
+          </article>
+
+          <article class="depoimento-card" data-reveal data-reveal-delay="2">
+            <blockquote>
+              <p class="depoimento-card__text">
+                "Filipe fez um trabalho para mim em Blender e ficou ótimo. Recomendo."
+              </p>
+              <footer class="depoimento-card__author">
+                <cite class="depoimento-card__name">Debora Idalgo Marques</cite>
+                <span class="depoimento-card__role">Professora UniSenac · Doutoranda UFRGS · Cliente (out/2024)</span>
+              </footer>
+            </blockquote>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         EM DESENVOLVIMENTO
+    ========================================== -->
+    <section class="em-dev" aria-labelledby="emdev-title">
+      <div class="container">
+        <p class="section-label">07 — Em Desenvolvimento</p>
+        <h2 class="em-dev__heading" id="emdev-title">
+          Sempre em<br /><em>movimento</em>
+        </h2>
+
+        <div class="em-dev__grid">
+
+          <article class="dev-card" data-reveal>
+            <div class="dev-card__icon" role="img" aria-label="Animação">🎬</div>
+            <h3 class="dev-card__title">Cavalry</h3>
+            <p class="dev-card__desc">
+              Motion procedural — possível concorrente do After Effects (agora no ecossistema Canva).
+              Já produzi primeira animação procedural. Workflow leve e ágil.
+            </p>
+            <span class="dev-card__status">Em estudo ativo</span>
+          </article>
+
+          <article class="dev-card" data-reveal data-reveal-delay="1">
+            <div class="dev-card__icon" role="img" aria-label="Código">💻</div>
+            <h3 class="dev-card__title">Dev Web Avançado</h3>
+            <p class="dev-card__desc">
+              Aprofundamento em JavaScript, Canvas API e arquitetura front-end.
+              Próximo: frameworks modernos e vocabulário full-stack.
+            </p>
+            <span class="dev-card__status">Estudo contínuo</span>
+          </article>
+
+          <article class="dev-card" data-reveal data-reveal-delay="2">
+            <div class="dev-card__icon" role="img" aria-label="Globo">🌍</div>
+            <h3 class="dev-card__title">Inglês</h3>
+            <p class="dev-card__desc">
+              335+ dias consecutivos no Duolingo. Meta: fluência funcional para oportunidades
+              internacionais e conteúdo técnico avançado em primeira mão.
+            </p>
+            <span class="dev-card__status">335+ dias de streak</span>
+          </article>
+
+          <article class="dev-card" data-reveal>
+            <div class="dev-card__icon" role="img" aria-label="Robô">🤖</div>
+            <h3 class="dev-card__title">IA Aplicada ao Design</h3>
+            <p class="dev-card__desc">
+              Integrar IA em pipelines criativos completos, do briefing à entrega.
+              Certificações Anthropic já concluídas.
+            </p>
+            <span class="dev-card__status">Aprofundamento contínuo</span>
+          </article>
+
+          <article class="dev-card" data-reveal data-reveal-delay="1">
+            <div class="dev-card__icon" role="img" aria-label="Câmera de vídeo">🎥</div>
+            <h3 class="dev-card__title">Audiovisual & Vídeo</h3>
+            <p class="dev-card__desc">
+              Captação profissional, edição avançada e motion design.
+              Consolidar perfil híbrido design + vídeo para o mercado em alta no RS.
+            </p>
+            <span class="dev-card__status">Expansão ativa</span>
+          </article>
+
+          <article class="dev-card" data-reveal data-reveal-delay="2">
+            <div class="dev-card__icon" role="img" aria-label="Google">🏛️</div>
+            <h3 class="dev-card__title">Google I/O 2026</h3>
+            <p class="dev-card__desc">
+              Inscrição confirmada no Google Developer Program para acesso
+              a novidades técnicas e atualizações de plataforma.
+            </p>
+            <span class="dev-card__status">Confirmado</span>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+         CONTATO
+    ========================================== -->
+    <section class="contato" id="contato" aria-labelledby="contato-title">
+      <div class="container">
+        <p class="section-label">08 — Contato</p>
+
+        <div class="contato__inner">
+
+          <div data-reveal>
+            <h2 class="contato__heading" id="contato-title">
+              Vamos criar<br />algo <span class="highlight">juntos?</span>
+            </h2>
+            <p class="contato__subtext">
+              Estou disponível para novas oportunidades — CLT, PJ, freelance ou projetos colaborativos.
+              Se você precisa de alguém que <strong>fecha o ciclo inteiro</strong> — do conceito ao produto
+              funcionando — me chama.
+            </p>
+
+            <div class="contato__available" aria-label="Modalidades de trabalho disponíveis">
+              <span class="available-badge">Presencial POA</span>
+              <span class="available-badge">Híbrido</span>
+              <span class="available-badge">Remoto</span>
+              <span class="available-badge">Freelance / PJ</span>
+            </div>
+          </div>
+
+          <div class="contato__links" data-reveal data-reveal-delay="2" role="list" aria-label="Canais de contato">
+
+            <a class="contact-link" href="mailto:filipe.velascoduarte@gmail.com" role="listitem"
+               aria-label="Enviar e-mail para Filipe Duarte">
+              <span class="contact-link__icon" aria-hidden="true">✉️</span>
+              <div>
+                <p class="contact-link__label">E-mail</p>
+                <p class="contact-link__value">filipe.velascoduarte@gmail.com</p>
+              </div>
+              <span class="contact-link__arrow" aria-hidden="true">→</span>
+            </a>
+
+            <a class="contact-link" href="https://wa.me/5551996051030" target="_blank" rel="noopener noreferrer"
+               role="listitem" aria-label="Abrir WhatsApp de Filipe Duarte">
+              <span class="contact-link__icon" aria-hidden="true">💬</span>
+              <div>
+                <p class="contact-link__label">WhatsApp</p>
+                <p class="contact-link__value">(51) 9 9605-1030</p>
+              </div>
+              <span class="contact-link__arrow" aria-hidden="true">→</span>
+            </a>
+
+            <a class="contact-link" href="https://linkedin.com/in/filipevelascoduarte" target="_blank" rel="noopener noreferrer"
+               role="listitem" aria-label="Perfil LinkedIn de Filipe Duarte">
+              <span class="contact-link__icon" aria-hidden="true">💼</span>
+              <div>
+                <p class="contact-link__label">LinkedIn</p>
+                <p class="contact-link__value">linkedin.com/in/filipevelascoduarte</p>
+              </div>
+              <span class="contact-link__arrow" aria-hidden="true">→</span>
+            </a>
+
+            <a class="contact-link" href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer"
+               role="listitem" aria-label="Portfólio Behance de Filipe Duarte">
+              <span class="contact-link__icon" aria-hidden="true">🎨</span>
+              <div>
+                <p class="contact-link__label">Behance</p>
+                <p class="contact-link__value">behance.net/filipevelascoduarte</p>
+              </div>
+              <span class="contact-link__arrow" aria-hidden="true">→</span>
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+  ========================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__logo">
+        <span>FD</span> Filipe Duarte
+      </div>
+
+      <p class="footer__copy">
+        © <span id="current-year">2026</span> Filipe Velasco Duarte Delfino —
+        Diretor Criativo & Desenvolvedor
+      </p>
+
+      <nav class="footer__links" aria-label="Links rápidos do footer">
+        <a class="footer__link" href="https://linkedin.com/in/filipevelascoduarte" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="footer__link" href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer">Behance</a>
+        <a class="footer__link" href="mailto:filipe.velascoduarte@gmail.com">E-mail</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
