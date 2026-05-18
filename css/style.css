@@ -1219,6 +1219,7 @@ button {
 }
 
 .timeline__badge {
+  color: var(--color-white);
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -1229,7 +1230,7 @@ button {
   letter-spacing: 0.06em;
   padding: var(--space-2) var(--space-4);
   border: var(--border);
-  background: var(--color-yellow);
+  background: var(--color-purple);
   box-shadow: var(--shadow-sm);
   margin-top: var(--space-4);
 }
