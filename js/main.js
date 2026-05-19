@@ -3,15 +3,29 @@
    main.js — Interações e animações
    ============================================ */
 
+
+
 (function () {
   'use strict';
+
+  // Array com os textos que vão alternar
+  const titulos = ["Filipe Duarte", "Produtor Multimídia", "Entre em contato!"];
+  let index = 0;
+
+  // Função que faz a troca a cada 5000 milissegundos (5 segundos)
+  setInterval(() => {
+    document.title = titulos[index];
+    // Alterna o índice entre 0 e 1
+    index = (index + 1) % titulos.length;
+  }, 2500);
+
 
   /* ------------------------------------------
      NAV: sticky shadow + mobile menu
   ------------------------------------------ */
-  const nav         = document.querySelector('.nav');
-  const hamburger   = document.querySelector('.nav__hamburger');
-  const navMobile   = document.querySelector('.nav__mobile');
+  const nav = document.querySelector('.nav');
+  const hamburger = document.querySelector('.nav__hamburger');
+  const navMobile = document.querySelector('.nav__mobile');
   const mobileLinks = document.querySelectorAll('.nav__mobile .nav__link');
 
   function onScroll() {
@@ -92,8 +106,8 @@
       const target = document.querySelector(this.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      const navH   = nav ? nav.offsetHeight : 0;
-      const top    = target.getBoundingClientRect().top + window.pageYOffset - navH - 16;
+      const navH = nav ? nav.offsetHeight : 0;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - navH - 16;
       window.scrollTo({ top, behavior: 'smooth' });
     });
   });
