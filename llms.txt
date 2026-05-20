@@ -1,0 +1,28 @@
+# Filipe Duarte — Produtor Multimídia
+
+Filipe Velasco Duarte Delfino é um Produtor Multimídia com sede em Gravataí/Porto Alegre, RS, Brasil.
+Disponível para oportunidades CLT, freelance e projetos colaborativos presenciais, híbridos e remotos.
+
+## Especialidades
+- Design Gráfico e Identidade Visual (4+ anos)
+- Produção Audiovisual e Motion Graphics
+- Modelagem e Renderização 3D (Blender, Autodesk Maya)
+- Desenvolvimento Web (HTML5, CSS3, JavaScript, Canvas API)
+- UX/UI Design (Figma, Builder.io)
+- IA Generativa aplicada ao design criativo (Claude Pro, Anthropic)
+
+## Certificações
+- Adobe Certified Professional — Visual Design
+- Claude 101 — Anthropic
+- Introduction to Agent Skills — Anthropic
+- Design Centrado no Usuário
+
+## Projetos em Destaque
+- MobiStudio: Customizador interativo de capinhas para quiosques Mobifans. Figma → Canvas API → deploy Netlify.
+- Rap In Cena: Enxoval visual completo para o maior festival de Hip-Hop do Brasil.
+
+## Contato
+- Email: filipe.velascoduarte@gmail.com
+- LinkedIn: https://www.linkedin.com/in/filipevelascoduarte
+- Behance: https://www.behance.net/filipevelascoduarte
+- Portfólio: https://filipeduarte.netlify.app/

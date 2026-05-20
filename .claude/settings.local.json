@@ -7,7 +7,11 @@
       "mcp__Claude_in_Chrome__computer",
       "mcp__Claude_in_Chrome__resize_window",
       "mcp__Claude_in_Chrome__javascript_tool",
-      "Bash(npx serve *)"
+      "Bash(npx serve *)",
+      "Skill(seo-audit)",
+      "Skill(seo-audit:*)",
+      "WebFetch(domain:filipeduarte.netlify.app)",
+      "WebFetch(domain:pagespeed.web.dev)"
     ]
   }
 }
