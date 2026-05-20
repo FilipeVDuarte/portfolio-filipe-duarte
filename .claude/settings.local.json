@@ -11,7 +11,10 @@
       "Skill(seo-audit)",
       "Skill(seo-audit:*)",
       "WebFetch(domain:filipeduarte.netlify.app)",
-      "WebFetch(domain:pagespeed.web.dev)"
+      "WebFetch(domain:pagespeed.web.dev)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\" -Recurse -Force)",
+      "Bash(Select-Object -First 50)",
+      "Bash(Format-List FullName)"
     ]
   }
 }

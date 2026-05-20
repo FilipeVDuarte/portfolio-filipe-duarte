@@ -38,6 +38,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+  <!-- Fonts: preload + carregamento não-bloqueante (evita render-blocking) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" /></noscript>
+
+  <!-- Preload: imagem crítica acima da dobra — melhora LCP -->
+  <link rel="preload" as="image" href="./img/webp/Banner_MobiStudio_Portfolio.webp" type="image/webp" fetchpriority="high" />
+
   <link rel="stylesheet" href="css/style.css" />
 
   <script type="application/ld+json">
@@ -127,13 +135,19 @@
 
       <!-- Desktop -->
       <nav class="nav__links" aria-label="Menu principal">
-        <a class="nav__link" href="#sobre">Sobre</a>
+        <a class="nav__link" href="#sobre" data-en="About">Sobre</a>
         <a class="nav__link" href="#stack">Stack</a>
-        <a class="nav__link" href="#projetos">Projetos</a>
-        <a class="nav__link" href="#experiencia">Experiência</a>
-        <a class="nav__link" href="#formacao">Formação</a>
-        <a class="nav__cta" href="#contato">Contato →</a>
+        <a class="nav__link" href="#projetos" data-en="Projects">Projetos</a>
+        <a class="nav__link" href="#experiencia" data-en="Experience">Experiência</a>
+        <a class="nav__link" href="#formacao" data-en="Education">Formação</a>
+        <a class="nav__cta" href="#contato" data-en="Contact →">Contato →</a>
       </nav>
+
+      <!-- Controls: lang + theme -->
+      <div class="nav__controls">
+        <button class="nav__ctrl" id="lang-toggle" aria-label="Switch to English">EN</button>
+        <button class="nav__ctrl" id="theme-toggle" aria-label="Modo escuro / Dark mode">◐</button>
+      </div>
 
       <!-- Mobile toggle -->
       <button class="nav__hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -143,12 +157,12 @@
 
     <!-- Mobile menu (hidden by default via JS) -->
     <nav class="nav__mobile" id="mobile-menu" aria-label="Menu mobile" style="display:none;">
-      <a class="nav__link" href="#sobre">Sobre</a>
+      <a class="nav__link" href="#sobre" data-en="About">Sobre</a>
       <a class="nav__link" href="#stack">Stack</a>
-      <a class="nav__link" href="#projetos">Projetos</a>
-      <a class="nav__link" href="#experiencia">Experiência</a>
-      <a class="nav__link" href="#formacao">Formação</a>
-      <a class="nav__cta" href="#contato">Contato →</a>
+      <a class="nav__link" href="#projetos" data-en="Projects">Projetos</a>
+      <a class="nav__link" href="#experiencia" data-en="Experience">Experiência</a>
+      <a class="nav__link" href="#formacao" data-en="Education">Formação</a>
+      <a class="nav__cta" href="#contato" data-en="Contact →">Contato →</a>
     </nav>
   </header>
 
@@ -162,12 +176,12 @@
 
         <div>
           <div class="hero__eyebrow">
-            <span class="hero__status-dot">Disponível para oportunidades</span>
-            <span class="tag tag--dark">Porto Alegre e Região Metropolitana</span>
+            <span class="hero__status-dot" data-en="Open to opportunities">Disponível para oportunidades</span>
+            <span class="tag tag--dark" data-en="Porto Alegre Metro Area">Porto Alegre e Região Metropolitana</span>
             <span class="tag">Adobe Certified ✦</span>
           </div>
 
-          <h1 class="hero__headline" id="hero-title">
+          <h1 class="hero__headline" id="hero-title" data-i18n="hero-headline">
             <span class="sr-only">Filipe Duarte — </span>PRODUTOR
             <em>Multimídia</em>
           </h1>
@@ -176,20 +190,20 @@
             <span class="hero__role">3D</span>
             <span class="hero__role">Design</span>
             <span class="hero__role">Audiovisual</span>
-            <span class="hero__role">Programação</span>
+            <span class="hero__role" data-en="Programming">Programação</span>
             <span class="hero__role">UX/UI</span>
-            <span class="tag"><strong>9,56 /10</strong> em avaliação interna</span>
+            <span class="tag" data-en="9.56 /10 internal review"><strong>9,56 /10</strong> em avaliação interna</span>
           </div>
         </div>
         <br>
         <div>
-          <p class="hero__bio">
+          <p class="hero__bio" data-i18n="hero-bio">
             com <strong>4+ anos</strong> de experiência. Atuo do briefing ao deploy,
             do Figma ao código funcional em produção.
             Uso <strong>IA generativa estrategicamente</strong>, não como tendência.
           </p>
           <div class="hero__actions">
-            <a href="#projetos" class="btn btn--primary">
+            <a href="#projetos" class="btn btn--primary" data-en="View Projects ↓">
               Ver Projetos ↓
             </a>
             <a href="https://linkedin.com/in/filipevelascoduarte" target="_blank" rel="noopener noreferrer"
@@ -214,37 +228,37 @@
 
     <section class="sobre" id="sobre" aria-labelledby="sobre-title">
       <div class="container">
-        <p class="section-label">01 — Sobre Mim</p>
+        <p class="section-label" data-en="01 — About Me">01 — Sobre Mim</p>
 
         <div class="sobre__grid">
 
           <div data-reveal>
-            <h2 class="sobre__heading" id="sobre-title">
+            <h2 class="sobre__heading" id="sobre-title" data-i18n="sobre-heading">
               Onde o design encontra o código.<br />
               <span class="highlight">Conectando o visual ao funcional.</span>
             </h2>
 
-            <p class="sobre__text">
+            <p class="sobre__text" data-i18n="sobre-text-1">
               Designer Multimídia com mais de <strong>4 anos de experiência</strong> em identidade visual,
               produção gráfica e audiovisual. Atuo como um comunicador acessível da marca em todas as aplicações, do
               digital ao impresso, do conceito ao arquivo final.
             </p>
-            <p class="sobre__text">
+            <p class="sobre__text" data-i18n="sobre-text-2">
               Nos últimos anos na <strong>Mobifans/Customic</strong>, desenvolvi e apliquei a identidade
               visual da marca em múltiplos canais. Quando a equipe principal se ausentou por
               <strong>5 meses</strong>, assumi 100% da operação sem perder um prazo,
               com avaliação de desempenho de <strong>9,56/10</strong>.
             </p>
-            <p class="sobre__text">
+            <p class="sobre__text" data-i18n="sobre-text-3">
               Construí o <strong>MobiStudio</strong> do zero: Figma → Canvas API → deploy em produção no Netlify.
               Esse projeto reflete o meu ritmo: gosto de fechar o ciclo de ponta a ponta, conduzindo <span
                 class="highlight-yellow">a ideia com a tranquilidade</span> de uma manhã com café, até o deploy final.
             </p>
 
             <div class="sobre__pills">
-              <span class="tag">Gravataí / Porto Alegre e Região Metropolitana</span>
-              <span class="tag tag--dark">Presencial · Híbrido · Remoto</span>
-              <span class="tag tag--green">4+ anos exp.</span>
+              <span class="tag" data-en="Gravataí / Porto Alegre Metro Area">Gravataí / Porto Alegre e Região Metropolitana</span>
+              <span class="tag tag--dark" data-en="On-site · Hybrid · Remote">Presencial · Híbrido · Remoto</span>
+              <span class="tag tag--green" data-en="4+ yrs exp.">4+ anos exp.</span>
             </div>
           </div>
 
@@ -252,8 +266,8 @@
 
             <article class="value-box">
               <div class="value-box__icon">🎨</div>
-              <h3 class="value-box__title">Pipeline completo de design</h3>
-              <p class="value-box__text">
+              <h3 class="value-box__title" data-i18n="vbox-title-1">Pipeline completo de design</h3>
+              <p class="value-box__text" data-i18n="vbox-text-1">
                 Do briefing ao Brandbook, do conceito ao arquivo CMYK pronto para impressão.
                 Preparo arquivos bem estruturados e otimizados, facilitando o processo na hora da impressão ou produção.
               </p>
@@ -261,8 +275,8 @@
 
             <article class="value-box">
               <div class="value-box__icon">💻</div>
-              <h3 class="value-box__title">Design que vira produto</h3>
-              <p class="value-box__text">
+              <h3 class="value-box__title" data-i18n="vbox-title-2">Design que vira produto</h3>
+              <p class="value-box__text" data-i18n="vbox-text-2">
                 Levo a criação um passo além do Figma, traduzindo o design diretamente para código funcional e reduzindo
                 ruídos entre etapas.
                 Figma → código → produção, sem intermediários.
@@ -271,8 +285,8 @@
 
             <article class="value-box">
               <div class="value-box__icon">🤖</div>
-              <h3 class="value-box__title">IA como ferramenta real</h3>
-              <p class="value-box__text">
+              <h3 class="value-box__title" data-i18n="vbox-title-3">IA como ferramenta real</h3>
+              <p class="value-box__text" data-i18n="vbox-text-3">
                 Uso Claude Pro diariamente para geração de assets, variações visuais e refinamento de
                 código. Reduzi tempo manual em 50%+ em projetos de grande volume.
               </p>
@@ -289,9 +303,9 @@
     ========================================== -->
     <section class="stack" id="stack" aria-labelledby="stack-title">
       <div class="container">
-        <p class="section-label">02 — Ferramentas & Competências</p>
+        <p class="section-label" data-en="02 — Tools & Skills">02 — Ferramentas & Competências</p>
 
-        <h2 class="stack__heading" id="stack-title">
+        <h2 class="stack__heading" id="stack-title" data-i18n="stack-heading">
           O que <em>me acompanha</em><br />
           no dia a dia
         </h2>
@@ -299,7 +313,7 @@
         <div class="stack__categories">
 
           <div data-reveal>
-            <p class="stack__category-title">✦ Design Gráfico & Visual</p>
+            <p class="stack__category-title" data-en="✦ Graphic & Visual Design">✦ Design Gráfico & Visual</p>
             <div class="stack__tools">
               <span class="tool-chip tool-chip--certified" data-level="Avançado — Certificado">
                 Adobe Photoshop <span class="tool-chip__level">✦ Certificado</span>
@@ -315,7 +329,7 @@
           </div>
 
           <div data-reveal data-reveal-delay="1">
-            <p class="stack__category-title">✦ Desenvolvimento Web</p>
+            <p class="stack__category-title" data-en="✦ Web Development">✦ Desenvolvimento Web</p>
             <div class="stack__tools">
               <span class="tool-chip" data-level="Intermediário">HTML5</span>
               <span class="tool-chip" data-level="Intermediário">CSS3</span>
@@ -328,7 +342,7 @@
           </div>
 
           <div data-reveal data-reveal-delay="2">
-            <p class="stack__category-title">✦ IA Generativa & Workflow</p>
+            <p class="stack__category-title" data-en="✦ Generative AI & Workflow">✦ IA Generativa & Workflow</p>
             <div class="stack__tools">
               <span class="tool-chip tool-chip--certified" data-level="Uso estratégico diário — Certificado Anthropic">
                 Claude (Pro) <span class="tool-chip__level">✦ Anthropic Certified</span>
@@ -341,7 +355,7 @@
           </div>
 
           <div data-reveal data-reveal-delay="3">
-            <p class="stack__category-title">✦ 3D, Audiovisual & Outros</p>
+            <p class="stack__category-title" data-en="✦ 3D, Audiovisual & Others">✦ 3D, Audiovisual & Outros</p>
             <div class="stack__tools">
               <span class="tool-chip" data-level="Sólido">Blender</span>
               <span class="tool-chip" data-level="Intermediário">Autodesk Maya</span>
@@ -365,8 +379,8 @@
 
         <div class="projetos__header">
           <div>
-            <p class="section-label">03 — Projetos em Destaque</p>
-            <h2 class="projetos__heading" id="projetos-title">
+            <p class="section-label" data-en="03 — Featured Projects">03 — Projetos em Destaque</p>
+            <h2 class="projetos__heading" id="projetos-title" data-i18n="projetos-heading">
               O que já<br />construí
             </h2>
           </div>
@@ -384,7 +398,10 @@
             <div class="projeto__visual projeto__visual--yellow">
               <!-- <span class="projeto__icon" role="img" aria-label="Ferramenta web">📱</span> 
             <span class="projeto__bg-text" aria-hidden="true">STUDIO</span> -->
-              <img src="./img/webp/Banner_MobiStudio_Portfolio.webp" alt="Banner MobiStudio" width="1200" height="800" class="projeto__img">
+              <picture>
+                <source srcset="./img/webp/Banner_MobiStudio_Portfolio.webp" type="image/webp">
+                <img src="./img/Banner_MobiStudio_Portfolio.jpg" alt="Banner MobiStudio" width="1200" height="800" class="projeto__img">
+              </picture>
             </div>
 
             <div class="projeto__info">
@@ -438,7 +455,10 @@
             <div class="projeto__visual projeto__visual--red">
               <!-- <span class="projeto__icon" role="img" aria-label="Microfone">🎤</span>
             <span class="projeto__bg-text" aria-hidden="true">HIP-HOP</span> -->
-              <img src="./img/webp/Banner_MobiNoRIC_Portfolio.webp" alt="Banner Rap in Cena" width="1200" height="800" loading="lazy" class="projeto__img">
+              <picture>
+                <source srcset="./img/webp/Banner_MobiNoRIC_Portfolio.webp" type="image/webp">
+                <img src="./img/Banner_MobiNoRIC_Portfolio.jpg" alt="Banner Rap in Cena" width="1200" height="800" loading="lazy" class="projeto__img">
+              </picture>
             </div>
 
             <div class="projeto__info">
@@ -486,12 +506,14 @@
         </div><!-- /.projetos__grid-main -->
 
         <!-- Projetos secundários -->
-        <p class="section-label" style="margin-top: var(--space-12);">Outros projetos</p>
+        <p class="section-label" style="margin-top: var(--space-12);" data-en="Other projects">Outros projetos</p>
         <div class="projetos__grid-secondary">
 
           <article class="projeto-card" data-reveal>
-            <img src="img/webp/mobiStudio Banner.webp" alt="Capa do projeto Estampas Autorais mobiStudio"
-              width="3200" height="1920" loading="lazy" class="projeto-card__img">
+            <picture>
+              <source srcset="img/webp/mobiStudio Banner.webp" type="image/webp">
+              <img src="img/mobiStudio Banner.png" alt="Capa do projeto Estampas Autorais mobiStudio" width="3200" height="1920" loading="lazy" class="projeto-card__img">
+            </picture>
             <h3 class="projeto-card__title">Estampas MobiStudio</h3>
             <p class="projeto-card__desc">
               Desenvolvimento manual de 70+ artes para estampas personalizadas dentro do MobiStudio.
@@ -511,7 +533,10 @@
           </article>
 
           <article class="projeto-card" data-reveal data-reveal-delay="1">
-            <img src="img/webp/customic-3d.webp" alt="Projeto 3D - Capa Customic" width="1200" height="800" loading="lazy" class="projeto-card__img">
+            <picture>
+              <source srcset="img/webp/customic-3d.webp" type="image/webp">
+              <img src="img/customic-3d.jpg" alt="Projeto 3D - Capa Customic" width="1200" height="800" loading="lazy" class="projeto-card__img">
+            </picture>
             <h3 class="projeto-card__title">Projeto 3D — Capa Customic</h3>
             <p class="projeto-card__desc">
               Modelagem e renderização 3D de capa personalizada para a linha Customic,
@@ -531,7 +556,10 @@
           </article>
 
           <article class="projeto-card" data-reveal data-reveal-delay="2">
-            <img src="img/webp/mobifans-3d.webp" alt="3D Material Mobifans" width="1200" height="800" loading="lazy" class="projeto-card__img">
+            <picture>
+              <source srcset="img/webp/mobifans-3d.webp" type="image/webp">
+              <img src="img/mobifans-3d.jpg" alt="3D Material Mobifans" width="1200" height="800" loading="lazy" class="projeto-card__img">
+            </picture>
             <h3 class="projeto-card__title">3D Material Mobifans</h3>
             <p class="projeto-card__desc">
               Material promocional 3D desenvolvido para a Mobifans,
@@ -551,8 +579,10 @@
           </article>
 
           <article class="projeto-card" data-reveal data-reveal-delay="1">
-            <img src="img/webp/dia-dos-namorados.webp" alt="Audiovisual - Campanha Dia dos Namorados"
-              width="1200" height="800" loading="lazy" class="projeto-card__img">
+            <picture>
+              <source srcset="img/webp/dia-dos-namorados.webp" type="image/webp">
+              <img src="img/dia-dos-namorados.jpg" alt="Audiovisual - Campanha Dia dos Namorados" width="1200" height="800" loading="lazy" class="projeto-card__img">
+            </picture>
             <h3 class="projeto-card__title">Audiovisual — Dia dos Namorados</h3>
             <p class="projeto-card__desc">
               Produção audiovisual completa para campanha de Dia dos Namorados da Mobifans:
@@ -572,7 +602,10 @@
           </article>
 
           <article class="projeto-card" data-reveal data-reveal-delay="2">
-            <img src="img/webp/wallets.webp" alt="Mobifans - Placas, Wallets e Crossbody" width="1200" height="800" loading="lazy" class="projeto-card__img">
+            <picture>
+              <source srcset="img/webp/wallets.webp" type="image/webp">
+              <img src="img/wallets.jpg" alt="Mobifans - Placas, Wallets e Crossbody" width="1200" height="800" loading="lazy" class="projeto-card__img">
+            </picture>
             <h3 class="projeto-card__title">Placas, Wallets e Crossbody</h3>
             <p class="projeto-card__desc">
               Campanha gráfica para novos produtos Mobifans: placas, wallets e crossbody bags,
@@ -622,8 +655,8 @@
     ========================================== -->
     <section class="experiencia" id="experiencia" aria-labelledby="experiencia-title">
       <div class="container">
-        <p class="section-label">04 — Experiência Profissional</p>
-        <h2 class="experiencia__heading" id="experiencia-title">
+        <p class="section-label" data-en="04 — Professional Experience">04 — Experiência Profissional</p>
+        <h2 class="experiencia__heading" id="experiencia-title" data-en="Career">
           Carreira
         </h2>
 
@@ -755,8 +788,8 @@
     ========================================== -->
     <section class="formacao" id="formacao" aria-labelledby="formacao-title">
       <div class="container">
-        <p class="section-label">05 — Formação & Certificações</p>
-        <h2 class="formacao__heading" id="formacao-title">
+        <p class="section-label" data-en="05 — Education & Certifications">05 — Formação & Certificações</p>
+        <h2 class="formacao__heading" id="formacao-title" data-en="Continuous learning">
           Aprendizado contínuo
         </h2>
 
@@ -838,8 +871,8 @@
     ========================================== -->
     <section class="depoimentos" aria-labelledby="depoimentos-title">
       <div class="container">
-        <p class="section-label">06 — Depoimentos</p>
-        <h2 class="depoimentos__heading" id="depoimentos-title">
+        <p class="section-label" data-en="06 — Testimonials">06 — Depoimentos</p>
+        <h2 class="depoimentos__heading" id="depoimentos-title" data-en="Recommendations">
           Recomendações
         </h2>
 
@@ -913,8 +946,8 @@
     ========================================== -->
     <section class="em-dev" aria-labelledby="emdev-title">
       <div class="container">
-        <p class="section-label">07 — Em Desenvolvimento</p>
-        <h2 class="em-dev__heading" id="emdev-title">
+        <p class="section-label" data-en="07 — In Progress">07 — Em Desenvolvimento</p>
+        <h2 class="em-dev__heading" id="emdev-title" data-i18n="emdev-heading">
           Sempre em<br /><em>movimento</em>
         </h2>
 
@@ -990,23 +1023,23 @@
     ========================================== -->
     <section class="contato" id="contato" aria-labelledby="contato-title">
       <div class="container">
-        <p class="section-label">08 — Contato</p>
+        <p class="section-label" data-en="08 — Contact">08 — Contato</p>
 
         <div class="contato__inner">
 
           <div data-reveal>
-            <h2 class="contato__heading" id="contato-title">
+            <h2 class="contato__heading" id="contato-title" data-i18n="contato-heading">
               Vamos criar<br />algo <span class="highlight">juntos?</span>
             </h2>
-            <p class="contato__subtext">
+            <p class="contato__subtext" data-i18n="contato-subtext">
               Estou disponível para novas oportunidades como CLT, freelance ou projetos colaborativos.
               Se você precisa de alguém que trabalha do conceito ao produto finalizado, me chama!
 
             </p>
 
             <div class="contato__available" aria-label="Modalidades de trabalho disponíveis">
-              <span class="available-badge">Presencial</span>
-              <span class="available-badge">Híbrido</span>
+              <span class="available-badge" data-en="On-site">Presencial</span>
+              <span class="available-badge" data-en="Hybrid">Híbrido</span>
               <span class="available-badge">Freelance</span>
             </div>
           </div>
@@ -1072,7 +1105,7 @@
 
       <p class="footer__copy">
         © <span id="current-year">2026</span> Filipe Velasco Duarte Delfino —
-        Produtor Multimídia
+        <span data-en="Multimedia Producer">Produtor Multimídia</span>
       </p>
 
       <nav class="footer__links" aria-label="Links rápidos do footer">
