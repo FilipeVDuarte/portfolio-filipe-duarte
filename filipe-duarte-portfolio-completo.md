@@ -1,7 +1,7 @@
 # Filipe Duarte
-## Diretor Criativo & Desenvolvedor — Design, Audiovisual e IA Generativa
+## Produtor Multimídia | Diretor de Criação | Web Designer | 3D, Design, Audiovisual, Programação, UX/UI
 
-> Designer Multimídia com mais de 4 anos de experiência transformando ideias em sistemas visuais consistentes. Atuo da concepção ao arquivo final, do digital ao impresso, do briefing ao código. Combino sensibilidade estética com agilidade operacional e uso estratégico de IA generativa.
+> Produtor Multimídia com mais de 4 anos de experiência transformando ideias em sistemas visuais consistentes. Atuo da concepção ao arquivo final, do digital ao impresso, do briefing ao código. Combino sensibilidade estética com agilidade operacional e uso estratégico de IA generativa.
 
 ---
 
@@ -29,8 +29,8 @@
 | | |
 |---|---|
 | **Nome** | Filipe Velasco Duarte Delfino |
-| **Título Profissional** | Diretor Criativo & Desenvolvedor |
-| **Subtítulos Alternativos** | Diretor de Arte · Designer Multimídia · UX/UI Designer · Videomaker |
+| **Título Profissional** | Produtor Multimídia |
+| **Subtítulos Alternativos** | Diretor de Criação | Web Designer | 3D, Design, Audiovisual, Programação, UX/UI |
 | **Localização** | Gravataí, Rio Grande do Sul, Brasil |
 | **Cidade de Atuação** | Porto Alegre, RS |
 | **Modalidade** | Presencial · Híbrido · Remoto |
@@ -46,15 +46,15 @@
 
 ### Versão Curta (bio de redes sociais)
 
-> Diretor Criativo & Desenvolvedor. Adobe Certified. Transformo ideias em sistemas visuais consistentes — do briefing ao código.
+> Produtor Multimídia. Adobe Certified. Transformo ideias em sistemas visuais consistentes — do briefing ao código.
 
 ### Versão Média (topo de currículo / sobre de site)
 
-> Designer Multimídia com mais de 4 anos de experiência em identidade visual, produção gráfica e audiovisual. Atuo como guardião da marca em todas as aplicações, do digital ao impresso. Domínio do Adobe Creative Suite, Figma, Blender e desenvolvimento web. Uso IA generativa estrategicamente para acelerar criação. Adobe Certified Professional em Photoshop.
+> Produtor Multimídia com mais de 4 anos de experiência em identidade visual, produção gráfica e audiovisual. Atuo como guardião da marca em todas as aplicações, do digital ao impresso. Domínio do Adobe Creative Suite, Figma, Blender e desenvolvimento web. Uso IA generativa estrategicamente para acelerar criação. Adobe Certified Professional em Photoshop.
 
 ### Versão Longa (sobre completo / cartas de apresentação)
 
-Designer Multimídia com mais de 4 anos de experiência em identidade visual, produção gráfica e criação de peças on e offline. Atuo como guardião da marca em todas as aplicações — de artes para redes sociais e Ads a enxovais completos para eventos, sinalização física, decks institucionais e fechamento de arquivos para impressão (CMYK, sangria, margens de segurança, DPI).
+Produtor Multimídia com mais de 4 anos de experiência em identidade visual, produção gráfica e criação de peças on e offline. Atuo como guardião da marca em todas as aplicações — de artes para redes sociais e Ads a enxovais completos para eventos, sinalização física, decks institucionais e fechamento de arquivos para impressão (CMYK, sangria, margens de segurança, DPI).
 
 Nos últimos 3 anos na Mobifans/Customic, desenvolvi e apliquei a identidade visual da marca em múltiplos canais e formatos, seguindo diretrizes de Brandbook e garantindo consistência e hierarquia visual em cada entrega. Do digital ao impresso, do conceito ao arquivo final.
 
@@ -353,8 +353,8 @@ Atendi pequenos negócios e criadores com identidade visual e peças para redes 
 6. **Sistema reconhece posição da câmera** de cada modelo de celular
 7. **Deploy em Netlify** (estabilidade para múltiplos acessos simultâneos)
 
-**Versão atual:** 1.6.9
-**Próximos passos:** Catálogo de estampas exclusivas (mais de 70 combinações possíveis, em fase de testes)
+**Versão atual:** 1.7.2
+**Próximos passos:** Catálogo de estampas exclusivas (70+ combinações em desenvolvimento)
 
 **Tecnologias:** HTML5 · CSS3 · JavaScript Vanilla · Canvas API · Figma · Builder.io · Claude Code · Netlify
 
@@ -377,7 +377,7 @@ Material desenvolvido para a participação da Mobifans no **Rap in Cena**, cons
 
 **Resultado:** Stand entre os mais movimentados, com cobertura completa nas redes sociais e parceria consolidada para futuras edições.
 
-🔗 [Ver projeto no Behance](https://behance.net/filipevelascoduarte)
+🔗 [Ver projeto no Behance](https://www.behance.net/gallery/239019429/Mobifans-Rap-In-Cena)
 
 ---
 
@@ -385,6 +385,48 @@ Material desenvolvido para a participação da Mobifans no **Rap in Cena**, cons
 📅 Maio/2026 – Atual
 
 Desenvolvimento manual da maioria das **artes para estampas personalizadas** dentro do MobiStudio, com mais de **70 possíveis combinações**. Iniciativa que une produção de design tradicional com aplicação em ferramenta interativa proprietária.
+
+🔗 [Ver projeto no Behance](https://www.behance.net/gallery/249608469/Estampas-autorais-mobiStudio)
+
+---
+
+### 🎲 Projeto 3D — Capa Customic
+
+Modelagem e renderização 3D de capa personalizada para a linha Customic, do conceito ao arquivo final com foco em precisão e apelo visual.
+
+**Tecnologias:** Blender · 3D · Render
+
+🔗 [Ver projeto no Behance](https://www.behance.net/gallery/219704419/Projeto-3D-Capa-Customic)
+
+---
+
+### 🎲 3D Material Mobifans
+
+Material promocional 3D desenvolvido para a Mobifans, combinando modelagem técnica e linguagem visual da marca.
+
+**Tecnologias:** Blender · 3D · Motion
+
+🔗 [Ver projeto no Behance](https://www.behance.net/gallery/223688933/3D-Material-Mobifans)
+
+---
+
+### 🎬 Audiovisual — Campanha Dia dos Namorados
+
+Produção audiovisual completa para campanha de Dia dos Namorados da Mobifans: captação, edição e motion graphics.
+
+**Tecnologias:** Premiere Pro · After Effects · Audiovisual
+
+🔗 [Ver projeto no Behance](https://www.behance.net/gallery/244779495/Audiovisual-Campanha-Dia-dos-Namorados)
+
+---
+
+### 🛍️ Mobifans — Placas, Wallets e Crossbody
+
+Campanha gráfica para novos produtos Mobifans: placas, wallets e crossbody bags, com peças digitais e impressas de identidade visual consistente.
+
+**Tecnologias:** Illustrator · Photoshop · Design
+
+🔗 [Ver projeto no Behance](https://www.behance.net/gallery/244775345/Mobifans-Placas-Wallets-Crossbody)
 
 ---
 
@@ -450,6 +492,14 @@ Registrado no Google Developer Program.
 >
 > — **Debora Idalgo Marques** · Professora UniSenac · Doutoranda UFRGS · Cliente (out/2024)
 
+> *"Filipe é um aluno extremamente dedicado não só com a qualidade do que produz, como também com as equipes de trabalho e com todos os seus colegas. Está sempre disponível para ajudar, gosta de aprender e de se desafiar o tempo todo. É muito pontual com as entregas e supera o nível exigido em todas elas."*
+>
+> — **Fabrizzia Cinel Lacerda** · Coordenadora de Produção Multimídia no UniSenac · Publicitária · Professora (abr/2024)
+
+> *"Filipe é um profissional que está sempre em busca da evolução, recebe bem os feedbacks, trabalha bem em equipe, e sempre encontra formas inovadoras de executar suas tarefas. Além de toda criatividade e técnica, Filipe é responsável e comprometido!"*
+>
+> — **Jhessica Silva** · Gerente de Projetos · Marketing · Coordenadora (out/2024)
+
 ---
 
 ## 🚀 Próximos Passos & Em Desenvolvimento
@@ -507,6 +557,6 @@ Inscrição confirmada no Google Developer Program para acesso a novidades técn
 
 ---
 
-**Última atualização:** 18/05/2026
+**Última atualização:** 20/05/2026
 
 *Este documento é uma referência viva. Atualizado conforme novos projetos, certificações e marcos profissionais.*
