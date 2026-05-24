@@ -52,7 +52,8 @@
   function toggleMenu() {
     const open = hamburger.classList.toggle('open');
     if (navMobile) {
-      navMobile.style.display = open ? 'flex' : 'none';
+      /* Classe controla a animação via CSS (max-height + opacity) */
+      navMobile.classList.toggle('open', open);
     }
     hamburger.setAttribute('aria-expanded', open);
   }
@@ -62,7 +63,7 @@
   mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
       hamburger.classList.remove('open');
-      if (navMobile) navMobile.style.display = 'none';
+      if (navMobile) navMobile.classList.remove('open');
       hamburger.setAttribute('aria-expanded', 'false');
     });
   });
@@ -128,11 +129,17 @@
      HERO: efeito parallax leve no texto de fundo
   ------------------------------------------ */
   const heroDeco = document.querySelector('.hero__decoration');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let _rafParallax = false;
 
   function onParallax() {
-    if (!heroDeco) return;
-    const y = window.scrollY;
-    heroDeco.style.transform = `translateY(calc(-50% + ${y * 0.18}px))`;
+    if (!heroDeco || prefersReducedMotion || _rafParallax) return;
+    _rafParallax = true;
+    requestAnimationFrame(function () {
+      heroDeco.style.transform = `translateY(calc(-50% + ${window.scrollY * 0.18}px))`;
+      _rafParallax = false;
+    });
   }
 
   /* ------------------------------------------
@@ -152,7 +159,7 @@
   window.addEventListener('resize', () => {
     if (window.innerWidth >= 769) {
       hamburger.classList.remove('open');
-      if (navMobile) navMobile.style.display = 'none';
+      if (navMobile) navMobile.classList.remove('open');
       hamburger.setAttribute('aria-expanded', 'false');
     }
   }, { passive: true });
@@ -173,6 +180,9 @@
   let currentTheme = localStorage.getItem('fd-theme') || 'light';
 
   function applyTheme(theme) {
+    /* Ativa a classe de transição — CSS anima background/color/border */
+    document.documentElement.classList.add('theme-transitioning');
+
     if (theme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
     } else {
@@ -185,6 +195,11 @@
     }
     currentTheme = theme;
     localStorage.setItem('fd-theme', theme);
+
+    /* Remove a classe após a transição completar (320ms + margem) */
+    setTimeout(function () {
+      document.documentElement.classList.remove('theme-transitioning');
+    }, 420);
   }
 
   themeBtn && themeBtn.addEventListener('click', () => {
@@ -199,64 +214,9 @@
   const langBtn = document.getElementById('lang-toggle');
   let currentLang = localStorage.getItem('fd-lang') || 'pt';
 
-  // Translations for HTML-rich elements (keyed by data-i18n value)
-  const i18n = {
-    'hero-bio': {
-      pt: 'com <strong>4+ anos</strong> de experiência. Atuo do briefing ao deploy,\n            do Figma ao código funcional em produção.\n            Uso <strong>IA generativa estrategicamente</strong>, não como tendência.',
-      en: 'with <strong>4+ years</strong> of experience. From briefing to deploy,\n            from Figma to functional code in production.\n            I use <strong>generative AI strategically</strong>, not as a trend.'
-    },
-    'sobre-heading': {
-      pt: 'Onde o design encontra o código.<br />\n              <span class="highlight">Conectando o visual ao funcional.</span>',
-      en: 'Where design meets code.<br />\n              <span class="highlight">Connecting visual to functional.</span>'
-    },
-    'sobre-text-1': {
-      pt: 'Designer Multimídia com mais de <strong>4 anos de experiência</strong> em identidade visual,\n              produção gráfica e audiovisual. Atuo como um comunicador acessível da marca em todas as aplicações, do\n              digital ao impresso, do conceito ao arquivo final.',
-      en: 'Multimedia Designer with over <strong>4 years of experience</strong> in visual identity,\n              graphic and audiovisual production. I act as an accessible brand communicator across all applications,\n              from digital to print, from concept to final file.'
-    },
-    'sobre-text-2': {
-      pt: 'Nos últimos anos na <strong>Mobifans/Customic</strong>, desenvolvi e apliquei a identidade\n              visual da marca em múltiplos canais. Quando a equipe principal se ausentou por\n              <strong>5 meses</strong>, assumi 100% da operação sem perder um prazo,\n              com avaliação de desempenho de <strong>9,56/10</strong>.',
-      en: 'In recent years at <strong>Mobifans/Customic</strong>, I developed and applied the brand\'s visual\n              identity across multiple channels. When the core team was absent for\n              <strong>5 months</strong>, I ran 100% of operations without missing a single deadline —\n              performance review: <strong>9.56/10</strong>.'
-    },
-    'sobre-text-3': {
-      pt: 'Construí o <strong>MobiStudio</strong> do zero: Figma → Canvas API → deploy em produção no Netlify.\n              Esse projeto reflete o meu ritmo: gosto de fechar o ciclo de ponta a ponta, conduzindo <span\n                class="highlight-yellow">a ideia com a tranquilidade</span> de uma manhã com café, até o deploy final.',
-      en: 'I built <strong>MobiStudio</strong> from scratch: Figma → Canvas API → production deploy on Netlify.\n              This project reflects my pace: I like closing the full cycle end-to-end, steering <span\n                class="highlight-yellow">the idea with the calm</span> of a morning coffee, all the way to the final deploy.'
-    },
-    'stack-heading': {
-      pt: 'O que <em>me acompanha</em><br />\n          no dia a dia',
-      en: 'What I work with<br />\n          <em>every day</em>'
-    },
-    'projetos-heading': {
-      pt: 'O que já<br />construí',
-      en: "What I've<br />built"
-    },
-    'emdev-heading': {
-      pt: 'Sempre em<br /><em>movimento</em>',
-      en: 'Always in<br /><em>motion</em>'
-    },
-    'contato-heading': {
-      pt: 'Vamos criar<br />algo <span class="highlight">juntos?</span>',
-      en: 'Let\'s create<br />something <span class="highlight">together?</span>'
-    },
-    'contato-subtext': {
-      pt: 'Estou disponível para novas oportunidades como CLT, freelance ou projetos colaborativos.\n              Se você precisa de alguém que trabalha do conceito ao produto finalizado, me chama!',
-      en: "I'm open to new opportunities — full-time, freelance, or collaborative projects.\n              If you need someone who works from concept to finished product, reach out!"
-    },
-    'vbox-title-1': { pt: 'Pipeline completo de design', en: 'End-to-end design pipeline' },
-    'vbox-text-1': {
-      pt: 'Do briefing ao Brandbook, do conceito ao arquivo CMYK pronto para impressão.\n                Preparo arquivos bem estruturados e otimizados, facilitando o processo na hora da impressão ou produção.',
-      en: 'From briefing to Brandbook, from concept to print-ready CMYK file.\n                I prepare well-structured, optimized files that streamline the printing and production process.'
-    },
-    'vbox-title-2': { pt: 'Design que vira produto', en: 'Design that becomes product' },
-    'vbox-text-2': {
-      pt: 'Levo a criação um passo além do Figma, traduzindo o design diretamente para código funcional e reduzindo\n                ruídos entre etapas.\n                Figma → código → produção, sem intermediários.',
-      en: 'I take creation one step beyond Figma, translating design directly into functional code and reducing\n                friction between stages.\n                Figma → code → production, no middleman.'
-    },
-    'vbox-title-3': { pt: 'IA como ferramenta real', en: 'AI as a real tool' },
-    'vbox-text-3': {
-      pt: 'Uso Claude Pro diariamente para geração de assets, variações visuais e refinamento de\n                código. Reduzi tempo manual em 50%+ em projetos de grande volume.',
-      en: 'I use Claude Pro daily for asset generation, visual variations, and code refinement.\n                Reduced manual time by 50%+ on high-volume projects.'
-    }
-  };
+  /* Traduções ricas carregadas de assets/i18n.json.
+     Para adicionar ou editar textos bilíngues, edite apenas o JSON. */
+  var i18n = {};
 
   function applyLang(lang) {
     // Text elements (stores innerHTML to preserve any nested tags on PT restore)
@@ -297,7 +257,32 @@
     applyLang(currentLang === 'pt' ? 'en' : 'pt');
   });
 
-  applyLang(currentLang);
+  fetch('assets/i18n.json')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      i18n = data;
+      applyLang(currentLang);
+    })
+    .catch(function () {
+      /* Fallback: data-en ainda funciona sem as traduções ricas */
+      applyLang(currentLang);
+    });
+
+  /* ------------------------------------------
+     LINKS EXTERNOS — indicador para screen readers
+     WCAG 2.1 SC 2.4.4
+  ------------------------------------------ */
+  document.querySelectorAll('a[target="_blank"]').forEach(function (link) {
+    var label = link.getAttribute('aria-label');
+    if (label) {
+      link.setAttribute('aria-label', label + ' (abre em nova aba)');
+    } else {
+      var indicator = document.createElement('span');
+      indicator.className = 'sr-only';
+      indicator.textContent = ' (abre em nova aba)';
+      link.appendChild(indicator);
+    }
+  });
 
   /* ------------------------------------------
      LOTTIE — Animação Hero (ping-pong loop)
@@ -321,19 +306,29 @@
       container: container,
       renderer:  'svg',
       loop:      false,   /* false — o loop é gerenciado manualmente */
-      autoplay:  true,    /* começa tocando para frente (direção 1) */
+      autoplay:  !prefersReducedMotion,
       path:      'assets/Anima_hero.json'
     });
+
+    /* Usuários que preferem movimento reduzido vêem o frame final estático */
+    if (prefersReducedMotion) {
+      anim.addEventListener('DOMLoaded', function () {
+        anim.goToAndStop(anim.totalFrames - 1, true);
+      });
+      return;
+    }
 
     /* Direção atual: 1 = para frente, -1 = para trás */
     var direction = 1;
 
     /* A cada vez que a animação termina (em qualquer direção),
-       inverte e dispara novamente — efeito "vai e volta" contínuo */
+       aguarda 600ms antes de inverter — efeito "respira nos extremos" */
     anim.addEventListener('complete', function () {
       direction = direction === 1 ? -1 : 1;
-      anim.setDirection(direction);
-      anim.play();
+      setTimeout(function () {
+        anim.setDirection(direction);
+        anim.play();
+      }, 600);
     });
   })();
 

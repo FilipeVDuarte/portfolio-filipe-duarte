@@ -8,18 +8,19 @@
 /* ============================================
    DARK MODE — variable overrides
    ============================================ */
-html[data-theme="dark"] #lottie-hero-container svg path {
-  fill: var(--color-ink-dk) !important; 
-  stroke: var(--color-ink-dk) !important;
-
-  /* Se a sua animação do Fibonacci/Duplicator utilizar contornos em vez de preenchimento, use a linha abaixo: */
-  
+/* Filter no container — evita !important sobre inline styles do Lottie.
+   invert(1) mapeia o traço escuro (#1B1B1D) para claro; sepia(0.25)
+   aquece o resultado para aproximar --color-ink-dk (#E5D2AF).
+   Funciona para animações monocromáticas. Se o JSON tiver múltiplas
+   cores, trocar por uma variante escura do arquivo Anima_hero.json. */
+html[data-theme="dark"] #lottie-hero-container {
+  filter: invert(1) sepia(0.25);
 }
 
 html[data-theme="dark"] {
-  --color-bg:     var(--color-bg-dk);
+  --color-bg:      var(--color-bg-dk);
   --color-surface: var(--color-bg-dk);
-  --color-white:  var(--color-bg-dk);
+  --color-white:   var(--color-bg-dk); /* alias legado — usar --color-surface em código novo */
   --color-ink:    var(--color-ink-dk);
   --color-border: var(--color-ink-dk);
   --color-muted:  #9B9B9B;
@@ -66,6 +67,12 @@ html[data-theme="dark"] .nav__ctrl--active {
   color: var(--color-ink);
 }
 
+/* Timeline: coluna de data some no dark (ink sobre ink).
+   Tom levemente mais claro resolve o contraste sem sair da paleta. */
+html[data-theme="dark"] .timeline__date {
+  background: #2A2A2D;
+}
+
 /* ============================================
    DESIGN TOKENS / CSS VARIABLES
    ============================================ */
@@ -85,6 +92,7 @@ html[data-theme="dark"] .nav__ctrl--active {
 
   --color-teal: #00BFAE; /* Caribbean Green */
   --color-pink: #FF2D55; /* Radical Red */
+  --color-blue: #1A73E8; /* Google Blue */
 
   /* --- Paleta Dark Mode --- */
   --color-bg-dk:     #1B1B1D; /* Shark */
@@ -148,6 +156,24 @@ html[data-theme="dark"] .nav__ctrl--active {
   --container-pad: clamp(1rem, 4vw, 2rem);
   --section-pad: clamp(4rem, 8vw, 7rem);
 }
+
+/* ============================================
+   BREAKPOINTS DE REFERÊNCIA
+   @media queries não aceitam tokens CSS, por isso
+   os valores canônicos do projeto estão mapeados
+   aqui para facilitar manutenção futura:
+
+   ≤ 599px   mobile       hero compacto, single-col
+     600px   tablet-sm    início do range tablet
+     640px   tablet-md    sobre__grid, em-dev__grid
+     768px   tablet-lg    timeline, formacao, depoimentos, nav hamburger
+     769px   desktop-nav  nav__mobile forçado oculto
+     900px   desktop-sm   projetos destaque, contato 2-col
+     991px   desktop-sm-  fim do range tablet (hero)
+     992px   desktop-md   hero layout desktop
+    1100px   desktop-lg   formacao 3 colunas
+    1240px   container    max-width (não é media query)
+   ============================================ */
 
 /* ============================================
    RESET & BASE
@@ -266,7 +292,7 @@ button {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-4); /* era space-8 — label e heading formam bloco visual único */
   color: var(--color-muted);
 }
 
@@ -401,6 +427,11 @@ button {
   background: var(--color-yellow);
 }
 
+.nav__ctrl:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
 .nav__ctrl--active {
   background: var(--color-ink);
   color: var(--color-yellow);
@@ -460,14 +491,35 @@ button {
     display: flex;
   }
 
+  /* Menu fechado por padrão via max-height + visibility */
   .nav__mobile {
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
-    padding: var(--space-6) var(--container-pad);
+    /* padding-inline fixo; padding-block animado junto com max-height */
+    padding-inline: var(--container-pad);
+    padding-block: 0;
     background: var(--color-bg);
     border-bottom: var(--border);
     box-shadow: 0 6px 0 var(--color-ink);
+    /* Estado fechado */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    visibility: hidden;
+    transition:
+      max-height 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      padding-block 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 220ms ease,
+      visibility 300ms ease;
+  }
+
+  /* Estado aberto — classe adicionada por JS */
+  .nav__mobile.open {
+    max-height: 500px;
+    padding-block: var(--space-6);
+    opacity: 1;
+    visibility: visible;
   }
 
   .nav__mobile .nav__link {
@@ -563,9 +615,9 @@ button {
     font-size: clamp(3.5rem, 4.8vw, 7rem);
   }
 
-  /* Desktop: proporção maior para preencher a coluna completa */
+  /* Desktop: telas largas — apenas limita o crescimento máximo */
   #lottie-hero-container {
-    height: clamp(140px, 16vw, 280px);
+    max-height: 300px;
   }
 }
 
@@ -610,8 +662,20 @@ button {
   }
 
   50% {
-    opacity: 0.4;
-    transform: scale(0.7);
+    opacity: 0.6;          /* era 0.4 → mais suave */
+    transform: scale(0.85); /* era 0.7 → menos dramático */
+  }
+}
+
+/* ---- Entrada staggered das role pills ---- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -639,10 +703,12 @@ button {
 #lottie-hero-container {
   display: block;
   width: 100%;
-  /* Altura fluida: escala com o viewport sem quebrar o layout
-     abaixo (roles, rating, bio, CTAs).
-     Ajuste o valor médio (18vw) ao aspect-ratio real do JSON.  */
-  height: clamp(100px, 18vw, 260px);
+  /* aspect-ratio escala com a largura do container, sem altura
+     "chutada". max-height evita crescimento excessivo em telas
+     muito largas. Fallback height para browsers antigos. */
+  aspect-ratio: 4 / 1;
+  max-height: 280px;
+  height: auto;
   overflow: hidden;
 }
 
@@ -671,7 +737,15 @@ button {
   background: var(--color-white);
   box-shadow: var(--shadow-md);
   transition: var(--transition-fast);
+  /* Entrada staggered — atrasada para cada pill */
+  animation: fadeInUp 0.45s ease both;
 }
+
+.hero__role:nth-child(1) { animation-delay: 0.05s; }
+.hero__role:nth-child(2) { animation-delay: 0.13s; }
+.hero__role:nth-child(3) { animation-delay: 0.21s; }
+.hero__role:nth-child(4) { animation-delay: 0.29s; }
+.hero__role:nth-child(5) { animation-delay: 0.37s; }
 
 .hero__role:nth-child(2) {
   background: var(--color-teal);
@@ -701,58 +775,6 @@ button {
   margin-top: var(--space-6);
 }
 
-.hero__metrics {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
-  margin-top: var(--space-8);
-}
-
-@media (min-width: 640px) {
-  .hero__metrics {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.metric-card {
-  border: var(--border-thick);
-  background: var(--color-white);
-  box-shadow: var(--shadow-md);
-  padding: var(--space-5) var(--space-4);
-  text-align: center;
-  transition: var(--transition-fast);
-}
-
-.metric-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: var(--shadow-lg);
-}
-
-.metric-card:nth-child(1) {
-  background: var(--color-yellow);
-}
-
-.metric-card:nth-child(2) {
-  background: var(--color-teal);
-}
-
-.metric-card__number {
-  font-family: var(--font-display);
-  font-size: var(--text-3xl);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.metric-card__label {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-muted);
-  margin-top: var(--space-1);
-}
 
 .hero__actions {
   display: flex;
@@ -780,6 +802,12 @@ button {
 .btn:hover {
   transform: translate(-3px, -3px);
   box-shadow: var(--shadow-lg);
+}
+
+/* Estado "pressionado" — carimbo neo-brutalista */
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
 }
 
 .btn--primary {
@@ -855,19 +883,13 @@ button {
   line-height: 1.75;
   color: var(--color-muted);
   margin-top: var(--space-6);
-  text-align: justify;
+  text-align: left; /* era justify — criava "rios" em PT */
 }
 
 .sobre__text strong {
   color: var(--color-ink);
 }
 
-.sobre__pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  margin-top: var(--space-8);
-}
 
 .value-box {
   border: var(--border-thick);
@@ -900,13 +922,13 @@ button {
   font-size: var(--text-sm);
   line-height: 1.65;
   color: var(--color-muted);
-  text-align: justify;
+  text-align: left; /* era justify — criava "rios" em PT */
 }
 
 .value-boxes {
   display: flex;
   flex-direction: column;
-  gap: var(--space-16);
+  gap: var(--space-8); /* era space-16 (4rem) — muito disperso */
 }
 
 /* ============================================
@@ -927,78 +949,6 @@ button {
   background: var(--color-yellow);
 }
 
-.stack__heading {
-  font-family: var(--font-display);
-  font-size: var(--text-3xl);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-  margin-bottom: var(--space-12);
-}
-
-.stack__heading em {
-  font-style: normal;
-  color: var(--color-yellow);
-}
-
-.stack__categories {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-10);
-}
-
-.stack__category-title {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-yellow);
-  padding-bottom: var(--space-4);
-  border-bottom: 1px solid rgba(255, 230, 0, 0.25);
-  margin-bottom: var(--space-5);
-}
-
-.stack__tools {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-}
-
-.tool-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: var(--space-2) var(--space-4);
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--color-bg);
-  transition: var(--transition-fast);
-  white-space: nowrap;
-}
-
-.tool-chip:hover {
-  border-color: var(--color-yellow);
-  background: rgba(255, 230, 0, 0.12);
-  color: var(--color-yellow);
-  transform: translate(-2px, -2px);
-}
-
-.tool-chip--certified {
-  border-color: var(--color-yellow);
-  background: rgba(255, 230, 0, 0.15);
-  color: var(--color-yellow);
-}
-
-.tool-chip__level {
-  opacity: 0.5;
-  font-size: 0.65rem;
-}
 
 /* ============================================
    PROJETOS
@@ -1139,7 +1089,7 @@ button {
 
 .projeto__subtitle {
   font-family: var(--font-mono);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm); /* era text-xs — muito pequeno para cards grandes */
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -1266,7 +1216,7 @@ button {
   border: var(--border-thick);
   background: var(--color-white);
   box-shadow: var(--shadow-md);
-  padding: var(--space-5);
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -1280,13 +1230,39 @@ button {
 }
 
 .projeto-card__img {
-  display: block;
-  width: calc(100% + 2 * var(--space-5));
-  height: 200px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center;
-  margin: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-3);
-  border-bottom: var(--border);
+  display: block;
+  /* Zoom suave ao hover — clipado pelo overflow:hidden do container */
+  transition: transform 400ms ease;
+}
+
+.projeto-card:hover .projeto-card__img {
+  transform: scale(1.04);
+}
+
+/* Container da Imagem */
+.projeto-card__header picture {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden; /* necessário para clipar o zoom da imagem */
+}
+
+/* Container do Texto */
+.projeto-card__body {
+  padding: var(--space-5); /* era space-8 (2rem) — generoso demais para cards de 3 colunas */
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--space-2); /* espaçamento consistente entre filhos */
+}
+
+.projeto-card picture {
+  display: block;
+  width: 100%;
 }
 
 .projeto-card__title {
@@ -1303,6 +1279,7 @@ button {
   line-height: 1.65;
   color: var(--color-muted);
   flex: 1;
+  /* padding removido — gap do .projeto-card__body gerencia o espaço */
 }
 
 /* ============================================
@@ -1960,7 +1937,11 @@ button {
   cursor: pointer;
   font-family: var(--font-mono);
   font-weight: 700;
-  transition: var(--transition-fast);
+  /* Transições explícitas: hover rápido + fade-in/out mais lento */
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    opacity 300ms ease;
   opacity: 0;
   pointer-events: none;
   z-index: 999;
@@ -2096,9 +2077,9 @@ button {
     -webkit-text-stroke-width: 2px;
   }
 
-  /* Mobile: altura proporcional ao viewport estreito */
+  /* Mobile: aspect-ratio escala livremente; max-height como teto */
   #lottie-hero-container {
-    height: clamp(72px, 22vw, 140px);
+    max-height: 130px;
   }
 
   .hero__bio {
@@ -2263,4 +2244,99 @@ button {
   border-left: 1px solid rgba(255, 230, 0, 0.4);
   padding-left: var(--space-2);
   opacity: 0.85;
+}
+
+/* ============================================
+   TRANSIÇÃO DE TEMA (claro ↔ escuro)
+   Ativa apenas durante a troca — classe adicionada por JS
+   ============================================ */
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 320ms ease,
+    color 260ms ease,
+    border-color 220ms ease,
+    box-shadow 280ms ease !important;
+}
+
+/* Exclui o SVG do Lottie — mudanças de cor causam glitch */
+html.theme-transitioning #lottie-hero-container,
+html.theme-transitioning #lottie-hero-container *,
+html.theme-transitioning #lottie-hero-container svg * {
+  transition: none !important;
+}
+
+/* ============================================
+   ACESSIBILIDADE — prefers-reduced-motion
+   WCAG 2.1 SC 2.3.3
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  /* Revela elementos imediatamente, sem transição */
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  [data-reveal-delay="1"],
+  [data-reveal-delay="2"],
+  [data-reveal-delay="3"],
+  [data-reveal-delay="4"] {
+    transition-delay: 0s;
+  }
+
+  /* Para o pulso do status dot */
+  .hero__status-dot::before {
+    animation: none;
+  }
+
+  /* Para as role pills */
+  .hero__role {
+    animation: none;
+  }
+
+  /* Menu mobile: sem animação de abertura */
+  .nav__mobile {
+    transition: none;
+  }
+
+  /* Desativa a transição de tema */
+  html.theme-transitioning *,
+  html.theme-transitioning *::before,
+  html.theme-transitioning *::after {
+    transition: none !important;
+  }
+
+  /* Remove transições de hover em todos os componentes interativos */
+  .btn,
+  .nav__link,
+  .nav__cta,
+  .nav__ctrl,
+  .value-box,
+  .projeto-destaque,
+  .projeto-card,
+  .timeline__item,
+  .edu-card,
+  .depoimento-card,
+  .dev-card,
+  .contact-link,
+  .scroll-top {
+    transition: none;
+  }
+}
+
+/* ============================================
+   UTILITÁRIOS — imagem e espaçamento
+   ============================================ */
+
+/* Inverte ícones SVG escuros (simpleicons.org) para fundos escuros/claros.
+   Usado em imagens sem variante de cor disponível. */
+.img--invert {
+  filter: invert(100%) sepia(100%) grayscale(100%) brightness(150%);
+}
+
+/* Section label com recuo superior extra — evita inline style */
+.section-label--top {
+  margin-top: var(--space-12);
 }

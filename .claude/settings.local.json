@@ -14,7 +14,8 @@
       "WebFetch(domain:pagespeed.web.dev)",
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\" -Recurse -Force)",
       "Bash(Select-Object -First 50)",
-      "Bash(Format-List FullName)"
+      "Bash(Format-List FullName)",
+      "Bash(awk '{print $1, $2, $3}')"
     ]
   }
 }
