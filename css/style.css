@@ -8,6 +8,14 @@
 /* ============================================
    DARK MODE — variable overrides
    ============================================ */
+html[data-theme="dark"] #lottie-hero-container svg path {
+  fill: var(--color-ink-dk) !important; 
+  stroke: var(--color-ink-dk) !important;
+
+  /* Se a sua animação do Fibonacci/Duplicator utilizar contornos em vez de preenchimento, use a linha abaixo: */
+  
+}
+
 html[data-theme="dark"] {
   --color-bg:     var(--color-bg-dk);
   --color-surface: var(--color-bg-dk);
@@ -63,27 +71,27 @@ html[data-theme="dark"] .nav__ctrl--active {
    ============================================ */
 :root {
   /* --- Cores --- */
-  --color-purple: #7C4DFF;
-  --color-purple-dark: #4B0082;
-  --color-yellow: #FFC300;
+  --color-purple: #7C4DFF; /* Eletric Violet */
+  --color-purple-dark: #4B0082; /* Dark Violet */
+  --color-yellow: #FFC300; /* Amber */
 
-  --color-bg: #F2F0EF;
-  --color-surface: #F2F0EF;
-  --color-white: #F2F0EF;
+  --color-bg: #F2F0EF; /* Light Beige */
+  --color-surface: #F2F0EF; /* Light Beige */
+  --color-white: #F2F0EF; /* Light Beige */
 
-  --color-ink: #1b1b1d;
-  --color-border: #1b1b1d;
+  --color-ink: #1b1b1d; /* Shark */
+  --color-border: #1b1b1d; /* Shark */
   --color-muted: #6B6B6B;
 
-  --color-teal: #00BFAE;
-  --color-pink: #FF2D55;
+  --color-teal: #00BFAE; /* Caribbean Green */
+  --color-pink: #FF2D55; /* Radical Red */
 
   /* --- Paleta Dark Mode --- */
-  --color-bg-dk:     #1B1B1D;
-  --color-ink-dk:    #E5D2AF;
-  --color-yellow-dk: #7B4600;
-  --color-teal-dk:   #008579;
-  --color-pink-dk:   #E71C42;
+  --color-bg-dk:     #1B1B1D; /* Shark */
+  --color-ink-dk:    #E5D2AF; /* Hampton */
+  --color-yellow-dk: #7B4600; /* Cinnamon */
+  --color-teal-dk:   #008579; /* Dark Caribbean Green */
+  --color-pink-dk:   #E71C42; /* Alizarin Crimson */
 
   /* --- Tipografia --- */
   --font-display: 'Syne', sans-serif;
@@ -533,27 +541,31 @@ button {
   }
 
   .hero__inner {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     align-items: start;
     gap: var(--space-16);
-    /*
-     * Padding fluido por viewport height:
-     *   1080p (vh=1080) → 6vh ≈ 65px ≈ 4rem
-     *   1440p (vh=1440) → capped em 5rem = 80px
-     *   Laptop (vh=768) → clamped no mínimo 3rem = 48px
-     * Garante que o grid respire sem colar nas bordas.
-     */
     padding-block: clamp(3rem, 6vh, 5rem);
   }
 
-  /*
-   * Headline contida na coluna esquerda:
-   * usa metade do vw (~coluna) para nunca vazar sobre o bio.
-   * clamp(3.5rem, 4.8vw, 7rem):
-   *   992px → 56px | 1280px → 61px | 1568px → 75px
-   */
+  .hero__content {
+    max-width: 860px;
+  }
+
+  .hero__eyebrow {
+    flex-wrap: nowrap;
+  }
+
+  .hero__roles {
+    flex-wrap: nowrap;
+  }
+
   .hero__headline {
     font-size: clamp(3.5rem, 4.8vw, 7rem);
+  }
+
+  /* Desktop: proporção maior para preencher a coluna completa */
+  #lottie-hero-container {
+    height: clamp(140px, 16vw, 280px);
   }
 }
 
@@ -607,9 +619,11 @@ button {
   font-family: var(--font-display);
   font-size: var(--text-hero);
   font-weight: 800;
-  line-height: 0.92;
+  line-height: 1;
   letter-spacing: -0.04em;
   text-transform: uppercase;
+  /* Wrapper do container Lottie — sem padding/margin extras */
+  margin-bottom: 0;
 }
 
 .hero__headline em {
@@ -617,6 +631,26 @@ button {
   display: block;
   -webkit-text-stroke: 3px var(--color-ink);
   color: transparent;
+}
+
+/* ============================================
+   LOTTIE — Hero Animation Container
+   ============================================ */
+#lottie-hero-container {
+  display: block;
+  width: 100%;
+  /* Altura fluida: escala com o viewport sem quebrar o layout
+     abaixo (roles, rating, bio, CTAs).
+     Ajuste o valor médio (18vw) ao aspect-ratio real do JSON.  */
+  height: clamp(100px, 18vw, 260px);
+  overflow: hidden;
+}
+
+/* Garante que o SVG injetado pelo Lottie preencha o container */
+#lottie-hero-container > svg {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .hero__roles {
@@ -653,6 +687,10 @@ button {
   color: var(--color-white);
 }
 
+.hero__rating {
+  margin-top: var(--space-4);
+}
+
 .hero__bio {
   font-size: var(--text-lg);
   line-height: 1.5;
@@ -660,6 +698,7 @@ button {
   color: var(--color-muted);
   border-left: 4px solid var(--color-ink);
   padding-left: var(--space-5);
+  margin-top: var(--space-6);
 }
 
 .hero__metrics {
@@ -816,6 +855,7 @@ button {
   line-height: 1.75;
   color: var(--color-muted);
   margin-top: var(--space-6);
+  text-align: justify;
 }
 
 .sobre__text strong {
@@ -860,12 +900,13 @@ button {
   font-size: var(--text-sm);
   line-height: 1.65;
   color: var(--color-muted);
+  text-align: justify;
 }
 
 .value-boxes {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-16);
 }
 
 /* ============================================
@@ -1644,7 +1685,7 @@ button {
 
 .dev-card {
   border: 2px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--color-bg);
   padding: var(--space-6);
   display: flex;
   flex-direction: column;
@@ -1660,6 +1701,9 @@ button {
 
 .dev-card__icon {
   font-size: 2rem;
+  width: 48px;
+  text-align: center;
+  margin-bottom: var(--space-4);
 }
 
 .dev-card__title {
@@ -1669,12 +1713,13 @@ button {
   text-transform: uppercase;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  color: var(--color-ink);
 }
 
 .dev-card__desc {
   font-size: var(--text-sm);
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-muted);
   flex: 1;
 }
 
@@ -1871,7 +1916,7 @@ button {
 .footer__copy {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: rgb(0, 0, 0);
+  color: var(--color-muted);
   letter-spacing: 0.04em;
 }
 
@@ -2051,6 +2096,11 @@ button {
     -webkit-text-stroke-width: 2px;
   }
 
+  /* Mobile: altura proporcional ao viewport estreito */
+  #lottie-hero-container {
+    height: clamp(72px, 22vw, 140px);
+  }
+
   .hero__bio {
     font-size: var(--text-base);
     max-width: 100%;
@@ -2120,4 +2170,97 @@ button {
   .timeline__content {
     padding: var(--space-6) var(--space-6);
   }
+}
+
+/* ============================================
+   STACK / FERRAMENTAS — novo layout com ícones
+   Tokens: mesma paleta escura da seção .stack
+   (fundo --color-ink, acentos --color-yellow)
+   ============================================ */
+
+/* Título principal — espelha .stack__heading */
+.stack__title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-12);
+}
+
+/* Container das 4 categorias */
+.stack__grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+/* Cabeçalho de categoria — sobrescreve a regra anterior,
+   mantendo todos os tokens do design system */
+.stack__category-title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-yellow);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(255, 230, 0, 0.25);
+  margin-bottom: var(--space-5);
+}
+
+/* Linha de chips com ícone */
+.stack__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* Chip individual — mesmos tokens do .tool-chip + suporte a img */
+.stack__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: var(--space-2) var(--space-4);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--color-bg);
+  transition: var(--transition-fast);
+  white-space: nowrap;
+}
+
+.stack__item:hover {
+  border-color: var(--color-yellow);
+  background: rgba(255, 230, 0, 0.12);
+  color: var(--color-yellow);
+  transform: translate(-2px, -2px);
+}
+
+/* Ícone dentro do chip */
+.stack__item img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Badge de certificação — estilo .tool-chip--certified */
+.stack__badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-yellow);
+  border-left: 1px solid rgba(255, 230, 0, 0.4);
+  padding-left: var(--space-2);
+  opacity: 0.85;
 }

@@ -201,10 +201,6 @@
 
   // Translations for HTML-rich elements (keyed by data-i18n value)
   const i18n = {
-    'hero-headline': {
-      pt: '<span class="sr-only">Filipe Duarte — </span>PRODUTOR\n            <em>Multimídia</em>',
-      en: '<span class="sr-only">Filipe Duarte — </span>MULTIMEDIA\n            <em>Producer</em>'
-    },
     'hero-bio': {
       pt: 'com <strong>4+ anos</strong> de experiência. Atuo do briefing ao deploy,\n            do Figma ao código funcional em produção.\n            Uso <strong>IA generativa estrategicamente</strong>, não como tendência.',
       en: 'with <strong>4+ years</strong> of experience. From briefing to deploy,\n            from Figma to functional code in production.\n            I use <strong>generative AI strategically</strong>, not as a trend.'
@@ -302,5 +298,43 @@
   });
 
   applyLang(currentLang);
+
+  /* ------------------------------------------
+     LOTTIE — Animação Hero (ping-pong loop)
+     Arquivo: assets/Anima_hero.json
+     Comportamento: toca para frente → chega ao fim →
+       inverte direção → toca para trás → repete.
+     Fallback: se o JSON causar glitch no reverse,
+       troque loop: false + remova o listener abaixo
+       para que a animação rode uma única vez e
+       congele no último frame.
+  ------------------------------------------ */
+  (function initLottieHero() {
+    var container = document.getElementById('lottie-hero-container');
+    if (!container) return;
+    if (typeof lottie === 'undefined') {
+      console.warn('[Lottie] Biblioteca não carregada. Verifique o CDN.');
+      return;
+    }
+
+    var anim = lottie.loadAnimation({
+      container: container,
+      renderer:  'svg',
+      loop:      false,   /* false — o loop é gerenciado manualmente */
+      autoplay:  true,    /* começa tocando para frente (direção 1) */
+      path:      'assets/Anima_hero.json'
+    });
+
+    /* Direção atual: 1 = para frente, -1 = para trás */
+    var direction = 1;
+
+    /* A cada vez que a animação termina (em qualquer direção),
+       inverte e dispara novamente — efeito "vai e volta" contínuo */
+    anim.addEventListener('complete', function () {
+      direction = direction === 1 ? -1 : 1;
+      anim.setDirection(direction);
+      anim.play();
+    });
+  })();
 
 })();
