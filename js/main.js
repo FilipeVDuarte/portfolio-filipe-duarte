@@ -332,4 +332,50 @@
     });
   })();
 
+  /* ------------------------------------------
+     FILTER — projetos.html
+  ------------------------------------------ */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  if (filterBtns.length) {
+    const cards = document.querySelectorAll('.proj-card');
+    const countEl = document.getElementById('filter-count');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+
+        const cat = btn.dataset.filter;
+        let visible = 0;
+        cards.forEach(card => {
+          const show = cat === 'todos' || card.dataset.cat === cat;
+          card.hidden = !show;
+          if (show) visible++;
+        });
+        if (countEl) countEl.textContent = visible + (visible === 1 ? ' projeto' : ' projetos');
+      });
+    });
+  }
+
+  /* ------------------------------------------
+     CERT CAROUSEL — sobre.html
+  ------------------------------------------ */
+  const certTrack = document.getElementById('cert-track');
+  if (certTrack) {
+    const prevBtn = document.getElementById('cert-prev');
+    const nextBtn = document.getElementById('cert-next');
+    const scrollAmount = () => certTrack.clientWidth * 0.66;
+
+    prevBtn && prevBtn.addEventListener('click', () => {
+      certTrack.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+    });
+    nextBtn && nextBtn.addEventListener('click', () => {
+      certTrack.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+    });
+  }
+
 })();

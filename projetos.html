@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Projetos de Filipe Duarte — Design Gráfico, Dev Web, 3D, Audiovisual e Fotografia. Portfólio completo com mais de 4 anos de trabalho." />
+  <meta name="author" content="Filipe Velasco Duarte Delfino" />
+
+  <link rel="canonical" href="https://filipeduarte.netlify.app/projetos.html" />
+
+  <meta property="og:title" content="Projetos — Filipe Duarte" />
+  <meta property="og:description" content="Acervo completo de projetos: Design, Dev Web, 3D, Audiovisual e Fotografia." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://filipeduarte.netlify.app/projetos.html" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:image" content="https://filipeduarte.netlify.app/img/og-image.jpg" />
+
+  <title>Projetos — Filipe Duarte</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" /></noscript>
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Projetos — Filipe Duarte",
+    "description": "Portfólio completo de Filipe Duarte",
+    "url": "https://filipeduarte.netlify.app/projetos.html",
+    "author": { "@type": "Person", "name": "Filipe Duarte" }
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="nav" role="banner">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="Filipe Duarte - início">
+        <img src="assets/FD - Wordmark.svg" alt="Logo FD - Wordmark" width="268" height="42"/>
+      </a>
+
+      <nav class="nav__links" aria-label="Menu principal">
+        <a class="nav__link" href="projetos.html" aria-current="page" data-en="Projects">Projetos</a>
+        <a class="nav__link" href="sobre.html" data-en="About">Sobre</a>
+        <a class="nav__cta" href="index.html#contato" data-en="Contact →">Contato →</a>
+      </nav>
+
+      <div class="nav__controls">
+        <button class="nav__ctrl" id="lang-toggle" aria-label="Switch to English">EN</button>
+        <button class="nav__ctrl" id="theme-toggle" aria-label="Modo escuro / Dark mode">◐</button>
+      </div>
+
+      <button class="nav__hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="nav__mobile" id="mobile-menu" aria-label="Menu mobile">
+      <a class="nav__link" href="projetos.html" aria-current="page" data-en="Projects">Projetos</a>
+      <a class="nav__link" href="sobre.html" data-en="About">Sobre</a>
+      <a class="nav__cta" href="index.html#contato" data-en="Contact →">Contato →</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- PAGE HEADER -->
+    <section class="page-header" style="padding-top: calc(60px + var(--space-12));">
+      <div class="container">
+        <p class="page-header__eyebrow" data-en="Full Portfolio">Acervo completo</p>
+        <div class="page-header__grid">
+          <h1 class="page-header__title" data-en="Projects.">Projetos.</h1>
+          <p class="page-header__desc" data-en="4+ years of work — design, code, 3D and audiovisual. Filter by what interests you.">
+            O acervo cobre 4+ anos de trabalho — design, código, 3D e audiovisual.
+            Filtre pelo que interessa.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJETOS GRID -->
+    <section class="projetos-page" aria-labelledby="projetos-title">
+      <div class="container">
+        <h2 class="sr-only" id="projetos-title">Lista de projetos</h2>
+
+        <!-- FILTER BAR -->
+        <div class="filter-bar" role="group" aria-label="Filtrar por categoria">
+          <button class="filter-btn active" data-filter="todos" aria-pressed="true"
+            data-en="All">Todos</button>
+          <button class="filter-btn" data-filter="dev-web" aria-pressed="false"
+            data-en="Web Dev">Dev Web</button>
+          <button class="filter-btn" data-filter="design-grafico" aria-pressed="false"
+            data-en="Graphic Design">Design Gráfico</button>
+          <button class="filter-btn" data-filter="3d" aria-pressed="false">3D</button>
+          <button class="filter-btn" data-filter="audiovisual" aria-pressed="false">Audiovisual</button>
+          <button class="filter-btn" data-filter="fotografia" aria-pressed="false"
+            data-en="Photography">Fotografia</button>
+          <span class="filter-bar__count" aria-live="polite" aria-atomic="true" id="filter-count">10 projetos</span>
+        </div>
+
+        <!-- GRID -->
+        <div class="projetos-grid" id="projetos-grid">
+
+          <!-- MobiStudio -->
+          <article class="proj-card" data-cat="dev-web" data-reveal aria-labelledby="proj-mobistudio">
+            <a href="https://mobifans.netlify.app/" target="_blank" rel="noopener noreferrer"
+               class="proj-card__thumb" aria-label="Acessar MobiStudio (abre em nova aba)">
+              <img src="img/webp/Banner_MobiStudio_Portfolio.webp"
+                   alt="Banner MobiStudio" width="800" height="600" loading="eager" />
+            </a>
+            <div class="proj-card__body">
+              <div class="proj-card__header">
+                <h2 class="proj-card__title" id="proj-mobistudio">MobiStudio</h2>
+                <span class="tag">Dev Web</span>
+              </div>
+              <p class="proj-card__desc">
+                Customizador interativo de capinhas. Motor Canvas API com zoom, rotação e arraste.
+                Do problema ao deploy em produção.
+              </p>
+              <div class="projeto__tech">
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">Canvas API</span>
+                <span class="tech-tag">Netlify</span>
+              </div>
+              <div class="proj-card__actions">
+                <a href="https://mobifans.netlify.app/" target="_blank" rel="noopener noreferrer"
+                   class="btn btn--primary">Acessar ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Rap In Cena -->
+          <article class="proj-card" data-cat="design-grafico" data-reveal data-reveal-delay="1" aria-labelledby="proj-rapincena">
+            <a href="https://www.behance.net/gallery/239019429/Mobifans-Rap-In-Cena"
+               target="_blank" rel="noopener noreferrer"
+               class="proj-card__thumb" aria-label="Ver Rap In Cena no Behance (abre em nova aba)">
+              <img src="img/webp/Banner_MobiNoRIC_Portfolio.webp"
+                   alt="Banner Rap In Cena" width="800" height="600" loading="eager" />
+            </a>
+            <div class="proj-card__body">
+              <div class="proj-card__header">
+                <h2 class="proj-card__title" id="proj-rapincena">Rap In Cena</h2>
+                <span class="tag">Design Gráfico</span>
+              </div>
+              <p class="proj-card__desc">
+                Enxoval visual completo para a participação da Mobifans no maior festival
+                de Hip-Hop do Brasil.
+              </p>
+              <div class="projeto__tech">
+                <span class="tech-tag">Illustrator</span>
+                <span class="tech-tag">Photoshop</span>
+                <span class="tech-tag">CMYK</span>
+              </div>
+              <div class="proj-card__actions">
+                <a href="https://www.behance.net/gallery/239019429/Mobifans-Rap-In-Cena"
+                   target="_blank" rel="noopener noreferrer" class="btn btn--primary">Ver no Behance ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Estampas MobiStudio -->
+          <article class="proj-card" data-cat="design-grafico" data-reveal data-reveal-delay="2" aria-labelledby="proj-estampas">
+            <a href="https://www.behance.net/gallery/249608469/Estampas-autorais-mobiStudio"
+               target="_blank" rel="noopener noreferrer"
+               class="proj-card__thumb" aria-label="Ver Estampas MobiStudio no Behance (abre em nova aba)">
+              <img src="img/webp/mobiStudio Banner.webp"
+                   alt="Estampas Autorais MobiStudio" width="800" height="600" loading="lazy" />
+            </a>
+            <div class="proj-card__body">
+              <div class="proj-card__header">
+                <h2 class="proj-card__title" id="proj-estampas">Estampas MobiStudio</h2>
+                <span class="tag">Design Gráfico</span>
+              </div>
+              <p class="proj-card__desc">
+                70+ artes para estampas personalizadas dentro do MobiStudio.
+                Produção gráfica unida à ferramenta interativa proprietária.
+              </p>
+              <div class="projeto__tech">
+                <span class="tech-tag">Illustrator</span>
+                <span class="tech-tag">Photoshop</span>
+              </div>
+              <div class="proj-card__actions">
+                <a href="https://www.behance.net/gallery/249608469/Estampas-autorais-mobiStudio"
+                   target="_blank" rel="noopener noreferrer" class="btn btn--primary">Ver no Behance ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3D Capa Customic -->
+          <article class="proj-card" data-cat="3d" data-reveal aria-labelledby="proj-customic3d">
+            <a href="https://www.behance.net/gallery/219704419/Projeto-3D-Capa-Customic"
+               target="_blank" rel="noopener noreferrer"
+               class="proj-card__thumb" aria-label="Ver Projeto 3D no Behance (abre em nova aba)">
+              <img src="img/webp/customic-3d.webp"
+                   alt="Projeto 3D Capa Customic" width="800" height="600" loading="lazy" />
+            </a>
+            <div class="proj-card__body">
+              <div class="proj-card__header">
+                <h2 class="proj-card__title" id="proj-customic3d">Projeto 3D — Capa Customic</h2>
+                <span class="tag">3D</span>
+              </div>
+              <p class="proj-card__desc">
+                Modelagem e renderização 3D de capa personalizada para a linha Customic.
+                Do conceito ao arquivo final com foco em precisão e apelo visual.
+              </p>
+              <div class="projeto__tech">
+                <span class="tech-tag">Blender</span>
+                <span class="tech-tag">Render</span>
+              </div>
+              <div class="proj-card__actions">
+                <a href="https://www.behance.net/gallery/219704419/Projeto-3D-Capa-Customic"
+                   target="_blank" rel="noopener noreferrer" class="btn btn--primary">Ver no Behance ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3D Material Mobifans -->
+          <article class="proj-card" data-cat="3d" data-reveal data-reveal-delay="1" aria-labelledby="proj-mobifans3d">
+            <a href="https://www.behance.net/gallery/223688933/3D-Material-Mobifans"
+               target="_blank" rel="noopener noreferrer"
+               class="proj-card__thumb" aria-label="Ver 3D Material Mobifans no Behance (abre em nova aba)">
+              <img src="img/webp/mobifans-3d.webp"
+                   alt="3D Material Mobifans" width="800" height="600" loading="lazy" />
+            </a>
+            <div class="proj-card__body">
+              <div class="proj-card__header">
+                <h2 class="proj-card__title" id="proj-mobifans3d">3D Material Mobifans</h2>
+                <span class="tag">3D</span>
+              </div>
+              <p class="proj-card__desc">
+                Material promocional 3D desenvolvido para a Mobifans, combinando modelagem
+                técnica e linguagem visual da marca.
+              </p>
+              <div class="projeto__tech">
+                <span class="tech-tag">Blender</span>
+                <span class="tech-tag">Motion</span>
+              </div>
+              <div class="proj-card__actions">
+                <a href="https://www.behance.net/gallery/223688933/3D-Material-Mobifans"
+                   target="_blank" rel="noopener noreferrer" class="btn btn--primary">Ver no Behance ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Audiovisual Dia dos Namorados -->
+          <article class="proj-card" data-cat="audiovisual" data-reveal data-reveal-delay="2" aria-labelledby="proj-dnamorados">
+            <a href="https://www.behance.net/gallery/244779495/Audiovisual-Campanha-Dia-dos-Namorados"
+               target="_blank" rel="noopener noreferrer"
+               class="proj-card__thumb" aria-label="Ver Audiovisual no Behance (abre em nova aba)">
+              <img src="img/webp/dia-dos-namorados.webp"
+                   alt="Audiovisual — Campanha Dia dos Namorados" width="800" height="600" loading="lazy" />
+            </a>
+            <div class="proj-card__body">
+              <div class="proj-card__header">
+                <h2 class="proj-card__title" id="proj-dnamorados">Audiovisual — Dia dos Namorados</h2>
+                <span class="tag">Audiovisual</span>
+              </div>
+              <p class="proj-card__desc">
+                Produção audiovisual completa para campanha de Dia dos Namorados da Mobifans:
+                captação, edição e motion graphics.
+              </p>
+              <div class="projeto__tech">
+                <span class="tech-tag">Premiere</span>
+                <span class="tech-tag">After Effects</span>
+              </div>
+              <div class="proj-card__actions">
+                <a href="https://www.behance.net/gallery/244779495/Audiovisual-Campanha-Dia-dos-Namorados"
+                   target="_blank" rel="noopener noreferrer" class="btn btn--primary">Ver no Behance ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Placas, Wallets e Crossbody -->
+          <article class="proj-card" data-cat="design-grafico" data-reveal aria-labelledby="proj-wallets">
+            <a href="https://www.behance.net/gallery/244775345/Mobifans-Placas-Wallets-Crossbody"
+               target="_blank" rel="noopener noreferrer"
+               class="proj-card__thumb" aria-label="Ver Wallets no Behance (abre em nova aba)">
+              <img src="img/webp/wallets.webp"
+                   alt="Placas, Wallets e Crossbody — Mobifans" width="800" height="600" loading="lazy" />
+            </a>
+            <div class="proj-card__body">
+              <div class="proj-card__header">
+                <h2 class="proj-card__title" id="proj-wallets">Placas, Wallets e Crossbody</h2>
+                <span class="tag">Design Gráfico</span>
+              </div>
+              <p class="proj-card__desc">
+                Campanha gráfica para novos produtos Mobifans com peças digitais e impressas
+                de identidade visual consistente.
+              </p>
+              <div class="projeto__tech">
+                <span class="tech-tag">Illustrator</span>
+                <span class="tech-tag">Photoshop</span>
+              </div>
+              <div class="proj-card__actions">
+                <a href="https://www.behance.net/gallery/244775345/Mobifans-Placas-Wallets-Crossbody"
+                   target="_blank" rel="noopener noreferrer" class="btn btn--primary">Ver no Behance ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Foto Correio do Povo -->
+          <article class="proj-card" data-cat="fotografia" data-reveal data-reveal-delay="1" aria-labelledby="proj-correiodopovo">
+            <a href="https://www.correiodopovo.com.br/notícias/ensino/vestibular/inverno/2023/senac-rs-teoria-prática-e-vida-profissional-em-foco-1.1037907"
+               target="_blank" rel="noopener noreferrer"
+               class="proj-card__thumb" aria-label="Ler matéria no Correio do Povo (abre em nova aba)">
+              <img src="https://www.correiodopovo.com.br/image/contentid/policy:1.1037910:1694700227/Unisenac%20fachada%20credito%20Filipe%20Velasco%20Duarte%20Delfino.jpeg?f=4x3&q=0.9&w=900&$p$f$q$w=d852081"
+                   alt="Fachada do UniSenac — foto publicada no Correio do Povo" width="800" height="600" loading="lazy" />
+            </a>
+            <div class="proj-card__body">
+              <div class="proj-card__header">
+                <h2 class="proj-card__title" id="proj-correiodopovo">Foto — Correio do Povo</h2>
+                <span class="tag">Fotografia</span>
+              </div>
+              <p class="proj-card__desc">
+                Convidado para fotografar a fachada do Centro Universitário Senac.
+                Imagem publicada e creditada em matéria do jornal Correio do Povo.
+              </p>
+              <div class="projeto__tech">
+                <span class="tech-tag">Fotografia</span>
+                <span class="tech-tag">Lightroom</span>
+              </div>
+              <div class="proj-card__actions">
+                <a href="https://www.correiodopovo.com.br/notícias/ensino/vestibular/inverno/2023/senac-rs-teoria-prática-e-vida-profissional-em-foco-1.1037907"
+                   target="_blank" rel="noopener noreferrer" class="btn btn--primary">Ler matéria ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- HackaTrânsito -->
+          <article class="proj-card" data-cat="fotografia" data-reveal data-reveal-delay="2" aria-labelledby="proj-hackathon">
+            <a href="https://www.instagram.com/unisenacrs/p/CwVGaW9O7M_/"
+               target="_blank" rel="noopener noreferrer"
+               class="proj-card__thumb" aria-label="Ver fotos no Instagram (abre em nova aba)">
+              <img src="img/webp/Banner_HackaTrânsito_Portfolio.webp"
+                   alt="Banner HackaTrânsito" width="800" height="600" loading="lazy" />
+            </a>
+            <div class="proj-card__body">
+              <div class="proj-card__header">
+                <h2 class="proj-card__title" id="proj-hackathon">1° Hackathon — HackaTrânsito</h2>
+                <span class="tag">Fotografia</span>
+              </div>
+              <p class="proj-card__desc">
+                Participação como Staff com cobertura fotográfica completa do evento
+                ao longo das 24 horas de hackathon.
+              </p>
+              <div class="projeto__tech">
+                <span class="tech-tag">Fotografia</span>
+                <span class="tech-tag">Lightroom</span>
+              </div>
+              <div class="proj-card__actions">
+                <a href="https://www.instagram.com/unisenacrs/p/CwVGaW9O7M_/"
+                   target="_blank" rel="noopener noreferrer" class="btn btn--primary">Ver fotos ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Projeto Vivências -->
+          <article class="proj-card" data-cat="design-grafico" data-reveal aria-labelledby="proj-vivencias">
+            <a href="https://www.instagram.com/unisenacrs/p/Cvpxw_huIeT/"
+               target="_blank" rel="noopener noreferrer"
+               class="proj-card__thumb" aria-label="Ver Projeto Vivências no Instagram (abre em nova aba)">
+              <img src="img/webp/capa_vivencias.webp"
+                   alt="Capa do Projeto Vivências" width="800" height="600" loading="lazy" />
+            </a>
+            <div class="proj-card__body">
+              <div class="proj-card__header">
+                <h2 class="proj-card__title" id="proj-vivencias">Projeto Vivências</h2>
+                <span class="tag">Design Gráfico</span>
+              </div>
+              <p class="proj-card__desc">
+                Identidade visual desenvolvida para a colaboração do UniSenac com a RBS TV.
+                Desenvolvido por alunos de Produção Multimídia.
+              </p>
+              <div class="projeto__tech">
+                <span class="tech-tag">Fotografia</span>
+                <span class="tech-tag">Identidade Visual</span>
+              </div>
+              <div class="proj-card__actions">
+                <a href="https://www.instagram.com/unisenacrs/p/Cvpxw_huIeT/"
+                   target="_blank" rel="noopener noreferrer" class="btn btn--primary">Ver post ↗</a>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /.projetos-grid -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer footer--with-contact" role="contentinfo">
+    <div class="container">
+      <div class="footer__contact">
+        <div>
+          <h2 class="footer__contact-heading" data-i18n="contato-heading">
+            Vamos criar<br/>algo <em class="highlight">juntos?</em>
+          </h2>
+          <div class="footer__available">
+            <span class="footer__available-badge" data-en="On-site">Presencial</span>
+            <span class="footer__available-badge" data-en="Hybrid">Híbrido</span>
+            <span class="footer__available-badge">Freelance</span>
+          </div>
+          <div style="margin-top: var(--space-8); display: flex; flex-direction: column; gap: var(--space-3);">
+            <a class="footer__contact-item" href="mailto:filipe.velascoduarte@gmail.com"
+              aria-label="Enviar e-mail para Filipe Duarte">
+              <span class="footer__contact-icon">✉️</span>
+              <div>
+                <span class="footer__contact-label">E-mail</span>
+                <span class="footer__contact-value" style="display: block;">filipe.velascoduarte@gmail.com</span>
+              </div>
+            </a>
+            <a class="footer__contact-item" href="https://wa.me/5551996051030"
+               target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de Filipe Duarte">
+              <span class="footer__contact-icon">💬</span>
+              <div>
+                <span class="footer__contact-label">WhatsApp</span>
+                <span class="footer__contact-value" style="display: block;">(51) 9 9605-1030</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="footer__socials">
+          <a class="footer__social-link" href="https://linkedin.com/in/filipevelascoduarte"
+             target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a class="footer__social-link" href="https://behance.net/filipevelascoduarte"
+             target="_blank" rel="noopener noreferrer">Behance ↗</a>
+          <a class="footer__social-link" href="mailto:filipe.velascoduarte@gmail.com">E-mail →</a>
+        </div>
+      </div>
+      <div class="footer__inner">
+        <div class="footer__logo"><span>FD</span> Filipe Duarte</div>
+        <p class="footer__copy">
+          © <span id="current-year">2026</span> Filipe Velasco Duarte Delfino —
+          <span data-en="Multimedia Producer">Produtor Multimídia</span>
+        </p>
+        <nav class="footer__links" aria-label="Links rápidos">
+          <a class="footer__link" href="https://linkedin.com/in/filipevelascoduarte" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="footer__link" href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer">Behance</a>
+          <a class="footer__link" href="index.html">Home</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+
+  <script defer src="js/main.js"></script>
+</body>
+
+</html>
