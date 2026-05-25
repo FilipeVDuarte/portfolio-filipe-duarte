@@ -1,0 +1,444 @@
+=== melhorar-portfolio/project/subpages.jsx ===
+// subpages.jsx — Projetos (acervo), Case template, Sobre
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PROJETOS — galeria filtrável
+// ─────────────────────────────────────────────────────────────────────────────
+const ProjetosPage = ({ onNav }) => {
+  const [active, setActive] = React.useState("Todos");
+  const cats = ["Todos", "Dev Web", "3D", "Design Gráfico", "Audiovisual"];
+  const projects = [
+    { t:"MobiStudio",      c:"Dev Web" },
+    { t:"Rap In Cena",     c:"Design Gráfico" },
+    { t:"Mobifans 3D",     c:"3D" },
+    { t:"Wallets Campanha",c:"Design Gráfico" },
+    { t:"Dia dos Namorados", c:"Design Gráfico" },
+    { t:"Alças",           c:"Audiovisual" },
+    { t:"Portfolio v1",    c:"Dev Web" },
+    { t:"Stage Render",    c:"3D" },
+    { t:"Vídeo Reel 2025", c:"Audiovisual" },
+  ];
+  return (
+    <>
+      <Nav active="projetos" onNav={onNav} />
+      <PageSummary>
+        Galeria <b style={{color:'var(--note)'}}>filtrável por categoria</b>. Thumbnails padronizadas (4:3) com aspect-ratio
+        fixo. Cada card aponta para a página de case isolada.
+      </PageSummary>
+
+      <header style={{margin:'12px 0 6px'}}>
+        <span className="eyebrow">Acervo completo</span>
+        <h1 className="hl xl" style={{marginTop:8}}>Projetos.</h1>
+        <p className="lorem" style={{marginTop:8}}>
+          O acervo cobre 4+ anos de trabalho — design, código, 3D e audiovisual. Filtre pelo que interessa.
+        </p>
+      </header>
+
+      <div className="filters" style={{marginTop:18}}>
+        {cats.map(c => (
+          <button key={c} aria-pressed={active === c} onClick={() => setActive(c)}>
+            {c}
+            <span className="muted" style={{marginLeft:6, fontSize:9}}>
+              {c === "Todos" ? projects.length : projects.filter(p => p.c === c).length}
+            </span>
+          </button>
+        ))}
+        <div style={{flex:1}} />
+        <span className="mono muted" style={{alignSelf:'center'}}>
+          {active === "Todos" ? projects.length : projects.filter(p => p.c === active).length} itens
+        </span>
+      </div>
+
+      <div className="grid-3" style={{rowGap:'var(--gap-4)'}}>
+        {projects
+          .filter(p => active === "Todos" || p.c === active)
+          .map((p, i) => (
+          <div className="col" key={p.t + i}>
+            <Box kind="solid" ar="ar-4-3" withX label={`Thumb ${p.t}`} sub="aspect-ratio: 4/3 fixo" />
+            <div className="flex aic" style={{justifyContent:'space-between', gap:8}}>
+              <span style={{fontFamily:'var(--hand-display)', fontWeight:700, fontSize:22}}>{p.t}</span>
+              <span className="pill">{p.c}</span>
+            </div>
+            <span className="mono muted">2025  ·  Ver case →</span>
+          </div>
+        ))}
+      </div>
+
+      <Footer />
+    </>
+  );
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CASE — template de aprofundamento (genérico)
+// ─────────────────────────────────────────────────────────────────────────────
+const CasePage = ({ onNav }) => (
+  <>
+    <Nav active="projetos" onNav={onNav} />
+    <PageSummary>
+      Template de <b style={{color:'var(--note)'}}>case</b>: Header → Contexto → Papel → Processo → Resultado.
+      Blocos de imagens lado a lado, trechos de código estruturados, diagramas como blocos genéricos.
+    </PageSummary>
+
+    {/* Breadcrumb */}
+    <div className="mono muted" style={{margin:'8px 0 16px'}}>
+      <a onClick={() => onNav?.("projetos")} style={{cursor:'pointer'}}>← Projetos</a>  ·  Case
+    </div>
+
+    {/* Case Header */}
+    <header style={{margin:'0 0 30px', position:'relative'}}>
+      <span className="eyebrow">Case · Dev Web · Autoral</span>
+      <h1 className="hl xl" style={{marginTop:10, maxWidth:900}}>Nome do projeto.</h1>
+      <div className="flex gap-3 wrap" style={{marginTop:14}}>
+        <span className="mono muted">Abr 2026 → atual</span>
+        <span className="mono muted">·</span>
+        <div className="pill-row">
+          <span className="pill">Figma</span>
+          <span className="pill">JS · Canvas</span>
+          <span className="pill">Builder.io</span>
+          <span className="pill">Netlify</span>
+        </div>
+      </div>
+      <Anno top={-4} right={10}>
+        <b>Título · Data · Tags da stack</b><br/>
+        Tudo escaneável em 2s.
+      </Anno>
+    </header>
+
+    {/* Hero do case */}
+    <Box kind="solid" ar="ar-21-9" withX label="Hero do projeto" sub="Banner ou vídeo curto · 21:9" />
+
+    {/* Contexto / Problema */}
+    <section className="section" style={{position:'relative'}}>
+      <SectionHdr idx="01" label="Contexto / Problema" />
+      <div className="grid-2" style={{alignItems:'start'}}>
+        <p className="lorem">
+          Bloco curto descrevendo o desafio. <strong>2–3 parágrafos no máximo.</strong> Quem era o cliente, qual a dor,
+          qual a oportunidade. Sem floreio.
+        </p>
+        <div className="col">
+          <Lines widths={["w-95","w-90","w-80","w-70"]} />
+          <Lines widths={["w-95","w-80","w-50"]} />
+        </div>
+      </div>
+    </section>
+
+    {/* Meu Papel */}
+    <section className="section">
+      <SectionHdr idx="02" label="Meu papel" />
+      <div className="grid-3">
+        <div className="card lift">
+          <div className="mono muted">Responsabilidade</div>
+          <div className="card__title">Design</div>
+          <Lines widths={["w-90","w-70"]} />
+        </div>
+        <div className="card lift">
+          <div className="mono muted">Responsabilidade</div>
+          <div className="card__title">Front-end</div>
+          <Lines widths={["w-90","w-70"]} />
+        </div>
+        <div className="card lift">
+          <div className="mono muted">Responsabilidade</div>
+          <div className="card__title">Deploy</div>
+          <Lines widths={["w-90","w-70"]} />
+        </div>
+      </div>
+    </section>
+
+    {/* Processo / Solução */}
+    <section className="section" style={{position:'relative'}}>
+      <SectionHdr idx="03" label="Processo & solução" right="imagens lado a lado · trechos de código · diagramas" />
+
+      <div className="grid-2 mb-3">
+        <Box kind="solid" ar="ar-4-3" withX label="Wireframe / esboço" sub="passo 01" />
+        <Box kind="solid" ar="ar-4-3" withX label="Mockup Figma" sub="passo 02" />
+      </div>
+
+      <p className="lorem" style={{marginBottom:14}}>
+        Narrativa curta da decisão. <strong>Figma → Builder.io → código limpo.</strong> Tradução direta do design para componente em produção.
+      </p>
+
+      <div className="code">
+<span className="c">{`// canvas customizer — render layer`}</span>{`
+`}<span className="k">{`function`}</span>{` renderCase(ctx, layers) {
+  layers.forEach(layer => {
+    ctx.drawImage(layer.img, layer.x, layer.y);
+  });
+}`}
+      </div>
+
+      <div className="grid-3" style={{marginTop:18}}>
+        <Box kind="solid" ar="ar-1-1" withX label="Diagrama de fluxo" />
+        <Box kind="solid" ar="ar-1-1" withX label="Render final" />
+        <Box kind="solid" ar="ar-1-1" withX label="UI em produção" />
+      </div>
+
+      <Anno top={20} right={-10}>
+        <b>Bloco de código real,</b><br/>
+        não screenshot.<br/>
+        Indexável + acessível.
+      </Anno>
+    </section>
+
+    {/* Resultado */}
+    <section className="section">
+      <SectionHdr idx="04" label="Resultado" />
+      <div className="grid-2" style={{alignItems:'center'}}>
+        <div className="col">
+          <div className="grid-2">
+            <div className="card accent">
+              <div className="hl lg" style={{lineHeight:1}}>50%</div>
+              <div className="mono">Redução de tempo</div>
+            </div>
+            <div className="card lift">
+              <div className="hl lg" style={{lineHeight:1}}>5k+</div>
+              <div className="mono">Arquivos servidos</div>
+            </div>
+          </div>
+          <p className="lorem">Frase de impacto. Métrica concreta. Resultado mensurável.</p>
+          <div className="flex gap-2 wrap">
+            <button className="wf-btn primary">Ver projeto ao vivo ↗</button>
+            <button className="wf-btn">Repositório ↗</button>
+          </div>
+        </div>
+        <Box kind="solid" ar="ar-4-3" withX label="Screenshot final" sub="ou vídeo de uso" />
+      </div>
+    </section>
+
+    {/* Próximo case */}
+    <section className="section">
+      <div className="card lift flex aic" style={{justifyContent:'space-between', padding:'18px 22px'}}>
+        <div>
+          <div className="mono muted">Próximo case →</div>
+          <div className="hl md" style={{marginTop:4}}>Nome do próximo projeto.</div>
+        </div>
+        <Box kind="solid" ar="ar-1-1" style={{width:80, minHeight:0}} label="thumb" />
+      </div>
+    </section>
+
+    <Footer />
+  </>
+);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SOBRE — trajetória
+// ─────────────────────────────────────────────────────────────────────────────
+const SobrePage = ({ onNav }) => (
+  <>
+    <Nav active="sobre" onNav={onNav} />
+    <PageSummary>
+      Trajetória em <b style={{color:'var(--note)'}}>timeline narrativa</b>: do design autônomo
+      → in-house Mobifans → docência. Certificações em cards rápidos abaixo.
+    </PageSummary>
+
+    <header style={{margin:'12px 0 30px', position:'relative'}}>
+      <span className="eyebrow">Sobre</span>
+      <div className="grid-2" style={{marginTop:10, alignItems:'flex-end'}}>
+        <h1 className="hl xl">A trajetória.</h1>
+        <p className="lorem" style={{justifySelf:'end'}}>
+          Do design autônomo à criação de ferramentas proprietárias e docência.
+          Quatro anos atravessando design, código, 3D e audiovisual.
+        </p>
+      </div>
+    </header>
+
+    {/* Stats strip — agora com card dupla de avaliações */}
+    <section style={{
+      display:'grid', gridTemplateColumns:'1fr 1.4fr 1fr',
+      borderTop:'1.5px solid var(--ink)', borderBottom:'1.5px solid var(--ink)',
+      marginBottom:'var(--gap-5)'
+    }}>
+      <div style={{ padding:'20px 18px', borderRight:'1.5px solid var(--ink)' }}>
+        <div className="hl lg" style={{lineHeight:1}}>4+</div>
+        <div className="mono muted" style={{marginTop:4}}>anos de carreira</div>
+      </div>
+
+      {/* Card dupla — duas avaliações no mesmo quadro */}
+      <div style={{ padding:'20px 22px', borderRight:'1.5px solid var(--ink)', display:'flex', flexDirection:'column', gap:10 }}>
+        <div className="mono muted">Avaliações internas</div>
+        <div className="grid-2" style={{gap:16, alignItems:'baseline'}}>
+          <div>
+            <div className="mono" style={{color:'var(--ink-soft)'}}>01 / 2025</div>
+            <div className="hl md" style={{lineHeight:1, marginTop:2}}>9,39<span style={{fontSize:'0.55em', color:'var(--muted)'}}>/10</span></div>
+          </div>
+          <div>
+            <div className="mono" style={{color:'var(--ink-soft)'}}>02 / 2025</div>
+            <div className="hl md" style={{lineHeight:1, marginTop:2}}>9,56<span style={{fontSize:'0.55em', color:'var(--muted)'}}>/10</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style={{ padding:'20px 18px' }}>
+        <div className="hl lg" style={{lineHeight:1}}>+</div>
+        <div className="mono muted" style={{marginTop:4}}>certificações ★</div>
+      </div>
+    </section>
+
+    {/* Timeline */}
+    <section className="section" style={{position:'relative'}}>
+      <SectionHdr idx="01" label="Carreira & educação" />
+      <div className="grid-2" style={{alignItems:'start', gap:'var(--gap-5)'}}>
+        <div className="timeline">
+          {[
+            { y:"2021 → 2022", t:"Design autônomo", tag:"Início" },
+            { y:"2022 → 2025", t:"Mobifans / Customic — In-house", tag:"3 anos · time interno" },
+            { y:"2025",         t:"Solo na operação de design", tag:"5 meses · 0 deadlines perdidos" },
+            { y:"2026 →",       t:"MobiStudio (autoral) + docência", tag:"Ferramentas próprias" },
+          ].map((item, i) => (
+            <div className={`timeline__item ${i < 2 ? "dot-fill" : ""}`} key={i}>
+              <div className="timeline__year">{item.y}</div>
+              <div className="timeline__title">{item.t}</div>
+              <div className="mono muted">{item.tag}</div>
+              <Lines widths={["w-95","w-80","w-60"]} />
+            </div>
+          ))}
+        </div>
+
+        <div className="col" style={{position:'sticky', top:20}}>
+          <Box kind="solid" ar="ar-3-4" withX label="Retrato" sub="opcional · só 1 imagem" />
+          <p className="lorem">
+            Mini-bio em primeira pessoa. <strong>Calma, direta, sem hype.</strong> Uma frase forte como abertura,
+            um parágrafo curto descrevendo a abordagem.
+          </p>
+        </div>
+      </div>
+      <Anno top={20} right={-10}>
+        <b>Timeline narrativa</b><br/>
+        em vez de CV cronológico.<br/>
+        Conta uma história.
+      </Anno>
+    </section>
+
+    {/* Certificações — carrossel */}
+    <section className="section">
+      <SectionHdr idx="02" label="Certificações" right="carrossel ← → · todas as certificações" />
+      <div className="carousel">
+        <div className="carousel__track">
+          {[
+            { o:"Adobe",     t:"Certified Professional · Photoshop", d:"2024" },
+            { o:"Anthropic", t:"Claude 101", d:"2025" },
+            { o:"Anthropic", t:"Introduction to Agent Skills", d:"2025" },
+            { o:"UX",        t:"Fundamentos · UX/UI", d:"2024" },
+            { o:"Adobe",     t:"Illustrator · Avançado", d:"2023" },
+            { o:"Figma",     t:"Design System Specialist", d:"2024" },
+            { o:"Google",    t:"UX Design Foundations", d:"2023" },
+          ].map((c, i) => (
+            <div className="card lift" key={i} style={{padding:18}}>
+              <div className="flex aic" style={{justifyContent:'space-between'}}>
+                <span className="mono">{c.o}</span>
+                <span style={{fontFamily:'var(--hand-display)', fontSize:22}}>✦</span>
+              </div>
+              <div className="card__title" style={{marginTop:6, fontSize:20, lineHeight:1.1}}>{c.t}</div>
+              <div className="mono muted">{c.d}</div>
+            </div>
+          ))}
+        </div>
+        <div className="carousel__nav">
+          <button className="carousel__btn" onClick={(e) => {
+            const tr = e.currentTarget.closest('.carousel').querySelector('.carousel__track');
+            tr.scrollBy({ left: -tr.clientWidth * 0.66, behavior: 'smooth' });
+          }}>←</button>
+          <button className="carousel__btn" onClick={(e) => {
+            const tr = e.currentTarget.closest('.carousel').querySelector('.carousel__track');
+            tr.scrollBy({ left:  tr.clientWidth * 0.66, behavior: 'smooth' });
+          }}>→</button>
+          <span className="mono muted">arraste · swipe · setas</span>
+          <div className="carousel__dots"><i className="on" /><i /><i /></div>
+        </div>
+      </div>
+    </section>
+
+    {/* Competências — agora com ícones (mesmos glifos do marquee) */}
+    <section className="section">
+      <SectionHdr idx="03" label="Competências" right="com ícones · alinhado ao marquee" />
+      <div className="flex gap-2 wrap">
+        {[
+          { t:"Figma",        g:"F" },
+          { t:"Photoshop",    g:"Ps" },
+          { t:"Illustrator",  g:"Ai" },
+          { t:"Premiere",     g:"Pr" },
+          { t:"After Effects",g:"Ae" },
+          { t:"Blender",      g:"B" },
+          { t:"JavaScript",   g:"JS" },
+          { t:"HTML / CSS",   g:"</>" },
+          { t:"Claude",       g:"✦" },
+          { t:"Builder.io",   g:"B." },
+          { t:"Canvas API",   g:"⊡" },
+          { t:"UX / UI",      g:"◐" },
+          { t:"3D · Modelagem", g:"⬢" },
+          { t:"Motion",       g:"↗" },
+          { t:"Audiovisual",  g:"▶" },
+          { t:"IA Generativa", g:"★" },
+        ].map(s => (
+          <span key={s.t} className="skill-chip">
+            <span className="logo">{s.g}</span>
+            {s.t}
+          </span>
+        ))}
+      </div>
+    </section>
+
+    {/* Recomendações — nova sessão (acervo completo) */}
+    <section className="section">
+      <SectionHdr idx="04" label="Recomendações" right="todas as recomendações · lideranças e colegas" />
+      <div className="grid-2" style={{rowGap:'var(--gap-4)'}}>
+        {[
+          { n:"Liderança A", c:"Diretor Criativo · Mobifans" },
+          { n:"Liderança B", c:"Head of Design · Customic" },
+          { n:"Colega C",    c:"Product Designer · MobiStudio" },
+          { n:"Cliente D",   c:"Produtor · Rap In Cena" },
+          { n:"Liderança E", c:"CEO · Cliente Externo" },
+          { n:"Colega F",    c:"Front-end Dev · Mobifans" },
+        ].map((r, i) => (
+          <div className="card lift" key={i} style={{padding:22}}>
+            <span style={{fontFamily:'var(--hand-display)', fontSize:38, lineHeight:0.5, color:'var(--ink-soft)'}}>"</span>
+            <Lines widths={["w-95","w-90","w-80","w-70"]} />
+            <div className="flex gap-2 aic" style={{marginTop:10}}>
+              <Box kind="solid" ar="ar-1-1" style={{width:40, height:40, minHeight:0, padding:0}} />
+              <div>
+                <div style={{fontFamily:'var(--hand-display)', fontWeight:700, fontSize:18}}>{r.n}</div>
+                <div className="mono muted">{r.c}</div>
+              </div>
+              <div className="grow" />
+              <span className="mono muted">LinkedIn ↗</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <Footer />
+  </>
+);
+
+Object.assign(window, { ProjetosPage, CasePage, SobrePage });
+
+
+=== melhorar-portfolio/project/index.html ===
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Portfolio Refactor — Wireframes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Kalam:wght@300;400;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="wireframe.css" />
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="components.jsx"></script>
+<script type="text/babel" src="home.jsx"></script>
+<script type="text/babel" src="subpages.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
+
+
