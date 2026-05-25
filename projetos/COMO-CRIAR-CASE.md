@@ -57,6 +57,7 @@ Todos os links devem usar `../` para subir um nível:
 - [ ] `<meta og:title>` — `[Nome do Projeto] — Filipe Duarte`
 - [ ] `<meta og:description>` — mesma descrição curta
 - [ ] `<meta og:url>` — URL canônica do case
+- [ ] `<meta og:image>` — **usar o banner 21:9 do projeto** (ver seção 6)
 - [ ] `<title>` — `[Nome do Projeto] — Case · Filipe Duarte`
 
 ### Header do case
@@ -134,7 +135,33 @@ Classes de sintaxe disponíveis:
 
 ---
 
-## 6. Imagens — formatos e proporções
+## 6. OG Image — usar o banner 21:9
+
+Cada case usa o próprio banner como OG image. Não é necessário criar um arquivo separado: LinkedIn, WhatsApp, Twitter/X e Facebook fazem o crop automático para o ratio deles (~1.91:1), cortando as laterais e centralizando.
+
+**Padrão de meta tags no `<head>`:**
+```html
+<meta property="og:image" content="https://filipeduarte.netlify.app/projetos/[slug]/Banner_[Proj]_21_9.webp" />
+<meta property="og:image:width" content="2100" />
+<meta property="og:image:height" content="900" />
+```
+
+> O `og:image` exige URL **absoluta** (com domínio completo). Caminho relativo não funciona para compartilhamento social.
+
+**Como funciona o crop nas plataformas:**
+
+| Plataforma   | Ratio exibido | Resultado com 21:9         |
+|--------------|---------------|----------------------------|
+| LinkedIn     | ~1.91:1       | Laterais cortadas, centro  |
+| WhatsApp     | ~1.91:1       | Idem                       |
+| Twitter / X  | ~2:1          | Mínimo crop, quase full    |
+| Facebook     | ~1.91:1       | Laterais cortadas, centro  |
+
+**Dica de composição:** ao criar o banner 21:9, manter o conteúdo principal (logo, UI, mockup) concentrado no centro — as laterais são a zona de sacrifício do crop.
+
+---
+
+## 7. Imagens — formatos e proporções
 
 | Slot             | Proporção | Formato  | Atributo       |
 |------------------|-----------|----------|----------------|
@@ -146,7 +173,7 @@ Classes de sintaxe disponíveis:
 
 ---
 
-## 7. Links — o que manter e o que omitir
+## 8. Links — o que manter e o que omitir
 
 - **Manter:** link ao vivo do projeto (`.btn--primary`)
 - **Omitir:** link do Behance (`.btn--secondary`) — migração em andamento para o portfolio próprio
@@ -154,7 +181,7 @@ Classes de sintaxe disponíveis:
 
 ---
 
-## 8. Internacionalização (i18n)
+## 9. Internacionalização (i18n)
 
 Atributo `data-en="…"` em qualquer elemento de texto vira a versão em inglês quando o usuário clica em **EN** na nav. Preencher sempre que existir equivalente em inglês claro.
 
@@ -168,7 +195,7 @@ Exemplos do template:
 
 ---
 
-## 9. Acessibilidade — itens obrigatórios
+## 10. Acessibilidade — itens obrigatórios
 
 - [ ] `aria-labelledby` em cada `<section>` apontando para o `id` do título interno
 - [ ] `alt` descritivo em todas as `<img>`
