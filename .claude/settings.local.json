@@ -15,7 +15,19 @@
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\" -Recurse -Force)",
       "Bash(Select-Object -First 50)",
       "Bash(Format-List FullName)",
-      "Bash(awk '{print $1, $2, $3}')"
+      "Bash(awk '{print $1, $2, $3}')",
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(curl -s -L \"https://api.anthropic.com/v1/design/h/8KN-uLuemgp9QoWZ5tnV1A?open_file=index.html\" -o \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\\\\.claude\\\\wireframe-design.gz\")",
+      "Read(//mnt/c/Users/MARKETING/portfolio-filipe-duarte/.claude/**)",
+      "Bash(xxd \"/mnt/c/Users/MARKETING/portfolio-filipe-duarte/.claude/wireframe-design.gz\")",
+      "Bash(curl -s -L \"https://api.anthropic.com/v1/design/h/8KN-uLuemgp9QoWZ5tnV1A?open_file=index.html\" -o /tmp/wireframe-design.bin)",
+      "Read(//tmp/**)",
+      "Bash(xxd /tmp/wireframe-design.bin)",
+      "Bash(mkdir -p /tmp/wireframe-extracted)",
+      "Bash(gunzip -c /tmp/wireframe-design.bin)",
+      "Bash(tar -xf /tmp/wireframe-inner.bin)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
