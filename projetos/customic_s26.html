@@ -1,0 +1,488 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="../icon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Capa Customic 3D — Modelagem e renderização de capa personalizada para a linha Customic da Mobifans: do conceito ao modelo 3D interativo no Sketchfab." />
+  <meta name="author" content="Filipe Velasco Duarte Delfino" />
+
+  <link rel="canonical" href="https://filipeduarte.netlify.app/projetos/customic_s26.html" />
+
+  <meta property="og:title" content="Capa Customic 3D — Filipe Duarte" />
+  <meta property="og:description" content="Modelagem 3D de capa personalizada para a linha Customic: precisão técnica, texturização realista e modelo interativo no Sketchfab." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://filipeduarte.netlify.app/projetos/customic_s26.html" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:image" content="https://filipeduarte.netlify.app/projetos/capa-customic/Banner_Customic_21_9.webp" />
+  <meta property="og:image:width" content="2100" />
+  <meta property="og:image:height" content="900" />
+
+  <title>Capa Customic 3D — Case · Filipe Duarte</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" media="print" onload="this.media='all'"
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
+  </noscript>
+
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <style>
+    .case-breadcrumb { padding-top: calc(60px + var(--space-8)); padding-bottom: var(--space-4); border-bottom: var(--border); }
+    .case-breadcrumb__inner { display: flex; align-items: center; gap: var(--space-3); font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+    .case-breadcrumb__link { color: var(--color-muted); transition: color var(--transition-fast); }
+    .case-breadcrumb__link:hover { color: var(--color-ink); }
+    .case-breadcrumb__sep { opacity: 0.4; }
+    .case-breadcrumb__current { color: var(--color-ink); }
+    .case-header { padding-block: var(--space-12) var(--space-10); border-bottom: var(--border-thick); }
+    .case-header__eyebrow { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-muted); display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-5); }
+    .case-header__eyebrow::before { content: ''; display: block; width: 2rem; height: 2px; background: var(--color-ink); }
+    .case-header__title { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 800; line-height: 1; letter-spacing: -0.04em; text-transform: uppercase; max-width: 18ch; margin-bottom: var(--space-6); }
+    .case-header__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-5); }
+    .case-header__date { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+    .case-header__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .case-hero { border-bottom: var(--border-thick); }
+    .case-hero__img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: center; display: block; }
+    .case-hero__placeholder { width: 100%; aspect-ratio: 21 / 9; background: var(--color-ink); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.2); }
+    .case-section { padding-block: var(--section-pad); border-bottom: var(--border-thick); }
+    .case-section__header { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-10); padding-bottom: var(--space-4); border-bottom: var(--border); }
+    .case-section__note { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .case-grid-2 { display: grid; grid-template-columns: 1fr; gap: var(--space-10); align-items: start; }
+    @media (min-width: 768px) { .case-grid-2 { grid-template-columns: 1fr 1fr; } }
+    .case-grid-3 { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+    @media (min-width: 640px) { .case-grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .case-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+    .role-card { border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-md); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); transition: var(--transition-fast); }
+    .role-card:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); }
+    .role-card__label { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+    .role-card__title { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; text-transform: uppercase; letter-spacing: -0.03em; line-height: 1.05; }
+    .role-card__desc { font-size: var(--text-sm); line-height: 1.65; color: var(--color-muted); }
+    .case-img-pair { display: grid; grid-template-columns: 1fr; gap: var(--space-5); margin-bottom: var(--space-8); }
+    @media (min-width: 640px) { .case-img-pair { grid-template-columns: 1fr 1fr; } }
+    .case-img-pair__item { display: flex; flex-direction: column; gap: var(--space-3); }
+    .case-img-pair__img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: var(--border-thick); display: block; }
+    .case-img-pair__placeholder { width: 100%; aspect-ratio: 4 / 3; border: var(--border-thick); background: var(--color-surface); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .case-img-pair__caption { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+    .case-narrative { font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); max-width: 72ch; margin-bottom: var(--space-8); }
+    .case-narrative strong { color: var(--color-ink); }
+    .case-code { background: var(--color-ink); color: var(--color-bg); border: var(--border-thick); box-shadow: var(--shadow-md); padding: var(--space-6) var(--space-8); font-family: var(--font-mono); font-size: var(--text-xs); line-height: 1.8; white-space: pre; overflow-x: auto; margin-bottom: var(--space-8); }
+    .case-code .tok-comment { color: #6B6B6B; }
+    .case-code .tok-keyword { color: var(--color-yellow); }
+    .case-code .tok-string  { color: var(--color-teal); }
+    .case-code .tok-fn      { color: #E5D2AF; }
+    .case-img-trio { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
+    @media (min-width: 640px) { .case-img-trio { grid-template-columns: repeat(3, 1fr); } }
+    .case-img-trio__img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: var(--border-thick); display: block; }
+    .case-img-trio__placeholder { width: 100%; aspect-ratio: 1 / 1; border: var(--border-thick); background: var(--color-surface); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.08em; text-align: center; }
+    .metric-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-bottom: var(--space-8); }
+    .metric-card { border: var(--border-thick); box-shadow: var(--shadow-md); padding: var(--space-6) var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); transition: var(--transition-fast); }
+    .metric-card:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); }
+    .metric-card--accent { background: var(--color-yellow); }
+    .metric-card--plain { background: var(--color-surface); }
+    .metric-card__number { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+    .metric-card__label { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+    .case-resultado { display: grid; grid-template-columns: 1fr; gap: var(--space-10); align-items: center; }
+    @media (min-width: 768px) { .case-resultado { grid-template-columns: 1fr 1fr; } }
+    .case-resultado__screenshot { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: var(--border-thick); box-shadow: var(--shadow-xl); display: block; }
+    .case-resultado__screenshot-placeholder { width: 100%; aspect-ratio: 4 / 3; border: var(--border-thick); box-shadow: var(--shadow-xl); background: var(--color-surface); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .case-resultado__impact { font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-8); }
+    .case-resultado__impact strong { color: var(--color-ink); }
+    .case-next { padding-block: var(--space-12); }
+    .case-next__card { border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-md); padding: var(--space-6) var(--space-8); display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); text-decoration: none; transition: var(--transition-fast); }
+    .case-next__card:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); background: var(--color-yellow); }
+    .case-next__label { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: var(--space-2); }
+    .case-next__title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800; text-transform: uppercase; letter-spacing: -0.03em; line-height: 1.1; }
+    .case-next__thumb { width: 80px; height: 80px; flex-shrink: 0; border: var(--border-thick); object-fit: cover; display: block; }
+    .case-next__thumb-placeholder { width: 80px; height: 80px; flex-shrink: 0; border: var(--border-thick); background: var(--color-ink); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-bg); }
+    .case-next__arrow { font-family: var(--font-mono); font-size: var(--text-xl); font-weight: 700; transition: transform var(--transition-fast); }
+    .case-next__card:hover .case-next__arrow { transform: translateX(6px); }
+
+    /* Sketchfab embed */
+    .sketchfab-embed {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: var(--border-thick);
+      box-shadow: var(--shadow-xl);
+      display: block;
+      background: var(--color-surface);
+    }
+    .sketchfab-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: var(--border-thick);
+      box-shadow: var(--shadow-xl);
+      background: var(--color-ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: rgba(255, 255, 255, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 599px) {
+      .case-header__title { font-size: var(--text-2xl); }
+      .case-next__card { flex-wrap: wrap; gap: var(--space-5); }
+      .case-next__thumb, .case-next__thumb-placeholder { display: none; }
+      .case-code { font-size: 0.65rem; padding: var(--space-4) var(--space-4); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="nav" role="banner">
+    <div class="container nav__inner">
+      <a href="../index.html" class="nav__logo" aria-label="Filipe Duarte - início">
+        <img src="../assets/FD - Wordmark.svg" alt="Logo FD - Wordmark" width="268" height="42" />
+      </a>
+      <nav class="nav__links" aria-label="Menu principal">
+        <a class="nav__link" href="../projetos.html" data-en="Projects">Projetos</a>
+        <a class="nav__link" href="../sobre.html" data-en="About">Sobre</a>
+        <a class="nav__cta" href="../index.html#contato" data-en="Contact →">Contato →</a>
+      </nav>
+      <div class="nav__controls">
+        <button class="nav__ctrl" id="lang-toggle" aria-label="Switch to English">EN</button>
+        <button class="nav__ctrl" id="theme-toggle" aria-label="Modo escuro / Dark mode">◐</button>
+      </div>
+      <button class="nav__hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav__mobile" id="mobile-menu" aria-label="Menu mobile">
+      <a class="nav__link" href="../projetos.html" data-en="Projects">Projetos</a>
+      <a class="nav__link" href="../sobre.html" data-en="About">Sobre</a>
+      <a class="nav__cta" href="../index.html#contato" data-en="Contact →">Contato →</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- BREADCRUMB -->
+    <div class="case-breadcrumb">
+      <div class="container case-breadcrumb__inner">
+        <a class="case-breadcrumb__link" href="../projetos.html" data-en="← Projects">← Projetos</a>
+        <span class="case-breadcrumb__sep">·</span>
+        <span class="case-breadcrumb__current" data-en="Case">Case</span>
+      </div>
+    </div>
+
+    <!-- CASE HEADER -->
+    <section class="case-header" aria-labelledby="case-title">
+      <div class="container">
+        <p class="case-header__eyebrow" data-en="Case · 3D · Client">
+          Case · 3D · Mobifans
+        </p>
+        <h1 class="case-header__title" id="case-title">
+          Capa<br />Customic 3D.
+        </h1>
+        <div class="case-header__meta">
+          <span class="case-header__date" data-en="2026">2026</span>
+          <div class="case-header__tags">
+            <span class="tech-tag">Blender</span>
+            <span class="tech-tag">Photoshop</span>
+            <span class="tech-tag">Modelagem 3D</span>
+            <span class="tech-tag">Texturização</span>
+            <span class="tech-tag">Sketchfab</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERO DO CASE -->
+    <div class="case-hero" role="img" aria-label="Banner do projeto Capa Customic 3D">
+      <img class="case-hero__img" src="customic_s26/Banner_3D_S26_21_9.webp"
+           alt="Capa Customic — modelo 3D renderizado em alta qualidade" width="2100" height="900" loading="eager" />
+    </div>
+
+    <!-- 01 — CONTEXTO / PROBLEMA -->
+    <section class="case-section" aria-labelledby="ctx-title">
+      <div class="container">
+        <div class="case-section__header">
+          <p class="section-label" id="ctx-title" data-en="01 — Context / Problem">01 — Contexto / Problema</p>
+          <span class="case-section__note" data-en="3D · retention · product detail">3D · retenção · detalhe do produto</span>
+        </div>
+        <div class="case-grid-2" data-reveal>
+          <div>
+            <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-6);">
+              A linha <strong style="color: var(--color-ink);">Customic</strong> da Mobifans vende capas personalizadas, mas o site não conseguia transmitir os detalhes físicos do produto — textura, espessura, recortes. Fotos 2D não eram suficientes para justificar o preço premium da personalização.
+            </p>
+            <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted);">
+              A ideia era arquitetar uma experiência 3D interativa no site: o cliente poderia girar a capa, ver os detalhes e visualizar a personalização aplicada — aumentando a retenção e a confiança na compra. O projeto não foi para frente, mas o modelo foi desenvolvido até o arquivo final otimizado para Sketchfab.
+            </p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: var(--space-5);">
+            <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+              <p class="section-label" style="margin-bottom: var(--space-2);">Contexto</p>
+              <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+                Mobifans — linha Customic de capas personalizadas. Objetivo: trazer o 3D interativo para o site para aumentar retenção e detalhar o produto melhor do que fotos.
+              </p>
+            </div>
+            <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+              <p class="section-label" style="margin-bottom: var(--space-2);">Problema central</p>
+              <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+                Fotos estáticas não transmitiam a qualidade física do produto — textura, espessura e recortes ficavam invisíveis ao cliente online.
+              </p>
+            </div>
+            <div style="border: var(--border-thick); background: var(--color-yellow); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+              <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);">Oportunidade</p>
+              <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);">
+                Modelo 3D interativo via Sketchfab embed — sem necessidade de engine WebGL própria, com visualização em 360° diretamente no site.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — MEU PAPEL -->
+    <section class="case-section" aria-labelledby="papel-title" style="background: var(--color-surface);">
+      <div class="container">
+        <div class="case-section__header">
+          <p class="section-label" id="papel-title" data-en="02 — My Role">02 — Meu Papel</p>
+          <span class="case-section__note" data-en="3D modeling · texturing · web optimization">modelagem · texturização · otimização web</span>
+        </div>
+        <div class="case-grid-3" data-reveal>
+          <div class="role-card">
+            <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
+            <h3 class="role-card__title">Modelagem 3D</h3>
+            <p class="role-card__desc" style="text-align: justify;">
+              Coordenação com fornecedores para obter medidas reais da capa, modelagem de alta precisão no Blender replicando espessura, recortes e curvatura do produto físico.
+            </p>
+          </div>
+          <div class="role-card">
+            <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
+            <h3 class="role-card__title">Texturização</h3>
+            <p class="role-card__desc" style="text-align: justify;">
+              UV unwrapping, criação de mapas de material (base color, roughness, normal) no Photoshop e Blender para simular a textura real do TPU e a impressão da personalização.
+            </p>
+          </div>
+          <div class="role-card">
+            <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
+            <h3 class="role-card__title">Otimização Web</h3>
+            <p class="role-card__desc" style="text-align: justify;">
+              Otimização de polígonos (LOD), exportação em glTF 2.0 e configuração do viewer no Sketchfab para embed responsivo no site da Mobifans.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — PROCESSO & SOLUÇÃO -->
+    <section class="case-section" aria-labelledby="processo-title">
+      <div class="container">
+        <div class="case-section__header">
+          <p class="section-label" id="processo-title" data-en="03 — Process & Solution">03 — Processo & Solução</p>
+          <span class="case-section__note" data-en="reference · modeling · texture · export">referência · modelagem · textura · exportação</span>
+        </div>
+
+        <div class="case-img-pair" data-reveal>
+          <div class="case-img-pair__item">
+            <!-- <img class="case-img-pair__img" src="customic_s26/processo_01.webp" alt="Medidas e referências do produto físico" /> -->
+            <div class="case-img-pair__placeholder" aria-label="Referências e medidas do produto">
+              Medidas / Produto Físico
+            </div>
+            <span class="case-img-pair__caption" data-en="step 01 · physical reference">Passo 01 · Referência Física</span>
+          </div>
+          <div class="case-img-pair__item">
+            <!-- <img class="case-img-pair__img" src="customic_s26/processo_02.webp" alt="Wireframe do modelo 3D no Blender" /> -->
+            <div class="case-img-pair__placeholder" aria-label="Wireframe do modelo 3D">
+              Wireframe Blender
+            </div>
+            <span class="case-img-pair__caption" data-en="step 02 · 3D wireframe">Passo 02 · Wireframe 3D</span>
+          </div>
+        </div>
+
+        <p class="case-narrative" data-reveal data-reveal-delay="1">
+          O ponto de partida foi trabalhar com os <strong>fornecedores da Customic</strong> para obter as dimensões exatas do produto — espessura do TPU, raio das bordas, posição dos recortes de câmera e botões. Cada milímetro importava para que o modelo comunicasse fidelidade ao produto real.
+        </p>
+        <p class="case-narrative" data-reveal data-reveal-delay="1">
+          Para a texturização, o maior desafio foi simular o acabamento fosco do TPU com reflexo controlado. A solução foi um mapa de roughness com variação procedural no Blender Cycles, combinado com um normal map baked de uma escultura de alta resolução — reproduzindo o granulado sutil do material.
+        </p>
+
+        <!-- Render spec block -->
+        <div class="case-code" data-reveal data-reveal-delay="2" role="region" aria-label="Especificações de renderização e exportação do modelo 3D"><span class="tok-comment">// Capa Customic — pipeline 3D → web</span>
+
+<span class="tok-keyword">MODELAGEM</span>
+  Software       <span class="tok-string">Blender 4.x</span>
+  Polígonos      <span class="tok-string">~12.000 tris</span>   <span class="tok-comment">otimizado para web</span>
+  Referência     <span class="tok-string">medidas reais</span>  <span class="tok-comment">fornecidas pelo fabricante</span>
+
+<span class="tok-keyword">MATERIAIS</span>
+  Base Color     <span class="tok-string">2K PNG</span>          <span class="tok-comment">personalização impressa</span>
+  Roughness      <span class="tok-string">1K procedural</span>  <span class="tok-comment">acabamento TPU fosco</span>
+  Normal Map     <span class="tok-string">baked 2K</span>        <span class="tok-comment">granulado do material</span>
+
+<span class="tok-keyword">EXPORTAÇÃO</span>
+  Formato        <span class="tok-string">glTF 2.0</span>
+  Viewer         <span class="tok-string">Sketchfab</span>       <span class="tok-comment">embed 16:9 responsivo</span></div>
+
+        <div class="case-img-trio" data-reveal>
+          <div>
+            <!-- <img class="case-img-trio__img" src="customic_s26/processo_03.webp" alt="UV unwrapping do modelo" /> -->
+            <div class="case-img-trio__placeholder" aria-label="UV Unwrapping">
+              UV<br />Unwrap
+            </div>
+            <span class="case-img-pair__caption" data-en="UV UNWRAPPING · TEXTURE MAP">UV UNWRAPPING</span>
+          </div>
+          <div>
+            <!-- <img class="case-img-trio__img" src="customic_s26/processo_04.webp" alt="Texturização com mapa de roughness" /> -->
+            <div class="case-img-trio__placeholder" aria-label="Texturização">
+              Material<br />Maps
+            </div>
+            <span class="case-img-pair__caption" data-en="MATERIAL · ROUGHNESS MAP">MATERIAL · ROUGHNESS</span>
+          </div>
+          <div>
+            <!-- <img class="case-img-trio__img" src="customic_s26/processo_05.webp" alt="Render final com personalização aplicada" /> -->
+            <div class="case-img-trio__placeholder" aria-label="Render final">
+              Render<br />Final
+            </div>
+            <span class="case-img-pair__caption" data-en="FINAL RENDER · CYCLES">RENDER FINAL · CYCLES</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3D INTERATIVO — SKETCHFAB -->
+    <section class="case-section" aria-labelledby="embed-title">
+      <div class="container">
+        <div class="case-section__header">
+          <p class="section-label" id="embed-title" data-en="3D Model — Interactive">Modelo 3D — Interativo</p>
+          <span class="case-section__note" data-en="rotate · zoom · inspect">girar · zoom · inspecionar</span>
+        </div>
+        <div data-reveal>
+          <!-- Substituir pelo iframe do Sketchfab quando o modelo estiver publicado:
+          <iframe class="sketchfab-embed" title="Capa Customic 3D"
+            src="https://sketchfab.com/models/[MODEL-ID]/embed"
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            loading="lazy"
+            allowfullscreen></iframe> -->
+          <div class="sketchfab-placeholder" aria-label="Modelo 3D interativo — Sketchfab embed">
+            <span>Sketchfab Embed</span>
+            <span style="font-size: 0.6rem; opacity: 0.6;">Substituir pelo iframe quando o modelo estiver publicado</span>
+          </div>
+          <p style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); margin-top: var(--space-4); text-transform: uppercase; letter-spacing: 0.06em;" data-en="Interactive 3D model — rotate and inspect the Customic case in detail">
+            Modelo 3D interativo — gire e inspecione a capa Customic em detalhe
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 — RESULTADO -->
+    <section class="case-section" aria-labelledby="resultado-title" style="background: var(--color-surface);">
+      <div class="container">
+        <div class="case-section__header">
+          <p class="section-label" id="resultado-title" data-en="04 — Result">04 — Resultado</p>
+          <span class="case-section__note" data-en="model complete · web ready">modelo completo · pronto para web</span>
+        </div>
+        <div class="case-resultado" data-reveal>
+          <div>
+            <div class="metric-cards">
+              <div class="metric-card metric-card--accent">
+                <p class="metric-card__number">~12k</p>
+                <p class="metric-card__label" data-en="Triangles · web optimized">Tris · web otimizado</p>
+              </div>
+              <div class="metric-card metric-card--plain">
+                <p class="metric-card__number">glTF</p>
+                <p class="metric-card__label" data-en="Export format · Sketchfab ready">Formato · Sketchfab ready</p>
+              </div>
+            </div>
+            <p class="case-resultado__impact">
+              <strong>Do conceito ao arquivo final otimizado para web.</strong> O modelo 3D da Capa Customic foi desenvolvido com precisão técnica — medidas reais do produto, texturas PBR e polígonos otimizados para rodar suavemente em qualquer dispositivo. O processo estabeleceu o fluxo de trabalho para futuros modelos 3D da linha Customic e comprovou a viabilidade técnica de trazer o 3D interativo para o e-commerce da Mobifans.
+            </p>
+          </div>
+          <div>
+            <!-- <img class="case-resultado__screenshot" src="customic_s26/demonstrativo.webp"
+                 alt="Render final da Capa Customic em Blender Cycles" width="800" height="600" loading="lazy" /> -->
+            <div class="case-resultado__screenshot-placeholder" aria-label="Render final — Capa Customic">
+              Render Final<br />Blender Cycles
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRÓXIMO CASE -->
+    <section class="case-next" aria-label="Próximo case">
+      <div class="container">
+        <a href="mobi_3d.html" class="case-next__card" data-reveal>
+          <div>
+            <p class="case-next__label" data-en="Next case →">Próximo case →</p>
+            <p class="case-next__title">3D Material<br />Mobifans.</p>
+          </div>
+          <div class="case-next__thumb-placeholder" aria-hidden="true">IMG</div>
+          <span class="case-next__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer footer--with-contact" role="contentinfo">
+    <div class="container">
+      <div class="footer__contact">
+        <div>
+          <h2 class="footer__contact-heading" data-i18n="contato-heading">
+            Vamos criar<br />algo <em class="highlight">juntos?</em>
+          </h2>
+          <div class="footer__available">
+            <span class="footer__available-badge" data-en="On-site">Presencial</span>
+            <span class="footer__available-badge" data-en="Hybrid">Híbrido</span>
+            <span class="footer__available-badge">Freelance</span>
+          </div>
+          <div style="margin-top: var(--space-8); display: flex; flex-direction: column; gap: var(--space-3);">
+            <a class="footer__contact-item" href="mailto:filipe.velascoduarte@gmail.com" aria-label="Enviar e-mail para Filipe Duarte">
+              <span class="footer__contact-icon">✉️</span>
+              <div>
+                <span class="footer__contact-label">E-mail</span>
+                <span class="footer__contact-value" style="display: block;">filipe.velascoduarte@gmail.com</span>
+              </div>
+            </a>
+            <a class="footer__contact-item" href="https://wa.me/5551996051030" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de Filipe Duarte">
+              <span class="footer__contact-icon">💬</span>
+              <div>
+                <span class="footer__contact-label">WhatsApp</span>
+                <span class="footer__contact-value" style="display: block;">(51) 9 9605-1030</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="footer__socials">
+          <a class="footer__social-link" href="https://linkedin.com/in/filipevelascoduarte" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a class="footer__social-link" href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer">Behance ↗</a>
+          <a class="footer__social-link" href="mailto:filipe.velascoduarte@gmail.com">E-mail →</a>
+        </div>
+      </div>
+      <div class="footer__inner">
+        <div class="footer__logo"><span>FD</span> Filipe Duarte</div>
+        <p class="footer__copy">
+          © <span id="current-year">2026</span> Filipe Velasco Duarte Delfino —
+          <span data-en="Multimedia Producer">Produtor Multimídia</span>
+        </p>
+        <nav class="footer__links" aria-label="Links rápidos">
+          <a class="footer__link" href="https://linkedin.com/in/filipevelascoduarte" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="footer__link" href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer">Behance</a>
+          <a class="footer__link" href="../projetos.html" data-en="Projects">Projetos</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+  <script defer src="../js/main.js"></script>
+</body>
+
+</html>

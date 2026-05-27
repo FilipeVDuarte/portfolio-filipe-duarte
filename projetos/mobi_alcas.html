@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="../icon.svg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Alças MobiStudio — design e desenvolvimento de alças para capinhas personalizadas da Mobifans." />
+  <meta name="author" content="Filipe Velasco Duarte Delfino" />
+
+  <link rel="canonical" href="https://filipeduarte.netlify.app/projetos/mobi_alcas.html" />
+
+  <meta property="og:title" content="Alças MobiStudio — Filipe Duarte" />
+  <meta property="og:description" content="Design e desenvolvimento de alças para capinhas personalizadas da Mobifans." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://filipeduarte.netlify.app/projetos/mobi_alcas.html" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:image" content="https://filipeduarte.netlify.app/projetos/mobi_alcas/Banner_Alças_21_9.webp" />
+  <meta property="og:image:width" content="2100" />
+  <meta property="og:image:height" content="900" />
+
+  <title>Alças MobiStudio — Case · Filipe Duarte</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" media="print" onload="this.media='all'"
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
+  </noscript>
+
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <style>
+    .case-breadcrumb { padding-top: calc(60px + var(--space-8)); padding-bottom: var(--space-4); border-bottom: var(--border); }
+    .case-breadcrumb__inner { display: flex; align-items: center; gap: var(--space-3); font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+    .case-breadcrumb__link { color: var(--color-muted); transition: color var(--transition-fast); }
+    .case-breadcrumb__link:hover { color: var(--color-ink); }
+    .case-breadcrumb__sep { opacity: 0.4; }
+    .case-breadcrumb__current { color: var(--color-ink); }
+    .case-header { padding-block: var(--space-12) var(--space-10); border-bottom: var(--border-thick); }
+    .case-header__eyebrow { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-muted); display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-5); }
+    .case-header__eyebrow::before { content: ''; display: block; width: 2rem; height: 2px; background: var(--color-ink); }
+    .case-header__title { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: 800; line-height: 1; letter-spacing: -0.04em; text-transform: uppercase; max-width: 18ch; margin-bottom: var(--space-6); }
+    .case-header__meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-5); }
+    .case-header__date { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+    .case-header__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .case-hero { border-bottom: var(--border-thick); }
+    .case-hero__img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: center; display: block; }
+    .case-hero__placeholder { width: 100%; aspect-ratio: 21 / 9; background: var(--color-ink); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.2); }
+    .case-section { padding-block: var(--section-pad); border-bottom: var(--border-thick); }
+    .case-section__header { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-10); padding-bottom: var(--space-4); border-bottom: var(--border); }
+    .case-section__note { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .case-grid-2 { display: grid; grid-template-columns: 1fr; gap: var(--space-10); align-items: start; }
+    @media (min-width: 768px) { .case-grid-2 { grid-template-columns: 1fr 1fr; } }
+    .case-grid-3 { display: grid; grid-template-columns: 1fr; gap: var(--space-6); }
+    @media (min-width: 640px) { .case-grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .case-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+    .role-card { border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-md); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); transition: var(--transition-fast); }
+    .role-card:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); }
+    .role-card__label { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+    .role-card__title { font-family: var(--font-display); font-size: var(--text-2xl); font-weight: 800; text-transform: uppercase; letter-spacing: -0.03em; line-height: 1.05; }
+    .role-card__desc { font-size: var(--text-sm); line-height: 1.65; color: var(--color-muted); }
+    .case-img-pair { display: grid; grid-template-columns: 1fr; gap: var(--space-5); margin-bottom: var(--space-8); }
+    @media (min-width: 640px) { .case-img-pair { grid-template-columns: 1fr 1fr; } }
+    .case-img-pair__item { display: flex; flex-direction: column; gap: var(--space-3); }
+    .case-img-pair__img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: var(--border-thick); display: block; }
+    .case-img-pair__placeholder { width: 100%; aspect-ratio: 4 / 3; border: var(--border-thick); background: var(--color-surface); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .case-img-pair__caption { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+    .case-narrative { font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); max-width: 72ch; margin-bottom: var(--space-8); }
+    .case-narrative strong { color: var(--color-ink); }
+    .case-code { background: var(--color-ink); color: var(--color-bg); border: var(--border-thick); box-shadow: var(--shadow-md); padding: var(--space-6) var(--space-8); font-family: var(--font-mono); font-size: var(--text-xs); line-height: 1.8; white-space: pre; overflow-x: auto; margin-bottom: var(--space-8); }
+    .case-code .tok-comment { color: #6B6B6B; }
+    .case-code .tok-keyword { color: var(--color-yellow); }
+    .case-code .tok-string  { color: var(--color-teal); }
+    .case-code .tok-fn      { color: #E5D2AF; }
+    .case-img-trio { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
+    @media (min-width: 640px) { .case-img-trio { grid-template-columns: repeat(3, 1fr); } }
+    .case-img-trio__img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: var(--border-thick); display: block; }
+    .case-img-trio__placeholder { width: 100%; aspect-ratio: 1 / 1; border: var(--border-thick); background: var(--color-surface); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.08em; text-align: center; }
+    .metric-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-bottom: var(--space-8); }
+    .metric-card { border: var(--border-thick); box-shadow: var(--shadow-md); padding: var(--space-6) var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); transition: var(--transition-fast); }
+    .metric-card:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); }
+    .metric-card--accent { background: var(--color-yellow); }
+    .metric-card--plain { background: var(--color-surface); }
+    .metric-card__number { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+    .metric-card__label { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+    .case-resultado { display: grid; grid-template-columns: 1fr; gap: var(--space-10); align-items: center; }
+    @media (min-width: 768px) { .case-resultado { grid-template-columns: 1fr 1fr; } }
+    .case-resultado__screenshot { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: var(--border-thick); box-shadow: var(--shadow-xl); display: block; }
+    .case-resultado__screenshot-placeholder { width: 100%; aspect-ratio: 4 / 3; border: var(--border-thick); box-shadow: var(--shadow-xl); background: var(--color-surface); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .case-resultado__impact { font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-8); }
+    .case-resultado__impact strong { color: var(--color-ink); }
+    .case-next { padding-block: var(--space-12); }
+    .case-next__card { border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-md); padding: var(--space-6) var(--space-8); display: flex; align-items: center; justify-content: space-between; gap: var(--space-8); text-decoration: none; transition: var(--transition-fast); }
+    .case-next__card:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); background: var(--color-yellow); }
+    .case-next__label { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: var(--space-2); }
+    .case-next__title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800; text-transform: uppercase; letter-spacing: -0.03em; line-height: 1.1; }
+    .case-next__thumb { width: 80px; height: 80px; flex-shrink: 0; border: var(--border-thick); object-fit: cover; display: block; }
+    .case-next__thumb-placeholder { width: 80px; height: 80px; flex-shrink: 0; border: var(--border-thick); background: var(--color-ink); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-bg); }
+    .case-next__arrow { font-family: var(--font-mono); font-size: var(--text-xl); font-weight: 700; transition: transform var(--transition-fast); }
+    .case-next__card:hover .case-next__arrow { transform: translateX(6px); }
+    @media (max-width: 599px) {
+      .case-header__title { font-size: var(--text-2xl); }
+      .case-next__card { flex-wrap: wrap; gap: var(--space-5); }
+      .case-next__thumb, .case-next__thumb-placeholder { display: none; }
+      .case-code { font-size: 0.65rem; padding: var(--space-4) var(--space-4); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <header class="nav" role="banner">
+    <div class="container nav__inner">
+      <a href="../index.html" class="nav__logo" aria-label="Filipe Duarte - início">
+        <img src="../assets/FD - Wordmark.svg" alt="Logo FD - Wordmark" width="268" height="42" />
+      </a>
+      <nav class="nav__links" aria-label="Menu principal">
+        <a class="nav__link" href="../projetos.html" data-en="Projects">Projetos</a>
+        <a class="nav__link" href="../sobre.html" data-en="About">Sobre</a>
+        <a class="nav__cta" href="../index.html#contato" data-en="Contact →">Contato →</a>
+      </nav>
+      <div class="nav__controls">
+        <button class="nav__ctrl" id="lang-toggle" aria-label="Switch to English">EN</button>
+        <button class="nav__ctrl" id="theme-toggle" aria-label="Modo escuro / Dark mode">◐</button>
+      </div>
+      <button class="nav__hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav__mobile" id="mobile-menu" aria-label="Menu mobile">
+      <a class="nav__link" href="../projetos.html" data-en="Projects">Projetos</a>
+      <a class="nav__link" href="../sobre.html" data-en="About">Sobre</a>
+      <a class="nav__cta" href="../index.html#contato" data-en="Contact →">Contato →</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- BREADCRUMB -->
+    <div class="case-breadcrumb">
+      <div class="container case-breadcrumb__inner">
+        <a class="case-breadcrumb__link" href="../projetos.html" data-en="← Projects">← Projetos</a>
+        <span class="case-breadcrumb__sep">·</span>
+        <span class="case-breadcrumb__current" data-en="Case">Case</span>
+      </div>
+    </div>
+
+    <!-- CASE HEADER -->
+    <section class="case-header" aria-labelledby="case-title">
+      <div class="container">
+        <p class="case-header__eyebrow" data-en="Case · Product Design · Client">
+          Case · Design de Produto · Mobifans
+        </p>
+        <h1 class="case-header__title" id="case-title">
+          Alças<br />MobiStudio.
+        </h1>
+        <div class="case-header__meta">
+          <span class="case-header__date" data-en="2026">2026</span>
+          <div class="case-header__tags">
+            <span class="tech-tag">Figma</span>
+            <span class="tech-tag">Design de Produto</span>
+            <span class="tech-tag">Prototipagem</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERO DO CASE -->
+    <div class="case-hero">
+      <img class="case-hero__img" src="mobi_alcas/Banner_Alças_21_9.webp"
+           alt="Alças MobiStudio — acessórios para capinhas personalizadas" width="2100" height="900" loading="eager" />
+    </div>
+
+    <!-- 01 — CONTEXTO / PROBLEMA -->
+    <section class="case-section" aria-labelledby="ctx-title">
+      <div class="container">
+        <div class="case-section__header">
+          <p class="section-label" id="ctx-title" data-en="01 — Context / Problem">01 — Contexto / Problema</p>
+          <span class="case-section__note" data-en="accessory · product · design">acessório · produto · design</span>
+        </div>
+        <div class="case-grid-2" data-reveal>
+          <div>
+            <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-6);">
+              [Descreva o contexto do projeto de alças — qual era a necessidade da Mobifans, o que motivou o desenvolvimento desse acessório para as capinhas.]
+            </p>
+            <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted);">
+              [Contextualize o desafio: requisitos funcionais, restrições de produção, relação com o ecossistema MobiStudio já existente.]
+            </p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: var(--space-5);">
+            <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+              <p class="section-label" style="margin-bottom: var(--space-2);">Contexto</p>
+              <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+                [Mobifans — contexto do produto e por que alças foram necessárias]
+              </p>
+            </div>
+            <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+              <p class="section-label" style="margin-bottom: var(--space-2);">Problema central</p>
+              <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+                [Uma frase direta sobre o desafio de design/produto resolvido]
+              </p>
+            </div>
+            <div style="border: var(--border-thick); background: var(--color-yellow); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+              <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);">Oportunidade</p>
+              <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);">
+                [O ângulo estratégico — como as alças ampliam o valor do produto personalizado]
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 — MEU PAPEL -->
+    <section class="case-section" aria-labelledby="papel-title" style="background: var(--color-surface);">
+      <div class="container">
+        <div class="case-section__header">
+          <p class="section-label" id="papel-title" data-en="02 — My Role">02 — Meu Papel</p>
+          <span class="case-section__note" data-en="what I was responsible for">o que eu entregava</span>
+        </div>
+        <div class="case-grid-3" data-reveal>
+          <div class="role-card">
+            <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
+            <h3 class="role-card__title">[Papel 01]</h3>
+            <p class="role-card__desc">
+              [Descreva a responsabilidade — ex.: pesquisa de materiais, definição de formas, prototipagem física ou digital]
+            </p>
+          </div>
+          <div class="role-card">
+            <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
+            <h3 class="role-card__title">[Papel 02]</h3>
+            <p class="role-card__desc">
+              [Descreva a responsabilidade — ex.: desenho técnico, especificação para fornecedor, validação]
+            </p>
+          </div>
+          <div class="role-card">
+            <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
+            <h3 class="role-card__title">[Papel 03]</h3>
+            <p class="role-card__desc">
+              [Descreva a responsabilidade — ex.: testes, documentação, entrega ao time de produção]
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 — PROCESSO & SOLUÇÃO -->
+    <section class="case-section" aria-labelledby="processo-title">
+      <div class="container">
+        <div class="case-section__header">
+          <p class="section-label" id="processo-title" data-en="03 — Process & Solution">03 — Processo & Solução</p>
+          <span class="case-section__note" data-en="research · prototyping · validation">pesquisa · prototipagem · validação</span>
+        </div>
+
+        <div class="case-img-pair" data-reveal>
+          <div class="case-img-pair__item">
+            <!-- <img class="case-img-pair__img" src="mobi_alcas/processo_01.webp" alt="[Descrição da imagem 01]" loading="lazy" /> -->
+            <div class="case-img-pair__placeholder" aria-label="Processo 01">
+              Processo 01
+            </div>
+            <span class="case-img-pair__caption" data-en="step 01 · [description]">Passo 01 · [Descrição]</span>
+          </div>
+          <div class="case-img-pair__item">
+            <!-- <img class="case-img-pair__img" src="mobi_alcas/processo_02.webp" alt="[Descrição da imagem 02]" loading="lazy" /> -->
+            <div class="case-img-pair__placeholder" aria-label="Processo 02">
+              Processo 02
+            </div>
+            <span class="case-img-pair__caption" data-en="step 02 · [description]">Passo 02 · [Descrição]</span>
+          </div>
+        </div>
+
+        <p class="case-narrative" data-reveal data-reveal-delay="1">
+          [Descreva a decisão de design mais importante do projeto — o raciocínio por trás das escolhas de forma, material ou fixação das alças.]
+        </p>
+
+        <div class="case-img-trio" data-reveal>
+          <div>
+            <!-- <img class="case-img-trio__img" src="mobi_alcas/processo_03.webp" alt="[Descrição]" loading="lazy" /> -->
+            <div class="case-img-trio__placeholder" aria-label="Feature 01">
+              Feature<br />01
+            </div>
+            <span class="case-img-pair__caption">[LEGENDA 01]</span>
+          </div>
+          <div>
+            <!-- <img class="case-img-trio__img" src="mobi_alcas/processo_04.webp" alt="[Descrição]" loading="lazy" /> -->
+            <div class="case-img-trio__placeholder" aria-label="Feature 02">
+              Feature<br />02
+            </div>
+            <span class="case-img-pair__caption">[LEGENDA 02]</span>
+          </div>
+          <div>
+            <!-- <img class="case-img-trio__img" src="mobi_alcas/processo_05.webp" alt="[Descrição]" loading="lazy" /> -->
+            <div class="case-img-trio__placeholder" aria-label="Feature 03">
+              Feature<br />03
+            </div>
+            <span class="case-img-pair__caption">[LEGENDA 03]</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 04 — RESULTADO -->
+    <section class="case-section" aria-labelledby="resultado-title" style="background: var(--color-surface);">
+      <div class="container">
+        <div class="case-section__header">
+          <p class="section-label" id="resultado-title" data-en="04 — Result">04 — Resultado</p>
+          <span class="case-section__note" data-en="concrete metrics · measurable impact">métricas concretas · impacto mensurável</span>
+        </div>
+        <div class="case-resultado" data-reveal>
+          <div>
+            <div class="metric-cards">
+              <div class="metric-card metric-card--accent">
+                <p class="metric-card__number">[N]</p>
+                <p class="metric-card__label" data-en="[Metric label]">[Métrica 01]</p>
+              </div>
+              <div class="metric-card metric-card--plain">
+                <p class="metric-card__number">[N]</p>
+                <p class="metric-card__label" data-en="[Metric label]">[Métrica 02]</p>
+              </div>
+            </div>
+            <p class="case-resultado__impact">
+              <strong>[Frase de impacto.]</strong> [Resultado concreto e mensurável do projeto de alças — o que mudou para o produto e para o cliente final.]
+            </p>
+            <div class="projeto__actions">
+              <a href="mobi_studio.html" class="btn btn--primary" data-en="See the tool ↗">Ver a ferramenta ↗</a>
+            </div>
+          </div>
+          <div>
+            <!-- <img class="case-resultado__screenshot" src="mobi_alcas/demonstrativo.webp"
+                 alt="Alças aplicadas no produto final" width="800" height="600" loading="lazy" /> -->
+            <div class="case-resultado__screenshot-placeholder" aria-label="Demonstrativo do produto final">
+              Produto<br />Final
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRÓXIMO CASE -->
+    <section class="case-next" aria-label="Próximo case">
+      <div class="container">
+        <a href="customic_s26.html" class="case-next__card" data-reveal>
+          <div>
+            <p class="case-next__label" data-en="Next case →">Próximo case →</p>
+            <p class="case-next__title" data-en="Cover<br />Customic 3D.">Capa<br />Customic 3D.</p>
+          </div>
+          <img class="case-next__thumb" src="customic_s26/Banner_3D_S26_21_9.webp" alt="Thumbnail Customic S26" loading="lazy" />
+          <span class="case-next__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer footer--with-contact" role="contentinfo">
+    <div class="container">
+      <div class="footer__contact">
+        <div>
+          <h2 class="footer__contact-heading" data-i18n="contato-heading">
+            Vamos criar<br />algo <em class="highlight">juntos?</em>
+          </h2>
+          <div class="footer__available">
+            <span class="footer__available-badge" data-en="On-site">Presencial</span>
+            <span class="footer__available-badge" data-en="Hybrid">Híbrido</span>
+            <span class="footer__available-badge">Freelance</span>
+          </div>
+          <div style="margin-top: var(--space-8); display: flex; flex-direction: column; gap: var(--space-3);">
+            <a class="footer__contact-item" href="mailto:filipe.velascoduarte@gmail.com" aria-label="Enviar e-mail para Filipe Duarte">
+              <span class="footer__contact-icon">✉️</span>
+              <div>
+                <span class="footer__contact-label">E-mail</span>
+                <span class="footer__contact-value" style="display: block;">filipe.velascoduarte@gmail.com</span>
+              </div>
+            </a>
+            <a class="footer__contact-item" href="https://wa.me/5551996051030" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de Filipe Duarte">
+              <span class="footer__contact-icon">💬</span>
+              <div>
+                <span class="footer__contact-label">WhatsApp</span>
+                <span class="footer__contact-value" style="display: block;">(51) 9 9605-1030</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="footer__socials">
+          <a class="footer__social-link" href="https://linkedin.com/in/filipevelascoduarte" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a class="footer__social-link" href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer">Behance ↗</a>
+          <a class="footer__social-link" href="mailto:filipe.velascoduarte@gmail.com">E-mail →</a>
+        </div>
+      </div>
+      <div class="footer__inner">
+        <div class="footer__logo"><span>FD</span> Filipe Duarte</div>
+        <p class="footer__copy">
+          © <span id="current-year">2026</span> Filipe Velasco Duarte Delfino —
+          <span data-en="Multimedia Producer">Produtor Multimídia</span>
+        </p>
+        <nav class="footer__links" aria-label="Links rápidos">
+          <a class="footer__link" href="https://linkedin.com/in/filipevelascoduarte" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="footer__link" href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer">Behance</a>
+          <a class="footer__link" href="../projetos.html" data-en="Projects">Projetos</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+  <script defer src="../js/main.js"></script>
+</body>
+
+</html>

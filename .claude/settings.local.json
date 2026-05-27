@@ -29,7 +29,8 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(python -c \"import gzip; data = gzip.open\\('.claude/wireframe-design.gz', 'rb'\\).read\\(\\); print\\(len\\(data\\), 'bytes'\\); print\\(data[:500].decode\\('utf-8', errors='replace'\\)\\)\")",
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "Bash(git mv *)"
     ]
   }
 }

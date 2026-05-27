@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -6,21 +6,21 @@
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="MobiStudio — Personalizador interativo de capinhas de smartphone. Ferramenta web com motor Canvas 2D, layouts dinâmicos e exportação em alta resolução para a Mobifans." />
+    content="Projeto Vivências — Identidade visual criada para a colaboração entre UniSenac e RBS TV, desenvolvida por alunos de Produção Multimídia liderados por Filipe Duarte." />
   <meta name="author" content="Filipe Velasco Duarte Delfino" />
 
-  <link rel="canonical" href="https://filipeduarte.netlify.app/projetos/mobistudio.html" />
+  <link rel="canonical" href="https://filipeduarte.netlify.app/projetos/vivencias.html" />
 
-  <meta property="og:title" content="MobiStudio — Filipe Duarte" />
-  <meta property="og:description" content="Personalizador interativo de capinhas com motor Canvas 2D, layouts dinâmicos e estampas personalizáveis — desenvolvido para a Mobifans." />
+  <meta property="og:title" content="Projeto Vivências — Filipe Duarte" />
+  <meta property="og:description" content="Identidade visual criada para a colaboração entre UniSenac e RBS TV, desenvolvida por alunos de Produção Multimídia." />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://filipeduarte.netlify.app/projetos/mobistudio.html" />
+  <meta property="og:url" content="https://filipeduarte.netlify.app/projetos/vivencias.html" />
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:image" content="https://filipeduarte.netlify.app/projetos/mobi_studio/Banner_MobiStudio_21_9.webp" />
+  <meta property="og:image" content="https://filipeduarte.netlify.app/projetos/vivencias/Banner_Vivencias_21_9.webp" />
   <meta property="og:image:width" content="2100" />
   <meta property="og:image:height" content="900" />
 
-  <title>MobiStudio — Case · Filipe Duarte</title>
+  <title>Projeto Vivências — Case · Filipe Duarte</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,6 +36,8 @@
   <style>
     /* ============================================
        CASE PAGE — estilos específicos desta página
+       Não editável pelo design system. Adicionais
+       ao css/style.css sem sobrescrever tokens.
        ============================================ */
 
     /* ── Breadcrumb ── */
@@ -218,7 +220,7 @@
       }
     }
 
-    /* ── Role Cards ── */
+    /* ── Role Cards (Meu Papel) ── */
     .role-card {
       border: var(--border-thick);
       background: var(--color-surface);
@@ -324,27 +326,7 @@
       color: var(--color-ink);
     }
 
-    /* ── Code Block ── */
-    .case-code {
-      background: var(--color-ink);
-      color: var(--color-bg);
-      border: var(--border-thick);
-      box-shadow: var(--shadow-md);
-      padding: var(--space-6) var(--space-8);
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      line-height: 1.8;
-      white-space: pre;
-      overflow-x: auto;
-      margin-bottom: var(--space-8);
-    }
-
-    .case-code .tok-comment { color: #6B6B6B; }
-    .case-code .tok-keyword { color: var(--color-yellow); }
-    .case-code .tok-string  { color: var(--color-teal); }
-    .case-code .tok-fn      { color: #E5D2AF; }
-
-    /* ── Triple image grid ── */
+    /* ── Triple image grid (Processo) ── */
     .case-img-trio {
       display: grid;
       grid-template-columns: 1fr;
@@ -381,7 +363,7 @@
       text-align: center;
     }
 
-    /* ── Metric Cards ── */
+    /* ── Metric Cards (Resultado) ── */
     .metric-cards {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -571,11 +553,6 @@
       .case-next__thumb-placeholder {
         display: none;
       }
-
-      .case-code {
-        font-size: 0.65rem;
-        padding: var(--space-4) var(--space-4);
-      }
     }
   </style>
 </head>
@@ -627,22 +604,23 @@
     <section class="case-header" aria-labelledby="case-title">
       <div class="container">
 
-        <p class="case-header__eyebrow" data-en="Case · Web Dev · Client">
-          Case · Dev Web · Mobifans
+        <p class="case-header__eyebrow" data-en="Case · Brand Identity · UniSenac + RBS TV">
+          Case · Identidade Visual · UniSenac + RBS TV
         </p>
 
         <h1 class="case-header__title" id="case-title">
-          Mobi<br />Studio.
+          Projeto<br />Vivências.
         </h1>
 
         <div class="case-header__meta">
-          <span class="case-header__date" data-en="Apr 2026 → current">Abr 2026 → atual</span>
+          <span class="case-header__date" data-en="Sep 2023 → Nov 2023">Set 2023 → Nov 2023</span>
           <div class="case-header__tags">
-            <span class="tech-tag">HTML5 Canvas</span>
-            <span class="tech-tag">JavaScript Vanilla</span>
-            <span class="tech-tag">CSS3</span>
-            <span class="tech-tag">Vite</span>
-            <span class="tech-tag">Netlify</span>
+            <span class="tech-tag">Figma</span>
+            <span class="tech-tag">Identidade Visual</span>
+            <span class="tech-tag">Branding</span>
+            <span class="tech-tag">Motion Design</span>
+            <span class="tech-tag">UniSenac</span>
+            <span class="tech-tag">RBS TV</span>
           </div>
         </div>
 
@@ -650,9 +628,10 @@
     </section>
 
     <!-- HERO DO CASE -->
-    <div class="case-hero" role="img" aria-label="Banner do projeto MobiStudio">
-      <img class="case-hero__img" src="mobi_studio/Banner_MobiStudio_21_9.webp"
-          alt="MobiStudio — personalizador de capinhas Mobifans" width="2100" height="900" loading="eager" />
+    <div class="case-hero" role="img" aria-label="Banner do Projeto Vivências">
+      <img class="case-hero__img" src="unisenac_vivencias/Banner_Vivencias_21_9.webp"
+        alt="Banner do Projeto Vivências — identidade visual UniSenac + RBS TV"
+        width="2100" height="900" loading="eager" />
     </div>
 
     <!-- 01 — CONTEXTO / PROBLEMA -->
@@ -661,39 +640,36 @@
 
         <div class="case-section__header">
           <p class="section-label" id="ctx-title" data-en="01 — Context / Problem">01 — Contexto / Problema</p>
-          <span class="case-section__note" data-en="client · challenge · opportunity">cliente · desafio · oportunidade</span>
+          <span class="case-section__note" data-en="academic collaboration · real project">colaboração acadêmica · projeto real</span>
         </div>
 
         <div class="case-grid-2" data-reveal>
           <div>
             <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-6);">
-              A <strong style="color: var(--color-ink);">Mobifans</strong> vende capinhas personalizadas de smartphone, mas não tinha
-              como mostrar ao cliente como a arte ficaria aplicada no aparelho antes da compra. 
-              O processo era manual, lento, e dependia de um vendedor na hora para montar um preview.
+              O <strong style="color: var(--color-ink);">Projeto Vivências</strong> nasceu de uma colaboração entre o UniSenac e a RBS TV, idealizada pela professora e coordenadora do curso de Produção Multimídia, Fabrizzia Lacerda. A proposta era simples e ambiciosa ao mesmo tempo: colocar alunos do curso para produzir conteúdo real para a maior emissora de TV do Sul do Brasil.
             </p>
             <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted);">
-              A lacuna era clara: criar uma ferramenta web que permitisse ao próprio cliente ou ao vendedor no quiosque. Poder visualizar a capinha em tempo real, com controle total de posição, escala e rotação da arte. Sem intermediários, sem espera.
+              Antes de gravar o primeiro frame, o projeto precisava de uma identidade. Uma marca que representasse essa fusão — o rigor acadêmico do UniSenac e a linguagem visual dinâmica da RBS TV — e que fosse forte o suficiente para aparecer na televisão.
             </p>
           </div>
 
           <div style="display: flex; flex-direction: column; gap: var(--space-5);">
             <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
-              <p class="section-label" style="margin-bottom: var(--space-2);">Contexto</p>
+              <p class="section-label" style="margin-bottom: var(--space-2);" data-en="Context">Cliente / Contexto</p>
               <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
-                A mobifans queria trazer a experiência de personalização de volta, dado que um dos motivos para que parassem de produzir
-                as personalizadas. Era a falta de uma ferramenta atualizada para isso e que facilitada para o uso leve.
+                UniSenac Porto Alegre + RBS TV — colaboração entre instituto de ensino superior e emissora de TV regional, liderada pela professora coordenadora Fabrizzia Lacerda.
               </p>
             </div>
             <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
-              <p class="section-label" style="margin-bottom: var(--space-2);">Problema central</p>
+              <p class="section-label" style="margin-bottom: var(--space-2);" data-en="Core problem">Problema central</p>
               <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
-                As ferramentas que utilizavam eram pesadas, lentas, e dependiam de terceiros. Gerando muito ruído na produção.
+                Criar uma identidade visual do zero capaz de representar a parceria acadêmico-televisiva e ser veiculada com credibilidade em uma emissora de TV.
               </p>
             </div>
             <div style="border: var(--border-thick); background: var(--color-yellow); box-shadow: var(--shadow-sm); padding: var(--space-5);">
-              <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);">Oportunidade</p>
+              <p class="section-label" style="margin-bottom: var(--space-2);" data-en="Opportunity">Oportunidade</p>
               <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);">
-                Construir um personalizador web nativo (sem dependências pesadas) capaz de rodar em qualquer dispositivo.
+                Desenvolver uma marca em contexto real — com exigência e visibilidade de TV — enquanto ainda era estudante. E participar da 1ª Edição como um dos primeiros criadores do programa.
               </p>
             </div>
           </div>
@@ -708,34 +684,32 @@
 
         <div class="case-section__header">
           <p class="section-label" id="papel-title" data-en="02 — My Role">02 — Meu Papel</p>
-          <span class="case-section__note" data-en="solo project · full stack">projeto solo · full stack</span>
+          <span class="case-section__note" data-en="what I was responsible for">o que eu entregava</span>
         </div>
 
         <div class="case-grid-3" data-reveal>
 
           <div class="role-card">
             <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
-            <h3 class="role-card__title">Design</h3>
-            <p class="role-card__desc" style="text-align: justify;">
-              Baseando na identidade visual que a mobifans transpassa, sendo muito plural em diversos sentidos.
-              Escolhi o estilo Neo-Brutalismo, criando um Design System para unificar toda direção de arte.
-              Servindo de teste visual, visando levar essa ID para o futuro novo site da Mobifans.
+            <h3 class="role-card__title" data-en="Brand Identity">Identidade Visual</h3>
+            <p class="role-card__desc" data-en="Creation of the visual system: logo, color palette, typography, and brand guidelines for the collaboration between UniSenac and RBS TV.">
+              Criação do sistema visual: logotipo, paleta de cores, tipografia e diretrizes da marca para a colaboração UniSenac + RBS TV.
             </p>
           </div>
 
           <div class="role-card">
             <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
-            <h3 class="role-card__title">Front-end</h3>
-            <p class="role-card__desc" style="text-align: justify;">
-              Motor Canvas 2D com 3 camadas de renderização, drag & drop, zoom por scroll, rotação, layouts dinâmicos (1/2/3/4/6 slots), histórico de undo e exportação em alta resolução via html2canvas.
+            <h3 class="role-card__title" data-en="Team Lead">Liderança</h3>
+            <p class="role-card__desc" data-en="Led a team of 8 Multimedia Production students — Alice Kuch, Gustavo Fernandes, Luka Lacerda, Maria Faria, Manuela Fachel, Magnus Ciarlo, and Sabrina Senn.">
+              Coordenação de uma equipe de 8 alunos de Produção Multimídia: Alice Kuch, Gustavo Fernandes, Luka Lacerda, Maria Faria, Manuela Fachel, Magnus Ciarlo e Sabrina Senn.
             </p>
           </div>
 
           <div class="role-card">
             <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
-            <h3 class="role-card__title">Deploy</h3>
-            <p class="role-card__desc" style="text-align: justify;">
-              Hospedagem no Netlify com deploy automático via Git, backend serverless com Netlify Functions + Express, e configuração de CI/CD para o ciclo de versões v1.x.
+            <h3 class="role-card__title" data-en="Production">Produção</h3>
+            <p class="role-card__desc" data-en="One of the first to participate in the 1st Edition of Projeto Vivências — from brand creation through on-screen content production.">
+              Um dos primeiros a participar da 1ª Edição do Projeto Vivências — da criação da marca até a produção de conteúdo veiculado na emissora.
             </p>
           </div>
 
@@ -750,77 +724,60 @@
 
         <div class="case-section__header">
           <p class="section-label" id="processo-title" data-en="03 — Process & Solution">03 — Processo & Solução</p>
-          <span class="case-section__note" data-en="architecture · canvas engine · stamps">arquitetura · motor canvas · estampas</span>
+          <span class="case-section__note" data-en="research · concept · brand system">pesquisa · conceito · sistema de marca</span>
         </div>
 
-        <!-- Imagens do processo -->
+        <!-- Imagens do processo: pesquisa/moodboard → identidade desenvolvida -->
         <div class="case-img-pair" data-reveal>
           <div class="case-img-pair__item">
-            <img class="case-img-pair__img" src="mobi_studio/processo_01.webp" alt="Wizard flow do MobiStudio" />
-            <span class="case-img-pair__caption" data-en="step 01 · model selection">Passo 01 · Seleção de Modelo</span>
+            <!-- <img class="case-img-pair__img" src="vivencias/processo_01.webp"
+                 alt="Pesquisa e moodboard do Projeto Vivências" loading="lazy" /> -->
+            <div class="case-img-pair__placeholder" aria-label="Pesquisa e moodboard">
+              Pesquisa / Moodboard
+            </div>
+            <span class="case-img-pair__caption" data-en="step 01 · research + moodboard">Passo 01 · Pesquisa + Moodboard</span>
           </div>
           <div class="case-img-pair__item">
-            <img class="case-img-pair__img" src="mobi_studio/processo_02.webp" alt="Motor Canvas com controles de edição" />
-            <span class="case-img-pair__caption" data-en="step 03 · canvas editor">Passo 03 · Editor Canvas</span>
+            <!-- <img class="case-img-pair__img" src="vivencias/processo_02.webp"
+                 alt="Sistema de identidade visual finalizado do Projeto Vivências" loading="lazy" /> -->
+            <div class="case-img-pair__placeholder" aria-label="Sistema de identidade visual">
+              Identidade Finalizada
+            </div>
+            <span class="case-img-pair__caption" data-en="step 02 · brand system">Passo 02 · Sistema de Marca</span>
           </div>
         </div>
 
         <!-- Narrativa do processo -->
         <p class="case-narrative" data-reveal data-reveal-delay="1">
-          A decisão arquitetural mais importante foi abandonar React em favor de <strong>HTML estático + JavaScript Vanilla</strong> (v1.0).
-          Isso eliminou o overhead de bundle, acelerou o carregamento e simplificou a manutenção.
-          O motor Canvas foi construído do zero com a <strong>Canvas API 2D nativa</strong> —
-          três camadas sobrepostas: mockup base, slots de imagem com hit-detection por área,
-          e overlay de máscara com suporte a buracos de câmera.
+          O maior desafio era criar uma identidade que equilibrasse dois mundos com estéticas distintas.
+          <strong>UniSenac</strong> trazia o peso institucional de um centro universitário; <strong>RBS TV</strong> trazia a agilidade e o apelo visual da televisão aberta. A solução foi encontrar o ponto de encontro entre as duas — uma marca que soasse profissional o bastante para uma emissora e acessível o bastante para representar estudantes em formação.
         </p>
 
-        <p class="case-narrative" data-reveal data-reveal-delay="1">
-          Para as <strong>Estampas Prontas</strong> (v1.7), o desafio era colorizar SVGs dinamicamente
-          sem Canvas extra ou bibliotecas externas. A solução: fetch do SVG → DOMParser → injeção de 
-          <code style="font-family: var(--font-mono); font-size: 0.85em; background: var(--color-surface); padding: 2px 6px; border: var(--border);">&lt;rect&gt;</code>
-          de fundo → pintura de paths com cor de foreground → XMLSerializer → Blob URL. Sem vazamento de memória, 
-          com <code style="font-family: var(--font-mono); font-size: 0.85em; background: var(--color-surface); padding: 2px 6px; border: var(--border);">URL.revokeObjectURL()</code>
-          aplicado antes de cada nova geração.
-        </p>
-
-        <!-- Trecho de código real -->
-        <!-- ⚠️ white-space:pre — não indentar o conteúdo interno com espaços -->
-        <div class="case-code" data-reveal data-reveal-delay="2" role="region" aria-label="Função buildColoredEstampa — colorização de SVG nativa"><span class="tok-comment">// buildColoredEstampa — colorização SVG sem Canvas extra nem bibliotecas externas</span>
-<span class="tok-keyword">async function</span> <span class="tok-fn">buildColoredEstampa</span>(svgPath, bgColor, fgColor) {
-  <span class="tok-keyword">const</span> res  = <span class="tok-keyword">await</span> fetch(svgPath);
-  <span class="tok-keyword">const</span> text = <span class="tok-keyword">await</span> res.text();
-  <span class="tok-keyword">const</span> doc  = <span class="tok-keyword">new</span> DOMParser().parseFromString(text, <span class="tok-string">'image/svg+xml'</span>);
-  <span class="tok-keyword">const</span> svg  = doc.querySelector(<span class="tok-string">'svg'</span>);
-
-  <span class="tok-comment">// injeta rect de fundo antes de tudo</span>
-  <span class="tok-keyword">const</span> rect = doc.createElementNS(<span class="tok-string">'http://www.w3.org/2000/svg'</span>, <span class="tok-string">'rect'</span>);
-  rect.setAttribute(<span class="tok-string">'width'</span>, <span class="tok-string">'100%'</span>); rect.setAttribute(<span class="tok-string">'height'</span>, <span class="tok-string">'100%'</span>);
-  rect.setAttribute(<span class="tok-string">'fill'</span>, bgColor);
-  svg.insertBefore(rect, svg.firstChild);
-
-  <span class="tok-comment">// pinta cada path com fgColor</span>
-  svg.querySelectorAll(<span class="tok-string">'path'</span>).forEach(p => p.setAttribute(<span class="tok-string">'fill'</span>, fgColor));
-
-  <span class="tok-keyword">const</span> blob = <span class="tok-keyword">new</span> Blob(
-    [<span class="tok-keyword">new</span> XMLSerializer().serializeToString(doc)],
-    { type: <span class="tok-string">'image/svg+xml'</span> }
-  );
-  <span class="tok-keyword">return</span> URL.createObjectURL(blob); <span class="tok-comment">// revogado antes da próxima chamada</span>
-}</div>
-
-        <!-- Grid de imagens finais -->
+        <!-- Grid de imagens finais: logotipo · paleta/tipografia · aplicação em tela -->
         <div class="case-img-trio" data-reveal>
           <div>
-            <img class="case-img-trio__img" src="mobi_studio/processo_03.webp" alt="Layouts dinâmicos — 1/2/3/4/6 slots" />
-            <span class="case-img-pair__caption" data-en="LAYOUT PERSONALIZÁVEL · 1/2/3/4/6 SLOTS">LAYOUT PERSONALIZÁVEL · 1/2/3/4/6 SLOTS</span>
+            <!-- <img class="case-img-trio__img" src="vivencias/processo_03.webp"
+                 alt="Logotipo do Projeto Vivências" loading="lazy" /> -->
+            <div class="case-img-trio__placeholder" aria-label="Logotipo">
+              Logotipo
+            </div>
+            <span class="case-img-pair__caption" style="display:block; margin-top: var(--space-3);" data-en="logo · final version">Logotipo · versão final</span>
           </div>
           <div>
-            <img class="case-img-trio__img" src="mobi_studio/processo_04.webp" alt="Catálogo de estampas SVG com seletor de cores" />
-            <span class="case-img-pair__caption" data-en="CATÁLOGO DE ESTAMPAS · SELETOR DE CORES">CATÁLOGO DE ESTAMPAS · SELETOR DE CORES</span>
+            <!-- <img class="case-img-trio__img" src="vivencias/processo_04.webp"
+                 alt="Paleta de cores e tipografia do Projeto Vivências" loading="lazy" /> -->
+            <div class="case-img-trio__placeholder" aria-label="Paleta e tipografia">
+              Paleta +<br />Tipografia
+            </div>
+            <span class="case-img-pair__caption" style="display:block; margin-top: var(--space-3);" data-en="colors + type">Cores + Tipografia</span>
           </div>
           <div>
-           <img class="case-img-trio__img" src="mobi_studio/processo_05.webp" alt="Exportação de preview em alta resolução" />
-            <span class="case-img-pair__caption" data-en="EXPORTAÇÃO · ALTA RESOLUÇÃO">EXPORTAÇÃO · ALTA RESOLUÇÃO</span>
+            <!-- <img class="case-img-trio__img" src="vivencias/processo_05.webp"
+                 alt="Aplicação da marca do Projeto Vivências em vinheta de TV" loading="lazy" /> -->
+            <div class="case-img-trio__placeholder" aria-label="Aplicação em TV">
+              Aplicação<br />em TV
+            </div>
+            <span class="case-img-pair__caption" style="display:block; margin-top: var(--space-3);" data-en="brand in broadcast">Marca na emissora</span>
           </div>
         </div>
 
@@ -833,7 +790,7 @@
 
         <div class="case-section__header">
           <p class="section-label" id="resultado-title" data-en="04 — Result">04 — Resultado</p>
-          <span class="case-section__note" data-en="shipped · in production · v1.7.1">em produção · v1.7.1</span>
+          <span class="case-section__note" data-en="real brand · broadcast-ready">marca real · veiculada na TV</span>
         </div>
 
         <div class="case-resultado" data-reveal>
@@ -842,36 +799,41 @@
           <div>
             <div class="metric-cards">
               <div class="metric-card metric-card--accent">
-                <p class="metric-card__number">28 dias</p>
-                <p class="metric-card__label" data-en="v0.1 → v1.7.1">v0.1 → v1.7.1</p>
+                <p class="metric-card__number">8</p>
+                <p class="metric-card__label" data-en="Designers on the team">Designers na equipe</p>
               </div>
               <div class="metric-card metric-card--plain">
-                <p class="metric-card__number">95+</p>
-                <p class="metric-card__label" data-en="Commits · 13 versions">Commits · 13 versões</p>
+                <p class="metric-card__number">1ª Ed.</p>
+                <p class="metric-card__label" data-en="Announced Sep 2023">Anunciada Set 2023</p>
               </div>
             </div>
 
-            <p class="case-resultado__impact">
-              <strong>De zero a produção em 28 dias.</strong> O MobiStudio foi construído do zero — sem framework,
-              sem biblioteca de UI — e foi entregue um motor Canvas completo com drag, zoom, rotação,
-              6 layouts dinâmicos, estampas SVG personalizáveis por cor e exportação em alta resolução.
-              Está em produção no Netlify com deploy automático via Git, servindo os quiosques da Mobifans.
-              <br>
-              Atualmente estou trabalhando na <strong>versão 2.0</strong>, que trará a adição de textos. E após isso, irei preparar para ser conectado ao E-Commerce. Dependendo do desenvolvimento do novo site da mobifans.
-              O objetivo é levar a experiência de personalização para o ambiente online,
-              aumentando o alcance e as vendas das capinhas personalizadas.
+            <p class="case-resultado__impact" data-en="A brand created from scratch during an academic program — and taken to air on RBS TV. The identity was developed by a team of 8 Multimedia Production students, approved by the institution, and officially announced as the face of the program's 1st edition. The program goes on — this case is about what was built at the beginning.">
+              <strong>Uma identidade criada do zero em contexto acadêmico — e levada ao ar na RBS TV.</strong> Desenvolvida por uma equipe de 8 alunos de Produção Multimídia, aprovada pela instituição e anunciada como a face da 1ª edição do programa. O Vivências segue acontecendo — este case é sobre o que foi construído no começo.
             </p>
 
             <div class="projeto__actions">
-              <a href="https://mobifans.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn--primary"
-                data-en="View project live ↗">Ver projeto ao vivo ↗</a>
+              <a href="https://www.instagram.com/unisenacrs/p/CxGJi5fONN-/" target="_blank" rel="noopener noreferrer" class="btn btn--primary"
+                data-en="See 1st edition announcement ↗">Ver anúncio da 1ª edição ↗</a>
             </div>
+
+            <p style="margin-top: var(--space-6); font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); line-height: 1.7;">
+              O programa segue em atividade —
+              <a href="https://www.senacrs.com.br/noticiadetalhe/2026/04/29/unisenac-porto-alegre-lanca-inscricoes-para-nova-edicao-do-programa-vivencias-rbs/8827a3f8-778e-42eb-8cd8-9983866db364"
+                target="_blank" rel="noopener noreferrer"
+                style="color: var(--color-muted); text-decoration: underline;"
+                data-en="6th edition, April 2026 ↗">6ª edição, abril de 2026 ↗</a>
+            </p>
           </div>
 
-          <!-- Direita: screenshot final -->
+          <!-- Direita: screenshot / demonstrativo final -->
           <div>
-            <img class="case-resultado__screenshot" src="mobi_studio/demonstrativo.gif"
-                 alt="MobiStudio em produção — editor de capinhas" width="800" height="600" loading="lazy" />
+            <!-- <img class="case-resultado__screenshot" src="vivencias/demonstrativo.webp"
+                 alt="Demonstrativo do Projeto Vivências aplicado em vinheta de TV"
+                 width="800" height="600" loading="lazy" /> -->
+            <div class="case-resultado__screenshot-placeholder" aria-label="Demonstrativo da marca aplicada em vinheta ou material de TV">
+              Demonstrativo<br />final
+            </div>
           </div>
 
         </div>
@@ -883,13 +845,14 @@
     <section class="case-next" aria-label="Próximo case">
       <div class="container">
 
-        <a href="[proximo-case].html" class="case-next__card" data-reveal>
+        <a href="mobi_studio.html" class="case-next__card" data-reveal>
           <div>
             <p class="case-next__label" data-en="Next case →">Próximo case →</p>
-            <p class="case-next__title">[Nome do próximo projeto].</p>
+            <p class="case-next__title" data-en="MobiStudio.">MobiStudio.</p>
           </div>
 
-          <!-- <img class="case-next__thumb" src="../img/webp/[thumb].webp" alt="Thumbnail próximo projeto" /> -->
+          <!-- <img class="case-next__thumb" src="mobi_studio/Banner_MobiStudio_21_9.webp"
+               alt="Thumbnail MobiStudio" width="80" height="80" loading="lazy" /> -->
           <div class="case-next__thumb-placeholder" aria-hidden="true">IMG</div>
 
           <span class="case-next__arrow" aria-hidden="true">→</span>
