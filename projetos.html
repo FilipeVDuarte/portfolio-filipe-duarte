@@ -97,14 +97,14 @@
           <button class="filter-btn active" data-filter="todos" aria-pressed="true"
             data-en="All">Todos</button>
           <button class="filter-btn" data-filter="dev-web" aria-pressed="false"
-            data-en="Web Dev">Dev Web</button>
+            data-en="Web Dev">Web Design</button>
           <button class="filter-btn" data-filter="design-grafico" aria-pressed="false"
             data-en="Graphic Design">Design Gráfico</button>
           <button class="filter-btn" data-filter="3d" aria-pressed="false">3D</button>
           <button class="filter-btn" data-filter="audiovisual" aria-pressed="false">Audiovisual</button>
           <button class="filter-btn" data-filter="fotografia" aria-pressed="false"
             data-en="Photography">Fotografia</button>
-          <span class="filter-bar__count" aria-live="polite" aria-atomic="true" id="filter-count">10 projetos</span>
+          <span class="filter-bar__count" aria-live="polite" aria-atomic="true" id="filter-count">9 projetos</span>
         </div>
 
         <!-- GRID -->
@@ -113,13 +113,15 @@
           <!-- MobiStudio -->
           <article class="proj-card" data-cat="dev-web" data-reveal aria-labelledby="proj-mobistudio">
             <a href="projetos/mobi_studio.html" class="proj-card__thumb" aria-label="Ver MobiStudio">
-              <img src="img/webp/Banner_MobiStudio_Portfolio.webp"
-                   alt="Banner MobiStudio" width="800" height="600" loading="eager" />
+              <img src="projetos/mobi_studio/Banner_MobiStudio_21_9.webp"
+                   alt="Banner MobiStudio" width="1260" height="540" loading="eager" class="proj-card__static" />
+              <img src="projetos/mobi_studio/demonstrativo.gif"
+                   alt="Demonstração interativa do MobiStudio" width="1260" height="540" loading="lazy" class="proj-card__hover" />
             </a>
             <div class="proj-card__body">
               <div class="proj-card__header">
                 <h2 class="proj-card__title" id="proj-mobistudio">MobiStudio</h2>
-                <span class="tag">Dev Web</span>
+                <span class="tag">Dev<br>Web</span>
               </div>
               <p class="proj-card__desc">
                 Customizador interativo de capinhas. Motor Canvas API com zoom, rotação e arraste.
@@ -141,14 +143,17 @@
           <!-- Rap In Cena -->
           <article class="proj-card" data-cat="design-grafico" data-reveal data-reveal-delay="1" aria-labelledby="proj-rapincena">
             <a href="projetos/mobi_ric.html"
-               class="proj-card__thumb" aria-label="Ver Rap In Cena no Behance (abre em nova aba)">
-              <img src="img/webp/Banner_MobiNoRIC_Portfolio.webp"
-                   alt="Banner Rap In Cena" width="800" height="600" loading="eager" />
+               class="proj-card__thumb" aria-label="Ver Rap In Cena">
+              <img src="projetos/mobi_ric/Banner_MobiNoRIC_21_9.webp"
+                   alt="Banner Rap In Cena" width="1260" height="540" loading="eager" class="proj-card__static" />
+              <video class="proj-card__hover" muted loop playsinline aria-hidden="true">
+                <source src="projetos/mobi_ric/Processo_06.webm" type="video/webm" />
+              </video>
             </a>
             <div class="proj-card__body">
               <div class="proj-card__header">
                 <h2 class="proj-card__title" id="proj-rapincena">Rap In Cena</h2>
-                <span class="tag">Design Gráfico</span>
+                <span class="tag">Desi<br>Graf</span>
               </div>
               <p class="proj-card__desc">
                 Enxoval visual completo para a participação da Mobifans no maior festival
@@ -170,14 +175,16 @@
           <!-- Estampas MobiStudio -->
           <article class="proj-card" data-cat="design-grafico" data-reveal data-reveal-delay="2" aria-labelledby="proj-estampas">
             <a href="projetos/mobi_estampas.html"
-               class="proj-card__thumb" aria-label="Ver Estampas MobiStudio no Behance (abre em nova aba)">
-              <img src="img/webp/mobiStudio Banner.webp"
-                   alt="Estampas Autorais MobiStudio" width="800" height="600" loading="lazy" />
+               class="proj-card__thumb" aria-label="Ver Estampas MobiStudio">
+              <img src="projetos/mobi_estampas/Banner_mobiestampas_21_9.webp"
+                   alt="Estampas Autorais MobiStudio" width="1260" height="540" loading="lazy" class="proj-card__static" />
+              <img src="projetos/mobi_estampas/Processo_06.gif"
+                   alt="Processo de criação das estampas" width="1260" height="540" loading="lazy" class="proj-card__hover" />
             </a>
             <div class="proj-card__body">
               <div class="proj-card__header">
                 <h2 class="proj-card__title" id="proj-estampas">Estampas MobiStudio</h2>
-                <span class="tag">Design Gráfico</span>
+                <span class="tag">Desi<br>Graf</span>
               </div>
               <p class="proj-card__desc">
                 70+ artes para estampas personalizadas dentro do MobiStudio.
@@ -196,53 +203,25 @@
             </div>
           </article>
 
-          <!-- 3D Capa Customic -->
-          <article class="proj-card" data-cat="3d" data-reveal aria-labelledby="proj-customic3d">
-            <a href="projetos/customic_s26.html"
-               class="proj-card__thumb" aria-label="Ver Projeto 3D no Behance (abre em nova aba)">
-              <img src="img/webp/customic-3d.webp"
-                   alt="Projeto 3D Capa Customic" width="800" height="600" loading="lazy" />
-            </a>
-            <div class="proj-card__body">
-              <div class="proj-card__header">
-                <h2 class="proj-card__title" id="proj-customic3d">Projeto 3D — Capa Customic</h2>
-                <span class="tag">3D</span>
-              </div>
-              <p class="proj-card__desc">
-                Modelagem e renderização 3D de capa personalizada para a linha Customic.
-                Do conceito ao arquivo final com foco em precisão e apelo visual.
-              </p>
-              <div class="projeto__tech">
-                <span class="tech-tag">Blender</span>
-                <span class="tech-tag">Render</span>
-              </div>
-              <div class="proj-card__actions">
-                <a href="projetos/customic_s26.html"
-                   class="btn btn--primary">
-                   Ver projeto ↗
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- 3D Material Mobifans -->
-          <article class="proj-card" data-cat="3d" data-reveal data-reveal-delay="1" aria-labelledby="proj-mobifans3d">
+          <!-- 3D Mobifans -->
+          <article class="proj-card" data-cat="3d" data-reveal aria-labelledby="proj-mobifans3d">
             <a href="projetos/mobi_3d.html"
-               class="proj-card__thumb" aria-label="Ver 3D Material Mobifans no Behance (abre em nova aba)">
-              <img src="img/webp/mobifans-3d.webp"
-                   alt="3D Material Mobifans" width="800" height="600" loading="lazy" />
+               class="proj-card__thumb" aria-label="Ver 3D Mobifans">
+              <img src="projetos/mobi_3d/Banner_mobi_3d_21_9.webp"
+                   alt="3D Mobifans — modelagem, renders e animações" width="1260" height="540" loading="lazy" />
             </a>
             <div class="proj-card__body">
               <div class="proj-card__header">
-                <h2 class="proj-card__title" id="proj-mobifans3d">3D Material Mobifans</h2>
+                <h2 class="proj-card__title" id="proj-mobifans3d">3D Mobifans</h2>
                 <span class="tag">3D</span>
               </div>
               <p class="proj-card__desc">
-                Material promocional 3D desenvolvido para a Mobifans, combinando modelagem
-                técnica e linguagem visual da marca.
+                Do fornecedor ao feed: modelagem técnica a partir de medidas reais, renders de produto
+                e animações publicadas no Instagram da Mobifans — incluindo a Tríade de Animações.
               </p>
               <div class="projeto__tech">
                 <span class="tech-tag">Blender</span>
+                <span class="tech-tag">After Effects</span>
                 <span class="tech-tag">Motion</span>
               </div>
               <div class="proj-card__actions">
@@ -257,14 +236,17 @@
           <!-- Audiovisual Dia dos Namorados -->
           <article class="proj-card" data-cat="audiovisual" data-reveal data-reveal-delay="2" aria-labelledby="proj-dnamorados">
             <a href="projetos/mobi_namorados.html"
-               class="proj-card__thumb" aria-label="Ver Audiovisual no Behance (abre em nova aba)">
-              <img src="img/webp/dia-dos-namorados.webp"
-                   alt="Audiovisual — Campanha Dia dos Namorados" width="800" height="600" loading="lazy" />
+               class="proj-card__thumb" aria-label="Ver Audiovisual — Dia dos Namorados">
+              <img src="projetos/mobi_namorados/Banner_Namorados_21_9.webp"
+                   alt="Audiovisual — Campanha Dia dos Namorados" width="1260" height="540" loading="lazy" class="proj-card__static" />
+              <video class="proj-card__hover" muted loop playsinline aria-hidden="true">
+                <source src="projetos/mobi_namorados/Processo_02.webm" type="video/webm" />
+              </video>
             </a>
             <div class="proj-card__body">
               <div class="proj-card__header">
                 <h2 class="proj-card__title" id="proj-dnamorados">Audiovisual — Dia dos Namorados</h2>
-                <span class="tag">Audiovisual</span>
+                <span class="tag">Audi<br>visu</span>
               </div>
               <p class="proj-card__desc">
                 Produção audiovisual completa para campanha de Dia dos Namorados da Mobifans:
@@ -284,14 +266,14 @@
           <!-- Placas, Wallets e Crossbody -->
           <article class="proj-card" data-cat="design-grafico" data-reveal aria-labelledby="proj-wallets">
             <a href="projetos/mobi_placas.html"
-               class="proj-card__thumb" aria-label="Ver Wallets no Behance (abre em nova aba)">
-              <img src="img/webp/wallets.webp"
-                   alt="Placas, Wallets e Crossbody — Mobifans" width="800" height="600" loading="lazy" />
+               class="proj-card__thumb" aria-label="Ver Placas, Wallets e Crossbody">
+              <img src="projetos/mobi_placas/Banner_PlacasQuiosque_21_9.webp"
+                   alt="Placas, Wallets e Crossbody — Mobifans" width="1260" height="540" loading="lazy" />
             </a>
             <div class="proj-card__body">
               <div class="proj-card__header">
                 <h2 class="proj-card__title" id="proj-wallets">Placas, Wallets e Crossbody</h2>
-                <span class="tag">Design Gráfico</span>
+                <span class="tag">Desi<br>Graf</span>
               </div>
               <p class="proj-card__desc">
                 Campanha gráfica para novos produtos Mobifans com peças digitais e impressas
@@ -318,7 +300,7 @@
             <div class="proj-card__body">
               <div class="proj-card__header">
                 <h2 class="proj-card__title" id="proj-correiodopovo">Foto — Correio do Povo</h2>
-                <span class="tag">Fotografia</span>
+                <span class="tag">Foto<br>graf</span>
               </div>
               <p class="proj-card__desc">
                 Convidado para fotografar a fachada do Centro Universitário Senac.
@@ -339,13 +321,13 @@
           <article class="proj-card" data-cat="fotografia" data-reveal data-reveal-delay="2" aria-labelledby="proj-hackathon">
             <a href="https://www.instagram.com/unisenacrs/p/CwVGaW9O7M_/"
                class="proj-card__thumb" aria-label="Ver fotos no Instagram (abre em nova aba)">
-              <img src="img/webp/Banner_HackaTrânsito_Portfolio.webp"
-                   alt="Banner HackaTrânsito" width="800" height="600" loading="lazy" />
+              <img src="projetos/unisenac_hackathon/Banner_Hackathon_21_9.webp"
+                   alt="Banner HackaTrânsito" width="1260" height="540" loading="lazy" />
             </a>
             <div class="proj-card__body">
               <div class="proj-card__header">
                 <h2 class="proj-card__title" id="proj-hackathon">Hackathon UniSenac</h2>
-                <span class="tag">Fotografia</span>
+                <span class="tag">Foto<br>graf</span>
               </div>
               <p class="proj-card__desc">
                 Participação como Staff com cobertura fotográfica completa do evento
@@ -365,13 +347,13 @@
           <!-- Projeto Vivências -->
           <article class="proj-card" data-cat="design-grafico" data-reveal aria-labelledby="proj-vivencias">
             <a href="projetos/unisenac_vivencias.html" class="proj-card__thumb" aria-label="Ver Projeto Vivências">
-              <img src="img/webp/capa_vivencias.webp"
-                   alt="Capa do Projeto Vivências" width="800" height="600" loading="lazy" />
+              <img src="projetos/unisenac_vivencias/Banner_Vivencias_21_9.webp"
+                   alt="Capa do Projeto Vivências" width="1260" height="540" loading="lazy" />
             </a>
             <div class="proj-card__body">
               <div class="proj-card__header">
                 <h2 class="proj-card__title" id="proj-vivencias">Projeto Vivências</h2>
-                <span class="tag">Design Gráfico</span>
+                <span class="tag">Desi<br> Graf</span>
               </div>
               <p class="proj-card__desc">
                 Identidade visual desenvolvida para a colaboração do UniSenac com a RBS TV.

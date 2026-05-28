@@ -16,7 +16,7 @@
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://filipeduarte.netlify.app/projetos/mobi_namorados.html" />
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:image" content="https://filipeduarte.netlify.app/projetos/audiovisual-dia-dos-namorados/Banner_DiaDoNamorado_21_9.webp" />
+  <meta property="og:image" content="https://filipeduarte.netlify.app/projetos/mobi_namorados/Banner_Namorados_21_9.webp" />
   <meta property="og:image:width" content="2100" />
   <meta property="og:image:height" content="900" />
 
@@ -80,6 +80,10 @@
     @media (min-width: 640px) { .case-img-trio { grid-template-columns: repeat(3, 1fr); } }
     .case-img-trio__img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: var(--border-thick); display: block; }
     .case-img-trio__placeholder { width: 100%; aspect-ratio: 1 / 1; border: var(--border-thick); background: var(--color-surface); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.08em; text-align: center; }
+    .case-img-large { display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-8); }
+    .case-img-large__img { width: 100%; aspect-ratio: 3 / 1; object-fit: cover; border: var(--border-thick); display: block; }
+    .case-img-large__placeholder { width: 100%; aspect-ratio: 3 / 1; border: var(--border-thick); background: var(--color-surface); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.08em; text-align: center; }
+    .case-img-large__caption { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
     .metric-cards { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin-bottom: var(--space-8); }
     .metric-card { border: var(--border-thick); box-shadow: var(--shadow-md); padding: var(--space-6) var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); transition: var(--transition-fast); }
     .metric-card:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); }
@@ -280,17 +284,15 @@
 
         <div class="case-img-pair" data-reveal>
           <div class="case-img-pair__item">
-            <!-- <img class="case-img-pair__img" src="mobi_namorados/processo_01.webp" alt="Roteiro e storyboard da campanha" /> -->
-            <div class="case-img-pair__placeholder" aria-label="Roteiro e storyboard">
-              Roteiro /<br />Storyboard
-            </div>
-            <span class="case-img-pair__caption" data-en="step 01 · script & storyboard">Passo 01 · Roteiro e Storyboard</span>
+            <img class="case-img-pair__img" src="mobi_namorados/Processo_01.webp" alt="Roteiro e storyboard da campanha" />
+            <span class="case-img-pair__caption" data-en="step 01 · script ">Passo 01 · Roteiro</span>
           </div>
           <div class="case-img-pair__item">
-            <!-- <img class="case-img-pair__img" src="mobi_namorados/processo_02.webp" alt="Setup de captação com produtos Mobifans" /> -->
-            <div class="case-img-pair__placeholder" aria-label="Setup de captação">
-              Setup de<br />Captação
-            </div>
+            <video class="case-img-pair__img"
+              src="mobi_namorados/Processo_02.webm"
+              alt="Setup de captação com produtos Mobifans"
+              autoplay muted loop playsinline loading="lazy">
+            </video>
             <span class="case-img-pair__caption" data-en="step 02 · filming setup">Passo 02 · Setup de Captação</span>
           </div>
         </div>
@@ -324,28 +326,9 @@
   Resolução      <span class="tok-string">1080 × 1920</span>
   Bitrate        <span class="tok-string">10 Mbps</span></div>
 
-        <div class="case-img-trio" data-reveal>
-          <div>
-            <!-- <img class="case-img-trio__img" src="mobi_namorados/processo_03.webp" alt="Frame do vídeo 05/06" /> -->
-            <div class="case-img-trio__placeholder" aria-label="Frame — Vídeo 05/06">
-              Frame<br />05 Jun
-            </div>
-            <span class="case-img-pair__caption" data-en="VIDEO 01 · JUN 05">VÍDEO 01 · 05 JUN</span>
-          </div>
-          <div>
-            <!-- <img class="case-img-trio__img" src="mobi_namorados/processo_04.webp" alt="Frame do vídeo 07/06" /> -->
-            <div class="case-img-trio__placeholder" aria-label="Frame — Vídeo 07/06">
-              Frame<br />07 Jun
-            </div>
-            <span class="case-img-pair__caption" data-en="VIDEO 02 · JUN 07">VÍDEO 02 · 07 JUN</span>
-          </div>
-          <div>
-            <!-- <img class="case-img-trio__img" src="mobi_namorados/processo_05.webp" alt="Frame do vídeo 09/06" /> -->
-            <div class="case-img-trio__placeholder" aria-label="Frame — Vídeo 09/06">
-              Frame<br />09 Jun
-            </div>
-            <span class="case-img-pair__caption" data-en="VIDEO 03 · JUN 09">VÍDEO 03 · 09 JUN</span>
-          </div>
+        <div class="case-img-large" data-reveal>
+          <img class="case-img-large__img" src="mobi_namorados/Processo_Large.webp" alt="Frames dos vídeos 05, 07 e 09 de junho" />
+          <span class="case-img-large__caption" data-en="VIDEOS 01, 02 &amp; 03 · JUN 05 · 07 · 09">VÍDEOS 01, 02 &amp; 03 · 05 · 07 · 09 JUN</span>
         </div>
 
       </div>
@@ -400,11 +383,13 @@
           </div>
 
           <div>
-            <!-- <img class="case-resultado__screenshot" src="mobi_namorados/demonstrativo.webp"
-                 alt="Frame da campanha Dia dos Namorados Mobifans" width="800" height="600" loading="lazy" /> -->
-            <div class="case-resultado__screenshot-placeholder" aria-label="Frame da campanha Dia dos Namorados">
-              Frame<br />Campanha 11 Jun
-            </div>
+            <video class="case-resultado__screenshot"
+                   src="mobi_namorados/Processo_3.webm"
+                   poster="mobi_namorados/Processo_Large.webp"
+                   autoplay muted loop playsinline
+                   aria-label="Vídeo da campanha Dia dos Namorados Mobifans">
+              <img src="mobi_namorados/Processo_Large.webp" alt="Frame da campanha Dia dos Namorados Mobifans" />
+            </video>
           </div>
         </div>
       </div>

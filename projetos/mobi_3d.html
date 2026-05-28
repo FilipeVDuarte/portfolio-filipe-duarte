@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -6,21 +6,21 @@
   <link rel="icon" type="image/svg+xml" href="../icon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="3D Material Mobifans — Material promocional 3D: modelagem técnica de produtos e animações para o Instagram da Mobifans, incluindo a Tríade de Animações." />
+    content="3D Mobifans — Modelagem, renderização e animações 3D para a Mobifans: dos fornecedores ao modelo, dos renders às publicações no Instagram." />
   <meta name="author" content="Filipe Velasco Duarte Delfino" />
 
   <link rel="canonical" href="https://filipeduarte.netlify.app/projetos/mobi_3d.html" />
 
-  <meta property="og:title" content="3D Material Mobifans — Filipe Duarte" />
-  <meta property="og:description" content="Material promocional 3D para o Instagram da Mobifans — renders de produto e tríade de animações combinando modelagem técnica e linguagem visual da marca." />
+  <meta property="og:title" content="3D Mobifans — Filipe Duarte" />
+  <meta property="og:description" content="Modelagem técnica, renders de alta qualidade e animações 3D publicadas no Instagram da Mobifans — do contato com os fornecedores até a Tríade de Animações." />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://filipeduarte.netlify.app/projetos/mobi_3d.html" />
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:image" content="https://filipeduarte.netlify.app/projetos/3d-material-mobifans/Banner_3dMaterial_21_9.webp" />
+  <meta property="og:image" content="https://filipeduarte.netlify.app/projetos/mobi_3d/Banner_mobi_3d_21_9.webp" />
   <meta property="og:image:width" content="2100" />
   <meta property="og:image:height" content="900" />
 
-  <title>3D Material Mobifans — Case · Filipe Duarte</title>
+  <title>3D Mobifans — Case · Filipe Duarte</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,7 +49,6 @@
     .case-header__tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
     .case-hero { border-bottom: var(--border-thick); }
     .case-hero__img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: center; display: block; }
-    .case-hero__placeholder { width: 100%; aspect-ratio: 21 / 9; background: var(--color-ink); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.2); }
     .case-section { padding-block: var(--section-pad); border-bottom: var(--border-thick); }
     .case-section__header { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-10); padding-bottom: var(--space-4); border-bottom: var(--border); }
     .case-section__note { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.06em; }
@@ -67,7 +66,7 @@
     @media (min-width: 640px) { .case-img-pair { grid-template-columns: 1fr 1fr; } }
     .case-img-pair__item { display: flex; flex-direction: column; gap: var(--space-3); }
     .case-img-pair__img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: var(--border-thick); display: block; }
-    .case-img-pair__placeholder { width: 100%; aspect-ratio: 4 / 3; border: var(--border-thick); background: var(--color-surface); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .case-img-pair__placeholder { width: 100%; aspect-ratio: 4 / 3; border: var(--border-thick); background: var(--color-surface); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.08em; text-align: center; }
     .case-img-pair__caption { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
     .case-narrative { font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); max-width: 72ch; margin-bottom: var(--space-8); }
     .case-narrative strong { color: var(--color-ink); }
@@ -103,38 +102,78 @@
     .case-next__arrow { font-family: var(--font-mono); font-size: var(--text-xl); font-weight: 700; transition: transform var(--transition-fast); }
     .case-next__card:hover .case-next__arrow { transform: translateX(6px); }
 
-    /* Links de publicações */
-    .posts-grid {
+    /* Galeria de publicações */
+    .gallery-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: var(--space-3);
       margin-bottom: var(--space-8);
     }
-    @media (min-width: 640px) { .posts-grid { grid-template-columns: 1fr 1fr; } }
-    .post-link {
+    .gallery-card {
+      position: relative;
+      aspect-ratio: 1 / 1;
       border: var(--border-thick);
       background: var(--color-surface);
-      padding: var(--space-4) var(--space-5);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: var(--color-ink);
+      transition: var(--transition-fast);
+    }
+    a.gallery-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: var(--shadow-lg);
+    }
+    a.gallery-card:hover .gallery-card__overlay {
+      background: var(--color-yellow);
+    }
+    .gallery-card__img-area {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: var(--space-4);
+    }
+    .gallery-card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .gallery-card__overlay {
+      padding: var(--space-2) var(--space-3);
+      border-top: var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: var(--space-3);
-      text-decoration: none;
-      color: var(--color-ink);
       font-family: var(--font-mono);
       font-size: var(--text-xs);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      transition: var(--transition-fast);
+      background: var(--color-surface);
+      transition: background var(--transition-fast);
+      flex-shrink: 0;
     }
-    .post-link:hover { background: var(--color-yellow); transform: translate(-2px, -2px); box-shadow: var(--shadow-md); }
+    .gallery-card--empty .gallery-card__overlay {
+      opacity: 0.4;
+    }
 
     @media (max-width: 599px) {
       .case-header__title { font-size: var(--text-2xl); }
       .case-next__card { flex-wrap: wrap; gap: var(--space-5); }
       .case-next__thumb, .case-next__thumb-placeholder { display: none; }
       .case-code { font-size: 0.65rem; padding: var(--space-4) var(--space-4); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -185,15 +224,16 @@
           Case · 3D · Motion · Mobifans
         </p>
         <h1 class="case-header__title" id="case-title">
-          3D Material<br />Mobifans.
+          3D<br />Mobifans.
         </h1>
         <div class="case-header__meta">
           <span class="case-header__date" data-en="2026">2026</span>
           <div class="case-header__tags">
             <span class="tech-tag">Blender</span>
             <span class="tech-tag">After Effects</span>
+            <span class="tech-tag">Modelagem 3D</span>
             <span class="tech-tag">Motion Design</span>
-            <span class="tech-tag">3D</span>
+            <span class="tech-tag">Texturização</span>
             <span class="tech-tag">Social Media</span>
           </div>
         </div>
@@ -201,9 +241,9 @@
     </section>
 
     <!-- HERO DO CASE -->
-    <div class="case-hero" role="img" aria-label="Banner do projeto 3D Material Mobifans">
-      <img class="case-hero__img" src="mobi_3d/Banner_Projetos3D_21_9.webp"
-           alt="3D Material Mobifans — renders e animações para o Instagram" width="2100" height="900" loading="eager" />
+    <div class="case-hero" role="img" aria-label="Banner do projeto 3D Mobifans">
+      <img class="case-hero__img" src="mobi_3d/Banner_mobi_3d_21_9.webp"
+           alt="3D Mobifans — renders e animações para o Instagram" width="2100" height="900" loading="eager" />
     </div>
 
     <!-- 01 — CONTEXTO / PROBLEMA -->
@@ -211,34 +251,48 @@
       <div class="container">
         <div class="case-section__header">
           <p class="section-label" id="ctx-title" data-en="01 — Context / Problem">01 — Contexto / Problema</p>
-          <span class="case-section__note" data-en="brand · social · 3D product renders">marca · social · renders de produto</span>
+          <span class="case-section__note" data-en="3D · renders · no photo equipment">3D · renders · sem equipamento fotográfico</span>
         </div>
         <div class="case-grid-2" data-reveal>
           <div>
             <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-6);">
-              A <strong style="color: var(--color-ink);">Mobifans</strong> precisava de material visual de alta qualidade para o Instagram — além das fotos tradicionais. Renders 3D dos produtos permitem ângulos impossíveis na fotografia, luz perfeita e a possibilidade de animar o produto de formas que engajam mais no feed.
+              A <strong style="color: var(--color-ink);">Mobifans</strong> precisava de imagens de alta qualidade para a linha
+              <strong style="color: var(--color-ink);">Customic</strong> para o site, redes sociais e anúncios.
+              O problema: sem equipamento fotográfico profissional disponível, as fotos convencionais não comunicavam
+              a textura do material, a espessura das bordas nem os recortes de câmera e botões.
+              A percepção de valor do produto ficava dependente da venda lá no quiosque
+            </p>
+            <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-6);">
+              A solução foi <strong style="color: var(--color-ink);">implementar o 3D</strong>. Fui direto aos fornecedores das capas
+              Customic para obter as medidas reais. Buscando a espessura do TPU, raio das bordas, posição exata de cada recorte.
+              Com esses dados em mãos, criei modelos 3D de alta precisão no Blender:
+              renders tão detalhados quanto fotos de estúdio profissional, sem depender de câmera, luz ou produto físico disponível.
             </p>
             <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted);">
-              O projeto gerou 7 peças publicadas: renders estáticos de produto e a <strong style="color: var(--color-ink);">Tríade de Animações</strong> — três reels conectados visualmente que funcionam tanto individualmente quanto como série no feed.
+              Uma vez que os modelos existiam, a próxima etapa foi otimizar os modelos para serem cada vez mais leves e fáceis de animar.
+              Dado que o equipamento que tinha no momento não era tão forte para trabalhar com modelos tão pesados, precisei reduzir a contagem de polígonos e simplificar as texturas sem perder qualidade visual.
             </p>
           </div>
           <div style="display: flex; flex-direction: column; gap: var(--space-5);">
             <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
               <p class="section-label" style="margin-bottom: var(--space-2);">Contexto</p>
               <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
-                Mobifans — Instagram @mobifans. Material 3D para elevar a qualidade visual do feed e destacar os produtos com renders e animações impossíveis de replicar na fotografia convencional.
+                Mobifans — loja de acessórios para smartphones. Objetivo: imagens de produto em alta qualidade para a linha Customic
+                sem depender de equipamento fotográfico — e, a partir dos modelos, criar animações para o Instagram.
               </p>
             </div>
             <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
               <p class="section-label" style="margin-bottom: var(--space-2);">Problema central</p>
               <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
-                Fotos do produto não comunicavam o diferencial visual das capas — falta de dinamismo, ângulos limitados e iluminação inconsistente.
+                Fotos convencionais não comunicavam textura, espessura e recortes do produto. Falta de equipamento fotográfico
+                profissional limitava os ângulos e a qualidade de iluminação.
               </p>
             </div>
             <div style="border: var(--border-thick); background: var(--color-yellow); box-shadow: var(--shadow-sm); padding: var(--space-5);">
               <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);">Oportunidade</p>
               <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);">
-                Renders 3D e animações Blender — controle total de luz, câmera e movimento para criar peças com alto apelo visual, otimizadas para o formato reel.
+                Modelos 3D a partir das medidas reais dos fornecedores — controle total de luz, câmera e movimento para imagens
+                e animações impossíveis de replicar na fotografia convencional.
               </p>
             </div>
           </div>
@@ -251,28 +305,31 @@
       <div class="container">
         <div class="case-section__header">
           <p class="section-label" id="papel-title" data-en="02 — My Role">02 — Meu Papel</p>
-          <span class="case-section__note" data-en="modeling · animation · social design">modelagem · animação · design social</span>
+          <span class="case-section__note" data-en="modeling · texturing · animation · social">modelagem · texturização · animação · social</span>
         </div>
         <div class="case-grid-3" data-reveal>
           <div class="role-card">
             <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
-            <h3 class="role-card__title">Modelagem 3D</h3>
+            <h3 class="role-card__title">3D</h3>
             <p class="role-card__desc" style="text-align: justify;">
-              Modelagem dos produtos Mobifans no Blender — capas, películas e acessórios — com texturas e materiais PBR para render realista.
+              Coordenação com fornecedores para obter medidas reais. Modelagem de alta precisão no Blender replicando espessura,
+              recortes e curvatura do produto físico — base para renders e animações.
             </p>
           </div>
           <div class="role-card">
             <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
-            <h3 class="role-card__title">Animação</h3>
+            <h3 class="role-card__title">Renders & Texturas</h3>
             <p class="role-card__desc" style="text-align: justify;">
-              Animação dos renders no Blender e composição no After Effects — incluindo a Tríade de Animações: três reels com identidade visual conectada.
+              UV unwrapping, mapas PBR (cor base, rugosidade, textura) simulando o TPU fosco real.
+              Configuração de cena com HDRI e luzes de área para renders que substituem a fotografia de produto.
             </p>
           </div>
           <div class="role-card">
             <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
-            <h3 class="role-card__title">Design Social</h3>
+            <h3 class="role-card__title">Animação & Social</h3>
             <p class="role-card__desc" style="text-align: justify;">
-              Adaptação dos renders para o formato do Instagram — proporção 9:16 para reels, 1:1 para feed — com timing e cortes otimizados para engajamento.
+              Animação no Blender, composição no After Effects e adaptação para o formato Instagram —
+              reels 9:16 e feed 1:1 — incluindo a Tríade: três animações com identidade visual conectada.
             </p>
           </div>
         </div>
@@ -284,77 +341,224 @@
       <div class="container">
         <div class="case-section__header">
           <p class="section-label" id="processo-title" data-en="03 — Process & Solution">03 — Processo & Solução</p>
-          <span class="case-section__note" data-en="scene setup · render · edit">setup de cena · render · edição</span>
+          <span class="case-section__note" data-en="supplier reference · modeling · texture · render · animation">fornecedor · modelagem · textura · render · animação</span>
         </div>
 
         <div class="case-img-pair" data-reveal>
           <div class="case-img-pair__item">
-            <!-- <img class="case-img-pair__img" src="mobi_3d/processo_01.webp" alt="Setup de cena no Blender — produto e iluminação" /> -->
-            <div class="case-img-pair__placeholder" aria-label="Setup de cena no Blender">
-              Setup de Cena<br />Blender
-            </div>
-            <span class="case-img-pair__caption" data-en="step 01 · scene setup · HDRI lighting">Passo 01 · Setup · Iluminação HDRI</span>
+            <img class="case-img-pair__img" src="mobi_3d/Processo_01.webp" alt="Medidas e referências obtidas com o fornecedor" />
+            <span class="case-img-pair__caption" data-en="step 01 · supplier reference · real measurements">Passo 01 · Referência do Fornecedor</span>
           </div>
           <div class="case-img-pair__item">
-            <!-- <img class="case-img-pair__img" src="mobi_3d/processo_02.webp" alt="Render final do produto" /> -->
-            <div class="case-img-pair__placeholder" aria-label="Render final do produto">
-              Render Final
-            </div>
-            <span class="case-img-pair__caption" data-en="step 02 · final render · Cycles">Passo 02 · Render Final · Cycles</span>
+            <img class="case-img-pair__img" src="mobi_3d/Processo_02.webp" alt="Wireframe do modelo 3D no Blender" />
+            <span class="case-img-pair__caption" data-en="step 02 · 3D wireframe · Blender">Passo 02 · Wireframe 3D</span>
           </div>
         </div>
 
         <p class="case-narrative" data-reveal data-reveal-delay="1">
-          Cada render passou por um processo de <strong>setup de cena dedicado</strong> — HDRI para iluminação ambiente, luzes de área para realce dos reflexos no produto, e câmera com focal length curto para dar perspectiva dramática sem distorção excessiva.
+          O processo começou pelos <strong>fornecedores da linha Customic</strong>. Com as dimensões reais em mãos — espessura do TPU,
+          raio exato das bordas, posição dos recortes de câmera, lateral e botões — cada milímetro do modelo foi construído para
+          corresponder fielmente ao produto físico. Sem essa precisão, os renders perderiam credibilidade.
         </p>
         <p class="case-narrative" data-reveal data-reveal-delay="1">
-          A <strong>Tríade de Animações</strong> foi o projeto mais complexo: três reels que funcionam como série visual no feed. O desafio foi criar transições e paleta de cores que conectassem os três vídeos sem torná-los repetitivos — cada um com identidade própria, mas claramente parte de um mesmo conjunto.
+          A texturização simulou o acabamento fosco do TPU com um mapa de roughness procedural combinado a um normal map baked de
+          alta resolução, reproduzindo o granulado sutil do material. Para os renders de produto, cada cena foi configurada com
+          <strong>HDRI de iluminação ambiente</strong> e luzes de área para realçar os reflexos controlados — resultado: imagens
+          que substituem completamente a necessidade de uma sessão fotográfica profissional.
+        </p>
+        <p class="case-narrative" data-reveal data-reveal-delay="1">
+          Com os modelos prontos, a etapa seguinte foi a <strong>Tríade de Animações</strong>: três reels para o Instagram com
+          identidade visual conectada. O desafio foi criar transições e paleta de cores que unissem os três vídeos sem torná-los
+          repetitivos — cada um com personalidade própria, claramente parte de um mesmo conjunto.
         </p>
 
-        <!-- Render pipeline spec -->
-        <div class="case-code" data-reveal data-reveal-delay="2" role="region" aria-label="Pipeline de render e exportação para Instagram"><span class="tok-comment">// 3D Material Mobifans — pipeline Blender → Instagram</span>
+        <!-- Pipeline spec -->
+        <div class="case-code" data-reveal data-reveal-delay="2" role="region" aria-label="Pipeline 3D: do fornecedor ao Instagram"><span class="tok-comment">// 3D Mobifans — pipeline: fornecedor → modelo → render → Instagram</span>
+
+<span class="tok-keyword">MODELAGEM</span>
+  Software       <span class="tok-string">Blender 4.x</span>
+  Referência     <span class="tok-string">medidas reais</span>  <span class="tok-comment">fornecidas pelo fabricante</span>
+  Polígonos      <span class="tok-string">~12.000 tris</span>   <span class="tok-comment">otimizado para render e web</span>
+
+<span class="tok-keyword">MATERIAIS</span>
+  Base Color     <span class="tok-string">2K PNG</span>          <span class="tok-comment">personalização impressa</span>
+  Roughness      <span class="tok-string">1K procedural</span>  <span class="tok-comment">acabamento TPU fosco</span>
+  Normal Map     <span class="tok-string">baked 2K</span>        <span class="tok-comment">granulado do material</span>
 
 <span class="tok-keyword">RENDER</span>
   Engine         <span class="tok-string">Cycles X</span>
-  Samples        <span class="tok-string">512</span>           <span class="tok-comment">balance qualidade/tempo</span>
-  Denoising      <span class="tok-string">OptiX</span>
-  Iluminação     <span class="tok-string">HDRI + área</span>   <span class="tok-comment">destaque nos reflexos TPU</span>
+  Samples        <span class="tok-string">512</span>            <span class="tok-comment">qualidade máxima</span>
+  Iluminação     <span class="tok-string">HDRI + área</span>    <span class="tok-comment">destaque nos reflexos TPU</span>
 
 <span class="tok-keyword">ANIMAÇÃO</span>
   FPS            <span class="tok-string">30 fps</span>
-  Duração reels  <span class="tok-string">15–30s</span>        <span class="tok-comment">otimizado para Instagram</span>
-  Tríade         <span class="tok-string">3 × 20s</span>       <span class="tok-comment">série visual conectada</span>
+  Duração reels  <span class="tok-string">15–30s</span>         <span class="tok-comment">otimizado para Instagram</span>
+  Tríade         <span class="tok-string">3 × 20s</span>        <span class="tok-comment">série visual conectada</span>
+  Exportação     <span class="tok-string">MP4 · 1080×1920</span> <span class="tok-comment">9:16 vertical reel</span></div>
 
-<span class="tok-keyword">EXPORTAÇÃO</span>
-  Formato        <span class="tok-string">MP4 H.264</span>
-  Resolução      <span class="tok-string">1080 × 1920</span>   <span class="tok-comment">9:16 vertical reel</span>
-  Codec          <span class="tok-string">AAC 320kbps</span>    <span class="tok-comment">áudio sync</span></div>
-
-        <!-- Tríade de animações -->
-        <div class="case-img-trio" data-reveal>
-          <div>
-            <!-- <img class="case-img-trio__img" src="mobi_3d/processo_03.webp" alt="Frame do reel 1 — Tríade de Animações" /> -->
-            <div class="case-img-trio__placeholder" aria-label="Tríade — Reel 1">
-              Tríade<br />Reel 01
-            </div>
-            <span class="case-img-pair__caption" data-en="TRIAD · ANIMATION 01">TRÍADE · ANIMAÇÃO 01</span>
+        <div class="case-img-pair" data-reveal>
+          <div class="case-img-pair__item">
+            <img class="case-img-pair__img" src="mobi_3d/Processo_03.webp" alt="Imagens de Ecommerce" />
+            <span class="case-img-pair__caption" data-en="step 03 · Ecommerce · images">Passo 03 · Imagens de Ecommerce</span>
           </div>
-          <div>
-            <!-- <img class="case-img-trio__img" src="mobi_3d/processo_04.webp" alt="Frame do reel 2 — Tríade de Animações" /> -->
-            <div class="case-img-trio__placeholder" aria-label="Tríade — Reel 2">
-              Tríade<br />Reel 02
-            </div>
-            <span class="case-img-pair__caption" data-en="TRIAD · ANIMATION 02">TRÍADE · ANIMAÇÃO 02</span>
-          </div>
-          <div>
-            <!-- <img class="case-img-trio__img" src="mobi_3d/processo_05.webp" alt="Frame do reel 3 — Tríade de Animações" /> -->
-            <div class="case-img-trio__placeholder" aria-label="Tríade — Reel 3">
-              Tríade<br />Reel 03
-            </div>
-            <span class="case-img-pair__caption" data-en="TRIAD · ANIMATION 03">TRÍADE · ANIMAÇÃO 03</span>
+          <div class="case-img-pair__item">
+            <img class="case-img-pair__img" src="mobi_3d/Processo_04.webp" alt="Wireframe do modelo 3D no Blender" />
+            <span class="case-img-pair__caption" data-en="step 04 · 3D render · Blender">Passo 04 · Render</span>
           </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- MODELO 3D INTERATIVO — SKETCHFAB -->
+    <section class="case-section" aria-labelledby="embed-title">
+      <div class="container">
+        <div class="case-section__header">
+          <p class="section-label" id="embed-title" data-en="3D Model — Interactive">Modelo 3D — Interativo</p>
+          <span class="case-section__note" data-en="blender · sketchfab · interactive">blender · sketchfab · interativo</span>
+        </div>
+        <div data-reveal style="border: var(--border-thick); box-shadow: var(--shadow-xl); overflow: hidden; position: relative; width: 100%; aspect-ratio: 16 / 9; background: var(--color-surface);">
+          <iframe
+            title="Samsung S26 Ultra com Capas Customic"
+            frameborder="0"
+            allowfullscreen
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true"
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            xr-spatial-tracking
+            execution-while-out-of-viewport
+            execution-while-not-rendered
+            web-share
+            src="https://sketchfab.com/models/8e4b2a402bf343f1811b2845530ac135/embed?autospin=1&preload=1&transparent=1"
+            style="position: absolute; inset: 0; width: 100%; height: 100%; border: none;"
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA DE PUBLICAÇÕES -->
+    <section class="case-section" aria-labelledby="galeria-title">
+      <div class="container">
+        <div class="case-section__header">
+          <p class="section-label" id="galeria-title" data-en="Published — Instagram @mobifans">Publicações — Instagram @mobifans</p>
+          <span class="case-section__note" data-en="click to open on Instagram">clique para abrir no Instagram</span>
+        </div>
+
+        <div class="gallery-grid" data-reveal>
+
+          <!-- Card 01 -->
+          <a class="gallery-card" href="https://www.instagram.com/mobifans/p/DGS1X0TTHgw/" target="_blank" rel="noopener noreferrer" aria-label="Post 01 · Render produto — ver no Instagram">
+            <div class="gallery-card__img-area">
+              <img class="gallery-card__img" src="mobi_3d/Render_1.webp" alt="Post 01 · Render produto" />
+            </div>
+            <div class="gallery-card__overlay">
+              <span data-en="Post 01 · Product render">Post 01 · Render produto</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+          <!-- Card 02 -->
+          <a class="gallery-card" href="https://www.instagram.com/mobifans/p/DGdIkqstTYl/" target="_blank" rel="noopener noreferrer" aria-label="Post 02 · Render produto — ver no Instagram">
+             <img class="gallery-card__img" src="mobi_3d/Render_2.webp" alt="Post 02 · Render produto" />
+    
+            <div class="gallery-card__overlay">
+              <span data-en="Post 02 · Product render">Post 02 · Render produto</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+          <!-- Card 03 -->
+          <a class="gallery-card" href="https://www.instagram.com/mobifans/reel/DHMPZr3tBRr/" target="_blank" rel="noopener noreferrer" aria-label="Reel 03 · Animação 3D — ver no Instagram">
+             <img class="gallery-card__img" src="mobi_3d/Render_3.webp" alt="Reel 03 · Animação 3D" />
+            <div class="gallery-card__overlay">
+              <span data-en="Reel 03 · 3D animation">Reel 03 · Animação 3D</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+          <!-- Card 04 -->
+          <a class="gallery-card" href="https://www.instagram.com/p/DHbtq9ZPvI_/" target="_blank" rel="noopener noreferrer" aria-label="Post 04 · Render produto — ver no Instagram">
+            <img class="gallery-card__img" src="mobi_3d/Render_4.webp" alt="Post 04 · Render produto" />
+            <div class="gallery-card__overlay">
+              <span data-en="Post 04 · Product render">Post 04 · Render produto</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+          <!-- Card 05 — Tríade animação 01 -->
+          <a class="gallery-card" href="https://www.instagram.com/mobifans/reel/DIPLvtiy2rA/" target="_blank" rel="noopener noreferrer" aria-label="Tríade animação 01 — ver no Instagram">
+             <img class="gallery-card__img" src="mobi_3d/Render_5.webp" alt="Tríade animação 01" />
+            <div class="gallery-card__overlay">
+              <span data-en="Triad 01 · Animation">Tríade animação 01</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+          <!-- Card 06 — Tríade animação 02 -->
+          <a class="gallery-card" href="https://www.instagram.com/mobifans/reel/DIR4j7JyRh6/" target="_blank" rel="noopener noreferrer" aria-label="Tríade animação 02 — ver no Instagram">
+            <img class="gallery-card__img" src="mobi_3d/Render_6.webp" alt="Tríade animação 02" />
+            <div class="gallery-card__overlay">
+              <span data-en="Triad 02 · Animation">Tríade animação 02</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+          <!-- Card 07 — Tríade animação 03 -->
+          <a class="gallery-card" href="https://www.instagram.com/mobifans/reel/DIWKSG5Nk1l/" target="_blank" rel="noopener noreferrer" aria-label="Tríade animação 03 — ver no Instagram">
+            <img class="gallery-card__img" src="mobi_3d/Render_7.webp" alt="Tríade animação 03" />
+            <div class="gallery-card__overlay">
+              <span data-en="Triad 03 · Animation">Tríade animação 03</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+          <!-- Card 08 — Impactor Space Laranja -->
+          <a class="gallery-card" href="https://www.instagram.com/p/DWUYIDnjbtP/" target="_blank" rel="noopener noreferrer" aria-label="Impactor Space Laranja — ver no Instagram">
+            <img class="gallery-card__img" src="mobi_3d/Render_8.webp" alt="Impactor Space Laranja" />
+            <div class="gallery-card__overlay">
+              <span data-en="Triad 03 · Animation">Impactor Space Laranja</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+          <!-- Card 09 — Anuncio Cordas -->
+          <a class="gallery-card" href="https://www.instagram.com/p/DIjyYiASiEU/" target="_blank" rel="noopener noreferrer" aria-label="Anuncio Cordas — ver no Instagram">
+            <img class="gallery-card__img" src="mobi_3d/Render_9.webp" alt="Anuncio Cordas" />
+            <div class="gallery-card__overlay">
+              <span data-en="Triad 03 · Animation">Anuncio Cordas</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+          <!-- Card 10 — Presente Natal -->
+          <a class="gallery-card" href="https://www.instagram.com/p/DSA-Lbhkhsl/?img_index=1" target="_blank" rel="noopener noreferrer" aria-label="Presente Natal — ver no Instagram">
+            <img class="gallery-card__img" src="mobi_3d/Render_10.webp" alt="Presente Natal" />
+            <div class="gallery-card__overlay">
+              <span data-en="Triad 03 · Animation">Presente Natal</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+          <!-- Card 11 — Animação Alça Crossbody -->
+          <a class="gallery-card" href="https://www.instagram.com/p/DI_xyrBu4xt/" target="_blank" rel="noopener noreferrer" aria-label="Animação Alça Crossbody  — ver no Instagram">
+            <img class="gallery-card__img" src="mobi_3d/Render_11.webp" alt="Animação Alça Crossbody" />
+            <div class="gallery-card__overlay">
+              <span data-en="Triad 03 · Animation">Animação Alça Crossbody</span>
+              <span>↗</span>
+            </div>
+          </a> 
+
+            <!-- Card 12 — Impactor Spaces no espaço -->
+          <a class="gallery-card" href="https://www.instagram.com/p/DW9KZ_5kQpw/" target="_blank" rel="noopener noreferrer" aria-label="Impactor Spaces no espaço  — ver no Instagram">
+            <img class="gallery-card__img" src="mobi_3d/Render_12.webp" alt="Impactor Spaces no espaço" />
+            <div class="gallery-card__overlay">
+              <span data-en="Triad 03 · Animation">Impactor Spaces no espaço</span>
+              <span>↗</span>
+            </div>
+          </a>
+
+        </div>
       </div>
     </section>
 
@@ -377,50 +581,17 @@
                 <p class="metric-card__label" data-en="Animation triad">Tríade de animações</p>
               </div>
             </div>
-
             <p class="case-resultado__impact">
-              <strong>7 peças 3D publicadas no Instagram da Mobifans.</strong> Do render estático de produto às animações da Tríade, o material 3D elevou o padrão visual do feed e gerou engajamento superior ao conteúdo fotográfico convencional. Ver ao vivo:
+              <strong>Do contato com o fornecedor ao feed publicado.</strong> A implementação do 3D resolveu o problema central:
+              sem câmera profissional, os produtos passaram a ter imagens de alta qualidade que comunicam textura, espessura
+              e detalhes com precisão. Os modelos criados a partir das medidas reais estabeleceram o fluxo de trabalho
+              3D da Mobifans — e a Tríade de Animações provou que os mesmos assets geram conteúdo animado de alto impacto
+              para o Instagram.
             </p>
-
-            <!-- Links das publicações -->
-            <div class="posts-grid" style="margin-bottom: var(--space-6);">
-              <a class="post-link" href="https://www.instagram.com/mobifans/p/DGS1X0TTHgw/" target="_blank" rel="noopener noreferrer" data-en="Post 01 · Product render ↗">
-                <span>Post 01 · Render produto</span>
-                <span>↗</span>
-              </a>
-              <a class="post-link" href="https://www.instagram.com/mobifans/p/DGdIkqstTYl/" target="_blank" rel="noopener noreferrer" data-en="Post 02 · Product render ↗">
-                <span>Post 02 · Render produto</span>
-                <span>↗</span>
-              </a>
-              <a class="post-link" href="https://www.instagram.com/mobifans/reel/DHMPZr3tBRr/" target="_blank" rel="noopener noreferrer" data-en="Reel 03 · 3D animation ↗">
-                <span>Reel 03 · Animação 3D</span>
-                <span>↗</span>
-              </a>
-              <a class="post-link" href="https://www.instagram.com/p/DHbtq9ZPvI_/" target="_blank" rel="noopener noreferrer" data-en="Post 04 · Product render ↗">
-                <span>Post 04 · Render produto</span>
-                <span>↗</span>
-              </a>
-              <a class="post-link" href="https://www.instagram.com/mobifans/reel/DIPLvtiy2rA/" target="_blank" rel="noopener noreferrer" data-en="Triad 01 · Animation ↗">
-                <span>Tríade 01 · Animação</span>
-                <span>↗</span>
-              </a>
-              <a class="post-link" href="https://www.instagram.com/mobifans/reel/DIR4j7JyRh6/" target="_blank" rel="noopener noreferrer" data-en="Triad 02 · Animation ↗">
-                <span>Tríade 02 · Animação</span>
-                <span>↗</span>
-              </a>
-            </div>
-            <a class="post-link" href="https://www.instagram.com/mobifans/reel/DIWKSG5Nk1l/" target="_blank" rel="noopener noreferrer" style="margin-bottom: var(--space-8); display: flex;" data-en="Triad 03 · Animation ↗">
-              <span style="flex:1;">Tríade 03 · Animação</span>
-              <span>↗</span>
-            </a>
           </div>
-
           <div>
-            <!-- <img class="case-resultado__screenshot" src="mobi_3d/demonstrativo.webp"
-                 alt="Frame da Tríade de Animações Mobifans" width="800" height="600" loading="lazy" /> -->
-            <div class="case-resultado__screenshot-placeholder" aria-label="Frame da Tríade de Animações">
-              Frame Tríade<br />de Animações
-            </div>
+           <img class="case-resultado__screenshot" src="mobi_3d/Processo_05.webp"
+                 alt="Frame da Tríade de Animações Mobifans" width="800" height="600" loading="lazy" />
           </div>
         </div>
       </div>

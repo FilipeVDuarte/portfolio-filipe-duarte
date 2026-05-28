@@ -30,7 +30,9 @@
       "Bash(git commit -m ' *)",
       "Bash(python -c \"import gzip; data = gzip.open\\('.claude/wireframe-design.gz', 'rb'\\).read\\(\\); print\\(len\\(data\\), 'bytes'\\); print\\(data[:500].decode\\('utf-8', errors='replace'\\)\\)\")",
       "Bash(python -c ' *)",
-      "Bash(git mv *)"
+      "Bash(git mv *)",
+      "Bash(Remove-Item -Path \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\\\\projetos\\\\customic_s26.html\" -Force)",
+      "Bash(Remove-Item -Path \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\\\\projetos\\\\customic_s26\" -Recurse -Force)"
     ]
   }
 }

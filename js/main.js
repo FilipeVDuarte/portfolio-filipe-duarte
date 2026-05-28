@@ -340,6 +340,23 @@
     const cards = document.querySelectorAll('.proj-card');
     const countEl = document.getElementById('filter-count');
 
+    function updateCount(visible) {
+      if (countEl) countEl.textContent = visible + (visible === 1 ? ' projeto' : ' projetos');
+    }
+
+    function applyFilter(cat) {
+      let visible = 0;
+      cards.forEach(card => {
+        const show = cat === 'todos' || card.dataset.cat === cat;
+        card.hidden = !show;
+        if (show) visible++;
+      });
+      updateCount(visible);
+    }
+
+    // Inicializa o contador com o total real de cards no DOM
+    applyFilter('todos');
+
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => {
@@ -349,17 +366,20 @@
         btn.classList.add('active');
         btn.setAttribute('aria-pressed', 'true');
 
-        const cat = btn.dataset.filter;
-        let visible = 0;
-        cards.forEach(card => {
-          const show = cat === 'todos' || card.dataset.cat === cat;
-          card.hidden = !show;
-          if (show) visible++;
-        });
-        if (countEl) countEl.textContent = visible + (visible === 1 ? ' projeto' : ' projetos');
+        applyFilter(btn.dataset.filter);
       });
     });
   }
+
+  /* ------------------------------------------
+     CARD HOVER — play/pause vídeo animado
+  ------------------------------------------ */
+  document.querySelectorAll('.proj-card').forEach(card => {
+    const video = card.querySelector('video.proj-card__hover');
+    if (!video) return;
+    card.addEventListener('mouseenter', () => video.play());
+    card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+  });
 
   /* ------------------------------------------
      CERT CAROUSEL — sobre.html
