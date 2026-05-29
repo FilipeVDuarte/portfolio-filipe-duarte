@@ -323,9 +323,7 @@
     function loadLottieScript() {
       if (typeof lottie !== 'undefined') { startAnimation(); return; }
       var s = document.createElement('script');
-      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js';
-      s.crossOrigin = 'anonymous';
-      s.referrerPolicy = 'no-referrer';
+      s.src = 'js/lottie.min.js';
       s.onload = startAnimation;
       s.onerror = function () {
         console.warn('[Lottie] Falha ao carregar o script do CDN.');
@@ -426,3 +424,16 @@
   }
 
 })();
+
+/* ------------------------------------------
+   MICROSOFT CLARITY — carregado após window.load
+   para não gerar erros de console em testes de
+   performance (Lighthouse / PageSpeed Insights).
+------------------------------------------ */
+window.addEventListener('load', function () {
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, 'clarity', 'script', 'wu7wccmigx');
+});

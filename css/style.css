@@ -3,7 +3,47 @@
    Design System: Neo-Brutalista
    ============================================ */
 
-/* Fontes carregadas via <link> no HTML (não-bloqueante) */
+/* ============================================
+   FONTES AUTO-HOSPEDADAS (sem dependência CDN)
+   Syne + Inter: variable fonts (um arquivo = todos os pesos)
+   Space Mono: arquivos separados por peso
+   font-display: optional — nunca causa CLS por troca de fonte
+   ============================================ */
+@font-face {
+  font-family: 'Syne';
+  src: url('../assets/fonts/syne.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: optional;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/inter.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: optional;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('../assets/fonts/spacemono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: optional;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('../assets/fonts/spacemono-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: optional;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 /* ============================================
    DARK MODE — variable overrides
@@ -586,9 +626,6 @@ button {
   gap: var(--space-12);
   position: relative;
   z-index: 1;
-  margin-block: auto;
-  /* centralização segura: absorve espaço livre quando cabe,
-                         colapsa a zero quando o conteúdo excede — sem data loss */
 }
 
 .hero__inner>* {
@@ -630,9 +667,9 @@ button {
     font-size: clamp(3.5rem, 4.8vw, 7rem);
   }
 
-  /* Desktop: telas largas — apenas limita o crescimento máximo */
+  /* Desktop: telas largas — limita crescimento e respeita ratio 1920/400 */
   #lottie-hero-container {
-    max-height: 300px;
+    max-height: 260px;
   }
 }
 
@@ -720,13 +757,11 @@ button {
 #lottie-hero-container {
   display: block;
   width: 100%;
-  /* aspect-ratio escala com a largura do container, sem altura
-     "chutada". max-height evita crescimento excessivo em telas
-     muito largas. Fallback height para browsers antigos. */
-  aspect-ratio: 4 / 1;
+  /* aspect-ratio corresponde às dimensões reais do JSON: w=1920, h=400 */
+  aspect-ratio: 1920 / 400;
   max-height: 280px;
-  /* min-height: fallback para browsers sem suporte a aspect-ratio */
-  min-height: clamp(60px, 12vw, 280px);
+  /* fallback para browsers sem suporte a aspect-ratio */
+  min-height: clamp(60px, 12vw, 240px);
   height: auto;
   overflow: hidden;
 }
