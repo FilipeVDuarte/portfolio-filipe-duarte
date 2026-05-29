@@ -882,7 +882,7 @@ button {
 .hero__decoration {
   position: absolute;
   right: -2rem;
-  top: 50%;
+  top: 50svh;
   transform: translateY(-50%);
   pointer-events: none;
   opacity: 0.06;

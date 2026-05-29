@@ -41,7 +41,15 @@
       "Bash(npm --version)",
       "Bash(npm install *)",
       "Bash(npm run *)",
-      "Bash(echo \"EXIT:$?\")"
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(powershell -Command \"Get-Content 'C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\\\\assets\\\\Anima_hero.json' | Select-Object -First 5\")",
+      "Bash(curl -L \"https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js\" -o \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\\\\js\\\\lottie.min.js\")",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\" \"https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap\")",
+      "Bash(curl -sL \"https://fonts.gstatic.com/s/syne/v24/8vIH7w4qzmVxm2BL9A.woff2\" -o \"syne.woff2\")",
+      "Bash(curl -sL \"https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2\" -o \"inter.woff2\")",
+      "Bash(curl -sL \"https://fonts.gstatic.com/s/spacemono/v17/i7dPIFZifjKcF5UAWdDRYEF8RQ.woff2\" -o \"spacemono-400.woff2\")",
+      "Bash(curl -sL \"https://fonts.gstatic.com/s/spacemono/v17/i7dMIFZifjKcF5UAWdDRaPpZUFWaHg.woff2\" -o \"spacemono-700.woff2\")",
+      "PowerShell(Get-Command magick, ffmpeg, cwebp, node -ErrorAction SilentlyContinue)"
     ]
   }
 }
