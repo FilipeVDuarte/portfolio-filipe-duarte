@@ -32,7 +32,16 @@
       "Bash(python -c ' *)",
       "Bash(git mv *)",
       "Bash(Remove-Item -Path \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\\\\projetos\\\\customic_s26.html\" -Force)",
-      "Bash(Remove-Item -Path \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\\\\projetos\\\\customic_s26\" -Recurse -Force)"
+      "Bash(Remove-Item -Path \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\\\\projetos\\\\customic_s26\" -Recurse -Force)",
+      "Bash(xargs ls -lh)",
+      "PowerShell(Get-ChildItem -Recurse -File | Select-Object FullName, Length | Sort-Object Length -Descending | Select-Object -First 30 | ForEach-Object { \"$\\($_.Length.ToString\\(\\).PadLeft\\(12\\)\\)  $\\($_.FullName.Replace\\('C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\\\\', ''\\)\\)\" })",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\\\\fonts\" -Recurse -File | Select-Object Name, @{N='KB';E={[math]::Round\\($_.Length/1KB,1\\)}})",
+      "Bash(find /mnt/c/Users/MARKETING/portfolio-filipe-duarte/fonts -type f | xargs ls -lh 2>/dev/null)",
+      "PowerShell(git -C \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\" restore \"ACTION-PLAN.md\" \"FULL-AUDIT-REPORT.md\" \"TEMPLATE-portfolio-completo.md\" \"filipe-duarte-portfolio-completo.md\" \"DESIGN.md\")",
+      "Bash(npm --version)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(echo \"EXIT:$?\")"
     ]
   }
 }

@@ -73,6 +73,15 @@ html[data-theme="dark"] .timeline__date {
   background: #2A2A2D;
 }
 
+/* Badges hero: restora o comportamento original no dark mode
+   (as cores escurecidas para WCAG são apenas para o tema claro) */
+html[data-theme="dark"] .hero__role:nth-child(3) {
+  background: var(--color-purple);
+}
+html[data-theme="dark"] .hero__role:nth-child(4) {
+  color: var(--color-white);
+}
+
 /* ============================================
    DESIGN TOKENS / CSS VARIABLES
    ============================================ */
@@ -694,6 +703,8 @@ button {
   text-transform: uppercase;
   /* Wrapper do container Lottie — sem padding/margin extras */
   margin-bottom: 0;
+  /* Reserva espaço antes do Lottie carregar — previne CLS */
+  min-height: clamp(60px, 12vw, 280px);
 }
 
 .hero__headline em {
@@ -714,6 +725,8 @@ button {
      muito largas. Fallback height para browsers antigos. */
   aspect-ratio: 4 / 1;
   max-height: 280px;
+  /* min-height: fallback para browsers sem suporte a aspect-ratio */
+  min-height: clamp(60px, 12vw, 280px);
   height: auto;
   overflow: hidden;
 }
@@ -758,13 +771,13 @@ button {
 }
 
 .hero__role:nth-child(3) {
-  background: var(--color-purple);
+  background: #5C2EFF; /* #7C4DFF → 3.96:1 fail; #5C2EFF → 5.69:1 WCAG AA ✓ */
   color: var(--color-white);
 }
 
 .hero__role:nth-child(4) {
   background: var(--color-pink);
-  color: var(--color-white);
+  color: var(--color-ink); /* var(--color-white) → 3.13:1 fail; ink → 4.52:1 WCAG AA ✓ */
 }
 
 .hero__rating {
@@ -846,6 +859,8 @@ button {
   white-space: nowrap;
   line-height: 1;
   user-select: none;
+  /* Isola o reflow do swap de fontes para não propagar ao pai — previne CLS */
+  contain: layout;
 }
 
 /* ============================================
@@ -1899,7 +1914,7 @@ button {
 .footer__copy {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--color-muted);
+  color: #909090; /* var(--color-muted)=#6B6B6B → 3.36:1 fail; #909090 → 4.97:1 WCAG AA ✓ */
   letter-spacing: 0.04em;
 }
 

@@ -37,10 +37,14 @@
   <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" /></noscript>
 
-  <link rel="preload" as="image" href="./img/webp/Banner_MobiStudio_Portfolio.webp" type="image/webp" fetchpriority="high" />
+  <link rel="preload" as="image"
+        href="./img/webp/Banner_MobiStudio_Portfolio.webp"
+        imagesrcset="./img/webp/Banner_MobiStudio_Portfolio_720.webp 720w, ./img/webp/Banner_MobiStudio_Portfolio.webp 1200w"
+        imagesizes="(max-width: 768px) 100vw, (max-width: 1240px) 50vw, 620px"
+        type="image/webp" fetchpriority="high" />
   <link rel="preload" as="image" href="assets/FD - Wordmark.svg" type="image/svg+xml" />
 
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.min.css" />
 
   <script async type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -194,9 +198,15 @@
           <!-- MobiStudio — visual esquerda, info direita -->
           <article class="destaque-row" data-reveal aria-labelledby="dest-mobistudio">
             <div class="destaque-row__visual">
-              <img src="img/webp/Banner_MobiStudio_Portfolio.webp"
-                   alt="Banner MobiStudio — customizador interativo de capinhas"
-                   width="1200" height="800" loading="eager" />
+              <picture>
+                <source type="image/webp"
+                        srcset="img/webp/Banner_MobiStudio_Portfolio_720.webp 720w,
+                                img/webp/Banner_MobiStudio_Portfolio.webp 1200w"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1240px) 50vw, 620px" />
+                <img src="img/webp/Banner_MobiStudio_Portfolio.webp"
+                     alt="Banner MobiStudio — customizador interativo de capinhas"
+                     width="1200" height="800" loading="eager" />
+              </picture>
             </div>
             <div class="destaque-row__info">
               <div class="projeto__meta">
@@ -246,9 +256,15 @@
               </div>
             </div>
             <div class="destaque-row__visual">
-              <img src="img/webp/Banner_MobiNoRIC_Portfolio.webp"
-                   alt="Banner Rap In Cena — identidade visual do festival"
-                   width="1200" height="800" loading="lazy" />
+              <picture>
+                <source type="image/webp"
+                        srcset="img/webp/Banner_MobiNoRIC_Portfolio_720.webp 720w,
+                                img/webp/Banner_MobiNoRIC_Portfolio.webp 1200w"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1240px) 50vw, 620px" />
+                <img src="img/webp/Banner_MobiNoRIC_Portfolio.webp"
+                     alt="Banner Rap In Cena — identidade visual do festival"
+                     width="1200" height="800" loading="lazy" />
+              </picture>
             </div>
           </article>
 
@@ -357,7 +373,8 @@
             Claude
           </span>
           <span class="marquee__item">
-            <span class="marquee__glyph">B.</span>
+            <img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F470aa2bd45fb4ff5b77c91a394a957e6"
+            alt="" loading="lazy" width="22" height="22">
             Builder.io
           </span>
           <span class="marquee__item">
@@ -491,7 +508,6 @@
 
   <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
 
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script defer src="js/main.js"></script>
 </body>
 

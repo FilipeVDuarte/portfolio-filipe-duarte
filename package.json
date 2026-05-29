@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-filipe-duarte",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:css": "lightningcss --minify --targets \">= 0.5%\" css/style.css -o css/style.min.css",
+    "build": "npm run build:css"
+  },
+  "devDependencies": {
+    "lightningcss-cli": "^1.29.2"
+  }
+}

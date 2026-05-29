@@ -257,7 +257,7 @@
     applyLang(currentLang === 'pt' ? 'en' : 'pt');
   });
 
-  fetch('assets/i18n.json')
+  fetch('/assets/i18n.json')
     .then(function (r) { return r.json(); })
     .then(function (data) {
       i18n = data;
@@ -285,50 +285,77 @@
   });
 
   /* ------------------------------------------
-     LOTTIE — Animação Hero (ping-pong loop)
-     Arquivo: assets/Anima_hero.json
-     Comportamento: toca para frente → chega ao fim →
-       inverte direção → toca para trás → repete.
-     Fallback: se o JSON causar glitch no reverse,
-       troque loop: false + remova o listener abaixo
-       para que a animação rode uma única vez e
-       congele no último frame.
+     LOTTIE — Animação Hero (ping-pong loop, lazy load)
+     O script (~350 KB) só é injetado quando o container
+     estiver a 200 px da viewport, evitando bloqueio na
+     thread principal durante o carregamento inicial.
   ------------------------------------------ */
   (function initLottieHero() {
     var container = document.getElementById('lottie-hero-container');
     if (!container) return;
-    if (typeof lottie === 'undefined') {
-      console.warn('[Lottie] Biblioteca não carregada. Verifique o CDN.');
-      return;
-    }
 
-    var anim = lottie.loadAnimation({
-      container: container,
-      renderer:  'svg',
-      loop:      false,   /* false — o loop é gerenciado manualmente */
-      autoplay:  !prefersReducedMotion,
-      path:      'assets/Anima_hero.json'
-    });
-
-    /* Usuários que preferem movimento reduzido vêem o frame final estático */
-    if (prefersReducedMotion) {
-      anim.addEventListener('DOMLoaded', function () {
-        anim.goToAndStop(anim.totalFrames - 1, true);
+    function startAnimation() {
+      var anim = lottie.loadAnimation({
+        container: container,
+        renderer:  'svg',
+        loop:      false,
+        autoplay:  !prefersReducedMotion,
+        path:      'assets/Anima_hero.json'
       });
-      return;
+
+      if (prefersReducedMotion) {
+        anim.addEventListener('DOMLoaded', function () {
+          anim.goToAndStop(anim.totalFrames - 1, true);
+        });
+        return;
+      }
+
+      var direction = 1;
+      anim.addEventListener('complete', function () {
+        direction = direction === 1 ? -1 : 1;
+        setTimeout(function () {
+          anim.setDirection(direction);
+          anim.play();
+        }, 600);
+      });
     }
 
-    /* Direção atual: 1 = para frente, -1 = para trás */
-    var direction = 1;
+    function loadLottieScript() {
+      if (typeof lottie !== 'undefined') { startAnimation(); return; }
+      var s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js';
+      s.crossOrigin = 'anonymous';
+      s.referrerPolicy = 'no-referrer';
+      s.onload = startAnimation;
+      s.onerror = function () {
+        console.warn('[Lottie] Falha ao carregar o script do CDN.');
+      };
+      document.head.appendChild(s);
+    }
 
-    /* A cada vez que a animação termina (em qualquer direção),
-       aguarda 600ms antes de inverter — efeito "respira nos extremos" */
-    anim.addEventListener('complete', function () {
-      direction = direction === 1 ? -1 : 1;
-      setTimeout(function () {
-        anim.setDirection(direction);
-        anim.play();
-      }, 600);
+    var loaded = false;
+
+    function triggerLoad() {
+      if (loaded) return;
+      loaded = true;
+      if (observer) observer.disconnect();
+      loadLottieScript();
+    }
+
+    var observer = null;
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(function (entries, obs) {
+        if (!entries[0].isIntersecting) return;
+        obs.disconnect();
+        triggerLoad();
+      }, { rootMargin: '200px' });
+      observer.observe(container);
+    }
+
+    /* Fallback: dispara no window.load caso o IO não tenha acionado
+       (browsers sem suporte ou contextos sem viewport, ex: prerender) */
+    window.addEventListener('load', function () {
+      if (!loaded) triggerLoad();
     });
   })();
 
