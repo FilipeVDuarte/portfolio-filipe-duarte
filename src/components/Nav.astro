@@ -1,0 +1,44 @@
+---
+interface Props {
+  currentPage?: 'projetos' | 'sobre';
+  depth?: '' | '../';
+}
+const { currentPage, depth = '' } = Astro.props;
+---
+
+<header class="nav" role="banner">
+  <div class="container nav__inner">
+    <a href={`${depth}index.html`} class="nav__logo" aria-label="Filipe Duarte - início">
+      <img src={`${depth}assets/FD - Wordmark.svg`} alt="Logo FD - Wordmark" width="268" height="42" />
+    </a>
+
+    <nav class="nav__links" aria-label="Menu principal">
+      <a class="nav__link" href={`${depth}projetos.html`}
+         aria-current={currentPage === 'projetos' ? 'page' : undefined}
+         data-en="Projects">Projetos</a>
+      <a class="nav__link" href={`${depth}sobre.html`}
+         aria-current={currentPage === 'sobre' ? 'page' : undefined}
+         data-en="About">Sobre</a>
+      <a class="nav__cta" href={`${depth}index.html#contato`} data-en="Contact →">Contato →</a>
+    </nav>
+
+    <div class="nav__controls">
+      <button class="nav__ctrl" id="lang-toggle" aria-label="Switch to English">EN</button>
+      <button class="nav__ctrl" id="theme-toggle" aria-label="Modo escuro / Dark mode">◐</button>
+    </div>
+
+    <button class="nav__hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="nav__mobile" id="mobile-menu" aria-label="Menu mobile">
+    <a class="nav__link" href={`${depth}projetos.html`}
+       aria-current={currentPage === 'projetos' ? 'page' : undefined}
+       data-en="Projects">Projetos</a>
+    <a class="nav__link" href={`${depth}sobre.html`}
+       aria-current={currentPage === 'sobre' ? 'page' : undefined}
+       data-en="About">Sobre</a>
+    <a class="nav__cta" href={`${depth}index.html#contato`} data-en="Contact →">Contato →</a>
+  </nav>
+</header>

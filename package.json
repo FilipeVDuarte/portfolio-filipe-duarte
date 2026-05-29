@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build:css": "lightningcss --minify --targets \">= 0.5%\" css/style.css -o css/style.min.css",
-    "build": "npm run build:css"
+    "dev": "astro dev",
+    "build:css": "lightningcss --minify --targets \">= 0.5%\" public/css/style.css -o public/css/style.min.css",
+    "build": "npm run build:css && astro build",
+    "preview": "astro preview"
   },
   "devDependencies": {
     "lightningcss-cli": "^1.29.2"
+  },
+  "dependencies": {
+    "astro": "^6.4.2"
   }
 }

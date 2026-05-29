@@ -1,0 +1,249 @@
+---
+import CaseStudy from '../../layouts/CaseStudy.astro';
+
+const codeBlock = `<span class="tok-comment">// buildColoredEstampa — colorização SVG sem Canvas extra nem bibliotecas externas</span>
+<span class="tok-keyword">async function</span> <span class="tok-fn">buildColoredEstampa</span>(svgPath, bgColor, fgColor) {
+  <span class="tok-keyword">const</span> res  = <span class="tok-keyword">await</span> fetch(svgPath);
+  <span class="tok-keyword">const</span> text = <span class="tok-keyword">await</span> res.text();
+  <span class="tok-keyword">const</span> doc  = <span class="tok-keyword">new</span> DOMParser().parseFromString(text, <span class="tok-string">'image/svg+xml'</span>);
+  <span class="tok-keyword">const</span> svg  = doc.querySelector(<span class="tok-string">'svg'</span>);
+
+  <span class="tok-comment">// injeta rect de fundo antes de tudo</span>
+  <span class="tok-keyword">const</span> rect = doc.createElementNS(<span class="tok-string">'http://www.w3.org/2000/svg'</span>, <span class="tok-string">'rect'</span>);
+  rect.setAttribute(<span class="tok-string">'width'</span>, <span class="tok-string">'100%'</span>); rect.setAttribute(<span class="tok-string">'height'</span>, <span class="tok-string">'100%'</span>);
+  rect.setAttribute(<span class="tok-string">'fill'</span>, bgColor);
+  svg.insertBefore(rect, svg.firstChild);
+
+  <span class="tok-comment">// pinta cada path com fgColor</span>
+  svg.querySelectorAll(<span class="tok-string">'path'</span>).forEach(p => p.setAttribute(<span class="tok-string">'fill'</span>, fgColor));
+
+  <span class="tok-keyword">const</span> blob = <span class="tok-keyword">new</span> Blob(
+    [<span class="tok-keyword">new</span> XMLSerializer().serializeToString(doc)],
+    { type: <span class="tok-string">'image/svg+xml'</span> }
+  );
+  <span class="tok-keyword">return</span> URL.createObjectURL(blob); <span class="tok-comment">// revogado antes da próxima chamada</span>
+}`;
+---
+
+<CaseStudy
+  caseTitle="MobiStudio"
+  caseDesc="MobiStudio — customizador interativo de capinhas. Motor Canvas API com zoom, rotação e arraste. Do problema ao deploy em produção."
+  casePath="/projetos/mobi_studio.html"
+  ogImage="/projetos/mobi_studio/Banner_MobiStudio_21_9.webp"
+  heroImageHref="/projetos/mobi_studio/Banner_MobiStudio_21_9.webp"
+>
+
+  <div class="mobi-studio-page">
+
+  <!-- BREADCRUMB -->
+  <div class="case-breadcrumb">
+    <div class="container case-breadcrumb__inner">
+      <a class="case-breadcrumb__link" href="../projetos.html" data-en="← Projects">← Projetos</a>
+      <span class="case-breadcrumb__sep">·</span>
+      <span class="case-breadcrumb__current" data-en="Case">Case</span>
+    </div>
+  </div>
+
+  <!-- CASE HEADER -->
+  <section class="case-header" aria-labelledby="case-title">
+    <div class="container">
+      <p class="case-header__eyebrow" data-en="Case · Web Dev · Client">
+        Case · Dev Web · Mobifans
+      </p>
+      <h1 class="case-header__title" id="case-title">
+        Mobi<br />Studio.
+      </h1>
+      <div class="case-header__meta">
+        <span class="case-header__date" data-en="Apr 2026 → current">Abr 2026 → atual</span>
+        <div class="case-header__tags">
+          <span class="tech-tag">HTML5 Canvas</span>
+          <span class="tech-tag">JavaScript Vanilla</span>
+          <span class="tech-tag">CSS3</span>
+          <span class="tech-tag">Vite</span>
+          <span class="tech-tag">Netlify</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO DO CASE -->
+  <div class="case-hero" role="img" aria-label="Banner do projeto MobiStudio">
+    <img class="case-hero__img" src="/projetos/mobi_studio/Banner_MobiStudio_21_9.webp"
+        alt="MobiStudio — personalizador de capinhas Mobifans" width="2100" height="900" loading="eager" />
+  </div>
+
+  <!-- 01 — CONTEXTO / PROBLEMA -->
+  <section class="case-section" aria-labelledby="ctx-title">
+    <div class="container">
+      <div class="case-section__header">
+        <p class="section-label" id="ctx-title" data-en="01 — Context / Problem">01 — Contexto / Problema</p>
+        <span class="case-section__note" data-en="client · challenge · opportunity">cliente · desafio · oportunidade</span>
+      </div>
+      <div class="case-grid-2" data-reveal>
+        <div>
+          <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-6);">
+            A <strong style="color: var(--color-ink);">Mobifans</strong> vende capinhas personalizadas de smartphone, mas não tinha como mostrar ao cliente como a arte ficaria aplicada no aparelho antes da compra. O processo era manual, lento, e dependia de um vendedor na hora para montar um preview.
+          </p>
+          <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted);">
+            A lacuna era clara: criar uma ferramenta web que permitisse ao próprio cliente ou ao vendedor no quiosque. Poder visualizar a capinha em tempo real, com controle total de posição, escala e rotação da arte. Sem intermediários, sem espera.
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: var(--space-5);">
+          <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+            <p class="section-label" style="margin-bottom: var(--space-2);">Contexto</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+              A mobifans queria trazer a experiência de personalização de volta, dado que um dos motivos para que parassem de produzir as personalizadas. Era a falta de uma ferramenta atualizada para isso e que facilitada para o uso leve.
+            </p>
+          </div>
+          <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+            <p class="section-label" style="margin-bottom: var(--space-2);">Problema central</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+              As ferramentas que utilizavam eram pesadas, lentas, e dependiam de terceiros. Gerando muito ruído na produção.
+            </p>
+          </div>
+          <div style="border: var(--border-thick); background: var(--color-yellow); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+            <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);">Oportunidade</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);">
+              Construir um personalizador web nativo (sem dependências pesadas) capaz de rodar em qualquer dispositivo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 — MEU PAPEL -->
+  <section class="case-section" aria-labelledby="papel-title" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="case-section__header">
+        <p class="section-label" id="papel-title" data-en="02 — My Role">02 — Meu Papel</p>
+        <span class="case-section__note" data-en="solo project · full stack">projeto solo · full stack</span>
+      </div>
+      <div class="case-grid-3" data-reveal>
+        <div class="role-card">
+          <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
+          <h3 class="role-card__title">Design</h3>
+          <p class="role-card__desc" style="text-align: justify;">
+            Baseando na identidade visual que a mobifans transpassa, sendo muito plural em diversos sentidos. Escolhi o estilo Neo-Brutalismo, criando um Design System para unificar toda direção de arte. Servindo de teste visual, visando levar essa ID para o futuro novo site da Mobifans.
+          </p>
+        </div>
+        <div class="role-card">
+          <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
+          <h3 class="role-card__title">Front-end</h3>
+          <p class="role-card__desc" style="text-align: justify;">
+            Motor Canvas 2D com 3 camadas de renderização, drag & drop, zoom por scroll, rotação, layouts dinâmicos (1/2/3/4/6 slots), histórico de undo e exportação em alta resolução via html2canvas.
+          </p>
+        </div>
+        <div class="role-card">
+          <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
+          <h3 class="role-card__title">Deploy</h3>
+          <p class="role-card__desc" style="text-align: justify;">
+            Hospedagem no Netlify com deploy automático via Git, backend serverless com Netlify Functions + Express, e configuração de CI/CD para o ciclo de versões v1.x.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — PROCESSO & SOLUÇÃO -->
+  <section class="case-section" aria-labelledby="processo-title">
+    <div class="container">
+      <div class="case-section__header">
+        <p class="section-label" id="processo-title" data-en="03 — Process & Solution">03 — Processo & Solução</p>
+        <span class="case-section__note" data-en="architecture · canvas engine · stamps">arquitetura · motor canvas · estampas</span>
+      </div>
+
+      <div class="case-img-pair" data-reveal>
+        <div class="case-img-pair__item">
+          <img class="case-img-pair__img" src="/projetos/mobi_studio/processo_01.webp" alt="Wizard flow do MobiStudio" />
+          <span class="case-img-pair__caption" data-en="step 01 · model selection">Passo 01 · Seleção de Modelo</span>
+        </div>
+        <div class="case-img-pair__item">
+          <img class="case-img-pair__img" src="/projetos/mobi_studio/processo_02.webp" alt="Motor Canvas com controles de edição" />
+          <span class="case-img-pair__caption" data-en="step 03 · canvas editor">Passo 03 · Editor Canvas</span>
+        </div>
+      </div>
+
+      <p class="case-narrative" data-reveal data-reveal-delay="1">
+        A decisão arquitetural mais importante foi abandonar React em favor de <strong>HTML estático + JavaScript Vanilla</strong> (v1.0). Isso eliminou o overhead de bundle, acelerou o carregamento e simplificou a manutenção. O motor Canvas foi construído do zero com a <strong>Canvas API 2D nativa</strong> — três camadas sobrepostas: mockup base, slots de imagem com hit-detection por área, e overlay de máscara com suporte a buracos de câmera.
+      </p>
+
+      <p class="case-narrative" data-reveal data-reveal-delay="1">
+        Para as <strong>Estampas Prontas</strong> (v1.7), o desafio era colorizar SVGs dinamicamente sem Canvas extra ou bibliotecas externas. A solução: fetch do SVG → DOMParser → injeção de <code style="font-family: var(--font-mono); font-size: 0.85em; background: var(--color-surface); padding: 2px 6px; border: var(--border);">&lt;rect&gt;</code> de fundo → pintura de paths com cor de foreground → XMLSerializer → Blob URL. Sem vazamento de memória, com <code style="font-family: var(--font-mono); font-size: 0.85em; background: var(--color-surface); padding: 2px 6px; border: var(--border);">URL.revokeObjectURL()</code> aplicado antes de cada nova geração.
+      </p>
+
+      <div class="case-code" data-reveal data-reveal-delay="2" role="region" aria-label="Função buildColoredEstampa — colorização de SVG nativa" set:html={codeBlock} />
+
+      <div class="case-img-trio" data-reveal>
+        <div>
+          <img class="case-img-trio__img" src="/projetos/mobi_studio/processo_03.webp" alt="Layouts dinâmicos — 1/2/3/4/6 slots" />
+          <span class="case-img-pair__caption" data-en="LAYOUT PERSONALIZÁVEL · 1/2/3/4/6 SLOTS">LAYOUT PERSONALIZÁVEL · 1/2/3/4/6 SLOTS</span>
+        </div>
+        <div>
+          <img class="case-img-trio__img" src="/projetos/mobi_studio/processo_04.webp" alt="Catálogo de estampas SVG com seletor de cores" />
+          <span class="case-img-pair__caption" data-en="CATÁLOGO DE ESTAMPAS · SELETOR DE CORES">CATÁLOGO DE ESTAMPAS · SELETOR DE CORES</span>
+        </div>
+        <div>
+          <img class="case-img-trio__img" src="/projetos/mobi_studio/processo_05.webp" alt="Exportação de preview em alta resolução" />
+          <span class="case-img-pair__caption" data-en="EXPORTAÇÃO · ALTA RESOLUÇÃO">EXPORTAÇÃO · ALTA RESOLUÇÃO</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 04 — RESULTADO -->
+  <section class="case-section" aria-labelledby="resultado-title" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="case-section__header">
+        <p class="section-label" id="resultado-title" data-en="04 — Result">04 — Resultado</p>
+        <span class="case-section__note" data-en="shipped · in production · v1.7.1">em produção · v1.7.1</span>
+      </div>
+      <div class="case-resultado" data-reveal>
+        <div>
+          <div class="metric-cards">
+            <div class="metric-card metric-card--accent">
+              <p class="metric-card__number">28 dias</p>
+              <p class="metric-card__label" data-en="v0.1 → v1.7.1">v0.1 → v1.7.1</p>
+            </div>
+            <div class="metric-card metric-card--plain">
+              <p class="metric-card__number">95+</p>
+              <p class="metric-card__label" data-en="Commits · 13 versions">Commits · 13 versões</p>
+            </div>
+          </div>
+          <p class="case-resultado__impact">
+            <strong>De zero a produção em 28 dias.</strong> O MobiStudio foi construído do zero — sem framework, sem biblioteca de UI — e foi entregue um motor Canvas completo com drag, zoom, rotação, 6 layouts dinâmicos, estampas SVG personalizáveis por cor e exportação em alta resolução. Está em produção no Netlify com deploy automático via Git, servindo os quiosques da Mobifans.
+            <br>
+            Atualmente estou trabalhando na <strong>versão 2.0</strong>, que trará a adição de textos. E após isso, irei preparar para ser conectado ao E-Commerce.
+          </p>
+          <div class="projeto__actions">
+            <a href="https://mobifans.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn btn--primary"
+              data-en="View project live ↗">Ver projeto ao vivo ↗</a>
+          </div>
+        </div>
+        <div>
+          <video muted loop autoplay playsinline class="case-resultado__screenshot" src="/projetos/mobi_studio/demonstrativo.webm"
+               alt="MobiStudio em produção — editor de capinhas" width="800" height="600" loading="lazy">
+            Seu navegador não suporta o elemento de vídeo.
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRÓXIMO CASE -->
+  <section class="case-next" aria-label="Próximo case">
+    <div class="container">
+      <a href="mobi_ric.html" class="case-next__card" data-reveal>
+        <div>
+          <p class="case-next__label" data-en="Next case →">Próximo case →</p>
+          <p class="case-next__title">Rap in<br />Cena.</p>
+        </div>
+        <img class="case-next__thumb" src="/projetos/mobi_ric/Banner_MobiNoRIC_21_9.webp" alt="Thumbnail Rap in Cena" loading="lazy" />
+        <span class="case-next__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  </div>
+</CaseStudy>

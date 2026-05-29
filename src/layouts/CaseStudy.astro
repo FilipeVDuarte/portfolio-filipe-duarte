@@ -1,0 +1,34 @@
+---
+import Base from './Base.astro';
+
+interface Props {
+  caseTitle: string;
+  caseDesc: string;
+  casePath: string;
+  ogImage?: string;
+  heroImageHref?: string;
+}
+
+const { caseTitle, caseDesc, casePath, ogImage, heroImageHref } = Astro.props;
+---
+
+<Base
+  title={`${caseTitle} — Case · Filipe Duarte`}
+  description={caseDesc}
+  canonical={casePath}
+  ogTitle={caseTitle}
+  ogDescription={caseDesc}
+  ogImage={ogImage}
+  ogType="article"
+  withContactFooter={true}
+  depth="../"
+  preloadHeroImage={heroImageHref ? {
+    href: heroImageHref,
+    srcset: heroImageHref,
+    sizes: '100vw',
+  } : undefined}
+>
+  <link rel="stylesheet" href="../css/case.css" slot="head-extra" />
+  <slot name="head-extra" slot="head-extra" />
+  <slot />
+</Base>

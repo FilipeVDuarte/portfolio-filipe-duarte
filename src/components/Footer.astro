@@ -1,0 +1,76 @@
+---
+interface Props {
+  withContact?: boolean;
+  depth?: '' | '../';
+}
+const { withContact = false, depth = '' } = Astro.props;
+---
+
+{withContact ? (
+  <footer class="footer footer--with-contact" role="contentinfo">
+    <div class="container">
+      <div class="footer__contact">
+        <div>
+          <h2 class="footer__contact-heading" data-i18n="contato-heading">
+            Vamos criar<br />algo <em class="highlight">juntos?</em>
+          </h2>
+          <div class="footer__available">
+            <span class="footer__available-badge" data-en="On-site">Presencial</span>
+            <span class="footer__available-badge" data-en="Hybrid">Híbrido</span>
+            <span class="footer__available-badge">Freelance</span>
+          </div>
+          <div style="margin-top: var(--space-8); display: flex; flex-direction: column; gap: var(--space-3);">
+            <a class="footer__contact-item" href="mailto:filipe.velascoduarte@gmail.com" aria-label="Enviar e-mail para Filipe Duarte">
+              <span class="footer__contact-icon">✉️</span>
+              <div>
+                <span class="footer__contact-label">E-mail</span>
+                <span class="footer__contact-value" style="display: block;">filipe.velascoduarte@gmail.com</span>
+              </div>
+            </a>
+            <a class="footer__contact-item" href="https://wa.me/5551996051030" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp de Filipe Duarte">
+              <span class="footer__contact-icon">💬</span>
+              <div>
+                <span class="footer__contact-label">WhatsApp</span>
+                <span class="footer__contact-value" style="display: block;">(51) 9 9605-1030</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="footer__socials">
+          <a class="footer__social-link" href="https://linkedin.com/in/filipevelascoduarte" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a class="footer__social-link" href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer">Behance ↗</a>
+          <a class="footer__social-link" href="mailto:filipe.velascoduarte@gmail.com">E-mail →</a>
+        </div>
+      </div>
+      <div class="footer__inner">
+        <div class="footer__logo"><span>FD</span> Filipe Duarte</div>
+        <p class="footer__copy">
+          © <span id="current-year">2026</span> Filipe Velasco Duarte Delfino —
+          <span data-en="Multimedia Producer">Produtor Multimídia</span>
+        </p>
+        <nav class="footer__links" aria-label="Links rápidos">
+          <a class="footer__link" href="https://linkedin.com/in/filipevelascoduarte" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="footer__link" href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer">Behance</a>
+          <a class="footer__link" href={`${depth}projetos.html`} data-en="Projects">Projetos</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+) : (
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__logo">
+        <span>FD</span> Filipe Duarte
+      </div>
+      <p class="footer__copy">
+        © <span id="current-year">2026</span> Filipe Velasco Duarte Delfino —
+        <span data-en="Multimedia Producer">Produtor Multimídia</span>
+      </p>
+      <nav class="footer__links" aria-label="Links rápidos do footer">
+        <a class="footer__link" href="https://linkedin.com/in/filipevelascoduarte" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a class="footer__link" href="https://behance.net/filipevelascoduarte" target="_blank" rel="noopener noreferrer">Behance</a>
+        <a class="footer__link" href="mailto:filipe.velascoduarte@gmail.com">E-mail</a>
+      </nav>
+    </div>
+  </footer>
+)}

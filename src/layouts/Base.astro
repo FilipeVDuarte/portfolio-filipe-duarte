@@ -1,0 +1,124 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogType?: string;
+  bodyClass?: string;
+  schemaLD?: object[];
+  preloadHeroImage?: {
+    href: string;
+    srcset: string;
+    sizes: string;
+  };
+  currentPage?: 'projetos' | 'sobre';
+  withContactFooter?: boolean;
+  depth?: '' | '../';
+  extraPreloads?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogTitle,
+  ogDescription,
+  ogImage = '/img/og-image.jpg',
+  ogType = 'website',
+  bodyClass,
+  schemaLD = [],
+  preloadHeroImage,
+  currentPage,
+  withContactFooter = false,
+  depth = '',
+  extraPreloads = false,
+} = Astro.props;
+
+const resolvedOgTitle = ogTitle ?? title;
+const resolvedOgDesc = ogDescription ?? description;
+const baseUrl = 'https://filipeduarte.netlify.app';
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href={`${depth}icon.svg`} />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="author" content="Filipe Velasco Duarte Delfino" />
+  {depth === '' && <meta name="google-site-verification" content="joT3-OIPpRp_BHffpqv5fPW8VIDPSvO6zbj08doNDZA" />}
+
+  <link rel="canonical" href={`${baseUrl}${canonical}`} />
+
+  <meta property="og:title" content={resolvedOgTitle} />
+  <meta property="og:description" content={resolvedOgDesc} />
+  <meta property="og:type" content={ogType} />
+  <meta property="og:url" content={`${baseUrl}${canonical}`} />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:image" content={`${baseUrl}${ogImage}`} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={resolvedOgTitle} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={resolvedOgTitle} />
+  <meta name="twitter:description" content={resolvedOgDesc} />
+  <meta name="twitter:image" content={`${baseUrl}${ogImage}`} />
+  <meta name="twitter:image:alt" content={resolvedOgTitle} />
+
+  <title>{title}</title>
+
+  <link rel="preload" as="font" href={`${depth}assets/fonts/syne.woff2`} type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href={`${depth}assets/fonts/spacemono-400.woff2`} type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href={`${depth}assets/fonts/spacemono-700.woff2`} type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href={`${depth}assets/fonts/inter.woff2`} type="font/woff2" crossorigin />
+
+  {preloadHeroImage && (
+    <link rel="preload" as="image"
+          href={preloadHeroImage.href}
+          imagesrcset={preloadHeroImage.srcset}
+          imagesizes={preloadHeroImage.sizes}
+          type="image/webp" fetchpriority="high" />
+  )}
+
+  {extraPreloads && (
+    <>
+      <link rel="preload" as="image" href={`${depth}assets/FD - Wordmark.svg`} type="image/svg+xml" />
+      <link rel="preload" as="script" href={`${depth}js/lottie.min.js`} />
+      <link rel="preload" as="fetch" href={`${depth}assets/Anima_hero.json`} crossorigin />
+    </>
+  )}
+
+  <link rel="stylesheet" href={`${depth}css/style.min.css`} />
+
+  {schemaLD.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+
+  <slot name="head-extra" />
+</head>
+
+<body class={bodyClass}>
+
+  <Nav currentPage={currentPage} depth={depth} />
+
+  <main>
+    <slot />
+  </main>
+
+  <Footer withContact={withContactFooter} depth={depth} />
+
+  <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+
+  <script defer src={`${depth}js/main.js`}></script>
+
+</body>
+</html>
