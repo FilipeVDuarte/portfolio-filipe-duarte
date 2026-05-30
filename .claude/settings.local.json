@@ -58,7 +58,8 @@
       "Bash(cp -r brand public/brand)",
       "Bash(npx astro *)",
       "Bash(mkdir -p \"C:/Users/MARKETING/.claude/projects/C--Users-MARKETING-portfolio-filipe-duarte/memory\")",
-      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\" -Depth 0 | Where-Object { $_.Name -notmatch \"node_modules|\\\\.git|dist|src\" } | Select-Object Name, Attributes)"
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\" -Depth 0 | Where-Object { $_.Name -notmatch \"node_modules|\\\\.git|dist|src\" } | Select-Object Name, Attributes)",
+      "Bash(git push *)"
     ]
   }
 }
