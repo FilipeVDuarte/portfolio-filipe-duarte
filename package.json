@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build:css": "npx lightningcss --minify --targets \">= 0.5%\" public/css/style.css -o public/css/style.min.css",
+    "build:css": "cleancss -o public/css/style.min.css public/css/style.css",
     "build": "npm run build:css && astro build",
     "preview": "astro preview"
   },
   "devDependencies": {
-    "lightningcss-cli": "^1.29.2"
+    "clean-css-cli": "^5.6.3"
   },
   "dependencies": {
     "astro": "^6.4.2"
