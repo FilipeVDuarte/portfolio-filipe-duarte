@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build:css": "lightningcss --minify --targets \">= 0.5%\" public/css/style.css -o public/css/style.min.css",
+    "build:css": "npx lightningcss --minify --targets \">= 0.5%\" public/css/style.css -o public/css/style.min.css",
     "build": "npm run build:css && astro build",
     "preview": "astro preview"
   },
