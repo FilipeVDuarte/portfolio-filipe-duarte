@@ -51,7 +51,7 @@ import Base from '../layouts/Base.astro';
         <button class="filter-btn" data-filter="audiovisual" aria-pressed="false">Audiovisual</button>
         <button class="filter-btn" data-filter="fotografia" aria-pressed="false"
           data-en="Photography">Fotografia</button>
-        <span class="filter-bar__count" aria-live="polite" aria-atomic="true" id="filter-count">11 projetos</span>
+        <span class="filter-bar__count" aria-live="polite" aria-atomic="true" id="filter-count">12 projetos</span>
       </div>
 
       <!-- GRID -->
@@ -198,6 +198,36 @@ import Base from '../layouts/Base.astro';
             </div>
             <div class="proj-card__actions">
               <a href="projetos/mobi_3d.html" class="btn btn--primary">Ver projeto ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Animações Cavalry -->
+        <article class="proj-card" data-cat="audiovisual" data-reveal aria-labelledby="proj-cavalry">
+          <a href="projetos/animas_cavalry.html" class="proj-card__thumb" aria-label="Ver Animações Cavalry">
+            <div style="position:absolute;inset:0;background:#0a0a0a;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:var(--space-5);">
+              <span style="font-family:var(--font-mono);font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,.35);">Motion · Generativo</span>
+              <p style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.04em;color:#fff;line-height:1.05;">Animações<br>Cavalry.</p>
+            </div>
+            <video class="proj-card__hover" muted loop playsinline aria-hidden="true">
+              <source src="projetos/animas_cavalry/01_Wavy Lines.webm" type="video/webm" />
+            </video>
+          </a>
+          <div class="proj-card__body">
+            <div class="proj-card__header">
+              <h3 class="proj-card__title" id="proj-cavalry">Animações Cavalry</h3>
+              <span class="tag">Audi<br>visu</span>
+            </div>
+            <p class="proj-card__desc">
+              19 experimentos em motion design procedural — ruído, física, shaders, morfologia e efeitos generativos criados no Cavalry.
+            </p>
+            <div class="projeto__tech">
+              <span class="tech-tag">Cavalry</span>
+              <span class="tech-tag">Motion Design</span>
+              <span class="tech-tag">Generativo</span>
+            </div>
+            <div class="proj-card__actions">
+              <a href="projetos/animas_cavalry.html" class="btn btn--primary">Ver galeria ↗</a>
             </div>
           </div>
         </article>

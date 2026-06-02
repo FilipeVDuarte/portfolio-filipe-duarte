@@ -59,7 +59,17 @@
       "Bash(npx astro *)",
       "Bash(mkdir -p \"C:/Users/MARKETING/.claude/projects/C--Users-MARKETING-portfolio-filipe-duarte/memory\")",
       "PowerShell(Get-ChildItem \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\" -Depth 0 | Where-Object { $_.Name -notmatch \"node_modules|\\\\.git|dist|src\" } | Select-Object Name, Attributes)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('scripts',{}\\), indent=2\\)\\)\")",
+      "Bash(Expand-Archive -Path \"C:\\\\Users\\\\MARKETING\\\\Downloads\\\\pagina Letterboxd-handoff.zip\" -DestinationPath \"C:\\\\Users\\\\MARKETING\\\\Downloads\\\\pagina_letterboxd_handoff\" -Force)",
+      "Bash(Get-ChildItem -Recurse \"C:\\\\Users\\\\MARKETING\\\\Downloads\\\\pagina_letterboxd_handoff\")",
+      "Bash(Select-Object FullName)",
+      "Bash(unzip -l \"/mnt/c/Users/MARKETING/Downloads/pagina Letterboxd-handoff.zip\")",
+      "Bash(python3 -c \"import zipfile; z=zipfile.ZipFile\\('/mnt/c/Users/MARKETING/Downloads/pagina Letterboxd-handoff.zip'\\); [print\\(f.filename\\) for f in z.infolist\\(\\)]\")",
+      "WebFetch(domain:letterboxd.com)",
+      "Bash(curl -s -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://letterboxd.com/pipo_criticas/rss/\")",
+      "Bash(curl -s -A \"Mozilla/5.0\" \"https://letterboxd.com/pipo_criticas/rss/\")",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\" -Recurse -Directory)"
     ]
   }
 }

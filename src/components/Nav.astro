@@ -16,6 +16,8 @@ const { currentPage, depth = '' } = Astro.props;
       <a class="nav__link" href={`${depth}projetos.html`}
          aria-current={currentPage === 'projetos' ? 'page' : undefined}
          data-en="Projects">Projetos</a>
+      <a class="nav__link" href={`${depth}criticas.html`}
+         data-en="Repertoire">Repertório</a>
       <a class="nav__link" href={`${depth}sobre.html`}
          aria-current={currentPage === 'sobre' ? 'page' : undefined}
          data-en="About">Sobre</a>
@@ -36,6 +38,8 @@ const { currentPage, depth = '' } = Astro.props;
     <a class="nav__link" href={`${depth}projetos.html`}
        aria-current={currentPage === 'projetos' ? 'page' : undefined}
        data-en="Projects">Projetos</a>
+    <a class="nav__link" href={`${depth}criticas.html`}
+       data-en="Repertoire">Repertório</a>
     <a class="nav__link" href={`${depth}sobre.html`}
        aria-current={currentPage === 'sobre' ? 'page' : undefined}
        data-en="About">Sobre</a>

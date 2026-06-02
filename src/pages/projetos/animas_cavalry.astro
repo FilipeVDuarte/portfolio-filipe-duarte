@@ -1,0 +1,118 @@
+---
+import { readdirSync } from 'fs';
+import { join } from 'path';
+import CaseStudy from '../../layouts/CaseStudy.astro';
+
+const videosDir = join(process.cwd(), 'public/projetos/animas_cavalry');
+const videos = readdirSync(videosDir)
+  .filter(f => f.endsWith('.webm'))
+  .sort()
+  .map(filename => ({
+    src: `/projetos/animas_cavalry/${filename}`,
+    name: filename.replace(/^\d+_/, '').replace(/\.webm$/, ''),
+  }));
+---
+
+<CaseStudy
+  caseTitle="Animações · Cavalry"
+  caseDesc="Experimentos em motion design criados no Cavalry — exploração de sistemas procedurais, física, ruído e efeitos generativos."
+  casePath="/projetos/animas_cavalry.html"
+>
+
+  <!-- BREADCRUMB -->
+  <div class="case-breadcrumb">
+    <div class="container case-breadcrumb__inner">
+      <a class="case-breadcrumb__link" href="../projetos.html" data-en="← Projects">← Projetos</a>
+      <span class="case-breadcrumb__sep">·</span>
+      <span class="case-breadcrumb__current" data-en="Case">Case</span>
+    </div>
+  </div>
+
+  <!-- CASE HEADER -->
+  <section class="case-header" aria-labelledby="case-title">
+    <div class="container">
+      <p class="case-header__eyebrow" data-en="Case · Motion Design · Personal">
+        Case · Motion Design · Pessoal
+      </p>
+      <h1 class="case-header__title" id="case-title">
+        Animações<br />Cavalry.
+      </h1>
+      <div class="case-header__meta">
+        <span class="case-header__date" data-en="2025 – 2026">2025 – 2026</span>
+        <div class="case-header__tags">
+          <span class="tech-tag">Cavalry</span>
+          <span class="tech-tag">Motion Design</span>
+          <span class="tech-tag">Generativo</span>
+          <span class="tech-tag">Procedural</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXTO -->
+  <section class="case-section" aria-labelledby="ctx-title">
+    <div class="container">
+      <div class="case-section__header">
+        <p class="section-label" id="ctx-title" data-en="01 — Context">01 — Contexto</p>
+        <span class="case-section__note" data-en="experiments · systems · motion">experimentos · sistemas · movimento</span>
+      </div>
+      <div class="case-grid-2" data-reveal>
+        <div>
+          <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-6);">
+            O <strong style="color: var(--color-ink);">Cavalry</strong> é uma ferramenta de motion design procedural que permite criar animações através de sistemas de nós — sem keyframes manuais. Cada animação aqui é um experimento isolado explorando uma ideia diferente: ruído, física, shaders, morfologia, partículas.
+          </p>
+          <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted);">
+            A série tem foco em aprendizado e exploração. Cada arquivo é uma pergunta: <em>o que acontece se eu combinar esse operador com esse outro?</em> Passe o mouse sobre qualquer animação para ver ela em loop.
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: var(--space-5);">
+          <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+            <p class="section-label" style="margin-bottom: var(--space-2);">Ferramenta</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+              Cavalry — motion design baseado em sistemas de nós procedurais. Lógica de programação visual aplicada à animação.
+            </p>
+          </div>
+          <div style="border: var(--border-thick); background: var(--color-yellow); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+            <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);">{videos.length} Experimentos</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);">
+              Cada animação explora um sistema ou efeito diferente — de osciladores e ondas até morphing de texto e shaders generativos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section class="case-section" aria-labelledby="galeria-title" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="case-section__header">
+        <p class="section-label" id="galeria-title" data-en="02 — Gallery">02 — Galeria</p>
+        <span class="case-section__note" data-en="hover to play · loop">hover para reproduzir · loop</span>
+      </div>
+
+      <div class="video-gallery-grid" data-reveal>
+        {videos.map(({ src, name }) => (
+          <div class="video-gallery-card">
+            <div class="video-gallery-card__frame js-video-frame">
+              <video src={src} muted loop playsinline preload="none" />
+            </div>
+            <span class="video-gallery-card__name">{name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</CaseStudy>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.js-video-frame').forEach(frame => {
+    const video = frame.querySelector('video') as HTMLVideoElement;
+    frame.addEventListener('mouseenter', () => video.play());
+    frame.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+    frame.addEventListener('click', () => {
+      if (video.paused) { video.play(); } else { video.pause(); video.currentTime = 0; }
+    });
+  });
+</script>

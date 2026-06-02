@@ -1,0 +1,915 @@
+---
+import Base from '../layouts/Base.astro';
+
+// ── RSS fetch (build-time) ────────────────────────────────────────────────
+const RSS_URL = 'https://letterboxd.com/pipo_criticas/rss/';
+
+interface Film {
+  guid:       string;
+  filmTitle:  string;
+  filmYear:   string;
+  rating:     number;
+  watched:    string;   // YYYY-MM-DD
+  month:      string;   // YYYY-MM
+  rewatch:    boolean;
+  like:       boolean;
+  link:       string;
+  poster:     string;
+  reviewHtml: string;   // cleaned CDATA (poster img + spoiler notice stripped)
+  hasSpoiler: boolean;
+}
+
+function decodeHtml(s: string): string {
+  return s
+    .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&apos;/g, "'");
+}
+
+function starsHTML(r: number): string {
+  const full = Math.floor(r);
+  const half = (r - full) >= 0.5;
+  const off  = 5 - full - (half ? 1 : 0);
+  let s = '★'.repeat(full);
+  if (half) s += '<span class="cd-stars-half">½</span>';
+  if (off > 0) s += `<span class="cd-stars-off">${'★'.repeat(off)}</span>`;
+  return `<span class="cd-stars">${s}</span>`;
+}
+
+function fmtRating(r: number): string {
+  return r.toFixed(1).replace('.', ',').replace(',0', '');
+}
+
+let allFilms: Film[] = [];
+
+try {
+  const res = await fetch(RSS_URL, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+  const xml = await res.text();
+
+  const itemRe = /<item>([\s\S]*?)<\/item>/g;
+  let m: RegExpExecArray | null;
+  while ((m = itemRe.exec(xml)) !== null) {
+    const it = m[1];
+    const lbx = (tag: string) =>
+      it.match(new RegExp(`<letterboxd:${tag}>([\\s\\S]*?)<\\/letterboxd:${tag}>`))?.[1]?.trim() ?? '';
+
+    const watched = lbx('watchedDate');
+    if (!watched) continue;
+
+    const cdata     = it.match(/<!\[CDATA\[([\s\S]*?)\]\]>/)?.[1] ?? '';
+    const poster    = cdata.match(/src="(https:\/\/a\.ltrbxd\.com[^"]+)"/)?.[1] ?? '';
+    const hasSpoiler = cdata.includes('This review may contain spoilers');
+
+    const reviewHtml = cdata
+      .replace(/<p>\s*<img[^>]*>\s*<\/p>/g, '')
+      .replace(/<p>\s*<em>This review may contain spoilers\.<\/em>\s*<\/p>/g, '')
+      .trim();
+
+    const rStr  = lbx('memberRating');
+    const link  = it.match(/<link>(https:\/\/letterboxd\.com[^<]+)<\/link>/)?.[1] ?? '';
+    const guid  = it.match(/<guid[^>]*>([^<]+)<\/guid>/)?.[1]?.trim() ?? '';
+
+    allFilms.push({
+      guid,
+      filmTitle:  decodeHtml(lbx('filmTitle')),
+      filmYear:   lbx('filmYear'),
+      rating:     rStr ? parseFloat(rStr) : 0,
+      watched,
+      month:      watched.slice(0, 7),
+      rewatch:    lbx('rewatch') === 'Yes',
+      like:       lbx('memberLike') === 'Yes',
+      link,
+      poster,
+      reviewHtml,
+      hasSpoiler,
+    });
+  }
+} catch (_) { /* fallback: empty list, shows placeholder UI */ }
+
+// newest-first
+allFilms.sort((a, b) => b.watched.localeCompare(a.watched));
+
+// ── Statistics ────────────────────────────────────────────────────────────
+const rated    = allFilms.filter(f => f.rating > 0);
+const avgGlobal = rated.length
+  ? (rated.reduce((s, f) => s + f.rating, 0) / rated.length).toFixed(1).replace('.', ',')
+  : '—';
+
+// ── Destaques (≥ 4.5 ★) ──────────────────────────────────────────────────
+const destaques = allFilms
+  .filter(f => f.rating >= 4.5)
+  .sort((a, b) => b.rating - a.rating || b.watched.localeCompare(a.watched));
+
+// ── Monthly groups ────────────────────────────────────────────────────────
+const MONTHS_PT: Record<string, string> = {
+  '01':'Janeiro','02':'Fevereiro','03':'Março','04':'Abril',
+  '05':'Maio','06':'Junho','07':'Julho','08':'Agosto',
+  '09':'Setembro','10':'Outubro','11':'Novembro','12':'Dezembro',
+};
+
+function monthLabel(ym: string): string {
+  const [yr, mo] = ym.split('-');
+  return `${MONTHS_PT[mo] ?? mo} / ${yr.slice(2)}`;
+}
+
+function detectMarathon(films: Film[]): string | null {
+  if (films.length < 5) return null;
+  const watchYear = films[0]?.watched.slice(0, 4) ?? '';
+  const cnt: Record<string, number> = {};
+  for (const f of films) { if (f.filmYear) cnt[f.filmYear] = (cnt[f.filmYear] ?? 0) + 1; }
+  for (const [yr, n] of Object.entries(cnt)) {
+    if (yr !== watchYear && n >= films.length * 0.7) return yr;
+  }
+  return null;
+}
+
+interface MonthGroup {
+  ym:        string;
+  label:     string;
+  films:     Film[];
+  marathon:  string | null;  // marathon year, e.g. '2002'
+  avgRating: string;
+}
+
+const months: MonthGroup[] = Array.from(
+  allFilms.reduce((map, f) => {
+    if (!map.has(f.month)) map.set(f.month, []);
+    map.get(f.month)!.push(f);
+    return map;
+  }, new Map<string, Film[]>())
+)
+  .sort(([a], [b]) => b.localeCompare(a))
+  .map(([ym, films]) => {
+    const r  = films.filter(f => f.rating > 0);
+    const avg = r.length
+      ? (r.reduce((s, f) => s + f.rating, 0) / r.length).toFixed(1).replace('.', ',')
+      : '—';
+    return { ym, label: monthLabel(ym), films, marathon: detectMarathon(films), avgRating: avg };
+  });
+
+// ── Review payload for modal (embedded JSON) ──────────────────────────────
+type ReviewPayload = {
+  title: string; year: string; month: string; rating: number;
+  reviewHtml: string; poster: string; link: string;
+  rewatch: boolean; hasSpoiler: boolean;
+};
+const reviewData: Record<string, ReviewPayload> = {};
+for (const f of allFilms) {
+  if (f.guid) reviewData[f.guid] = {
+    title: f.filmTitle, year: f.filmYear, month: monthLabel(f.month),
+    rating: f.rating, reviewHtml: f.reviewHtml, poster: f.poster,
+    link: f.link, rewatch: f.rewatch, hasSpoiler: f.hasSpoiler,
+  };
+}
+
+const totalMaratonas = months.filter(m => m.marathon).length;
+---
+
+<Base
+  title="Diário de Cinema — Filipe Duarte"
+  description="Críticas e análises de cinema importadas do Letterboxd. Diário cinematográfico de Filipe Duarte."
+  canonical="/criticas.html"
+  withContactFooter={false}
+>
+
+<div class="cd-page">
+
+  <!-- SUB-NAV -->
+  <div class="cd-subnav">
+    <div class="cd-subnav__inner">
+      <div class="cd-subnav__brand">
+        <span class="cd-badge">FD</span>
+        <span>Diário de Cinema</span>
+        <span class="cd-lofi">· Letterboxd</span>
+      </div>
+      <nav class="cd-subnav__nav" aria-label="Seções da página">
+        <a href="#destaques">Destaques</a>
+        <a href="#listagem">Por mês</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="cd-wrap">
+
+    <!-- PAGE HEAD -->
+    <div class="cd-pagehead">
+      <div class="cd-eyebrow">Diário de Cinema · desde Jan / 2026</div>
+      <h1 class="cd-hero">DIÁRIO DE<br /><span class="cd-stroke">CINEMA</span></h1>
+      <p class="cd-lead">
+        Minhas críticas e análises importadas do Letterboxd. Os <b>destaques</b> abrem a
+        leitura; o restante é organizado <b>cronologicamente por mês</b>, em grid imersivo
+        de pôsteres.
+      </p>
+      <div class="cd-summary">
+        <div class="cd-stat">
+          <div class="cd-stat__v">{allFilms.length}</div>
+          <div class="cd-stat__l">Filmes registrados</div>
+        </div>
+        <div class="cd-stat">
+          <div class="cd-stat__v"><span class="cd-pink">★</span> {avgGlobal}</div>
+          <div class="cd-stat__l">Nota média</div>
+        </div>
+        <div class="cd-stat">
+          <div class="cd-stat__v">{months.length}</div>
+          <div class="cd-stat__l">Meses registrados</div>
+        </div>
+        <div class="cd-stat">
+          <div class="cd-stat__v">{totalMaratonas}</div>
+          <div class="cd-stat__l">{totalMaratonas === 1 ? 'Maratona' : 'Maratonas'} concluída{totalMaratonas !== 1 ? 's' : ''}</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+         SECTION 01 — DESTAQUES
+         ════════════════════════════════════════════════════════ -->
+    <div id="destaques"></div>
+    <div class="cd-section-label">
+      <span class="cd-sl-ix">01</span>
+      <h2 class="cd-sl-h2">Destaques · Top Rated</h2>
+      <span class="cd-sl-rule"></span>
+      <span class="cd-sl-aside">★ 4,5 e acima · leitura aberta</span>
+    </div>
+
+    {destaques.length === 0 && (
+      <p class="cd-meta" style="margin:var(--space-8) 0; color:var(--color-muted)">
+        Nenhum destaque ainda — filmes com ★ 4,5+ aparecerão aqui.
+      </p>
+    )}
+
+    <div class="cd-featured-stack">
+      {destaques.map((f, i) => (
+        <article class="cd-featured"
+          data-guid={f.guid}
+        >
+          <span class="cd-flag">★ Top rated · estado in-line</span>
+          <span class="cd-rank">{i + 1}</span>
+
+          <!-- Poster -->
+          {f.poster
+            ? <img class="cd-poster-real" src={f.poster} alt={`Pôster de ${f.filmTitle}`} width="240" height="360" loading="lazy" />
+            : <div class="cd-poster" aria-label="Pôster"></div>
+          }
+
+          <div class="cd-featured__body">
+            <div class="cd-head-row">
+              <span class="cd-titleline cd-titleline--lg">{f.filmTitle}</span>
+              <span class="cd-meta">{f.filmYear}</span>
+              <span set:html={starsHTML(f.rating)} />
+              <span class="cd-meta">{fmtRating(f.rating)}</span>
+            </div>
+
+            {f.hasSpoiler && (
+              <span class="cd-spoiler-badge">Contém spoilers</span>
+            )}
+
+            <div class="cd-review-body cd-review-body--clamped" set:html={f.reviewHtml || '<p class="cd-no-review">Sem crítica escrita.</p>'} />
+            <button class="cd-read-more-btn" data-guid={f.guid}>
+              Ler análise completa →
+            </button>
+
+            <div class="cd-tagrow" style="margin-top:var(--space-6)">
+              {f.rewatch && <span class="cd-chip cd-chip--on">Rewatch</span>}
+              {f.like    && <span class="cd-chip cd-chip--like">♥ Like</span>}
+              <span class="cd-chip">{f.filmYear}</span>
+              <a class="cd-chip cd-chip--link" href={f.link} target="_blank" rel="noopener noreferrer">
+                Ver no Letterboxd ↗
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+         SECTION 02 — LISTAGEM POR MÊS
+         ════════════════════════════════════════════════════════ -->
+    <div id="listagem"></div>
+    <div class="cd-section-label">
+      <span class="cd-sl-ix">02</span>
+      <h2 class="cd-sl-h2">Listagem por Mês</h2>
+      <span class="cd-sl-rule"></span>
+      <span class="cd-sl-aside">Grid imersivo · 4 colunas · 2:3</span>
+    </div>
+
+    {months.map((m) => {
+      // For marathon months: sort films by watched asc (chronological) and add seq
+      const marathonFilms = m.marathon
+        ? [...m.films].sort((a, b) => a.watched.localeCompare(b.watched))
+        : m.films;
+
+      return (
+        <section class="cd-month">
+          <div class="cd-month__head">
+            <div class="cd-month__m">
+              <h3>{m.label}</h3>
+              <span class="cd-month__sub">
+                {m.marathon
+                  ? `Maratona · filmes de ${m.marathon}`
+                  : 'Lançamentos & catálogo'}
+              </span>
+            </div>
+            {m.marathon && (
+              <span class="cd-badge-marathon">
+                Desafio: filmes de {m.marathon}
+              </span>
+            )}
+            <div class="cd-month__agg">
+              <div class="cd-stat">
+                <div class="cd-stat__v">{m.films.length}</div>
+                <div class="cd-stat__l">Filmes</div>
+              </div>
+              <div class="cd-stat">
+                <div class="cd-stat__v">★ {m.avgRating}</div>
+                <div class="cd-stat__l">Média</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cd-mgrid">
+            {marathonFilms.map((f, idx) => (
+              <div class="cd-gcard"
+                data-guid={f.guid}
+                role="button"
+                tabindex="0"
+                aria-label={`Ver crítica de ${f.filmTitle}`}
+              >
+                {m.marathon && (
+                  <span class="cd-seq">{String(idx + 1).padStart(2, '0')}</span>
+                )}
+
+                <!-- Poster -->
+                <div class="cd-gcard__poster-wrap">
+                  {f.poster
+                    ? <img class="cd-gcard__img" src={f.poster}
+                        alt={`Pôster de ${f.filmTitle}`} width="300" height="450" loading="lazy" />
+                    : <div class="cd-poster cd-poster--sm"></div>
+                  }
+                  <div class="cd-overlay" aria-hidden="true">
+                    <span set:html={starsHTML(f.rating)} />
+                    <span class="cd-cue">Ler crítica →</span>
+                  </div>
+                </div>
+
+                <div class="cd-gcap">
+                  <span class="cd-titleline">{f.filmTitle}</span>
+                  <span class="cd-meta">{f.filmYear} · {fmtRating(f.rating)} ★</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+
+    <div class="cd-foot">
+      <span class="cd-meta">
+        Diário de Cinema · Filipe Duarte ·
+        <a href="https://letterboxd.com/pipo_criticas/" target="_blank" rel="noopener noreferrer"
+           style="color:inherit; text-decoration:underline">letterboxd.com/pipo_criticas</a>
+      </span>
+    </div>
+  </div><!-- .cd-wrap -->
+</div><!-- .cd-page -->
+
+<!-- ══════════════════════════════════════════════════════════
+     MODAL
+     ══════════════════════════════════════════════════════════ -->
+<div class="cd-modal-back" id="cdModalBack" role="presentation">
+  <div class="cd-modal" id="cdModal" role="dialog" aria-modal="true" aria-labelledby="cdMdTitle">
+    <div class="cd-modal__bar">
+      <span id="cdMdMonth" class="cd-modal__bar-label">Crítica</span>
+      <button class="cd-modal__close" id="cdModalClose" aria-label="Fechar modal">✕</button>
+    </div>
+    <div class="cd-modal__in">
+      <div class="cd-modal__top">
+        <img class="cd-modal__poster" id="cdMdPoster" src="" alt="" width="150" height="225" />
+        <div>
+          <div class="cd-titleline cd-titleline--xl" id="cdMdTitle">—</div>
+          <div class="cd-meta" id="cdMdYear" style="margin-top:var(--space-2)">—</div>
+          <div id="cdMdStars" style="margin-top:var(--space-3); font-size:1.2em"></div>
+          <div id="cdMdBadges" style="margin-top:var(--space-3); display:flex; gap:var(--space-2); flex-wrap:wrap;"></div>
+        </div>
+      </div>
+      <div id="cdMdSpoiler" class="cd-spoiler-notice" style="display:none">
+        ⚠ Esta crítica pode conter spoilers.
+      </div>
+      <div class="cd-modal__review" id="cdMdReview"></div>
+      <div class="cd-modal__cta">
+        <span class="cd-modal__note">Abre a publicação original no Letterboxd</span>
+        <a class="cd-btn-lb" id="cdMdLink" href="#" target="_blank" rel="noopener noreferrer">
+          <span class="cd-btn-lb__dots"><i></i><i></i><i></i></span>
+          Ver no Letterboxd ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Review payload (build-time JSON, no runtime fetch needed) -->
+<script type="application/json" id="cdReviewData" set:html={JSON.stringify(reviewData)} />
+
+</Base>
+
+<!-- ══════════════════════════════════════════════════════════
+     STYLES
+     ══════════════════════════════════════════════════════════ -->
+<style is:global>
+  /* ── Local tokens ─────────────────────────────────────────────────────── */
+  .cd-page {
+    --cd-hatch: color-mix(in srgb, var(--color-ink) 9%, transparent);
+    --cd-placeholder: color-mix(in srgb, var(--color-ink) 7%, var(--color-bg));
+    --cd-sk: color-mix(in srgb, var(--color-ink) 13%, var(--color-bg));
+  }
+
+  /* ── Sub-nav ──────────────────────────────────────────────────────────── */
+  .cd-subnav {
+    position: sticky; top: 60px; z-index: 40;
+    background: var(--color-ink); color: var(--color-bg);
+    border-bottom: 3px solid var(--color-ink);
+  }
+  .cd-subnav__inner {
+    max-width: 1280px; margin: 0 auto;
+    padding: var(--space-3) var(--space-5);
+    display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap;
+  }
+  .cd-subnav__brand {
+    display: flex; align-items: center; gap: var(--space-3);
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(0.75rem,1.5vw,.875rem); letter-spacing: .08em;
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .cd-badge {
+    background: var(--color-yellow); color: var(--color-ink);
+    padding: 2px var(--space-2); border: 2px solid var(--color-ink);
+    font-family: var(--font-mono); font-weight: 700;
+  }
+  .cd-lofi { color: var(--color-yellow); }
+
+  .cd-subnav__nav { display: flex; margin: 0 auto; }
+  .cd-subnav__nav a {
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .06em;
+    text-transform: uppercase; color: var(--color-bg); text-decoration: none;
+    padding: var(--space-2) var(--space-3); border-bottom: 2px solid transparent;
+    transition: 120ms ease;
+  }
+  .cd-subnav__nav a:hover { color: var(--color-yellow); border-color: var(--color-yellow); }
+
+  /* ── Wrap ─────────────────────────────────────────────────────────────── */
+  .cd-wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--space-5); }
+
+  /* ── Page head ────────────────────────────────────────────────────────── */
+  .cd-pagehead {
+    padding: var(--space-16) 0 var(--space-12);
+    border-bottom: 3px solid var(--color-ink);
+  }
+  .cd-eyebrow {
+    display: flex; align-items: center; gap: var(--space-3);
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .12em;
+    text-transform: uppercase; color: var(--color-muted); margin-bottom: var(--space-5);
+  }
+  .cd-eyebrow::before { content:""; width:48px; height:2px; background:var(--color-ink); flex-shrink:0; }
+  .cd-hero {
+    font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+    letter-spacing: -.04em; line-height: .92; margin: 0;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+  }
+  .cd-stroke { -webkit-text-stroke: 2.5px var(--color-ink); color: transparent; }
+  .cd-lead {
+    max-width: 60ch; margin: var(--space-5) 0 0;
+    font-size: clamp(1rem,2vw,1.125rem); line-height: 1.7; color: var(--color-muted);
+  }
+  .cd-lead b { color: var(--color-ink); font-weight: 600; }
+  .cd-summary { display: flex; gap: var(--space-6); margin-top: var(--space-8); flex-wrap: wrap; }
+  .cd-stat__v {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(1.75rem,3.5vw,2.5rem); line-height: 1;
+  }
+  .cd-stat__l {
+    font-family: var(--font-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--color-muted); margin-top: 4px;
+  }
+  .cd-pink { color: var(--color-pink); }
+
+  /* ── Section label ────────────────────────────────────────────────────── */
+  .cd-section-label {
+    display: flex; align-items: center; gap: var(--space-4);
+    margin: var(--space-20) 0 var(--space-8);
+  }
+  .cd-sl-ix {
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .06em; color: var(--color-pink);
+  }
+  .cd-sl-h2 {
+    font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+    letter-spacing: -.02em; font-size: clamp(1.75rem,3.5vw,2.5rem); margin: 0; white-space: nowrap;
+  }
+  .cd-sl-rule { flex: 1; height: 2px; background: var(--color-ink); }
+  .cd-sl-aside {
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .06em;
+    text-transform: uppercase; color: var(--color-muted); white-space: nowrap;
+  }
+
+  /* ── Shared primitives ────────────────────────────────────────────────── */
+  .cd-poster {
+    position: relative; border: 3px solid var(--color-ink);
+    background:
+      repeating-linear-gradient(45deg, transparent 0 9px, var(--cd-hatch) 9px 10px),
+      var(--cd-placeholder);
+    aspect-ratio: 2/3; width: 100%;
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .cd-poster::after {
+    content: "PÔSTER"; font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .08em; color: var(--color-muted);
+    background: var(--color-bg); border: 2px solid var(--color-ink); padding: 2px var(--space-2);
+  }
+
+  .cd-stars { font-size: 1.05em; letter-spacing: .05em; color: var(--color-ink); white-space: nowrap; }
+  .cd-stars-off { color: color-mix(in srgb, var(--color-ink) 22%, var(--color-bg)); }
+  .cd-stars-half { font-family: var(--font-mono); font-weight: 700; font-size: .78em; margin-left: 1px; }
+
+  .cd-meta {
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .06em;
+    text-transform: uppercase; color: var(--color-muted);
+  }
+  .cd-titleline {
+    font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+    letter-spacing: -.02em; line-height: 1.0;
+  }
+  .cd-titleline--lg  { font-size: clamp(1.5rem,3vw,2.2rem); }
+  .cd-titleline--xl  { font-size: clamp(1.375rem,2.5vw,1.75rem); }
+
+  .cd-chip {
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .06em; text-transform: uppercase;
+    padding: var(--space-2) var(--space-3); border: 2px solid var(--color-ink);
+    background: var(--color-bg); color: var(--color-ink); text-decoration: none;
+    display: inline-flex; align-items: center; cursor: default;
+  }
+  .cd-chip--on   { background: var(--color-ink); color: var(--color-bg); }
+  .cd-chip--like { background: var(--color-pink); color: var(--color-bg); border-color: var(--color-pink); }
+  .cd-chip--link { cursor: pointer; }
+  .cd-chip--link:hover { background: var(--color-yellow); border-color: var(--color-ink); }
+
+  .cd-tagrow { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+  /* ── Spoiler badge ────────────────────────────────────────────────────── */
+  .cd-spoiler-badge {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .06em; text-transform: uppercase;
+    background: var(--color-pink); color: var(--color-bg);
+    border: 2px solid var(--color-ink); padding: 2px var(--space-3);
+    margin: var(--space-3) 0;
+  }
+  .cd-spoiler-notice {
+    background: color-mix(in srgb, var(--color-pink) 12%, var(--color-bg));
+    border: 2px solid var(--color-pink); padding: var(--space-3) var(--space-4);
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .04em; text-transform: uppercase;
+    color: var(--color-pink); margin: var(--space-4) 0;
+  }
+
+  /* ── Featured stack ───────────────────────────────────────────────────── */
+  .cd-featured-stack { display: flex; flex-direction: column; gap: var(--space-10); }
+
+  .cd-featured {
+    position: relative; display: grid; grid-template-columns: 240px 1fr; gap: var(--space-8);
+    border: 3px solid var(--color-ink); box-shadow: 8px 8px 0 var(--color-ink);
+    background: var(--color-bg); padding: var(--space-8);
+  }
+
+  .cd-flag {
+    position: absolute; top: calc(-1 * var(--space-3)); left: var(--space-6);
+    background: var(--color-yellow); border: 2px solid var(--color-ink);
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .06em; text-transform: uppercase;
+    padding: 2px var(--space-3);
+  }
+  .cd-rank {
+    position: absolute; top: calc(-1 * var(--space-4)); right: var(--space-6);
+    width: 40px; height: 40px; background: var(--color-pink); color: var(--color-bg);
+    border: 3px solid var(--color-ink); box-shadow: 3px 3px 0 var(--color-ink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(1.125rem,2.2vw,1.375rem);
+  }
+
+  .cd-poster-real {
+    width: 240px; height: 360px; object-fit: cover;
+    border: 3px solid var(--color-ink); flex-shrink: 0;
+  }
+
+  .cd-featured__body { display: flex; flex-direction: column; }
+  .cd-head-row {
+    display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap;
+    margin-bottom: var(--space-4);
+  }
+
+  /* Real review prose inside featured card */
+  .cd-review-body { max-width: 64ch; color: var(--color-ink); line-height: 1.7; margin-top: var(--space-2); }
+  .cd-review-body p { margin: 0 0 var(--space-4); font-size: clamp(1rem,2vw,1.125rem); }
+  .cd-review-body p:last-child { margin-bottom: 0; }
+  .cd-no-review { color: var(--color-muted); font-style: italic; }
+
+  /* 4-line clamp on featured card */
+  .cd-review-body--clamped {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* "Ler análise completa" CTA */
+  .cd-read-more-btn {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    margin-top: var(--space-4);
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(.875rem,1.8vw,1rem);
+    text-transform: uppercase; letter-spacing: -.01em;
+    background: transparent; color: var(--color-ink);
+    border: 2px solid var(--color-ink); padding: var(--space-2) var(--space-4);
+    cursor: pointer; transition: 120ms ease;
+    box-shadow: 3px 3px 0 var(--color-ink);
+  }
+  .cd-read-more-btn:hover {
+    background: var(--color-yellow);
+    transform: translate(-2px,-2px);
+    box-shadow: 5px 5px 0 var(--color-ink);
+  }
+
+  /* ── Month groups ─────────────────────────────────────────────────────── */
+  .cd-month { margin-bottom: var(--space-16); }
+  .cd-month__head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: var(--space-5); border-bottom: 3px solid var(--color-ink);
+    padding-bottom: var(--space-3); margin-bottom: var(--space-6); flex-wrap: wrap;
+  }
+  .cd-month__m { display: flex; align-items: baseline; gap: var(--space-4); }
+  .cd-month__m h3 {
+    font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+    letter-spacing: -.04em; font-size: clamp(1.6rem,4vw,2.6rem); margin: 0;
+  }
+  .cd-month__sub {
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .06em;
+    text-transform: uppercase; color: var(--color-pink);
+  }
+  .cd-month__agg { display: flex; gap: var(--space-5); }
+  .cd-month__agg .cd-stat__v { font-size: clamp(1.375rem,2.5vw,1.75rem); }
+  .cd-badge-marathon {
+    background: var(--color-ink); color: var(--color-bg);
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .06em; text-transform: uppercase;
+    padding: var(--space-2) var(--space-3); align-self: center;
+  }
+
+  /* ── Poster grid ──────────────────────────────────────────────────────── */
+  .cd-mgrid { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--space-5); }
+
+  .cd-gcard {
+    position: relative; border: 3px solid var(--color-ink); box-shadow: 3px 3px 0 var(--color-ink);
+    background: var(--color-bg); cursor: pointer;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+  }
+  .cd-gcard:hover  { transform: translate(-3px,-3px); box-shadow: 6px 6px 0 var(--color-ink); }
+  .cd-gcard:focus-visible { outline: 3px solid var(--color-yellow); outline-offset: 2px; }
+
+  .cd-seq {
+    position: absolute; top: -8px; left: -8px; z-index: 4;
+    width: 26px; height: 26px; background: var(--color-yellow); border: 2px solid var(--color-ink);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-weight: 700; font-size: 12px;
+    box-shadow: 2px 2px 0 var(--color-ink);
+  }
+
+  .cd-gcard__poster-wrap { position: relative; }
+  .cd-gcard__img {
+    display: block; width: 100%; aspect-ratio: 2/3; object-fit: cover;
+  }
+  .cd-poster--sm { border: none; }
+
+  .cd-gcap {
+    border-top: 2px solid var(--color-ink); padding: var(--space-3);
+    display: flex; flex-direction: column; gap: var(--space-2);
+  }
+  .cd-gcap .cd-titleline { font-size: clamp(.875rem,1.8vw,1rem); }
+
+  .cd-overlay {
+    position: absolute; inset: 0;
+    background: color-mix(in srgb, var(--color-ink) 90%, transparent);
+    color: var(--color-bg); opacity: 0; transition: opacity 220ms ease;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    gap: var(--space-2); padding: var(--space-4); pointer-events: none;
+  }
+  .cd-gcard:hover .cd-overlay { opacity: 1; }
+  .cd-overlay .cd-stars { color: var(--color-yellow); }
+  .cd-cue {
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .06em;
+    text-transform: uppercase; color: var(--color-yellow); margin-top: var(--space-1);
+  }
+
+  /* ── Modal ────────────────────────────────────────────────────────────── */
+  .cd-modal-back {
+    position: fixed; inset: 0;
+    background: color-mix(in srgb, var(--color-ink) 60%, transparent);
+    opacity: 0; pointer-events: none; transition: opacity 220ms ease;
+    z-index: 200; display: flex; align-items: center; justify-content: center;
+    padding: var(--space-6);
+  }
+  .cd-modal-back.is-open { opacity: 1; pointer-events: auto; }
+
+  .cd-modal {
+    width: min(720px,96vw); max-height: 92vh; overflow-y: auto;
+    background: var(--color-bg); border: 3px solid var(--color-ink);
+    box-shadow: 12px 12px 0 var(--color-ink);
+    transform: translateY(16px) scale(.98); transition: transform 220ms ease;
+  }
+  .cd-modal-back.is-open .cd-modal { transform: translateY(0) scale(1); }
+
+  .cd-modal__bar {
+    position: sticky; top: 0; z-index: 2;
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--color-ink); color: var(--color-bg);
+    padding: var(--space-3) var(--space-5);
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .08em; text-transform: uppercase;
+  }
+  .cd-modal__bar-label { flex: 1; }
+  .cd-modal__close {
+    background: var(--color-yellow); color: var(--color-ink); border: 2px solid var(--color-bg);
+    width: 28px; height: 28px; cursor: pointer; font-weight: 700; font-family: var(--font-mono);
+    display: flex; align-items: center; justify-content: center; transition: 120ms ease;
+  }
+  .cd-modal__close:hover { transform: scale(1.1); }
+
+  .cd-modal__in { padding: var(--space-8); }
+  .cd-modal__top { display: grid; grid-template-columns: 150px 1fr; gap: var(--space-6); align-items: start; margin-bottom: var(--space-6); }
+
+  .cd-modal__poster {
+    width: 150px; height: 225px; object-fit: cover;
+    border: 3px solid var(--color-ink); display: block;
+  }
+
+  /* Review prose inside modal */
+  .cd-modal__review { color: var(--color-ink); line-height: 1.7; margin-top: var(--space-4); }
+  .cd-modal__review p { margin: 0 0 var(--space-4); font-size: clamp(1rem,2vw,1.125rem); }
+  .cd-modal__review p:last-child { margin-bottom: 0; }
+
+  .cd-modal__cta {
+    margin-top: var(--space-8); padding-top: var(--space-6);
+    border-top: 2px dashed var(--color-muted);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: var(--space-4); flex-wrap: wrap;
+  }
+  .cd-modal__note {
+    font-family: var(--font-mono); font-weight: 700; font-size: 10px;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--color-muted); max-width: 28ch;
+  }
+
+  .cd-btn-lb {
+    display: inline-flex; align-items: center; gap: var(--space-3);
+    font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+    letter-spacing: -.02em; font-size: clamp(1rem,2vw,1.125rem);
+    border: 3px solid var(--color-ink); background: var(--color-ink); color: var(--color-bg);
+    padding: var(--space-3) var(--space-5); box-shadow: 3px 3px 0 var(--color-ink);
+    cursor: pointer; transition: 120ms ease; text-decoration: none;
+  }
+  .cd-btn-lb:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--color-yellow); }
+  .cd-btn-lb__dots { display: inline-flex; gap: 3px; align-items: center; }
+  .cd-btn-lb__dots i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .cd-btn-lb__dots i:nth-child(1) { background: var(--color-teal); }
+  .cd-btn-lb__dots i:nth-child(2) { background: var(--color-yellow); }
+  .cd-btn-lb__dots i:nth-child(3) { background: var(--color-pink); }
+
+  /* ── Footer ───────────────────────────────────────────────────────────── */
+  .cd-foot {
+    border-top: 3px solid var(--color-ink); margin-top: var(--space-8);
+    padding: var(--space-8) 0 var(--space-20); text-align: center;
+  }
+
+  /* ── Responsive ───────────────────────────────────────────────────────── */
+  @media (max-width: 980px) { .cd-mgrid { grid-template-columns: repeat(3,1fr); } }
+  @media (max-width: 720px) {
+    .cd-mgrid { grid-template-columns: repeat(2,1fr); }
+    .cd-featured { grid-template-columns: 1fr; }
+    .cd-poster-real { width: 100%; height: auto; }
+    .cd-modal__top { grid-template-columns: 110px 1fr; }
+    .cd-sl-aside { display: none; }
+  }
+  @media (max-width: 480px) {
+    .cd-mgrid { grid-template-columns: repeat(2,1fr); }
+    .cd-subnav__brand span:not(.cd-badge):not(.cd-lofi) { display: none; }
+  }
+</style>
+
+<script>
+  (function () {
+    // ── Review data from build-time JSON ──────────────────────────────────
+    type ReviewPayload = {
+      title: string; year: string; month: string; rating: number;
+      reviewHtml: string; poster: string; link: string;
+      rewatch: boolean; hasSpoiler: boolean;
+    };
+    let reviewData: Record<string, ReviewPayload> = {};
+    try {
+      const el = document.getElementById('cdReviewData');
+      if (el) reviewData = JSON.parse(el.textContent ?? '{}');
+    } catch (_) {}
+
+    // ── Stars helper ───────────────────────────────────────────────────────
+    function starsHTML(r: number): string {
+      const full = Math.floor(r);
+      const half = (r - full) >= 0.5;
+      const off  = 5 - full - (half ? 1 : 0);
+      let s = '★'.repeat(full);
+      if (half) s += '<span class="cd-stars-half">½</span>';
+      if (off > 0) s += `<span class="cd-stars-off">${'★'.repeat(off)}</span>`;
+      return `<span class="cd-stars">${s}</span>`;
+    }
+    function fmtRating(r: number): string {
+      return r.toFixed(1).replace('.', ',').replace(',0', '');
+    }
+
+    // ── Modal elements ─────────────────────────────────────────────────────
+    const back      = document.getElementById('cdModalBack')!;
+    const modal     = document.getElementById('cdModal')!;
+    const mdMonth   = document.getElementById('cdMdMonth')!;
+    const mdTitle   = document.getElementById('cdMdTitle')!;
+    const mdYear    = document.getElementById('cdMdYear')!;
+    const mdStars   = document.getElementById('cdMdStars')!;
+    const mdBadges  = document.getElementById('cdMdBadges')!;
+    const mdSpoiler = document.getElementById('cdMdSpoiler')!;
+    const mdReview  = document.getElementById('cdMdReview')!;
+    const mdPoster  = document.getElementById('cdMdPoster') as HTMLImageElement;
+    const mdLink    = document.getElementById('cdMdLink') as HTMLAnchorElement;
+
+    function openModal(guid: string) {
+      const d = reviewData[guid];
+      if (!d) return;
+
+      mdMonth.textContent  = d.month;
+      mdTitle.textContent  = d.title;
+      mdYear.textContent   = d.year;
+      mdStars.innerHTML    = starsHTML(d.rating);
+      mdPoster.src         = d.poster;
+      mdPoster.alt         = `Pôster de ${d.title}`;
+      mdLink.href          = d.link;
+      mdSpoiler.style.display = d.hasSpoiler ? 'block' : 'none';
+      mdReview.innerHTML   = d.reviewHtml || '<p style="color:var(--color-muted);font-style:italic">Sem crítica escrita.</p>';
+
+      // badges
+      const badges: string[] = [];
+      if (d.rewatch) badges.push('<span class="cd-chip cd-chip--on">Rewatch</span>');
+      badges.push(`<span class="cd-chip">${d.year}</span>`);
+      mdBadges.innerHTML = badges.join('');
+
+      back.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('cdModalClose')?.focus();
+    }
+
+    function closeModal() {
+      back.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Delegate clicks: grid cards
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+
+      // "Ler análise completa" button on featured cards
+      const readMoreBtn = target.closest<HTMLElement>('.cd-read-more-btn');
+      if (readMoreBtn?.dataset.guid) {
+        openModal(readMoreBtn.dataset.guid);
+        return;
+      }
+
+      // Grid poster cards
+      const gridCard = target.closest<HTMLElement>('.cd-gcard');
+      if (gridCard?.dataset.guid) openModal(gridCard.dataset.guid);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const target = e.target as HTMLElement;
+        const btn = target.closest<HTMLElement>('.cd-read-more-btn');
+        const card = target.closest<HTMLElement>('.cd-gcard');
+        const guid = btn?.dataset.guid ?? card?.dataset.guid;
+        if (guid) { e.preventDefault(); openModal(guid); }
+      }
+      if (e.key === 'Escape') closeModal();
+    });
+
+    back.addEventListener('click', (e) => { if (e.target === back) closeModal(); });
+    document.getElementById('cdModalClose')?.addEventListener('click', closeModal);
+
+  })();
+</script>

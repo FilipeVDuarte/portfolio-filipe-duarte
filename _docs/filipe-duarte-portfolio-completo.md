@@ -1,7 +1,7 @@
 # Filipe Duarte
-## Produtor Multimídia | Diretor de Criação | Web Designer | 3D, Design, Audiovisual, Programação, UX/UI
+## Produtor Multimídia | Identidade Visual · Branding · Motion | Adobe Certified | Caminho para Direção de Arte
 
-> Produtor Multimídia com mais de 4 anos de experiência transformando ideias em sistemas visuais consistentes. Atuo da concepção ao arquivo final, do digital ao impresso, do briefing ao código. Combino sensibilidade estética com agilidade operacional e uso estratégico de IA generativa.
+> Designer com mais de 4 anos construindo a operação visual completa de uma marca — do briefing ao arquivo final, do digital ao impresso, do estático ao motion. Em transição deliberada para Direção de Arte.
 
 ---
 
@@ -29,16 +29,17 @@
 | | |
 |---|---|
 | **Nome** | Filipe Velasco Duarte Delfino |
-| **Título Profissional** | Produtor Multimídia |
-| **Subtítulos Alternativos** | Diretor de Criação | Web Designer | 3D, Design, Audiovisual, Programação, UX/UI |
+| **Título Profissional** | Designer Multimídia Sênior |
+| **Headline LinkedIn** | Produtor Multimídia \| Identidade Visual · Branding · Motion \| Adobe Certified \| Caminho para Direção de Arte |
 | **Localização** | Gravataí, Rio Grande do Sul, Brasil |
-| **Cidade de Atuação** | Porto Alegre, RS |
+| **Cidade de Atuação** | Porto Alegre, RS e Região Metropolitana |
 | **Modalidade** | Presencial · Híbrido · Remoto |
 | **Status Atual** | Disponível para novas oportunidades |
 | **E-mail** | filipe.velascoduarte@gmail.com |
 | **Telefone** | (51) 9 9605-1030 |
-| **LinkedIn** | linkedin.com/in/filipevelascoduarte |
-| **Behance** | behance.net/filipevelascoduarte |
+| **LinkedIn** | https://www.linkedin.com/in/filipe-velasco |
+| **Portfólio** | https://flipeduarte.com.br/projetos |
+| **Behance** | https://behance.net/filipevelascoduarte |
 
 ---
 
@@ -46,27 +47,29 @@
 
 ### Versão Curta (bio de redes sociais)
 
-> Produtor Multimídia. Adobe Certified. Transformo ideias em sistemas visuais consistentes — do briefing ao código.
+> Designer Multimídia. Adobe Certified. Construo operações visuais completas — do briefing ao arquivo final. Em caminho para Direção de Arte.
 
 ### Versão Média (topo de currículo / sobre de site)
 
-> Produtor Multimídia com mais de 4 anos de experiência em identidade visual, produção gráfica e audiovisual. Atuo como guardião da marca em todas as aplicações, do digital ao impresso. Domínio do Adobe Creative Suite, Figma, Blender e desenvolvimento web. Uso IA generativa estrategicamente para acelerar criação. Adobe Certified Professional em Photoshop.
+> Designer com mais de 4 anos de experiência em identidade visual, produção gráfica e audiovisual. Atuei como responsável único pela operação visual completa da Mobifans/Customic — do digital ao impresso, do conceito ao motion. Adobe Certified Professional em Photoshop. Em transição deliberada para Direção de Arte.
 
-### Versão Longa (sobre completo / cartas de apresentação)
+### Versão Longa (sobre completo / LinkedIn About / cartas de apresentação)
 
-Produtor Multimídia com mais de 4 anos de experiência em identidade visual, produção gráfica e criação de peças on e offline. Atuo como guardião da marca em todas as aplicações — de artes para redes sociais e Ads a enxovais completos para eventos, sinalização física, decks institucionais e fechamento de arquivos para impressão (CMYK, sangria, margens de segurança, DPI).
+Sou designer com mais de 4 anos construindo a operação visual completa de uma marca — do briefing ao arquivo final, do digital ao impresso, do estático ao motion.
 
-Nos últimos 3 anos na Mobifans/Customic, desenvolvi e apliquei a identidade visual da marca em múltiplos canais e formatos, seguindo diretrizes de Brandbook e garantindo consistência e hierarquia visual em cada entrega. Do digital ao impresso, do conceito ao arquivo final.
+Na Mobifans, assumi progressivamente toda a frente de design: identidade visual aplicada, produção gráfica, conteúdo para redes, materiais de evento e fechamento técnico de arquivos. Por 5 meses, operei sozinho toda a demanda criativa da marca sem atrasos e com nota 9,39 em avaliação de desempenho.
 
-Combino sensibilidade estética com agilidade operacional. Interpreto briefings, proponho soluções visuais que agregam valor e entrego com atenção cirúrgica a alinhamentos, tipografia e revisão antes do envio final. Quando a equipe principal se ausentou por 5 meses, assumi integralmente toda a frente de design sem perder um prazo.
+Hoje domino o lado técnico com profundidade: Adobe Certified em Photoshop, fluente em Illustrator, After Effects, Figma e Blender. Mas o que me move é a etapa anterior: entender o problema, construir o conceito e decidir como a marca vai falar visualmente.
 
-Uso IA Generativa estrategicamente para acelerar a criação de assets e variações visuais. Tenho noções de UX/UI aplicadas à jornada do usuário em eventos e landing pages, e venho expandindo cada vez mais para o desenvolvimento web — uniu o design ao código no projeto MobiStudio, ferramenta interativa de personalização desenvolvida em Canvas API e JavaScript Vanilla.
-
-Sou Adobe Certified Professional em Photoshop e domino Adobe Illustrator, Photoshop, After Effects, Premiere Pro, Figma e Blender.
+Estou em transição deliberada para Direção de Arte. Buscando o próximo passo onde posso não apenas executar com excelência, mas liderar a visão criativa de marca com a mesma consistência que já demonstro na entrega.
 
 ---
 
 ## 💎 Proposta de Valor
+
+### Posicionamento estratégico
+
+**Executor sênior em transição para Direção de Arte.** Não inflo cargo — demonstro escopo. Operei sozinho toda a operação de design de uma marca por 5 meses, tomando decisões de identidade visual, hierarquia, tipografia e paleta em cada entrega. Essa é a prática de um diretor, mesmo que o título ainda não reflita isso.
 
 ### O que me torna diferente
 
@@ -82,11 +85,13 @@ Sou Adobe Certified Professional em Photoshop e domino Adobe Illustrator, Photos
 
 - ✅ **Adobe Certified Professional** em Photoshop (certificação oficial Certiport)
 - ✅ **5 meses** sustentando sozinho toda a operação de design durante ausência da equipe
-- ✅ **9,56/10** na avaliação interna de desempenho
+- ✅ **9,39/10** e **9,56/10** em avaliações internas consecutivas de desempenho (jan e fev/2025)
 - ✅ **50%+** de redução de tempo manual via uso estratégico de IA
 - ✅ **5.000+** arquivos organizados e mantidos no acervo digital de produção
-- ✅ **MobiStudio**: projeto pessoal autoral, do Figma ao deploy em produção (Netlify)
+- ✅ **12 projetos** no portfólio: design gráfico, dev web, 3D, audiovisual, fotografia
+- ✅ **MobiStudio**: ferramenta web autoral, do Figma ao deploy em produção (Netlify)
 - ✅ **Rap in Cena**: enxoval visual completo entregue para um dos maiores festivais de Hip-Hop do Brasil
+- ✅ **Design Kit**: sistema de design Neo-Brutalista proprietário, documentado e publicado no portfólio
 
 ---
 
@@ -94,6 +99,7 @@ Sou Adobe Certified Professional em Photoshop e domino Adobe Illustrator, Photos
 
 ### 🎨 Design Gráfico & Identidade Visual
 
+- Direção de Arte e conceituação criativa
 - Marca e identidade visual (criação, aplicação e governança via Brandbook)
 - Hierarquia visual, tipografia e teoria das cores
 - Diagramação editorial e decks institucionais
@@ -103,8 +109,6 @@ Sou Adobe Certified Professional em Photoshop e domino Adobe Illustrator, Photos
 - Composição fotográfica e direção de arte para ensaios de produto
 
 ### 🎬 Audiovisual & Videomaker
-
-> Subseção dedicada ao pilar audiovisual — aplicada em projetos da Mobifans e estudos contínuos.
 
 **Pré-produção**
 - Interpretação de briefing e proposta criativa
@@ -187,7 +191,7 @@ Sou Adobe Certified Professional em Photoshop e domino Adobe Illustrator, Photos
 | **UI/Prototipagem** | Figma | ⭐⭐⭐⭐⭐ Avançado |
 | **Modelagem 3D** | Blender | ⭐⭐⭐⭐ Sólido |
 | **Design Rápido** | Canva | ⭐⭐⭐⭐⭐ Avançado |
-| **Motion Procedural** | Cavalry | ⭐⭐ Em estudo |
+| **Motion Procedural** | Cavalry | ⭐⭐⭐ Intermediário |
 | **3D Avançado** | Autodesk Maya | ⭐⭐⭐ Intermediário |
 | **Front-end** | HTML5, CSS3, JavaScript | ⭐⭐⭐ Intermediário |
 | **API Gráfica** | Canvas API, SVG | ⭐⭐⭐ Intermediário |
@@ -267,27 +271,25 @@ Exame oficial Certiport que valida domínio técnico avançado em Adobe Photosho
 📅 Setembro/2024 – Atual *(1 ano e 9 meses)*
 📍 Porto Alegre, RS
 
-Responsável pela produção visual estratégica da Mobifans em todos os canais: digital, impresso e eventos. Do conceito ao fechamento de arquivo.
+> ⚠️ **Nota de contexto (para uso em entrevistas e cartas):** O título formal é "Auxiliar de Marketing", mas o escopo real equivale ao de Designer Sênior — único profissional de criação ativo na marca, responsável por todas as decisões visuais do briefing ao arquivo final.
+
+Designer responsável pela operação visual completa da Mobifans — único profissional de criação ativo por 5 meses consecutivos, mantendo todos os canais sem atrasos e atingindo **nota 9,56/10** em avaliação de desempenho.
 
 **Realizações-chave:**
 
-- **Enxovais para eventos:** desenvolvi o material completo para o Rap in Cena (set–out/2025) — artes para redes sociais, banners, sinalização física e peças de ambientação, do briefing ao arquivo final.
+→ **Direção visual de evento:** conduzi do briefing ao arquivo final toda a identidade aplicada do Rap in Cena (set–out/2025) — redes sociais, banners, sinalização física e peças de ambientação, com consistência entre ambiente digital e presença física.
 
-- **Desdobramento de identidade visual:** apliquei o Brandbook da marca em múltiplos formatos e canais, garantindo hierarquia visual e legibilidade em todas as aplicações on e offline.
+→ **Desdobramento de marca:** apliquei o Brandbook da Mobifans em múltiplos canais e formatos, tomando decisões de hierarquia visual, tipografia e paleta em cada adaptação on e offline.
 
-- **Diagramação estratégica:** criei decks institucionais e apresentações de produto no Figma e Illustrator, com foco em clareza visual para diferentes stakeholders.
+→ **Comunicação para stakeholders:** criei decks institucionais e apresentações de produto no Figma e Illustrator, traduzindo posicionamento de marca em linguagem visual para públicos internos e externos.
 
-- **Fechamento de arquivos:** preparei arquivos finais para produção gráfica com gestão de perfis de cor (CMYK/RGB), sangria, margens de segurança, resolução (DPI) e formatos para pré-impressão.
+→ **Escala com IA:** implementei uso estratégico de IA generativa no fluxo de produção, reduzindo em **50%+** o tempo manual em projetos de grande volume sem perda de padrão visual.
 
-- **Gestão de assets:** organizei e mantive a nomenclatura do acervo digital de produção (5.000+ arquivos), garantindo fluxo ágil de colaboração com o time.
+→ **Gestão de acervo:** estruturei e mantive biblioteca de produção com **5.000+ arquivos**, criando convenções de nomenclatura que reduziram o tempo de busca e acesso do time.
 
-- **IA Generativa:** uso estratégico para acelerar criação de assets e variações visuais, reduzindo tempo manual em 50%+ em projetos de grande volume.
+→ **MobiStudio:** concebi e desenvolvi ponta a ponta ferramenta web de personalização de capinhas em tempo real — do wireframe no Figma ao deploy em produção (Canvas API + Netlify).
 
-- **Desenvolvimento do MobiStudio:** assumi a responsabilidade ponta a ponta de criar uma ferramenta web de personalização de capinhas em tempo real (Figma → código → produção).
-
-- **Resultado:** assumi integralmente toda a frente de design por 5 meses durante ausência da equipe principal, mantendo 100% da operação sem atrasos e alcançando **nota 9,56/10** em avaliação de desempenho.
-
-**Ferramentas:** Illustrator · Photoshop · After Effects · Premiere Pro · Figma · Lightroom · Canva · Blender · HTML/CSS/JS
+**Ferramentas:** Illustrator · Photoshop (Adobe Certified) · After Effects · Premiere Pro · Figma · Blender · Canva · HTML/CSS/JS
 
 ---
 
@@ -295,13 +297,15 @@ Responsável pela produção visual estratégica da Mobifans em todos os canais:
 **Estágio — Design de Mídias Sociais & Design de Produto · Híbrido**
 📅 Outubro/2022 – Setembro/2024 *(2 anos)*
 
-Atuei na base da operação visual da Mobifans, apoiando a produção gráfica, organização de arquivos e manutenção de projetos para e-commerce e redes sociais.
+Atuei na produção visual da Mobifans, desenvolvendo repertório técnico em produção gráfica multiplataforma e construindo a base do acervo digital que estrutura a operação hoje.
 
 **Realizações-chave:**
-- Criação e diagramação de peças on e offline (banners, posts, mockups, materiais impressos) seguindo as diretrizes do Brandbook
-- Adaptação de artes para diferentes formatos e meios, garantindo coerência visual e fechamento correto para impressão (CMYK, sangria, DPI)
-- Estruturação do acervo digital de imagens com convenções de nomenclatura, reduzindo tempo de busca de materiais pelo time
-- Colaboração com marketing no ajuste de criativos com base em feedback de desempenho
+
+→ **Produção multiplataforma:** criei e diagramei peças on e offline — banners, posts, mockups e materiais impressos — com fechamento técnico correto para cada meio (CMYK, sangria, DPI).
+
+→ **Refinamento por dados:** ajustei criativos com base em feedback de desempenho das campanhas, revisando composição e hierarquia visual para aumentar eficácia das peças.
+
+→ **Estrutura de acervo:** implantei o sistema de nomenclatura e organização de pastas do acervo digital, que segue em uso como padrão da operação.
 
 **Ferramentas:** Photoshop · Lightroom · Illustrator · Premiere Pro
 
@@ -312,12 +316,15 @@ Atuei na base da operação visual da Mobifans, apoiando a produção gráfica, 
 📅 Novembro/2021 – Julho/2022 *(9 meses)*
 📍 Porto Alegre, RS
 
-Responsável pela presença digital e identidade visual da clínica em todos os pontos de contato — digital e impresso.
+Responsável pela identidade visual aplicada da clínica em todos os pontos de contato — gerenciei sozinho a presença digital e a produção gráfica durante toda a vigência do contrato.
 
 **Realizações-chave:**
-- Desenvolvimento de artes para redes sociais (posts, stories, anúncios) alinhadas ao posicionamento da marca
-- Adaptação de materiais digitais para peças impressas (folders, cartazes), com fechamento de arquivo correto para produção gráfica
-- Manutenção do site e gerenciamento de perfis de redes sociais com calendário de postagens
+
+→ **Identidade aplicada:** desenvolvi artes para redes sociais (posts, stories, anúncios) e materiais impressos (folders, cartazes) dentro das diretrizes de marca, garantindo consistência entre ambiente físico e digital.
+
+→ **Gestão editorial:** mantive calendário de postagens, atualizei o site e acompanhei o desempenho dos perfis — acumulando primeira experiência com ciclo completo de comunicação de marca.
+
+**Ferramentas:** Photoshop · Illustrator
 
 ---
 
@@ -326,12 +333,15 @@ Responsável pela presença digital e identidade visual da clínica em todos os 
 📅 Maio/2020 – Outubro/2021 *(1 ano e 6 meses)*
 📍 Rio Grande do Norte, Brasil
 
-Atendi pequenos negócios e criadores com identidade visual e peças para redes sociais.
+Atendi pequenos negócios e criadores, entregando identidade visual do zero — primeiro contato com o processo completo de concepção, apresentação e finalização para cliente real.
 
 **Realizações-chave:**
-- Criação de identidades visuais e logotipos para clientes de diferentes segmentos
-- Desenvolvimento de artes para redes sociais (feeds, capas, destaques) profissionalizando a presença digital de clientes
-- Vetorização e finalização de ilustrações para uso em mídias online e impressas
+
+→ **Identidade visual:** criei logotipos e sistemas de identidade para clientes de diferentes segmentos, aplicando conceitos de hierarquia visual e tipografia desde a concepção.
+
+→ **Presença digital:** desenvolvi artes para redes sociais que profissionalizaram a comunicação de clientes que operavam sem identidade visual definida.
+
+**Ferramentas:** Photoshop · Illustrator
 
 ---
 
@@ -358,7 +368,7 @@ Atendi pequenos negócios e criadores com identidade visual e peças para redes 
 
 **Tecnologias:** HTML5 · CSS3 · JavaScript Vanilla · Canvas API · Figma · Builder.io · Claude Code · Netlify
 
-🔗 [Acessar MobiStudio](https://lnkd.in/d6wt9thK)
+🔗 [Ver projeto](https://flipeduarte.com.br/projetos/mobi_studio)
 
 ---
 
@@ -377,7 +387,7 @@ Material desenvolvido para a participação da Mobifans no **Rap in Cena**, cons
 
 **Resultado:** Stand entre os mais movimentados, com cobertura completa nas redes sociais e parceria consolidada para futuras edições.
 
-🔗 [Ver projeto no Behance](https://www.behance.net/gallery/239019429/Mobifans-Rap-In-Cena)
+🔗 [Ver projeto](https://flipeduarte.com.br/projetos/mobi_ric)
 
 ---
 
@@ -386,17 +396,7 @@ Material desenvolvido para a participação da Mobifans no **Rap in Cena**, cons
 
 Desenvolvimento manual da maioria das **artes para estampas personalizadas** dentro do MobiStudio, com mais de **70 possíveis combinações**. Iniciativa que une produção de design tradicional com aplicação em ferramenta interativa proprietária.
 
-🔗 [Ver projeto no Behance](https://www.behance.net/gallery/249608469/Estampas-autorais-mobiStudio)
-
----
-
-### 🎲 Projeto 3D — Capa Customic
-
-Modelagem e renderização 3D de capa personalizada para a linha Customic, do conceito ao arquivo final com foco em precisão e apelo visual.
-
-**Tecnologias:** Blender · 3D · Render
-
-🔗 [Ver projeto no Behance](https://www.behance.net/gallery/219704419/Projeto-3D-Capa-Customic)
+🔗 [Ver projeto](https://flipeduarte.com.br/projetos/mobi_estampas)
 
 ---
 
@@ -406,7 +406,7 @@ Material promocional 3D desenvolvido para a Mobifans, combinando modelagem técn
 
 **Tecnologias:** Blender · 3D · Motion
 
-🔗 [Ver projeto no Behance](https://www.behance.net/gallery/223688933/3D-Material-Mobifans)
+🔗 [Ver projeto](https://flipeduarte.com.br/projetos/mobi_3d)
 
 ---
 
@@ -416,7 +416,7 @@ Produção audiovisual completa para campanha de Dia dos Namorados da Mobifans: 
 
 **Tecnologias:** Premiere Pro · After Effects · Audiovisual
 
-🔗 [Ver projeto no Behance](https://www.behance.net/gallery/244779495/Audiovisual-Campanha-Dia-dos-Namorados)
+🔗 [Ver projeto](https://flipeduarte.com.br/projetos/mobi_namorados)
 
 ---
 
@@ -426,14 +426,65 @@ Campanha gráfica para novos produtos Mobifans: placas, wallets e crossbody bags
 
 **Tecnologias:** Illustrator · Photoshop · Design
 
-🔗 [Ver projeto no Behance](https://www.behance.net/gallery/244775345/Mobifans-Placas-Wallets-Crossbody)
+🔗 [Ver projeto](https://flipeduarte.com.br/projetos/mobi_placas)
 
 ---
 
 ### 🎲 Carcassonne Físico — Projeto Pessoal
 **Design de Produto Físico**
 
-Planejamento em escala, cálculo de materiais e execução de uma versão física personalizada do jogo Carcassonne. Une **design digital e manufatura** (MDF e 3D), aplicando habilidades de modelagem, planejamento de corte a laser e acabamento.
+Planejamento em escala, cálculo de materiais e execução de uma versão física personalizada do jogo Carcassonne. Une design digital e manufatura (MDF e 3D), aplicando habilidades de modelagem, planejamento de corte a laser e acabamento.
+
+---
+
+### 💻 Design Kit — Sistema de Design do Portfólio
+📅 2025–2026
+
+Sistema de design Neo-Brutalista desenvolvido e documentado para o próprio portfólio. Inclui tokens de cor, escala tipográfica fluida, sombras, bordas, variantes de componentes (tags, botões, cards, timeline, pull-quote, filtros) e padrões de seção. Publicado como página pública para demonstrar consistência e domínio de CSS/design systems.
+
+**Tecnologias:** HTML5 · CSS3 · Astro · Design System
+
+🔗 [Ver projeto](https://flipeduarte.com.br/kit)
+
+---
+
+### 🎞️ Animações Cavalry — Motion Procedural
+📅 2025–2026
+
+19 experimentos de animação procedural desenvolvidos no Cavalry (software adquirido pelo Canva). Exploração de workflow leve e ágil como alternativa ao After Effects para motion design generativo.
+
+**Tecnologias:** Cavalry · Motion Design · Animação Procedural
+
+---
+
+### 📸 Hackathon UniSenac — Cobertura Fotográfica
+📅 2023–2024
+
+Cobertura fotográfica de evento de 24 horas de hackathon no Centro Universitário Senac-RS. Registro documental e jornalístico do evento acadêmico.
+
+**Tecnologias:** Fotografia · Documentação Visual
+
+🔗 [Ver projeto](https://www.instagram.com/unisenacrs/p/CwVGaW9O7M_/)
+
+---
+
+### 🎓 Projeto Vivências — Identidade Visual UniSenac × RBS TV
+
+Desenvolvimento de identidade visual para projeto acadêmico em parceria com a RBS TV. Aplicação de diretrizes de marca em múltiplos materiais para contexto de comunicação institucional.
+
+**Tecnologias:** Illustrator · Photoshop · Design Gráfico
+
+🔗 [Ver projeto](https://flipeduarte.com.br/projetos/unisenac_vivencias)
+
+---
+
+### 🛍️ Alças Flat Customic — Campanha de Produto
+
+Campanha gráfica e material promocional para linha de alças flat da Customic, unindo identidade de produto com comunicação visual para digital e impresso.
+
+**Tecnologias:** Illustrator · Photoshop · Design
+
+🔗 [Ver projeto](https://flipeduarte.com.br/projetos/mobi_alcas)
 
 ---
 
@@ -442,11 +493,7 @@ Planejamento em escala, cálculo de materiais e execução de uma versão físic
 
 Convidado para registrar a fachada do Centro Universitário Senac em Porto Alegre. A foto foi utilizada e **creditada em uma notícia no Correio do Povo**.
 
----
-
-### 🎭 Personagem de Marca (Conceitual)
-
-Estruturação conceitual de um mascote/personagem de marca, com posicionamento como **"comunicador acessível"** em vez de arquétipo tradicional de "guardião da tecnologia" — abordagem mais próxima do público jovem da Mobifans.
+🔗 [Ver publicação](https://www.correiodopovo.com.br/notícias/ensino/vestibular/inverno/2023/senac-rs-teoria-prática-e-vida-profissional-em-foco-1.1037907)
 
 ---
 
@@ -468,8 +515,8 @@ Workshop ministrado com atenção à acessibilidade (presença de intérprete de
 ### Publicação no Correio do Povo
 Fotografia da fachada do Centro Universitário Senac creditada em matéria do jornal.
 
-### Inscrição confirmada — Google I/O 2026
-Registrado no Google Developer Program.
+### Google I/O 2026
+Participação registrada no Google Developer Program.
 
 ---
 
@@ -477,8 +524,8 @@ Registrado no Google Developer Program.
 
 | Idioma | Nível | Detalhes |
 |--------|-------|----------|
-| **Português** | Nativo | - |
-| **Inglês** | Em desenvolvimento | 335+ dias consecutivos no Duolingo |
+| **Português** | Nativo | — |
+| **Inglês** | Em desenvolvimento | 400+ dias consecutivos no Duolingo |
 
 ---
 
@@ -506,23 +553,17 @@ Registrado no Google Developer Program.
 
 > Sempre em movimento. Aqui está o que estou estudando ativamente neste momento.
 
-### 🎬 Cavalry (Motion Procedural)
-Estudando o software adquirido recentemente pelo Canva como **possível concorrente do After Effects**. Já produzi primeira animação procedural de teste. Workflow leve e ágil, com curva de aprendizado interessante.
+### 🎨 Direção de Arte — Transição Deliberada
+Aprofundamento em conceituação criativa, tomada de decisão visual estratégica e linguagem de briefing para liderança criativa. Objetivo: primeiro cargo formal como Diretor de Arte em empresa de médio porte ou startup.
+
+### 🎞️ Cavalry (Motion Procedural)
+Software adquirido pelo Canva como **alternativa ao After Effects** para motion design generativo. Já produzi 19 animações procedurais de teste, publicadas no portfólio. Aprofundamento contínuo.
 
 ### 💻 Programação & Desenvolvimento Web
-Aprofundamento em JavaScript, Canvas API e arquitetura front-end. Foco em transformar designs em produtos funcionais, como demonstrado no MobiStudio. Próximo objetivo: dominar frameworks modernos e expandir vocabulário em desenvolvimento full-stack.
-
-### 🌍 Inglês
-Prática diária no Duolingo (335+ dias consecutivos). Meta: atingir fluência funcional para acessar oportunidades internacionais remotas e conteúdo técnico avançado em primeira mão.
-
-### 🤖 IA Aplicada ao Design
-Aprofundamento contínuo em workflows com Claude e outras ferramentas de IA generativa. Certificações Anthropic concluídas em 2026 (Claude 101 + Agent Skills). Próximo passo: integrar IA em pipelines criativos completos, do briefing à entrega.
+Aprofundamento em JavaScript, Canvas API e arquitetura front-end. Foco em transformar designs em produtos funcionais — demonstrado no MobiStudio e no portfólio Astro. Próximo objetivo: frameworks modernos e full-stack.
 
 ### 🎥 Audiovisual & Videomaker
 Expansão do pilar audiovisual com foco em **captação profissional, edição avançada e motion design**. Objetivo: consolidar perfil híbrido design + vídeo para mercado em alta no RS.
-
-### 🏛️ Google I/O 2026
-Inscrição confirmada no Google Developer Program para acesso a novidades técnicas e atualizações de plataforma.
 
 ---
 
@@ -534,9 +575,11 @@ Inscrição confirmada no Google Developer Program para acesso a novidades técn
 |-----------|------|
 | 📧 **E-mail** | filipe.velascoduarte@gmail.com |
 | 📱 **WhatsApp** | (51) 9 9605-1030 |
-| 💼 **LinkedIn** | [linkedin.com/in/filipevelascoduarte](https://linkedin.com/in/filipevelascoduarte) |
+| 🌐 **Portfólio** | [flipeduarte.com.br](https://flipeduarte.com.br) |
+| 💼 **LinkedIn** | [linkedin.com/in/filipe-velasco](https://linkedin.com/in/filipe-velasco) |
 | 🎨 **Behance** | [behance.net/filipevelascoduarte](https://behance.net/filipevelascoduarte) |
 | 🏅 **Credly** | Adobe Certified Professional verificável |
+| 🎬 **Letterboxd** | [letterboxd.com/pipo_criticas](https://letterboxd.com/pipo_criticas/) |
 
 ### Disponibilidade
 
@@ -551,12 +594,12 @@ Inscrição confirmada no Google Developer Program para acesso a novidades técn
 
 > **Para recrutadores apressados:**
 >
-> **Filipe Duarte** — 4+ anos como Designer Multimídia, Adobe Certified em Photoshop, atualmente Auxiliar de Marketing na Mobifans/Customic com avaliação **9,56/10**. Sustentou sozinho a operação de design por **5 meses** durante ausência da equipe. Híbrido raro: domina **design + audiovisual + desenvolvimento web + IA generativa**. Construiu o **MobiStudio** do zero ao deploy (Figma → Canvas API → produção). Disponível em Porto Alegre, presencial, híbrido ou remoto.
+> **Filipe Duarte** — Designer Multimídia Sênior com 4+ anos de experiência, Adobe Certified em Photoshop, atualmente na Mobifans/Customic com avaliação **9,56/10**. Sustentou sozinho a operação de design por **5 meses** durante ausência da equipe, tomando todas as decisões visuais de marca sem supervisão. Perfil híbrido: domina **design + motion + desenvolvimento web + IA generativa**. Construiu o **MobiStudio** do zero ao deploy (Figma → Canvas API → produção). Em transição deliberada para Direção de Arte — buscando o próximo passo onde possa não apenas executar com excelência, mas liderar a visão criativa de marca.
 >
-> **Onde encaixa:** Diretor de Arte · Designer Sênior · Videomaker · Designer Full-Stack · UX/UI Designer · Especialista em Audiovisual + IA
+> **Onde encaixa:** Designer Sênior · Diretor de Arte (primeiro cargo) · Designer Full-Stack · UX/UI Designer
 
 ---
 
-**Última atualização:** 20/05/2026
+**Última atualização:** 01/06/2026
 
 *Este documento é uma referência viva. Atualizado conforme novos projetos, certificações e marcos profissionais.*
