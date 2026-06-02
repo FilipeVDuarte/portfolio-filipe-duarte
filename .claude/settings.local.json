@@ -60,6 +60,7 @@
       "Bash(mkdir -p \"C:/Users/MARKETING/.claude/projects/C--Users-MARKETING-portfolio-filipe-duarte/memory\")",
       "PowerShell(Get-ChildItem \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\" -Depth 0 | Where-Object { $_.Name -notmatch \"node_modules|\\\\.git|dist|src\" } | Select-Object Name, Attributes)",
       "Bash(git push *)",
+<<<<<<< HEAD
       "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\('scripts',{}\\), indent=2\\)\\)\")",
       "Bash(Expand-Archive -Path \"C:\\\\Users\\\\MARKETING\\\\Downloads\\\\pagina Letterboxd-handoff.zip\" -DestinationPath \"C:\\\\Users\\\\MARKETING\\\\Downloads\\\\pagina_letterboxd_handoff\" -Force)",
       "Bash(Get-ChildItem -Recurse \"C:\\\\Users\\\\MARKETING\\\\Downloads\\\\pagina_letterboxd_handoff\")",
@@ -70,6 +71,12 @@
       "Bash(curl -s -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://letterboxd.com/pipo_criticas/rss/\")",
       "Bash(curl -s -A \"Mozilla/5.0\" \"https://letterboxd.com/pipo_criticas/rss/\")",
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\" -Recurse -Directory)"
+=======
+      "Bash(not exist *)",
+      "PowerShell(\\(Get-Command npm\\).Source)",
+      "PowerShell(Get-ChildItem \"$env:APPDATA\\\\nvm\" -ErrorAction SilentlyContinue | Select-Object -First 5; Get-ChildItem \"$env:ProgramFiles\\\\nvm\" -ErrorAction SilentlyContinue | Select-Object -First 5; Get-ChildItem \"$env:LOCALAPPDATA\\\\nvm\" -ErrorAction SilentlyContinue | Select-Object -First 5)",
+      "PowerShell($env:PATH)"
+>>>>>>> fe4054e433a99bd3d044e9b8ecd08343cfa6ced1
     ]
   }
 }
