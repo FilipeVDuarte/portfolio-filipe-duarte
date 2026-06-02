@@ -1,7 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import archiveData from '../data/letterboxd-archive.json';
 
-// ── RSS fetch (build-time) ────────────────────────────────────────────────
+// ── Film interface ────────────────────────────────────────────────────────
 const RSS_URL = 'https://letterboxd.com/pipo_criticas/rss/';
 
 interface Film {
@@ -39,8 +40,14 @@ function fmtRating(r: number): string {
   return r.toFixed(1).replace('.', ',').replace(',0', '');
 }
 
-let allFilms: Film[] = [];
+// ── 1. Seed the map from the static archive (all known films) ─────────────
+// Key: "normalised-title|watchedDate" — stable across RSS and CSV sources.
+const filmMap = new Map<string, Film>();
+for (const f of archiveData as Film[]) {
+  filmMap.set(`${f.filmTitle.toLowerCase()}|${f.watched}`, f);
+}
 
+// ── 2. Overlay fresh RSS data (most recent entries, may have edits) ───────
 try {
   const res = await fetch(RSS_URL, { headers: { 'User-Agent': 'Mozilla/5.0' } });
   const xml = await res.text();
@@ -55,8 +62,8 @@ try {
     const watched = lbx('watchedDate');
     if (!watched) continue;
 
-    const cdata     = it.match(/<!\[CDATA\[([\s\S]*?)\]\]>/)?.[1] ?? '';
-    const poster    = cdata.match(/src="(https:\/\/a\.ltrbxd\.com[^"]+)"/)?.[1] ?? '';
+    const cdata      = it.match(/<!\[CDATA\[([\s\S]*?)\]\]>/)?.[1] ?? '';
+    const poster     = cdata.match(/src="(https:\/\/a\.ltrbxd\.com[^"]+)"/)?.[1] ?? '';
     const hasSpoiler = cdata.includes('This review may contain spoilers');
 
     const reviewHtml = cdata
@@ -64,11 +71,11 @@ try {
       .replace(/<p>\s*<em>This review may contain spoilers\.<\/em>\s*<\/p>/g, '')
       .trim();
 
-    const rStr  = lbx('memberRating');
-    const link  = it.match(/<link>(https:\/\/letterboxd\.com[^<]+)<\/link>/)?.[1] ?? '';
-    const guid  = it.match(/<guid[^>]*>([^<]+)<\/guid>/)?.[1]?.trim() ?? '';
+    const rStr = lbx('memberRating');
+    const link = it.match(/<link>(https:\/\/letterboxd\.com[^<]+)<\/link>/)?.[1] ?? '';
+    const guid = it.match(/<guid[^>]*>([^<]+)<\/guid>/)?.[1]?.trim() ?? '';
 
-    allFilms.push({
+    const film: Film = {
       guid,
       filmTitle:  decodeHtml(lbx('filmTitle')),
       filmYear:   lbx('filmYear'),
@@ -81,9 +88,14 @@ try {
       poster,
       reviewHtml,
       hasSpoiler,
-    });
+    };
+    // RSS always wins — it may contain updated reviews/ratings
+    filmMap.set(`${film.filmTitle.toLowerCase()}|${film.watched}`, film);
   }
-} catch (_) { /* fallback: empty list, shows placeholder UI */ }
+} catch (_) { /* RSS unavailable — keep archive data only */ }
+
+// ── 3. Build sorted list ──────────────────────────────────────────────────
+let allFilms: Film[] = Array.from(filmMap.values());
 
 // newest-first
 allFilms.sort((a, b) => b.watched.localeCompare(a.watched));
@@ -94,10 +106,9 @@ const avgGlobal = rated.length
   ? (rated.reduce((s, f) => s + f.rating, 0) / rated.length).toFixed(1).replace('.', ',')
   : '—';
 
-// ── Destaques (≥ 4.5 ★) ──────────────────────────────────────────────────
-const destaques = allFilms
-  .filter(f => f.rating >= 4.5)
-  .sort((a, b) => b.rating - a.rating || b.watched.localeCompare(a.watched));
+// ── Destaques (curadoria manual) ─────────────────────────────────────────
+const filmesDestaque = ["Project Hail Mary", "I'm Still Here", "City of God"];
+const destaques = allFilms.filter(f => filmesDestaque.includes(f.filmTitle));
 
 // ── Monthly groups ────────────────────────────────────────────────────────
 const MONTHS_PT: Record<string, string> = {
@@ -263,7 +274,6 @@ const totalMaratonas = months.filter(m => m.marathon).length;
               <span class="cd-spoiler-badge">Contém spoilers</span>
             )}
 
-            <div class="cd-review-body cd-review-body--clamped" set:html={f.reviewHtml || '<p class="cd-no-review">Sem crítica escrita.</p>'} />
             <button class="cd-read-more-btn" data-guid={f.guid}>
               Ler análise completa →
             </button>
@@ -575,10 +585,17 @@ const totalMaratonas = months.filter(m => m.marathon).length;
     color: var(--color-pink); margin: var(--space-4) 0;
   }
 
-  /* ── Featured stack ───────────────────────────────────────────────────── */
-  .cd-featured-stack { display: flex; flex-direction: column; gap: var(--space-10); }
+  /* ── Featured stack (carousel) ───────────────────────────────────────── */
+  .cd-featured-stack {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
 
   .cd-featured {
+    flex: 0 0 100%;
+    transition: transform 0.5s ease-in-out;
     position: relative; display: grid; grid-template-columns: 240px 1fr; gap: var(--space-8);
     border: 3px solid var(--color-ink); box-shadow: 8px 8px 0 var(--color-ink);
     background: var(--color-bg); padding: var(--space-8);
@@ -720,7 +737,7 @@ const totalMaratonas = months.filter(m => m.marathon).length;
     position: fixed; inset: 0;
     background: color-mix(in srgb, var(--color-ink) 60%, transparent);
     opacity: 0; pointer-events: none; transition: opacity 220ms ease;
-    z-index: 200; display: flex; align-items: center; justify-content: center;
+    z-index: 99999; display: flex; align-items: center; justify-content: center;
     padding: var(--space-6);
   }
   .cd-modal-back.is-open { opacity: 1; pointer-events: auto; }
@@ -911,5 +928,33 @@ const totalMaratonas = months.filter(m => m.marathon).length;
     back.addEventListener('click', (e) => { if (e.target === back) closeModal(); });
     document.getElementById('cdModalClose')?.addEventListener('click', closeModal);
 
+  })();
+</script>
+
+<script>
+  (function () {
+    const stack = document.querySelector<HTMLElement>('.cd-featured-stack');
+    if (!stack) return;
+    const cards = Array.from(stack.querySelectorAll<HTMLElement>('.cd-featured'));
+    if (cards.length <= 1) return;
+
+    let index = 0;
+
+    function goTo(i: number) {
+      index = i;
+      cards.forEach((card, idx) => {
+        card.style.transform = `translateX(${(idx - index) * 100}%)`;
+      });
+    }
+
+    // Set initial positions
+    goTo(0);
+
+    let timer = setInterval(() => goTo((index + 1) % cards.length), 4000);
+
+    stack.addEventListener('mouseenter', () => clearInterval(timer));
+    stack.addEventListener('mouseleave', () => {
+      timer = setInterval(() => goTo((index + 1) % cards.length), 4000);
+    });
   })();
 </script>
