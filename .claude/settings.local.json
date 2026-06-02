@@ -59,7 +59,11 @@
       "Bash(npx astro *)",
       "Bash(mkdir -p \"C:/Users/MARKETING/.claude/projects/C--Users-MARKETING-portfolio-filipe-duarte/memory\")",
       "PowerShell(Get-ChildItem \"C:\\\\Users\\\\MARKETING\\\\portfolio-filipe-duarte\" -Depth 0 | Where-Object { $_.Name -notmatch \"node_modules|\\\\.git|dist|src\" } | Select-Object Name, Attributes)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(not exist *)",
+      "PowerShell(\\(Get-Command npm\\).Source)",
+      "PowerShell(Get-ChildItem \"$env:APPDATA\\\\nvm\" -ErrorAction SilentlyContinue | Select-Object -First 5; Get-ChildItem \"$env:ProgramFiles\\\\nvm\" -ErrorAction SilentlyContinue | Select-Object -First 5; Get-ChildItem \"$env:LOCALAPPDATA\\\\nvm\" -ErrorAction SilentlyContinue | Select-Object -First 5)",
+      "PowerShell($env:PATH)"
     ]
   }
 }
