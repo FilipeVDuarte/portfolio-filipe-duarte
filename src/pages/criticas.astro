@@ -18,6 +18,7 @@ interface Film {
   poster:     string;
   reviewHtml: string;   // cleaned CDATA (poster img + spoiler notice stripped)
   hasSpoiler: boolean;
+  director?:  string;
 }
 
 function decodeHtml(s: string): string {
@@ -43,7 +44,12 @@ function fmtRating(r: number): string {
 // ── 1. Seed the map from the static archive (all known films) ─────────────
 // Key: "normalised-title|watchedDate" — stable across RSS and CSV sources.
 const filmMap = new Map<string, Film>();
-for (const f of archiveData as Film[]) {
+for (const raw of archiveData as Film[]) {
+  const f = { ...raw };
+  if (!f.director && f.reviewHtml) {
+    const m = f.reviewHtml.match(/Dire[çc][ãa]o:\s*([^<\r\n]+)/i);
+    f.director = m ? m[1].trim() : undefined;
+  }
   filmMap.set(`${f.filmTitle.toLowerCase()}|${f.watched}`, f);
 }
 
@@ -66,9 +72,14 @@ try {
     const poster     = cdata.match(/src="(https:\/\/a\.ltrbxd\.com[^"]+)"/)?.[1] ?? '';
     const hasSpoiler = cdata.includes('This review may contain spoilers');
 
+    const dirMatch   = cdata.match(/Dire[çc][ãa]o:\s*([^<]+)/i);
+    const director   = dirMatch ? dirMatch[1].trim() : 'Não informada';
+
     const reviewHtml = cdata
       .replace(/<p>\s*<img[^>]*>\s*<\/p>/g, '')
       .replace(/<p>\s*<em>This review may contain spoilers\.<\/em>\s*<\/p>/g, '')
+      .replace(/<p>Dire[çc][ãa]o:[^<]*<\/p>/gi, '')
+      .replace(/Dire[çc][ãa]o:[^<]*<br\s*\/?>/gi, '')
       .trim();
 
     const rStr = lbx('memberRating');
@@ -88,6 +99,7 @@ try {
       poster,
       reviewHtml,
       hasSpoiler,
+      director,
     };
     // RSS always wins — it may contain updated reviews/ratings
     filmMap.set(`${film.filmTitle.toLowerCase()}|${film.watched}`, film);
@@ -106,9 +118,14 @@ const avgGlobal = rated.length
   ? (rated.reduce((s, f) => s + f.rating, 0) / rated.length).toFixed(1).replace('.', ',')
   : '—';
 
-// ── Destaques (curadoria manual) ─────────────────────────────────────────
-const filmesDestaque = ["Project Hail Mary", "I'm Still Here", "City of God"];
-const destaques = allFilms.filter(f => filmesDestaque.includes(f.filmTitle));
+// ── Destaques (rating ≥ 4,5) ─────────────────────────────────────────────
+const destaques = allFilms
+  .filter(f => f.rating >= 4.5)
+  .sort((a, b) => {
+    const scoreA = a.rating + (a.like ? 0.5 : 0);
+    const scoreB = b.rating + (b.like ? 0.5 : 0);
+    return scoreB - scoreA || b.watched.localeCompare(a.watched);
+  });
 
 // ── Monthly groups ────────────────────────────────────────────────────────
 const MONTHS_PT: Record<string, string> = {
@@ -161,7 +178,7 @@ const months: MonthGroup[] = Array.from(
 type ReviewPayload = {
   title: string; year: string; month: string; rating: number;
   reviewHtml: string; poster: string; link: string;
-  rewatch: boolean; hasSpoiler: boolean;
+  rewatch: boolean; hasSpoiler: boolean; director?: string;
 };
 const reviewData: Record<string, ReviewPayload> = {};
 for (const f of allFilms) {
@@ -169,6 +186,7 @@ for (const f of allFilms) {
     title: f.filmTitle, year: f.filmYear, month: monthLabel(f.month),
     rating: f.rating, reviewHtml: f.reviewHtml, poster: f.poster,
     link: f.link, rewatch: f.rewatch, hasSpoiler: f.hasSpoiler,
+    director: f.director,
   };
 }
 
@@ -248,47 +266,44 @@ const totalMaratonas = months.filter(m => m.marathon).length;
       </p>
     )}
 
-    <div class="cd-featured-stack">
-      {destaques.map((f, i) => (
+    <div class="cd-carousel-wrap">
+      <button class="cd-carousel-btn cd-carousel-btn--prev" id="cdCarouselPrev" aria-label="Anterior">&#8592;</button>
+      <div class="cd-carousel-viewport">
+      <div class="cd-featured-stack" id="cdFeaturedStack">
+      {destaques.map((f) => (
         <article class="cd-featured"
           data-guid={f.guid}
+          role="button"
+          tabindex="0"
+          aria-label={`Ler crítica de ${f.filmTitle}`}
         >
-          <span class="cd-flag">★ Top rated · estado in-line</span>
-          <span class="cd-rank">{i + 1}</span>
+          <!-- Stars badge — top left -->
+          <div class="cd-badge-stars" set:html={starsHTML(f.rating)} />
+
+          <!-- Like badge — top right (conditional) -->
+          {f.like && (
+            <div class="cd-badge-like" aria-label="Marcado como favorito">♥</div>
+          )}
 
           <!-- Poster -->
           {f.poster
-            ? <img class="cd-poster-real" src={f.poster} alt={`Pôster de ${f.filmTitle}`} width="240" height="360" loading="lazy" />
+            ? <img class="cd-poster-real" src={f.poster} alt={`Pôster de ${f.filmTitle}`} width="294" height="437" loading="lazy" />
             : <div class="cd-poster" aria-label="Pôster"></div>
           }
 
-          <div class="cd-featured__body">
-            <div class="cd-head-row">
-              <span class="cd-titleline cd-titleline--lg">{f.filmTitle}</span>
-              <span class="cd-meta">{f.filmYear}</span>
-              <span set:html={starsHTML(f.rating)} />
-              <span class="cd-meta">{fmtRating(f.rating)}</span>
-            </div>
-
-            {f.hasSpoiler && (
-              <span class="cd-spoiler-badge">Contém spoilers</span>
-            )}
-
-            <button class="cd-read-more-btn" data-guid={f.guid}>
-              Ler análise completa →
-            </button>
-
-            <div class="cd-tagrow" style="margin-top:var(--space-6)">
-              {f.rewatch && <span class="cd-chip cd-chip--on">Rewatch</span>}
-              {f.like    && <span class="cd-chip cd-chip--like">♥ Like</span>}
-              <span class="cd-chip">{f.filmYear}</span>
-              <a class="cd-chip cd-chip--link" href={f.link} target="_blank" rel="noopener noreferrer">
-                Ver no Letterboxd ↗
-              </a>
+          <!-- Footer -->
+          <div class="cd-featured__footer">
+            <h3 class="cd-featured-title">{f.filmTitle}</h3>
+            <div class="cd-featured-meta-grid">
+              <span>VISTO EM</span><span>{monthLabel(f.month)}</span>
+              <span>DIREÇÃO</span><span>{f.director ?? 'Não informada'}</span>
             </div>
           </div>
         </article>
       ))}
+      </div>
+      </div><!-- .cd-carousel-viewport -->
+      <button class="cd-carousel-btn cd-carousel-btn--next" id="cdCarouselNext" aria-label="Próximo">&#8594;</button>
     </div>
 
     <!-- ════════════════════════════════════════════════════════
@@ -397,6 +412,7 @@ const totalMaratonas = months.filter(m => m.marathon).length;
         <div>
           <div class="cd-titleline cd-titleline--xl" id="cdMdTitle">—</div>
           <div class="cd-meta" id="cdMdYear" style="margin-top:var(--space-2)">—</div>
+          <div class="cd-meta" id="cdMdDirector" style="margin-top:var(--space-1); color:var(--color-muted)">—</div>
           <div id="cdMdStars" style="margin-top:var(--space-3); font-size:1.2em"></div>
           <div id="cdMdBadges" style="margin-top:var(--space-3); display:flex; gap:var(--space-2); flex-wrap:wrap;"></div>
         </div>
@@ -538,7 +554,7 @@ const totalMaratonas = months.filter(m => m.marathon).length;
     background: var(--color-bg); border: 2px solid var(--color-ink); padding: 2px var(--space-2);
   }
 
-  .cd-stars { font-size: 1.05em; letter-spacing: .05em; color: var(--color-ink); white-space: nowrap; }
+  .cd-stars { font-size: 1.05em; letter-spacing: .05em; color: var(--color-bg); white-space: nowrap; }
   .cd-stars-off { color: color-mix(in srgb, var(--color-ink) 22%, var(--color-bg)); }
   .cd-stars-half { font-family: var(--font-mono); font-weight: 700; font-size: .78em; margin-left: 1px; }
 
@@ -585,79 +601,109 @@ const totalMaratonas = months.filter(m => m.marathon).length;
     color: var(--color-pink); margin: var(--space-4) 0;
   }
 
-  /* ── Featured stack (carousel) ───────────────────────────────────────── */
+  /* ── Carousel wrapper + nav buttons ──────────────────────────────────── */
+  .cd-carousel-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .cd-carousel-btn {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    background: var(--color-ink); color: var(--color-bg);
+    border: 3px solid var(--color-ink);
+    font-family: var(--font-mono); font-weight: 700; font-size: 1.2rem;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    box-shadow: 3px 3px 0 var(--color-ink);
+    transition: 120ms ease;
+    z-index: 2;
+  }
+  .cd-carousel-btn:hover  { background: var(--color-yellow); color: var(--color-ink); transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--color-ink); }
+  .cd-carousel-btn:disabled { opacity: 0.25; pointer-events: none; }
+
+  /* ── Carousel viewport (clips) + track (moves) ───────────────────────── */
+  .cd-carousel-viewport {
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+  }
   .cd-featured-stack {
     display: flex;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
+    gap: 32px;
+    padding: 24px 16px;
+    /* no overflow:hidden here — viewport does the clipping */
   }
 
+  /* ── Featured card ────────────────────────────────────────────────────── */
   .cd-featured {
-    flex: 0 0 100%;
-    transition: transform 0.5s ease-in-out;
-    position: relative; display: grid; grid-template-columns: 240px 1fr; gap: var(--space-8);
-    border: 3px solid var(--color-ink); box-shadow: 8px 8px 0 var(--color-ink);
-    background: var(--color-bg); padding: var(--space-8);
+    width: 294px;
+    flex: 0 0 294px;
+    background: #F2F0EF;
+    border: 3px solid #000000;
+    box-shadow: 4px 4px 0px 0px #000000;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.2s ease;
   }
+  .cd-featured:hover  { transform: translate(-3px, -3px); box-shadow: 7px 7px 0px 0px #000000; }
+  .cd-featured:focus-visible { outline: 3px solid var(--color-yellow); outline-offset: 3px; }
 
-  .cd-flag {
-    position: absolute; top: calc(-1 * var(--space-3)); left: var(--space-6);
-    background: var(--color-yellow); border: 2px solid var(--color-ink);
-    font-family: var(--font-mono); font-weight: 700;
-    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .06em; text-transform: uppercase;
-    padding: 2px var(--space-3);
-  }
-  .cd-rank {
-    position: absolute; top: calc(-1 * var(--space-4)); right: var(--space-6);
-    width: 40px; height: 40px; background: var(--color-pink); color: var(--color-bg);
-    border: 3px solid var(--color-ink); box-shadow: 3px 3px 0 var(--color-ink);
+  /* Stars badge — top-left */
+  .cd-badge-stars {
+    position: absolute; top: -18px; left: -16px; z-index: 10;
+    background: #FFC300; border: 3px solid #000000;
+    box-shadow: 4px 4px 0px 0px #000000;
+    padding: 6px 12px; height: 37px;
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display); font-weight: 800;
-    font-size: clamp(1.125rem,2.2vw,1.375rem);
+    font-family: var(--font-display); font-weight: 800; font-size: 21px; color: #000000;
   }
 
+  /* Like badge — top-right */
+  .cd-badge-like {
+    position: absolute; top: -18px; right: -16px; z-index: 10;
+    background: var(--color-bg); border: 3px solid #000000;
+    box-shadow: 4px 4px 0px 0px #000000;
+    width: 52px; height: 37px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Segoe UI Emoji', sans-serif; font-size: 18px; color: #FFFFFF;
+  }
+
+  /* Poster */
   .cd-poster-real {
-    width: 240px; height: 360px; object-fit: cover;
-    border: 3px solid var(--color-ink); flex-shrink: 0;
+    display: block; width: 100%;
+    aspect-ratio: 294 / 437; object-fit: cover;
+    border-bottom: 3px solid #000000;
+    flex-shrink: 0;
   }
 
-  .cd-featured__body { display: flex; flex-direction: column; }
-  .cd-head-row {
-    display: flex; align-items: baseline; gap: var(--space-4); flex-wrap: wrap;
-    margin-bottom: var(--space-4);
+  /* Card footer */
+  .cd-featured__footer {
+    padding: 11px;
+    background: #F2F0EF;
+    container-type: inline-size;
+    display: flex; flex-direction: column; gap: 8px;
   }
 
-  /* Real review prose inside featured card */
-  .cd-review-body { max-width: 64ch; color: var(--color-ink); line-height: 1.7; margin-top: var(--space-2); }
-  .cd-review-body p { margin: 0 0 var(--space-4); font-size: clamp(1rem,2vw,1.125rem); }
-  .cd-review-body p:last-child { margin-bottom: 0; }
-  .cd-no-review { color: var(--color-muted); font-style: italic; }
-
-  /* 4-line clamp on featured card */
-  .cd-review-body--clamped {
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  /* "Ler análise completa" CTA */
-  .cd-read-more-btn {
-    display: inline-flex; align-items: center; gap: var(--space-2);
-    margin-top: var(--space-4);
+  .cd-featured-title {
+    margin: 0;
     font-family: var(--font-display); font-weight: 800;
-    font-size: clamp(.875rem,1.8vw,1rem);
-    text-transform: uppercase; letter-spacing: -.01em;
-    background: transparent; color: var(--color-ink);
-    border: 2px solid var(--color-ink); padding: var(--space-2) var(--space-4);
-    cursor: pointer; transition: 120ms ease;
-    box-shadow: 3px 3px 0 var(--color-ink);
+    font-size: clamp(1.2rem, 10cqw, 2.3rem);
+    line-height: 1; letter-spacing: 1px;
+    color: #000000; text-transform: uppercase;
+    word-break: break-word;
   }
-  .cd-read-more-btn:hover {
-    background: var(--color-yellow);
-    transform: translate(-2px,-2px);
-    box-shadow: 5px 5px 0 var(--color-ink);
+
+  .cd-featured-meta-grid {
+    display: grid; grid-template-columns: max-content 1fr;
+    column-gap: 8px; row-gap: 4px;
+    font-family: var(--font-mono); font-weight: 700;
+    font-size: 11.5px; letter-spacing: 1px;
+    color: #000000; text-transform: uppercase;
+    align-items: baseline;
   }
 
   /* ── Month groups ─────────────────────────────────────────────────────── */
@@ -812,16 +858,19 @@ const totalMaratonas = months.filter(m => m.marathon).length;
   }
 
   /* ── Responsive ───────────────────────────────────────────────────────── */
-  @media (max-width: 980px) { .cd-mgrid { grid-template-columns: repeat(3,1fr); } }
+  @media (max-width: 980px) {
+    .cd-mgrid { grid-template-columns: repeat(3,1fr); }
+    .cd-featured { flex: 0 0 calc(50% - var(--space-6) / 2); }
+  }
   @media (max-width: 720px) {
     .cd-mgrid { grid-template-columns: repeat(2,1fr); }
-    .cd-featured { grid-template-columns: 1fr; }
-    .cd-poster-real { width: 100%; height: auto; }
+    .cd-featured { flex: 0 0 calc(50% - var(--space-6) / 2); }
     .cd-modal__top { grid-template-columns: 110px 1fr; }
     .cd-sl-aside { display: none; }
   }
   @media (max-width: 480px) {
     .cd-mgrid { grid-template-columns: repeat(2,1fr); }
+    .cd-featured { flex: 0 0 80%; }
     .cd-subnav__brand span:not(.cd-badge):not(.cd-lofi) { display: none; }
   }
 </style>
@@ -832,7 +881,7 @@ const totalMaratonas = months.filter(m => m.marathon).length;
     type ReviewPayload = {
       title: string; year: string; month: string; rating: number;
       reviewHtml: string; poster: string; link: string;
-      rewatch: boolean; hasSpoiler: boolean;
+      rewatch: boolean; hasSpoiler: boolean; director?: string;
     };
     let reviewData: Record<string, ReviewPayload> = {};
     try {
@@ -855,31 +904,33 @@ const totalMaratonas = months.filter(m => m.marathon).length;
     }
 
     // ── Modal elements ─────────────────────────────────────────────────────
-    const back      = document.getElementById('cdModalBack')!;
-    const modal     = document.getElementById('cdModal')!;
-    const mdMonth   = document.getElementById('cdMdMonth')!;
-    const mdTitle   = document.getElementById('cdMdTitle')!;
-    const mdYear    = document.getElementById('cdMdYear')!;
-    const mdStars   = document.getElementById('cdMdStars')!;
-    const mdBadges  = document.getElementById('cdMdBadges')!;
-    const mdSpoiler = document.getElementById('cdMdSpoiler')!;
-    const mdReview  = document.getElementById('cdMdReview')!;
-    const mdPoster  = document.getElementById('cdMdPoster') as HTMLImageElement;
-    const mdLink    = document.getElementById('cdMdLink') as HTMLAnchorElement;
+    const back        = document.getElementById('cdModalBack')!;
+    const modal       = document.getElementById('cdModal')!;
+    const mdMonth     = document.getElementById('cdMdMonth')!;
+    const mdTitle     = document.getElementById('cdMdTitle')!;
+    const mdYear      = document.getElementById('cdMdYear')!;
+    const mdDirector  = document.getElementById('cdMdDirector')!;
+    const mdStars     = document.getElementById('cdMdStars')!;
+    const mdBadges    = document.getElementById('cdMdBadges')!;
+    const mdSpoiler   = document.getElementById('cdMdSpoiler')!;
+    const mdReview    = document.getElementById('cdMdReview')!;
+    const mdPoster    = document.getElementById('cdMdPoster') as HTMLImageElement;
+    const mdLink      = document.getElementById('cdMdLink') as HTMLAnchorElement;
 
     function openModal(guid: string) {
       const d = reviewData[guid];
       if (!d) return;
 
-      mdMonth.textContent  = d.month;
-      mdTitle.textContent  = d.title;
-      mdYear.textContent   = d.year;
-      mdStars.innerHTML    = starsHTML(d.rating);
-      mdPoster.src         = d.poster;
-      mdPoster.alt         = `Pôster de ${d.title}`;
-      mdLink.href          = d.link;
+      mdMonth.textContent    = d.month;
+      mdTitle.textContent    = d.title;
+      mdYear.textContent     = d.year;
+      mdDirector.textContent = d.director ? `Dir. ${d.director}` : '';
+      mdStars.innerHTML      = starsHTML(d.rating);
+      mdPoster.src           = d.poster;
+      mdPoster.alt           = `Pôster de ${d.title}`;
+      mdLink.href            = d.link;
       mdSpoiler.style.display = d.hasSpoiler ? 'block' : 'none';
-      mdReview.innerHTML   = d.reviewHtml || '<p style="color:var(--color-muted);font-style:italic">Sem crítica escrita.</p>';
+      mdReview.innerHTML     = d.reviewHtml || '<p style="color:var(--color-muted);font-style:italic">Sem crítica escrita.</p>';
 
       // badges
       const badges: string[] = [];
@@ -899,27 +950,20 @@ const totalMaratonas = months.filter(m => m.marathon).length;
       document.body.style.overflow = '';
     }
 
-    // Delegate clicks: grid cards
+    // Delegate clicks: featured cards + grid cards
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
-
-      // "Ler análise completa" button on featured cards
-      const readMoreBtn = target.closest<HTMLElement>('.cd-read-more-btn');
-      if (readMoreBtn?.dataset.guid) {
-        openModal(readMoreBtn.dataset.guid);
-        return;
-      }
-
-      // Grid poster cards
+      const featured = target.closest<HTMLElement>('.cd-featured');
+      if (featured?.dataset.guid) { openModal(featured.dataset.guid); return; }
       const gridCard = target.closest<HTMLElement>('.cd-gcard');
       if (gridCard?.dataset.guid) openModal(gridCard.dataset.guid);
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         const target = e.target as HTMLElement;
-        const btn = target.closest<HTMLElement>('.cd-read-more-btn');
-        const card = target.closest<HTMLElement>('.cd-gcard');
-        const guid = btn?.dataset.guid ?? card?.dataset.guid;
+        const featured = target.closest<HTMLElement>('.cd-featured');
+        const card     = target.closest<HTMLElement>('.cd-gcard');
+        const guid = featured?.dataset.guid ?? card?.dataset.guid;
         if (guid) { e.preventDefault(); openModal(guid); }
       }
       if (e.key === 'Escape') closeModal();
@@ -933,28 +977,38 @@ const totalMaratonas = months.filter(m => m.marathon).length;
 
 <script>
   (function () {
-    const stack = document.querySelector<HTMLElement>('.cd-featured-stack');
+    const stack = document.getElementById('cdFeaturedStack') as HTMLElement | null;
     if (!stack) return;
     const cards = Array.from(stack.querySelectorAll<HTMLElement>('.cd-featured'));
     if (cards.length <= 1) return;
 
-    let index = 0;
+    const btnPrev = document.getElementById('cdCarouselPrev') as HTMLButtonElement | null;
+    const btnNext = document.getElementById('cdCarouselNext') as HTMLButtonElement | null;
 
-    function goTo(i: number) {
-      index = i;
-      cards.forEach((card, idx) => {
-        card.style.transform = `translateX(${(idx - index) * 100}%)`;
-      });
+    let index = 0;
+    const total = cards.length;
+
+    function step(): number {
+      const card = cards[0]!;
+      const gap  = parseFloat(getComputedStyle(stack!).gap) || 0;
+      return card.getBoundingClientRect().width + gap;
     }
 
-    // Set initial positions
+    function updateButtons() {
+      if (btnPrev) btnPrev.disabled = index === 0;
+      if (btnNext) btnNext.disabled = index === total - 1;
+    }
+
+    function goTo(i: number) {
+      index = Math.max(0, Math.min(i, total - 1));
+      stack!.style.transform = `translateX(${-index * step()}px)`;
+      updateButtons();
+    }
+
+    stack.style.transition = 'transform 0.4s ease';
     goTo(0);
 
-    let timer = setInterval(() => goTo((index + 1) % cards.length), 4000);
-
-    stack.addEventListener('mouseenter', () => clearInterval(timer));
-    stack.addEventListener('mouseleave', () => {
-      timer = setInterval(() => goTo((index + 1) % cards.length), 4000);
-    });
+    btnPrev?.addEventListener('click', () => goTo(index - 1));
+    btnNext?.addEventListener('click', () => goTo(index + 1));
   })();
 </script>
