@@ -202,22 +202,14 @@ const totalMaratonas = months.filter(m => m.marathon).length;
 
 <div class="cd-page">
 
-  <!-- SUB-NAV -->
-  <div class="cd-subnav">
-    <div class="cd-subnav__inner">
-      <div class="cd-subnav__brand">
-        <span class="cd-badge">FD</span>
-        <span>Diário de Cinema</span>
-        <span class="cd-lofi">· Letterboxd</span>
-      </div>
-      <nav class="cd-subnav__nav" aria-label="Seções da página">
-        <a href="#destaques">Destaques</a>
-        <a href="#listagem">Por mês</a>
-      </nav>
-    </div>
-  </div>
-
   <div class="cd-wrap">
+
+    <nav class="cd-category-nav" aria-label="Menu do Repertório">
+      <a href="/criticas" class="cd-cat-item is-active">Cinema</a>
+      <span class="cd-cat-item is-disabled">Séries <span class="cd-cat-soon">(Em breve)</span></span>
+      <span class="cd-cat-item is-disabled">Músicas <span class="cd-cat-soon">(Em breve)</span></span>
+      <span class="cd-cat-item is-disabled">Jogos <span class="cd-cat-soon">(Em breve)</span></span>
+    </nav>
 
     <!-- PAGE HEAD -->
     <div class="cd-pagehead">
@@ -446,48 +438,34 @@ const totalMaratonas = months.filter(m => m.marathon).length;
     --cd-hatch: color-mix(in srgb, var(--color-ink) 9%, transparent);
     --cd-placeholder: color-mix(in srgb, var(--color-ink) 7%, var(--color-bg));
     --cd-sk: color-mix(in srgb, var(--color-ink) 13%, var(--color-bg));
+    padding-top: 60px;
   }
 
-  /* ── Sub-nav ──────────────────────────────────────────────────────────── */
-  .cd-subnav {
-    position: sticky; top: 60px; z-index: 40;
-    background: var(--color-ink); color: var(--color-bg);
-    border-bottom: 3px solid var(--color-ink);
+  /* ── Category nav ─────────────────────────────────────────────────────── */
+  .cd-category-nav {
+    display: flex; gap: var(--space-6);
+    padding: var(--space-8) 0 var(--space-4);
+    border-bottom: 2px solid var(--color-ink);
+    margin-bottom: var(--space-8); flex-wrap: wrap;
   }
-  .cd-subnav__inner {
-    max-width: 1280px; margin: 0 auto;
-    padding: var(--space-3) var(--space-5);
-    display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap;
-  }
-  .cd-subnav__brand {
-    display: flex; align-items: center; gap: var(--space-3);
+  .cd-cat-item {
     font-family: var(--font-mono); font-weight: 700;
-    font-size: clamp(0.75rem,1.5vw,.875rem); letter-spacing: .08em;
-    text-transform: uppercase; white-space: nowrap;
+    font-size: clamp(0.75rem, 1.5vw, 0.875rem); letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--color-ink); text-decoration: none;
+    padding-bottom: var(--space-2); border-bottom: 4px solid transparent;
+    cursor: pointer; transition: all 0.2s ease;
   }
-  .cd-badge {
-    background: var(--color-yellow); color: var(--color-ink);
-    padding: 2px var(--space-2); border: 2px solid var(--color-ink);
-    font-family: var(--font-mono); font-weight: 700;
-  }
-  .cd-lofi { color: var(--color-yellow); }
-
-  .cd-subnav__nav { display: flex; margin: 0 auto; }
-  .cd-subnav__nav a {
-    font-family: var(--font-mono); font-weight: 700;
-    font-size: clamp(.75rem,1.5vw,.875rem); letter-spacing: .06em;
-    text-transform: uppercase; color: var(--color-bg); text-decoration: none;
-    padding: var(--space-2) var(--space-3); border-bottom: 2px solid transparent;
-    transition: 120ms ease;
-  }
-  .cd-subnav__nav a:hover { color: var(--color-yellow); border-color: var(--color-yellow); }
+  .cd-cat-item.is-active { border-bottom-color: var(--color-pink); }
+  .cd-cat-item:not(.is-disabled):hover { color: var(--color-pink); border-bottom-color: var(--color-pink); }
+  .cd-cat-item.is-disabled { color: var(--color-muted); cursor: not-allowed; opacity: 0.7; }
+  .cd-cat-soon { font-size: 0.8em; margin-left: 4px; font-weight: 400; }
 
   /* ── Wrap ─────────────────────────────────────────────────────────────── */
   .cd-wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--space-5); }
 
   /* ── Page head ────────────────────────────────────────────────────────── */
   .cd-pagehead {
-    padding: var(--space-16) 0 var(--space-12);
+    padding: 0 0 var(--space-12);
     border-bottom: 3px solid var(--color-ink);
   }
   .cd-eyebrow {
@@ -871,7 +849,6 @@ const totalMaratonas = months.filter(m => m.marathon).length;
   @media (max-width: 480px) {
     .cd-mgrid { grid-template-columns: repeat(2,1fr); }
     .cd-featured { flex: 0 0 80%; }
-    .cd-subnav__brand span:not(.cd-badge):not(.cd-lofi) { display: none; }
   }
 </style>
 
