@@ -1,0 +1,145 @@
+---
+interface Step {
+  num: string;
+  tag: string;
+  tagEn: string;
+  theory: string;
+  theoryEn: string;
+  application: string;
+  applicationEn: string;
+}
+
+interface Props {
+  steps: Step[];
+}
+
+const { steps } = Astro.props;
+---
+
+<div class="methodology" data-reveal>
+  <div class="methodology__header">
+    <p class="section-label" data-en="Methodology · Jim Wallman applied">Metodologia · Jim Wallman aplicada</p>
+    <span class="methodology__note" data-en="theory → practice">teoria → prática</span>
+  </div>
+  <div class="methodology__grid">
+    {steps.map((step) => (
+      <div class="methodology__step">
+        <div class="methodology__step-num">{step.num}</div>
+        <div class="methodology__step-body">
+          <p class="methodology__step-tag" data-en={step.tagEn}>{step.tag}</p>
+          <div class="methodology__step-cols">
+            <div class="methodology__col">
+              <p class="methodology__col-label" data-en="Theory">Teoria</p>
+              <p class="methodology__col-text" data-en={step.theoryEn}>{step.theory}</p>
+            </div>
+            <div class="methodology__col methodology__col--apply">
+              <p class="methodology__col-label" data-en="In practice">Na prática</p>
+              <p class="methodology__col-text" data-en={step.applicationEn}>{step.application}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+.methodology {
+  border: var(--border-thick);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-8);
+  margin-top: var(--space-10);
+}
+.methodology__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: var(--border);
+}
+.methodology__note {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.methodology__grid {
+  display: flex;
+  flex-direction: column;
+}
+.methodology__step {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: var(--space-6);
+  padding-block: var(--space-6);
+  border-bottom: var(--border);
+}
+.methodology__step:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.methodology__step-num {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-muted);
+  padding-top: 0.2em;
+  flex-shrink: 0;
+}
+.methodology__step-tag {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+}
+.methodology__step-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+}
+.methodology__col-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  margin-bottom: var(--space-2);
+}
+.methodology__col-text {
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+.methodology__col--apply {
+  border-left: var(--border);
+  padding-left: var(--space-8);
+}
+@media (max-width: 768px) {
+  .methodology {
+    padding: var(--space-5);
+  }
+  .methodology__step {
+    grid-template-columns: 2rem 1fr;
+    gap: var(--space-4);
+  }
+  .methodology__step-cols {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  .methodology__col--apply {
+    border-left: none;
+    border-top: var(--border);
+    padding-left: 0;
+    padding-top: var(--space-4);
+  }
+}
+</style>

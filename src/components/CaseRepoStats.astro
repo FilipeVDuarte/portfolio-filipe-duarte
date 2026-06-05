@@ -1,0 +1,148 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+  labelEn: string;
+  sublabel?: string;
+  sublabelEn?: string;
+  accent?: boolean;
+  mono?: boolean;
+}
+
+interface Props {
+  stats: Stat[];
+  repoUrl?: string;
+}
+
+const { stats, repoUrl } = Astro.props;
+---
+
+<div class="repo-stats" data-reveal>
+  <div class="repo-stats__header">
+    <span class="repo-stats__heading" data-en="$ git log --stat">$ git log --stat</span>
+    {repoUrl && (
+      <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="repo-stats__link">
+        <span data-en="view on GitHub">ver no GitHub</span> ↗
+      </a>
+    )}
+  </div>
+  <div class="repo-stats__grid">
+    {stats.map((stat) => (
+      <div class={`repo-stats__card${stat.accent ? ' repo-stats__card--accent' : ''}`}>
+        <span class={`repo-stats__value${stat.mono ? ' repo-stats__value--mono' : ''}`}>{stat.value}</span>
+        <span class="repo-stats__label" data-en={stat.labelEn}>{stat.label}</span>
+        {stat.sublabel && (
+          <span class="repo-stats__sublabel" data-en={stat.sublabelEn ?? stat.sublabel}>{stat.sublabel}</span>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+.repo-stats {
+  margin-bottom: var(--space-8);
+}
+.repo-stats__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--border);
+}
+.repo-stats__heading {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-teal);
+}
+.repo-stats__link {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.repo-stats__link:hover {
+  color: var(--color-ink);
+}
+.repo-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+@media (min-width: 640px) {
+  .repo-stats__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 900px) {
+  .repo-stats__grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+.repo-stats__card {
+  position: relative;
+  border: var(--border-thick);
+  background: var(--color-ink);
+  padding: var(--space-5) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+  overflow: hidden;
+}
+.repo-stats__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-teal);
+}
+.repo-stats__card--accent::before {
+  background: var(--color-yellow);
+}
+.repo-stats__card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-md);
+}
+.repo-stats__value {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--color-bg);
+}
+.repo-stats__value--mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0;
+  font-weight: 700;
+}
+.repo-stats__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6B6B6B;
+}
+.repo-stats__sublabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #4a4a4a;
+}
+</style>

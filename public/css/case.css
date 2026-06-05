@@ -81,6 +81,7 @@ a.gallery-card:hover .gallery-card__overlay { background: var(--color-yellow); }
 .mobi-studio-page .case-img-trio__img { aspect-ratio: 1 / 1; }
 /* 3D case: trio images 1:1 */
 .mobi-3d-page .case-img-trio__img { aspect-ratio: 1 / 1; }
+.cavaleiro-de-latao-page .case-img-trio__img { aspect-ratio: 1 / 1; }
 /* Video gallery (Cavalry animations) */
 .video-gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); margin-bottom: var(--space-8); }
 .video-gallery-card { display: flex; flex-direction: column; gap: var(--space-2); }

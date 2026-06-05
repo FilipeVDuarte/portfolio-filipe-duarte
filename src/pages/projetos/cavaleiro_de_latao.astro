@@ -1,0 +1,319 @@
+---
+import CaseStudy from '../../layouts/CaseStudy.astro';
+import CaseMethodology from '../../components/CaseMethodology.astro';
+import CaseAssetGallery from '../../components/CaseAssetGallery.astro';
+import CaseRepoStats from '../../components/CaseRepoStats.astro';
+
+const codeBlock = `<span class="tok-comment"># DifficultySystem — rampa linear modulada por onda senoidal</span>
+<span class="tok-keyword">extends</span> Node
+
+<span class="tok-keyword">@export var</span> mob_spawner: MobSpawner
+<span class="tok-keyword">@export var</span> initial_spawn_rate: <span class="tok-keyword">float</span> = <span class="tok-string">60.0</span>
+<span class="tok-keyword">@export var</span> spawn_rate_per_minute: <span class="tok-keyword">float</span> = <span class="tok-string">30.0</span>
+<span class="tok-keyword">@export var</span> wave_duration: <span class="tok-keyword">float</span> = <span class="tok-string">20.0</span>
+<span class="tok-keyword">@export var</span> break_intensity: <span class="tok-keyword">float</span> = <span class="tok-string">0.5</span>
+
+<span class="tok-keyword">var</span> time: <span class="tok-keyword">float</span> = <span class="tok-string">0.0</span>
+
+<span class="tok-keyword">func</span> <span class="tok-fn">_process</span>(delta):
+  <span class="tok-keyword">if</span> GameManager.is_game_over: <span class="tok-keyword">return</span>
+  time += delta
+
+  <span class="tok-comment"># Rampa linear: taxa de spawn cresce com o tempo de sessão</span>
+  <span class="tok-keyword">var</span> spawn_rate = initial_spawn_rate + spawn_rate_per_minute * (time / <span class="tok-string">60.0</span>)
+
+  <span class="tok-comment"># Onda senoidal: cria picos e vales de pressão a cada wave_duration</span>
+  <span class="tok-keyword">var</span> sin_wave = sin((time * TAU) / wave_duration)
+  <span class="tok-keyword">var</span> wave_factor = remap(sin_wave, <span class="tok-string">-1.0</span>, <span class="tok-string">1.0</span>, break_intensity, <span class="tok-string">1.0</span>)
+  spawn_rate *= wave_factor
+
+  mob_spawner.mob_per_minute = spawn_rate`;
+
+const methodologySteps = [
+  {
+    num: '01',
+    tag: 'Identificação do Objetivo',
+    tagEn: 'Objective Identification',
+    theory: 'O objetivo do jogo deve ser desafiador o bastante para manter os jogadores envolvidos, sem desmotivá-los.',
+    theoryEn: 'The game objective must be challenging enough to keep players engaged without discouraging them.',
+    application: 'Roguelike de sobrevivência com personagem Ficino investigando o desaparecimento do pai. Sessão de 1–2 horas, com liberdade para escolher a ordem de exploração entre três caminhos.',
+    applicationEn: 'Survival roguelike with Ficino investigating his father\'s disappearance. 1–2 hour session with freedom to explore three paths in any order.',
+  },
+  {
+    num: '02',
+    tag: 'Definição das Regras',
+    tagEn: 'Rule Definition',
+    theory: 'Regras claras e equilibradas em quatro áreas: nível de dificuldade, formas de resolução, tipo de jogo e layout da interface.',
+    theoryEn: 'Clear, balanced rules across four areas: difficulty level, resolution options, game type, and UI layout.',
+    application: 'Mapa com 3 rotas, dificuldade progressiva via DifficultySystem (rampa linear + onda senoidal), upgrades entre ondas e HUD objetiva com barra de vida e contadores visíveis.',
+    applicationEn: 'Map with 3 routes, progressive difficulty via DifficultySystem (linear ramp + sine wave), upgrades between waves, and clear HUD with health bar and counters.',
+  },
+  {
+    num: '03',
+    tag: 'Contexto Envolvente',
+    tagEn: 'Immersive Context',
+    theory: 'Cenário coeso, personagens com motivações claras e enredo que mantém o interesse ao longo da sessão.',
+    theoryEn: 'A cohesive setting, characters with clear motivations, and a plot that sustains interest throughout the session.',
+    application: 'Continente atacado por monstros de um bruxo maligno; armadura de latão com propriedades mágicas que se adapta ao usuário; fauna e flora brasileira como base estética. Folclore local como diferencial narrativo.',
+    applicationEn: 'Continent under attack from a dark wizard\'s monsters; brass armor with magical adaptive properties; Brazilian fauna and flora as aesthetic base. Local folklore as narrative differentiator.',
+  },
+  {
+    num: '04',
+    tag: 'Desenvolvimento dos Assets',
+    tagEn: 'Asset Development',
+    theory: 'Assets projetados com atenção ao detalhe, testados para garantir funcionalidade e equilíbrio visual.',
+    theoryEn: 'Assets designed with attention to detail, tested to ensure functionality and visual balance.',
+    application: 'Pipeline misto: modelagem 3D no Blender como referência de perspectiva → pixel art no Aseprite em estilo 8/16-bit → tratamento no Photoshop → vetores no Illustrator.',
+    applicationEn: 'Mixed pipeline: 3D modeling in Blender for perspective reference → pixel art in Aseprite (8/16-bit style) → Photoshop post-processing → vector elements in Illustrator.',
+  },
+  {
+    num: '05',
+    tag: 'Teste e Refinamento',
+    tagEn: 'Testing & Refinement',
+    theory: 'Processo iterativo — testar, identificar problemas, coletar feedback, refinar antes do lançamento.',
+    theoryEn: 'Iterative process — test, identify issues, gather feedback, refine before public release.',
+    application: 'Playtests com amigos durante o desenvolvimento; publicação no itch.io para feedback aberto; 75 commits documentam iterações de balanceamento, correções de hitbox e ajustes de acessibilidade.',
+    applicationEn: 'Playtests with friends during development; published on itch.io for open feedback; 75 commits document balancing iterations, hitbox fixes, and accessibility tweaks.',
+  },
+];
+
+const galleryItems = [
+  {
+    src: '/projetos/cavaleiro_de_latao/processo_01.webp',
+    alt: 'Taverna medieval modelada em 3D no Blender — referência de perspectiva e proporção',
+    caption: 'Taverna · Referência 3D',
+    captionEn: 'Tavern · 3D Reference',
+    tool: 'Blender',
+    phase: 'reference' as const,
+  },
+  {
+    src: '/projetos/cavaleiro_de_latao/processo_02.webp',
+    alt: 'Ficino e sprites finais em pixel art no Aseprite',
+    caption: 'Ficino · Sprites Finais',
+    captionEn: 'Ficino · Final Sprites',
+    tool: 'Aseprite',
+    phase: 'final' as const,
+  },
+];
+
+const repoStats = [
+  { value: '75',          label: 'Commits',         labelEn: 'Commits',          sublabel: 'Jun–Jul 2024',         sublabelEn: 'Jun–Jul 2024',         accent: true,  mono: false },
+  { value: '27',          label: 'Scripts GD',      labelEn: 'GD Scripts',       sublabel: 'arquivos .gd',         sublabelEn: '.gd files',             accent: false, mono: false },
+  { value: 'Godot 4.2',   label: 'Engine',          labelEn: 'Engine',           sublabel: 'Forward Plus',         sublabelEn: 'Forward Plus',          accent: false, mono: true  },
+  { value: 'HTML5',       label: 'Exportação',      labelEn: 'Export',           sublabel: 'sem instalação',       sublabelEn: 'no install',            accent: false, mono: true  },
+  { value: '2',           label: 'Fases',           labelEn: 'Levels',           sublabel: 'Level 1 + Boss',       sublabelEn: 'Level 1 + Boss',        accent: false, mono: false },
+  { value: 'autoload',    label: 'GameManager',     labelEn: 'GameManager',      sublabel: 'singleton global',     sublabelEn: 'global singleton',      accent: false, mono: true  },
+];
+---
+
+<CaseStudy
+  caseTitle="Cavaleiro de Latão"
+  caseDesc="Cavaleiro de Latão — roguelike autoral desenvolvido em Godot. Arte mista 3D/2D, narrativa de autodescoberta e exportação para HTML5."
+  casePath="/projetos/cavaleiro_de_latao.html"
+  ogImage="/projetos/cavaleiro_de_latao/Banner_Cavaleiro_21_9.webp"
+  heroImageHref="/projetos/cavaleiro_de_latao/Banner_Cavaleiro_21_9.webp"
+>
+
+  <div class="cavaleiro-de-latao-page">
+
+  <!-- BREADCRUMB -->
+  <div class="case-breadcrumb">
+    <div class="container case-breadcrumb__inner">
+      <a class="case-breadcrumb__link" href="../projetos.html" data-en="← Projects">← Projetos</a>
+      <span class="case-breadcrumb__sep">·</span>
+      <span class="case-breadcrumb__current" data-en="Case">Case</span>
+    </div>
+  </div>
+
+  <!-- CASE HEADER -->
+  <section class="case-header" aria-labelledby="case-title">
+    <div class="container">
+      <p class="case-header__eyebrow" data-en="Case · Game Dev · Original">
+        Case · Game Dev · Autoral
+      </p>
+      <h1 class="case-header__title" id="case-title">
+        Cavaleiro<br />de Latão.
+      </h1>
+      <div class="case-header__meta">
+        <span class="case-header__date" data-en="Aug 2022 → current (Released: Jul 31, 2024)">Ago 2022 → atual (Lançamento: Jul 31, 2024)</span>
+        <div class="case-header__tags">
+          <span class="tech-tag">Godot</span>
+          <span class="tech-tag">Blender</span>
+          <span class="tech-tag">Aseprite</span>
+          <span class="tech-tag">Adobe Photoshop</span>
+          <span class="tech-tag">Adobe Illustrator</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO DO CASE -->
+  <div class="case-hero" role="img" aria-label="Banner do projeto Cavaleiro de Latão">
+    <img class="case-hero__img" src="/projetos/cavaleiro_de_latao/Banner_Cavaleiro_21_9.webp"
+        alt="Cavaleiro de Latão — roguelike autoral em Godot" width="2100" height="900" loading="eager" />
+  </div>
+
+  <!-- 01 — CONTEXTO / PROBLEMA -->
+  <section class="case-section" aria-labelledby="ctx-title">
+    <div class="container">
+      <div class="case-section__header">
+        <p class="section-label" id="ctx-title" data-en="01 — Context / Problem">01 — Contexto / Problema</p>
+        <span class="case-section__note" data-en="origin · universe · challenge">origem · universo · desafio</span>
+      </div>
+      <div class="case-grid-2" data-reveal>
+        <div>
+          <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5); margin-bottom: var(--space-5);">
+            <p class="section-label" style="margin-bottom: var(--space-2);">Origem</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+              Uma simples taverna medieval virou o ponto de partida de um universo inteiro. Do ambiente surgiu o personagem; do personagem surgiu a narrativa.
+            </p>
+          </div>
+          <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+            <p class="section-label" style="margin-bottom: var(--space-2);">Desafio central</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+              Aprender uma engine nova (Godot), criar toda a arte do zero e manter coerência narrativa ao mesmo tempo. Tudo isso como projeto solo e autoral, sem prazo externo.
+            </p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: var(--space-5);">
+          <div style="border: var(--border-thick); background: var(--color-yellow); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+            <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);">Oportunidade</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);">
+              Construir um jogo completo, com mecânicas, arte e código e publicá-lo acessível a qualquer pessoa diretamente no navegador, sem instalação.
+            </p>
+          </div>
+          <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
+            <p class="section-label" style="margin-bottom: var(--space-2);">Público-alvo</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+              Jogadores a partir de 14 anos interessados em jogos independentes de sobrevivência com narrativa autoral, folclore brasileiro e estética pixel art retrô.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <CaseMethodology steps={methodologySteps} />
+    </div>
+  </section>
+
+  <!-- 02 — MEU PAPEL -->
+  <section class="case-section" aria-labelledby="papel-title" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="case-section__header">
+        <p class="section-label" id="papel-title" data-en="02 — My Role">02 — Meu Papel</p>
+        <span class="case-section__note" data-en="solo project · game design · art · code">projeto solo · game design · arte · código</span>
+      </div>
+      <div class="case-grid-3" data-reveal>
+        <div class="role-card">
+          <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
+          <h3 class="role-card__title">Game Design</h3>
+          <p class="role-card__desc" style="text-align: justify;">
+            Mecânicas de Roguelike/Vampire-survivor com loop de progressão estruturado pela metodologia "It's Only a Game". Narrativa sobre o desaparecimento do pai do protagonista, sessão de 1–2h com três caminhos exploráveis e sistema de upgrades entre ondas.
+          </p>
+        </div>
+        <div class="role-card">
+          <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
+          <h3 class="role-card__title">Arte</h3>
+          <p class="role-card__desc" style="text-align: justify;">
+            Pipeline misto: modelos 3D no Blender como referência de perspectiva e proporção. Nunca como arte final. Cada sprite redesenhado manualmente em pixel art no Aseprite, tratamento no Photoshop e elementos vetoriais no Illustrator.
+          </p>
+        </div>
+        <div class="role-card">
+          <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
+          <h3 class="role-card__title">Progra<br>mação</h3>
+          <p class="role-card__desc" style="text-align: justify;">
+            Desenvolvimento completo em GDScript na Godot 4.2: GameManager singleton (autoload), sinais tipados no Player, MobSpawner com PathFollow2D e query de física 2D, DifficultySystem matemático. Suporte a gamepad e exportação HTML5.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 — PROCESSO & SOLUÇÃO -->
+  <section class="case-section" aria-labelledby="processo-title">
+    <div class="container">
+      <div class="case-section__header">
+        <p class="section-label" id="processo-title" data-en="03 — Process & Solution">03 — Processo & Solução</p>
+        <span class="case-section__note" data-en="3D → 2D · godot · pixel art">3D → 2D · godot · pixel art</span>
+      </div>
+
+      <CaseAssetGallery items={galleryItems} />
+
+      <p class="case-narrative" data-reveal data-reveal-delay="1">
+        A decisão mais importante do processo foi a <strong>transição da arte conceitual 3D para o 2D</strong>. O Blender foi mantido como ferramenta de referência, modelos 3D geram perspectivas e proporções consistentes que seriam impossíveis de manter manualmente. A partir dessas referências, cada sprite foi redesenhado em pixel art no Aseprite, criando uma estética coesa que mistura solidez tridimensional com o charme da arte em pixels.
+      </p>
+
+      <p class="case-narrative" data-reveal data-reveal-delay="1">
+        A <strong>arquitetura de nodes</strong> seguiu o princípio de responsabilidade única da Godot: o <code>GameManager</code> (autoload singleton) centraliza o estado global da posição do jogador, contadores e flag de game over. Sem que as cenas precisem se referenciar diretamente. O <code>Player</code> (CharacterBody2D) registra-se no <code>_ready()</code> e expõe sinais tipados (<code>coin_collected</code>, <code>quest_collected</code>) que qualquer sistema pode consumir sem acoplamento. O <code>MobSpawner</code> percorre um <code>PathFollow2D</code> circular via <code>progress_ratio = randf()</code> para gerar pontos de spawn fora do campo de visão, com uma query de física 2D que descarta posições sobrepostas a paredes antes de instanciar a cena.
+      </p>
+
+      <p class="case-narrative" data-reveal data-reveal-delay="1">
+        O maior desafio de game design foi criar <strong>tensão sem ondas explícitas</strong>. A solução foi um <code>DifficultySystem</code> puramente matemático: uma rampa linear eleva a taxa de spawn com o tempo de sessão, enquanto uma onda senoidal mapeada para o intervalo <code>[break_intensity, 1.0]</code> via <code>remap()</code> modula essa taxa, gerando picos e vales naturais de pressão a cada 20 segundos. Todos os parâmetros são <code>@export</code>, então o ajuste de ritmo acontecia direto no editor Inspector sem tocar no código.
+      </p>
+
+      <div class="case-code" data-reveal data-reveal-delay="2" role="region" aria-label="GDScript — DifficultySystem com rampa linear modulada por onda senoidal" set:html={codeBlock} />
+
+      <div class="case-img-trio" data-reveal>
+        <div>
+          <img class="case-img-trio__img" src="/projetos/cavaleiro_de_latao/processo_03.webp" alt="Cena de gameplay com hordas de inimigos" loading="lazy" />
+          <span class="case-img-pair__caption" data-en="GAMEPLAY · ENEMY HORDES">GAMEPLAY · HORDAS DE INIMIGOS</span>
+        </div>
+        <div>
+          <img class="case-img-trio__img" src="/projetos/cavaleiro_de_latao/processo_04.webp" alt="Tela de progressão e upgrades entre rounds" loading="lazy" />
+          <span class="case-img-pair__caption" data-en="PROGRESSION · UPGRADES">PROGRESSÃO · UPGRADES</span>
+        </div>
+        <div>
+          <img class="case-img-trio__img" src="/projetos/cavaleiro_de_latao/processo_05.webp" alt="Cenário e atmosfera narrativa do jogo" loading="lazy" />
+          <span class="case-img-pair__caption" data-en="WORLD · NARRATIVE ATMOSPHERE">MUNDO · ATMOSFERA NARRATIVA</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 04 — RESULTADO -->
+  <section class="case-section" aria-labelledby="resultado-title" style="background: var(--color-surface);">
+    <div class="container">
+      <div class="case-section__header">
+        <p class="section-label" id="resultado-title" data-en="04 — Result">04 — Resultado</p>
+        <span class="case-section__note" data-en="published · alpha · html5">publicado · alpha · html5</span>
+      </div>
+      <div class="case-resultado" data-reveal>
+        <div>
+          <CaseRepoStats
+            stats={repoStats}
+            repoUrl="https://github.com/filipeduarte/cavaleiro-de-latao"
+          />
+          <p class="case-resultado__impact">
+            <strong>Do tédio ao lançamento.</strong> O Cavaleiro de Latão passou de uma cena 3D improvisada a um jogo completo em versão Alpha, publicado em HTML5 em julho de 2024. Os 75 commits registrados no GitHub cobrem 27 scripts GDScript com movimentação, spawner, dificuldade dinâmica, UI e exportação além de iterações de balanceamento e ajustes de acessibilidade com legendas. A engine Godot 4.2 em modo Forward Plus viabilizou a exportação direta para HTML5 sem necessidade de instalação.
+            <br /><br />
+            O projeto segue em desenvolvimento ativo com planos de expandir a narrativa, adicionar novos cenários e evoluir o sistema de progressão para versões futuras.
+          </p>
+          <div class="projeto__actions">
+            <a href="https://filipeduarte.itch.io/cavaleiro-de-latao" target="_blank" rel="noopener noreferrer" class="btn btn--primary"
+              data-en="Play in browser ↗">Jogar no navegador ↗</a>
+          </div>
+        </div>
+        <div>
+          <img class="case-resultado__screenshot" src="/projetos/cavaleiro_de_latao/demonstrativo.gif"
+               alt="Cavaleiro de Latão em ação — gameplay da versão Alpha" width="800" height="600" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRÓXIMO CASE -->
+  <section class="case-next" aria-label="Próximo case">
+    <div class="container">
+      <a href="mobi_studio.html" class="case-next__card" data-reveal>
+        <div>
+          <p class="case-next__label" data-en="Next case →">Próximo case →</p>
+          <p class="case-next__title">Mobi<br />Studio.</p>
+        </div>
+        <img class="case-next__thumb" src="/projetos/mobi_studio/Banner_MobiStudio_21_9.webp" alt="Thumbnail MobiStudio" loading="lazy" />
+        <span class="case-next__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  </div>
+</CaseStudy>
