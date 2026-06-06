@@ -1,0 +1,356 @@
+[gd_scene load_steps=22 format=3 uid="uid://ko41rcnhbjkq"]
+
+[ext_resource type="Texture2D" uid="uid://cnfgolfp7eyry" path="res://ui/Titulo.png" id="1_0k8py"]
+[ext_resource type="Script" path="res://menus/menu_inicial.gd" id="1_dxw3p"]
+[ext_resource type="Texture2D" uid="uid://23586s1cra65" path="res://ui/Brilho 3.png" id="1_pafy3"]
+[ext_resource type="Texture2D" uid="uid://d05e4yslyojnd" path="res://ui/Brilho 2.png" id="3_7dwlh"]
+[ext_resource type="Texture2D" uid="uid://cqhmkfr2lysf4" path="res://ui/Brilho 1.png" id="4_4vswt"]
+[ext_resource type="FontFile" uid="uid://box1j7tx5ctj5" path="res://fontes/Oferta-do-Dia.ttf" id="5_12dyd"]
+[ext_resource type="Texture2D" uid="uid://btvlkn8f6qtx1" path="res://addons/Tiny Swords/UI/Buttons/Button_Blue_3Slides.png" id="7_4xi5c"]
+[ext_resource type="Texture2D" uid="uid://6ltboi1lw8vt" path="res://addons/Tiny Swords/UI/Buttons/Button_Blue_3Slides_Pressed.png" id="8_u5w4m"]
+[ext_resource type="Texture2D" uid="uid://bb3w7gpme5nsc" path="res://addons/Tiny Swords/UI/Buttons/Button_Disable_3Slides.png" id="9_c2f3x"]
+[ext_resource type="StyleBox" uid="uid://vb6sua87a0lv" path="res://menus/button_hover_style.tres" id="9_f5ie4"]
+[ext_resource type="PackedScene" uid="uid://d00ll8g8ppqim" path="res://scene_transition.tscn" id="11_nmwlw"]
+
+[sub_resource type="Animation" id="Animation_y5dci"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/VBoxContainer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(59, 430)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background2:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.141176, 0.141176, 0.141176, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_urydl"]
+resource_name = "default"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Titulo:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 4.5),
+"transitions": PackedFloat32Array(0.15, 0.15),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.37525, 1.37525)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Titulo/Brilho 3:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5, 4.5),
+"transitions": PackedFloat32Array(0.15, 0.15),
+"update": 0,
+"values": [-6.28319, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Titulo/Brilho 3:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.8, 4.5),
+"transitions": PackedFloat32Array(0.15, 0.15),
+"update": 0,
+"values": [Vector2(3.354, 1.985), Vector2(16.1694, 9.57043)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Titulo/Brilho 2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.5, 4.5, 6.5, 8, 10, 12),
+"transitions": PackedFloat32Array(-15, -15, -15, -15, -15, -15),
+"update": 0,
+"values": [0.0, 3.14159, 0.0, 3.14159, 0.0, 3.14159]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Titulo/Brilho 1:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(2.5, 4.5, 6.5, 8, 10, 12),
+"transitions": PackedFloat32Array(-15, -15, -15, -15, -15, -15),
+"update": 0,
+"values": [0.0, 3.14159, 0.0, 3.14159, 0.0, 3.14159]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer/VBoxContainer:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.8, 2.6),
+"transitions": PackedFloat32Array(0.15, 0.15),
+"update": 0,
+"values": [Vector2(59, 800), Vector2(59, 430)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Background2:color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.141176, 0.141176, 0.141176, 1), Color(0.141176, 0.141176, 0.141176, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_loqlc"]
+_data = {
+"RESET": SubResource("Animation_y5dci"),
+"default": SubResource("Animation_urydl")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d4jpg"]
+texture = ExtResource("1_pafy3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jq6rx"]
+texture = ExtResource("1_0k8py")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_djyv7"]
+texture = ExtResource("3_7dwlh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0t8m5"]
+texture = ExtResource("4_4vswt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2nch6"]
+texture = ExtResource("7_4xi5c")
+texture_margin_left = 23.0
+texture_margin_top = 15.0
+texture_margin_right = 23.0
+texture_margin_bottom = 15.0
+region_rect = Rect2(6, 0, 179, 56)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aycgj"]
+texture = ExtResource("8_u5w4m")
+texture_margin_left = 23.0
+texture_margin_top = 15.0
+texture_margin_right = 23.0
+texture_margin_bottom = 15.0
+region_rect = Rect2(6, 0, 179, 56)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v3nqp"]
+texture = ExtResource("9_c2f3x")
+texture_margin_left = 23.0
+texture_margin_top = 15.0
+texture_margin_right = 23.0
+texture_margin_bottom = 15.0
+region_rect = Rect2(6, 0, 179, 56)
+
+[node name="menu_inicial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dxw3p")
+
+[node name="scene_transition" parent="." instance=ExtResource("11_nmwlw")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_loqlc")
+}
+autoplay = "default"
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.952941, 0.65098, 0.0627451, 1)
+
+[node name="Titulo" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_right = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+
+[node name="Brilho 3" type="Panel" parent="Titulo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -6.28319
+scale = Vector2(3.354, 1.985)
+pivot_offset = Vector2(20, 20)
+theme_override_styles/panel = SubResource("StyleBoxTexture_d4jpg")
+
+[node name="Title" type="Panel" parent="Titulo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -10.0
+offset_right = 25.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(9.26741, 9.26741)
+pivot_offset = Vector2(25, 10)
+theme_override_styles/panel = SubResource("StyleBoxTexture_jq6rx")
+
+[node name="Brilho 2" type="Panel" parent="Titulo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.0
+offset_top = -20.0
+offset_right = -69.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3.14356, 1.77715)
+pivot_offset = Vector2(20, 20)
+theme_override_styles/panel = SubResource("StyleBoxTexture_djyv7")
+
+[node name="Brilho 1" type="Panel" parent="Titulo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 75.0
+offset_top = -129.0
+offset_right = 171.0
+offset_bottom = -67.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(48, 31)
+theme_override_styles/panel = SubResource("StyleBoxTexture_0t8m5")
+
+[node name="Background2" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.141176, 0.141176, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+z_as_relative = false
+y_sort_enabled = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 59.0
+offset_top = 43.0
+offset_right = 299.0
+offset_bottom = 300.0
+grow_vertical = 0
+
+[node name="StartButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../SairButton")
+focus_neighbor_bottom = NodePath("../ComoJogarButton")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("5_12dyd")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxTexture_2nch6")
+theme_override_styles/hover = ExtResource("9_f5ie4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_aycgj")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_v3nqp")
+theme_override_styles/focus = ExtResource("9_f5ie4")
+text = "Iniciar"
+icon_alignment = 1
+
+[node name="ComoJogarButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../SairButton")
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("5_12dyd")
+theme_override_font_sizes/font_size = 38
+theme_override_styles/normal = SubResource("StyleBoxTexture_2nch6")
+theme_override_styles/hover = ExtResource("9_f5ie4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_aycgj")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_v3nqp")
+theme_override_styles/focus = ExtResource("9_f5ie4")
+text = "Como Jogar"
+icon_alignment = 1
+
+[node name="SairButton" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../ComoJogarButton")
+focus_neighbor_bottom = NodePath("../StartButton")
+mouse_filter = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("5_12dyd")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxTexture_2nch6")
+theme_override_styles/hover = ExtResource("9_f5ie4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_aycgj")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_v3nqp")
+theme_override_styles/focus = ExtResource("9_f5ie4")
+text = "Sair"
+icon_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/ComoJogarButton" to="." method="_on_como_jogar_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/SairButton" to="." method="_on_sair_button_pressed"]

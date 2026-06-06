@@ -1,0 +1,74 @@
+[gd_scene load_steps=13 format=3 uid="uid://dfvnb2rgv81na"]
+
+[ext_resource type="PackedScene" uid="uid://b7t74r0t1w0qm" path="res://collectables/meat.tscn" id="1_62mc4"]
+[ext_resource type="Texture2D" uid="uid://daln2hfwbjljx" path="res://addons/Tiny Swords/Resources/Resources/Real_Spawn.png" id="2_7bwmc"]
+[ext_resource type="Script" path="res://collectables/coin_collect.gd" id="3_24klr"]
+[ext_resource type="AudioStream" uid="uid://dh5oysgiapjyh" path="res://music/coin_collect.wav" id="4_1jc2h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwlss"]
+atlas = ExtResource("2_7bwmc")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pa2l"]
+atlas = ExtResource("2_7bwmc")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1oq8"]
+atlas = ExtResource("2_7bwmc")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0d77u"]
+atlas = ExtResource("2_7bwmc")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w52dh"]
+atlas = ExtResource("2_7bwmc")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mk03"]
+atlas = ExtResource("2_7bwmc")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l638"]
+atlas = ExtResource("2_7bwmc")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_assw5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwlss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pa2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1oq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0d77u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w52dh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mk03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l638")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Real" instance=ExtResource("1_62mc4")]
+sprite_frames = SubResource("SpriteFrames_assw5")
+frame = 0
+frame_progress = 0.0
+script = ExtResource("3_24klr")
+coin_amount = 1
+
+[node name="Audio_Real_Spawn" type="AudioStreamPlayer" parent="." index="1"]
+stream = ExtResource("4_1jc2h")
+volume_db = -10.0
