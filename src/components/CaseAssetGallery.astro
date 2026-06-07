@@ -44,6 +44,17 @@ const {
   phaseDLabelEn = 'Enemies',
   phaseELabel = 'Pausa',
   phaseELabelEn = 'Pause',
+  
+  phaseFLabel = 'Arquitetura',
+  phaseFLabelEn = 'Architecture',
+  phaseGLabel = 'Level Design',
+  phaseGLabelEn = 'Level Design',
+  phaseHLabel = 'Inspector',
+  phaseHLabelEn = 'Inspector',
+  phaseILabel = 'Hitboxes',
+  phaseILabelEn = 'Hitboxes',
+  phaseJLabel = 'Hitboxes',
+  phaseJLabelEn = 'Hitboxes'
 } = Astro.props;
 
 const refItems  = items.filter(i => i.phase === 'reference');
@@ -100,8 +111,6 @@ const finalItems = items.filter(i => i.phase === 'final');
         <span class="asset-gallery__phase-badge asset-gallery__phase-badge--final" data-en={phaseHLabelEn}>{phaseHLabel}</span>
         <span class="asset-gallery__phase-arrow" aria-hidden="true">→</span>
         <span class="asset-gallery__phase-badge asset-gallery__phase-badge--final" data-en={phaseILabelEn}>{phaseILabel}</span>
-        <span class="asset-gallery__phase-arrow" aria-hidden="true">→</span>
-        <span class="asset-gallery__phase-badge asset-gallery__phase-badge--final" data-en={phaseJLabelEn}>{phaseJLabel}</span>
       </div>
       <div class="asset-gallery__grid">
         {finalItems.map((item) => (
@@ -177,7 +186,7 @@ const finalItems = items.filter(i => i.phase === 'final');
   background: #0a0a0a;
 }
 .asset-gallery__frame--pixel {
-  background: #1a1a2e;
+  background: #202531;
 }
 .asset-gallery__img {
   width: 100%;
@@ -187,8 +196,6 @@ const finalItems = items.filter(i => i.phase === 'final');
   transition: transform var(--transition-base);
 }
 .asset-gallery__frame--pixel .asset-gallery__img {
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
   object-fit: contain;
 }
 .asset-gallery__frame:hover .asset-gallery__img {

@@ -79,51 +79,35 @@ const methodologySteps = [
 
 const galleryItems = [
   {
-    src: '/projetos/cavaleiro_de_latao/processo_01.webp',
-    alt: 'Taverna medieval modelada em 3D no Blender — referência de perspectiva e proporção',
-    caption: 'Taverna · Referência 3D',
-    captionEn: 'Tavern · 3D Reference',
-    tool: 'Blender',
-    phase: 'reference' as const,
-  },
-  {
-    src: '/projetos/cavaleiro_de_latao/processo_02.webp',
-    alt: 'Desenvolvimento inicial da arte conceitual em 3D no Blender, criando a base para a estética do jogo',
-    caption: 'Desenvolvimento inicial',
-    captionEn: 'Initial Development',
-    tool: 'Aseprite',
-    phase: 'reference' as const,
-  },
-  {
-    src: '/projetos/cavaleiro_de_latao/processo_03.webp',
-    alt: 'Mapa criado com assets do Tiny Swords',
-    caption: 'Mapa com Assets free',
-    captionEn: 'Map with Free Assets',
+    src: '/projetos/cavaleiro_de_latao/Processo_01.webp',
+    alt: 'Árvore de nós do Player evidenciando separação de componentes, hitboxes e áudios.',
+    caption: 'Arquitetura · Player',
+    captionEn: 'Architecture · Player',
     tool: 'Godot',
-    phase: 'reference' as const,
+    phase: 'final' as const,
   },
   {
-    src: '/projetos/cavaleiro_de_latao/processo_04.webp',
-    alt: 'Primeiras versões dos inimigos',
-    caption: 'Inimigos · Referência',
-    captionEn: 'Enemies · Reference',
-    tool: 'Aseprite',
-    phase: 'reference' as const,
+    src: '/projetos/cavaleiro_de_latao/Processo_02.webp',
+    alt: 'Visão afastada do Level Design da Fase 1 mostrando os delimitadores e rota.',
+    caption: 'Level Design · Macro',
+    captionEn: 'Level Design · Macro',
+    tool: 'Godot',
+    phase: 'final' as const,
   },
   {
-    src: '/projetos/cavaleiro_de_latao/processo_05.webp',
-    alt: 'Pausa no projeto, para uma mudança de planos',
-    caption: 'Trocar texto aqui',
-    captionEn: 'Tavern · 3D Reference',
-    tool: 'Blender',
-    phase: 'reference' as const,
+    src: '/projetos/cavaleiro_de_latao/Processo_03.webp',
+    alt: 'Painel Inspector destacando as variáveis exportadas da rampa linear e onda senoidal.',
+    caption: 'Parâmetros · Inspector',
+    captionEn: 'Parameters · Inspector',
+    tool: 'Godot',
+    phase: 'final' as const,
   },
   {
-    src: '/projetos/cavaleiro_de_latao/processo_02.webp',
-    alt: 'Ficino e sprites finais em pixel art no Aseprite',
-    caption: 'Ficino · Sprites Finais',
-    captionEn: 'Ficino · Final Sprites',
-    tool: 'Aseprite',
+    src: '/projetos/cavaleiro_de_latao/Processo_04.webp',
+    alt: 'Tela de gameplay com debug visual ativado mostrando áreas de colisão e ataque.',
+    caption: 'Balanceamento · Hitboxes',
+    captionEn: 'Balancing · Hitboxes',
+    tool: 'Godot',
     phase: 'final' as const,
   },
 ];
@@ -315,21 +299,6 @@ const repoStats = [
 
       <div class="case-code" data-reveal data-reveal-delay="2" role="region" aria-label="GDScript — DifficultySystem com rampa linear modulada por onda senoidal" set:html={codeBlock} />
 
-      <div class="case-img-trio" data-reveal>
-        <div>
-          <img class="case-img-trio__img" src="/projetos/cavaleiro_de_latao/processo_03.webp" alt="Cena de gameplay com hordas de inimigos" loading="lazy" />
-          <span class="case-img-pair__caption" data-en="GAMEPLAY · ENEMY HORDES">GAMEPLAY · HORDAS DE INIMIGOS</span>
-        </div>
-        <div>
-          <img class="case-img-trio__img" src="/projetos/cavaleiro_de_latao/processo_04.webp" alt="Tela de progressão e upgrades entre rounds" loading="lazy" />
-          <span class="case-img-pair__caption" data-en="PROGRESSION · UPGRADES">PROGRESSÃO · UPGRADES</span>
-        </div>
-        <div>
-          <img class="case-img-trio__img" src="/projetos/cavaleiro_de_latao/processo_05.webp" alt="Cenário e atmosfera narrativa do jogo" loading="lazy" />
-          <span class="case-img-pair__caption" data-en="WORLD · NARRATIVE ATMOSPHERE">MUNDO · ATMOSFERA NARRATIVA</span>
-        </div>
-      </div>
-
       <div class="case-section__header" style="margin-top: var(--space-10);">
         <p class="section-label" data-en="Soundtrack">Trilha Sonora</p>
         <span class="case-section__note" data-en="8-bit · neo-classical · 100% Brazilian">8-bit · neo-clássica · 100% brasileira</span>
@@ -338,6 +307,51 @@ const repoStats = [
       <p class="case-narrative" data-reveal data-reveal-delay="1" data-en="The soundtrack follows the same cultural identity logic as the enemy roster: all pieces are exclusively based on Brazilian works, rearranged in a neo-classical style that emulates the 8-bit aesthetic of classic videogames. Produced in GarageBand, the goal is to create a nostalgic atmosphere that reinforces the connection between the game's content and Brazilian cultural identity — an audio-visual coherence that supports the folklore as a differentiator.">
         A trilha sonora segue a mesma lógica de identidade cultural da galeria de inimigos: todas as peças são <strong>exclusivamente baseadas em obras brasileiras</strong>, reinterpretadas em estilo neo-clássico que emula a estética 8-bits dos videogames clássicos. Produzida no GarageBand, o objetivo é criar uma atmosfera nostálgica que reforça a conexão entre o conteúdo do jogo e a identidade cultural brasileira — uma coerência audiovisual que sustenta o folclore como diferencial.
       </p>
+
+      <div class="case-soundtrack" data-reveal data-reveal-delay="2">
+        <div class="case-soundtrack__grid">
+          <iframe
+            src="https://www.youtube.com/embed/JJHKqSbm738"
+            title="Trilha Sonora — Faixa 1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+          <iframe
+            src="https://www.youtube.com/embed/Ype7Cf59W3U"
+            title="Trilha Sonora — Faixa 2"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+          <iframe
+            src="https://www.youtube.com/embed/Gp79P1APWTQ"
+            title="Trilha Sonora — Faixa 3"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+          <iframe
+            src="https://www.youtube.com/embed/OZLyI1ydpTo"
+            title="Trilha Sonora — Faixa 4"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+          <iframe
+            src="https://www.youtube.com/embed/8gsT9aq6vAg"
+            title="Trilha Sonora — Faixa 5"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
 
     </div>
   </section>
@@ -360,14 +374,19 @@ const repoStats = [
             <br /><br />
             O projeto segue em desenvolvimento ativo com planos de expandir a narrativa, adicionar novos cenários e evoluir o sistema de progressão para versões futuras.
           </p>
-          <div class="projeto__actions">
-            <a href="https://filipeduarte.itch.io/cavaleiro-de-latao" target="_blank" rel="noopener noreferrer" class="btn btn--primary"
-              data-en="Play in browser ↗">Jogar no navegador ↗</a>
-          </div>
+        
         </div>
         <div>
-          <img class="case-resultado__screenshot" src="/projetos/cavaleiro_de_latao/demonstrativo.gif"
-               alt="Cavaleiro de Latão em ação — gameplay da versão Alpha" width="800" height="600" loading="lazy" />
+          <iframe
+            frameborder="0"
+            src="https://itch.io/embed/2421287?linkback=true"
+            width="552"
+            height="167"
+            loading="lazy"
+            title="Cavaleiro de Latão no itch.io"
+          >
+            <a href="https://pipoodid.itch.io/cavaleiro-de-latao">Cavaleiro de Latão by Filipe Duarte CL Dev</a>
+          </iframe>
         </div>
       </div>
     </div>
@@ -389,3 +408,18 @@ const repoStats = [
 
   </div>
 </CaseStudy>
+
+<style>
+.case-soundtrack__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+.case-soundtrack__grid iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: var(--border-thick);
+  display: block;
+}
+</style>

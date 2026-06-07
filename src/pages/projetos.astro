@@ -51,43 +51,14 @@ import Base from '../layouts/Base.astro';
         <button class="filter-btn" data-filter="audiovisual" aria-pressed="false">Audiovisual</button>
         <button class="filter-btn" data-filter="fotografia" aria-pressed="false"
           data-en="Photography">Fotografia</button>
-        <span class="filter-bar__count" aria-live="polite" aria-atomic="true" id="filter-count">12 projetos</span>
+        <span class="filter-bar__count" aria-live="polite" aria-atomic="true" id="filter-count">13 projetos</span>
       </div>
 
       <!-- GRID -->
       <div class="projetos-grid" id="projetos-grid">
 
-        <!-- MobiStudio -->
-        <article class="proj-card" data-cat="dev-web" data-reveal aria-labelledby="proj-mobistudio">
-          <a href="projetos/mobi_studio.html" class="proj-card__thumb" aria-label="Ver MobiStudio">
-            <img src="projetos/mobi_studio/Banner_MobiStudio_21_9.webp"
-                 alt="Banner MobiStudio" width="1260" height="540" loading="eager" class="proj-card__static" />
-            <video class="proj-card__hover" muted loop playsinline aria-hidden="true">
-              <source src="projetos/mobi_studio/demonstrativo.webm" type="video/webm" />
-            </video>
-          </a>
-          <div class="proj-card__body">
-            <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-mobistudio">MobiStudio</h3>
-              <span class="tag">Dev<br>Web</span>
-            </div>
-            <p class="proj-card__desc">
-              Customizador interativo de capinhas. Motor Canvas API com zoom, rotação e arraste.
-              Do problema ao deploy em produção.
-            </p>
-            <div class="projeto__tech">
-              <span class="tech-tag">JavaScript</span>
-              <span class="tech-tag">Canvas API</span>
-              <span class="tech-tag">Netlify</span>
-            </div>
-            <div class="proj-card__actions">
-              <a href="projetos/mobi_studio.html" class="btn btn--primary">Ver projeto ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Design Kit -->
-        <article class="proj-card" data-cat="dev-web" data-reveal data-reveal-delay="1" aria-labelledby="proj-designkit">
+        <!-- Design Kit — Mai 2026 -->
+        <article class="proj-card" data-cat="dev-web" data-reveal aria-labelledby="proj-designkit">
           <a href="kit.html" class="proj-card__thumb" aria-label="Ver Design Kit">
             <div style="position:absolute;inset:0;background:var(--color-ink);display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:var(--space-5);">
               <div style="display:flex;gap:6px;">
@@ -119,91 +90,8 @@ import Base from '../layouts/Base.astro';
           </div>
         </article>
 
-        <!-- Rap In Cena -->
-        <article class="proj-card" data-cat="design-grafico" data-reveal data-reveal-delay="1" aria-labelledby="proj-rapincena">
-          <a href="projetos/mobi_ric.html" class="proj-card__thumb" aria-label="Ver Rap In Cena">
-            <img src="projetos/mobi_ric/Banner_MobiNoRIC_21_9.webp"
-                 alt="Banner Rap In Cena" width="1260" height="540" loading="eager" class="proj-card__static" />
-            <video class="proj-card__hover" muted loop playsinline aria-hidden="true">
-              <source src="projetos/mobi_ric/Processo_06.webm" type="video/webm" />
-            </video>
-          </a>
-          <div class="proj-card__body">
-            <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-rapincena">Rap In Cena</h3>
-              <span class="tag">Desi<br>Graf</span>
-            </div>
-            <p class="proj-card__desc">
-              Enxoval visual completo para a participação da Mobifans no maior festival
-              de Hip-Hop do Brasil.
-            </p>
-            <div class="projeto__tech">
-              <span class="tech-tag">Illustrator</span>
-              <span class="tech-tag">Photoshop</span>
-              <span class="tech-tag">CMYK</span>
-            </div>
-            <div class="proj-card__actions">
-              <a href="projetos/mobi_ric.html" class="btn btn--primary">Ver projeto ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Estampas MobiStudio -->
-        <article class="proj-card" data-cat="design-grafico" data-reveal data-reveal-delay="2" aria-labelledby="proj-estampas">
-          <a href="projetos/mobi_estampas.html" class="proj-card__thumb" aria-label="Ver Estampas MobiStudio">
-            <img src="projetos/mobi_estampas/Banner_mobiestampas_21_9.webp"
-                 alt="Estampas Autorais MobiStudio" width="1260" height="540" loading="lazy" class="proj-card__static" />
-            <video class="proj-card__hover" muted loop playsinline aria-hidden="true">
-              <source src="projetos/mobi_estampas/Processo_06.webm" type="video/webm" />
-            </video>
-          </a>
-          <div class="proj-card__body">
-            <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-estampas">Estampas MobiStudio</h3>
-              <span class="tag">Desi<br>Graf</span>
-            </div>
-            <p class="proj-card__desc">
-              70+ artes para estampas personalizadas dentro do MobiStudio.
-              Produção gráfica unida à ferramenta interativa proprietária.
-            </p>
-            <div class="projeto__tech">
-              <span class="tech-tag">Illustrator</span>
-              <span class="tech-tag">Photoshop</span>
-            </div>
-            <div class="proj-card__actions">
-              <a href="projetos/mobi_estampas.html" class="btn btn--primary">Ver projeto ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 3D Mobifans -->
-        <article class="proj-card" data-cat="3d" data-reveal aria-labelledby="proj-mobifans3d">
-          <a href="projetos/mobi_3d.html" class="proj-card__thumb" aria-label="Ver 3D Mobifans">
-            <img src="projetos/mobi_3d/Banner_mobi_3d_21_9.webp"
-                 alt="3D Mobifans — modelagem, renders e animações" width="1260" height="540" loading="lazy" />
-          </a>
-          <div class="proj-card__body">
-            <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-mobifans3d">3D Mobifans</h3>
-              <span class="tag">3D</span>
-            </div>
-            <p class="proj-card__desc">
-              Do fornecedor ao feed: modelagem técnica a partir de medidas reais, renders de produto
-              e animações publicadas no Instagram da Mobifans — incluindo a Tríade de Animações.
-            </p>
-            <div class="projeto__tech">
-              <span class="tech-tag">Blender</span>
-              <span class="tech-tag">After Effects</span>
-              <span class="tech-tag">Motion</span>
-            </div>
-            <div class="proj-card__actions">
-              <a href="projetos/mobi_3d.html" class="btn btn--primary">Ver projeto ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Animações Cavalry -->
-        <article class="proj-card" data-cat="audiovisual" data-reveal aria-labelledby="proj-cavalry">
+        <!-- Animações Cavalry — Abr 2026 -->
+        <article class="proj-card" data-cat="audiovisual" data-reveal data-reveal-delay="1" aria-labelledby="proj-cavalry">
           <a href="projetos/animas_cavalry.html" class="proj-card__thumb" aria-label="Ver Animações Cavalry">
             <div style="position:absolute;inset:0;background:#0a0a0a;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:var(--space-5);">
               <span style="font-family:var(--font-mono);font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,.35);">Motion · Generativo</span>
@@ -232,7 +120,169 @@ import Base from '../layouts/Base.astro';
           </div>
         </article>
 
-        <!-- Audiovisual Dia dos Namorados -->
+        <!-- MobiStudio — Abr 2026 -->
+        <article class="proj-card" data-cat="dev-web" data-reveal data-reveal-delay="2" aria-labelledby="proj-mobistudio">
+          <a href="projetos/mobi_studio.html" class="proj-card__thumb" aria-label="Ver MobiStudio">
+            <img src="projetos/mobi_studio/Banner_MobiStudio_21_9.webp"
+                 alt="Banner MobiStudio" width="1260" height="540" loading="eager" class="proj-card__static" />
+            <video class="proj-card__hover" muted loop playsinline aria-hidden="true">
+              <source src="projetos/mobi_studio/demonstrativo.webm" type="video/webm" />
+            </video>
+          </a>
+          <div class="proj-card__body">
+            <div class="proj-card__header">
+              <h3 class="proj-card__title" id="proj-mobistudio">MobiStudio</h3>
+              <span class="tag">Dev<br>Web</span>
+            </div>
+            <p class="proj-card__desc">
+              Customizador interativo de capinhas. Motor Canvas API com zoom, rotação e arraste.
+              Do problema ao deploy em produção.
+            </p>
+            <div class="projeto__tech">
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">Canvas API</span>
+              <span class="tech-tag">Netlify</span>
+            </div>
+            <div class="proj-card__actions">
+              <a href="projetos/mobi_studio.html" class="btn btn--primary">Ver projeto ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Estampas MobiStudio — 2026 -->
+        <article class="proj-card" data-cat="design-grafico" data-reveal aria-labelledby="proj-estampas">
+          <a href="projetos/mobi_estampas.html" class="proj-card__thumb" aria-label="Ver Estampas MobiStudio">
+            <img src="projetos/mobi_estampas/Banner_mobiestampas_21_9.webp"
+                 alt="Estampas Autorais MobiStudio" width="1260" height="540" loading="lazy" class="proj-card__static" />
+            <video class="proj-card__hover" muted loop playsinline aria-hidden="true">
+              <source src="projetos/mobi_estampas/Processo_06.webm" type="video/webm" />
+            </video>
+          </a>
+          <div class="proj-card__body">
+            <div class="proj-card__header">
+              <h3 class="proj-card__title" id="proj-estampas">Estampas MobiStudio</h3>
+              <span class="tag">Desi<br>Graf</span>
+            </div>
+            <p class="proj-card__desc">
+              70+ artes para estampas personalizadas dentro do MobiStudio.
+              Produção gráfica unida à ferramenta interativa proprietária.
+            </p>
+            <div class="projeto__tech">
+              <span class="tech-tag">Illustrator</span>
+              <span class="tech-tag">Photoshop</span>
+            </div>
+            <div class="proj-card__actions">
+              <a href="projetos/mobi_estampas.html" class="btn btn--primary">Ver projeto ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3D Mobifans — 2026 -->
+        <article class="proj-card" data-cat="3d" data-reveal data-reveal-delay="1" aria-labelledby="proj-mobifans3d">
+          <a href="projetos/mobi_3d.html" class="proj-card__thumb" aria-label="Ver 3D Mobifans">
+            <img src="projetos/mobi_3d/Banner_mobi_3d_21_9.webp"
+                 alt="3D Mobifans — modelagem, renders e animações" width="1260" height="540" loading="lazy" />
+          </a>
+          <div class="proj-card__body">
+            <div class="proj-card__header">
+              <h3 class="proj-card__title" id="proj-mobifans3d">3D Mobifans</h3>
+              <span class="tag">3D</span>
+            </div>
+            <p class="proj-card__desc">
+              Do fornecedor ao feed: modelagem técnica a partir de medidas reais, renders de produto
+              e animações publicadas no Instagram da Mobifans — incluindo a Tríade de Animações.
+            </p>
+            <div class="projeto__tech">
+              <span class="tech-tag">Blender</span>
+              <span class="tech-tag">After Effects</span>
+              <span class="tech-tag">Motion</span>
+            </div>
+            <div class="proj-card__actions">
+              <a href="projetos/mobi_3d.html" class="btn btn--primary">Ver projeto ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Placas, Wallets e Crossbody — 2026 -->
+        <article class="proj-card" data-cat="design-grafico" data-reveal data-reveal-delay="2" aria-labelledby="proj-wallets">
+          <a href="projetos/mobi_placas.html" class="proj-card__thumb" aria-label="Ver Placas, Wallets e Crossbody">
+            <img src="projetos/mobi_placas/Banner_PlacasQuiosque_21_9.webp"
+                 alt="Placas, Wallets e Crossbody — Mobifans" width="1260" height="540" loading="lazy" />
+          </a>
+          <div class="proj-card__body">
+            <div class="proj-card__header">
+              <h3 class="proj-card__title" id="proj-wallets">Placas, Wallets e Crossbody</h3>
+              <span class="tag">Desi<br>Graf</span>
+            </div>
+            <p class="proj-card__desc">
+              Campanha gráfica para novos produtos Mobifans com peças digitais e impressas
+              de identidade visual consistente.
+            </p>
+            <div class="projeto__tech">
+              <span class="tech-tag">Illustrator</span>
+              <span class="tech-tag">Photoshop</span>
+            </div>
+            <div class="proj-card__actions">
+              <a href="projetos/mobi_placas.html" class="btn btn--primary">Ver projeto ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Alças Flat Customic — Dez 2025 -->
+        <article class="proj-card" data-cat="design-grafico" data-reveal aria-labelledby="proj-alcas">
+          <a href="projetos/mobi_alcas.html" class="proj-card__thumb" aria-label="Ver Projeto Alças">
+            <img src="projetos/mobi_alcas/Banner_Alças_21_9.webp"
+                 alt="Capa do Projeto Alças" width="1260" height="540" loading="lazy" />
+          </a>
+          <div class="proj-card__body">
+            <div class="proj-card__header">
+              <h3 class="proj-card__title" id="proj-alcas">Alças <br> Flat <br>Customic</h3>
+              <span class="tag">PROD<br> MULT</span>
+            </div>
+            <p class="proj-card__desc">
+              Planejado para promover um novo produto Customic nas lojas Mobifans.
+              <br>Com o intuito de desenvolver conteúdos majoritariamente para as redes sociais.
+            </p>
+            <div class="projeto__tech">
+              <span class="tech-tag">Fotografia</span>
+              <span class="tech-tag">Identidade Visual</span>
+            </div>
+            <div class="proj-card__actions">
+              <a href="projetos/mobi_alcas.html" class="btn btn--primary">Ver projeto ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Rap In Cena — 2025 -->
+        <article class="proj-card" data-cat="design-grafico" data-reveal data-reveal-delay="1" aria-labelledby="proj-rapincena">
+          <a href="projetos/mobi_ric.html" class="proj-card__thumb" aria-label="Ver Rap In Cena">
+            <img src="projetos/mobi_ric/Banner_MobiNoRIC_21_9.webp"
+                 alt="Banner Rap In Cena" width="1260" height="540" loading="eager" class="proj-card__static" />
+            <video class="proj-card__hover" muted loop playsinline aria-hidden="true">
+              <source src="projetos/mobi_ric/Processo_06.webm" type="video/webm" />
+            </video>
+          </a>
+          <div class="proj-card__body">
+            <div class="proj-card__header">
+              <h3 class="proj-card__title" id="proj-rapincena">Rap In Cena</h3>
+              <span class="tag">Desi<br>Graf</span>
+            </div>
+            <p class="proj-card__desc">
+              Enxoval visual completo para a participação da Mobifans no maior festival
+              de Hip-Hop do Brasil.
+            </p>
+            <div class="projeto__tech">
+              <span class="tech-tag">Illustrator</span>
+              <span class="tech-tag">Photoshop</span>
+              <span class="tech-tag">CMYK</span>
+            </div>
+            <div class="proj-card__actions">
+              <a href="projetos/mobi_ric.html" class="btn btn--primary">Ver projeto ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Audiovisual Dia dos Namorados — Jun 2025 -->
         <article class="proj-card" data-cat="audiovisual" data-reveal data-reveal-delay="2" aria-labelledby="proj-dnamorados">
           <a href="projetos/mobi_namorados.html" class="proj-card__thumb" aria-label="Ver Audiovisual — Dia dos Namorados">
             <img src="projetos/mobi_namorados/Banner_Namorados_21_9.webp"
@@ -260,59 +310,57 @@ import Base from '../layouts/Base.astro';
           </div>
         </article>
 
-        <!-- Placas, Wallets e Crossbody -->
-        <article class="proj-card" data-cat="design-grafico" data-reveal aria-labelledby="proj-wallets">
-          <a href="projetos/mobi_placas.html" class="proj-card__thumb" aria-label="Ver Placas, Wallets e Crossbody">
-            <img src="projetos/mobi_placas/Banner_PlacasQuiosque_21_9.webp"
-                 alt="Placas, Wallets e Crossbody — Mobifans" width="1260" height="540" loading="lazy" />
+        <!-- Cavaleiro de Latão — Jul 2024 -->
+        <article class="proj-card" data-cat="3d" data-reveal aria-labelledby="proj-cavaleiro">
+          <a href="projetos/cavaleiro_de_latao.html" class="proj-card__thumb" aria-label="Ver Cavaleiro de Latão">
+            <img src="projetos/cavaleiro_de_latao/Banner_Cavaleiro_21_9.webp"
+                 alt="Cavaleiro de Latão — roguelike autoral em Godot" width="1260" height="540" loading="lazy" class="proj-card__static" />
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-wallets">Placas, Wallets e Crossbody</h3>
-              <span class="tag">Desi<br>Graf</span>
+              <h3 class="proj-card__title" id="proj-cavaleiro">Cavaleiro de Latão</h3>
+              <span class="tag">3D</span>
             </div>
             <p class="proj-card__desc">
-              Campanha gráfica para novos produtos Mobifans com peças digitais e impressas
-              de identidade visual consistente.
+              Roguelike autoral desenvolvido em Godot com arte mista 3D/2D, folclore brasileiro como galeria de inimigos e exportação HTML5.
             </p>
             <div class="projeto__tech">
-              <span class="tech-tag">Illustrator</span>
-              <span class="tech-tag">Photoshop</span>
+              <span class="tech-tag">Godot</span>
+              <span class="tech-tag">Blender</span>
+              <span class="tech-tag">Aseprite</span>
             </div>
             <div class="proj-card__actions">
-              <a href="projetos/mobi_placas.html" class="btn btn--primary">Ver projeto ↗</a>
+              <a href="projetos/cavaleiro_de_latao.html" class="btn btn--primary">Ver projeto ↗</a>
             </div>
           </div>
         </article>
 
-        <!-- Foto Correio do Povo -->
-        <article class="proj-card" data-cat="fotografia" data-reveal data-reveal-delay="1" aria-labelledby="proj-correiodopovo">
-          <a href="https://www.correiodopovo.com.br/notícias/ensino/vestibular/inverno/2023/senac-rs-teoria-prática-e-vida-profissional-em-foco-1.1037907"
-             class="proj-card__thumb" aria-label="Ler matéria no Correio do Povo (abre em nova aba)">
-            <img src="https://www.correiodopovo.com.br/image/contentid/policy:1.1037910:1694700227/Unisenac%20fachada%20credito%20Filipe%20Velasco%20Duarte%20Delfino.jpeg?f=4x3&q=0.9&w=900&$p$f$q$w=d852081"
-                 alt="Fachada do UniSenac — foto publicada no Correio do Povo" width="800" height="600" loading="lazy" />
+        <!-- Projeto Vivências — Set–Nov 2023 -->
+        <article class="proj-card" data-cat="design-grafico" data-reveal data-reveal-delay="1" aria-labelledby="proj-vivencias">
+          <a href="projetos/unisenac_vivencias.html" class="proj-card__thumb" aria-label="Ver Projeto Vivências">
+            <img src="projetos/unisenac_vivencias/Banner_Vivencias_21_9.webp"
+                 alt="Capa do Projeto Vivências" width="1260" height="540" loading="lazy" />
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-correiodopovo">Foto — Correio do Povo</h3>
-              <span class="tag">Foto<br>graf</span>
+              <h3 class="proj-card__title" id="proj-vivencias">Projeto Vivências</h3>
+              <span class="tag">Desi<br> Graf</span>
             </div>
             <p class="proj-card__desc">
-              Convidado para fotografar a fachada do Centro Universitário Senac.
-              Imagem publicada e creditada em matéria do jornal Correio do Povo.
+              Identidade visual desenvolvida para a colaboração do UniSenac com a RBS TV.
+              Desenvolvido por alunos de Produção Multimídia.
             </p>
             <div class="projeto__tech">
               <span class="tech-tag">Fotografia</span>
-              <span class="tech-tag">Lightroom</span>
+              <span class="tech-tag">Identidade Visual</span>
             </div>
             <div class="proj-card__actions">
-              <a href="https://www.correiodopovo.com.br/notícias/ensino/vestibular/inverno/2023/senac-rs-teoria-prática-e-vida-profissional-em-foco-1.1037907"
-                 class="btn btn--primary">Ler matéria ↗</a>
+              <a href="projetos/unisenac_vivencias.html" class="btn btn--primary">Ver projeto ↗</a>
             </div>
           </div>
         </article>
 
-        <!-- HackaTrânsito -->
+        <!-- HackaTrânsito — Ago 2023 -->
         <article class="proj-card" data-cat="fotografia" data-reveal data-reveal-delay="2" aria-labelledby="proj-hackathon">
           <a href="https://www.instagram.com/unisenacrs/p/CwVGaW9O7M_/"
              target="_blank" rel="noopener noreferrer"
@@ -341,52 +389,29 @@ import Base from '../layouts/Base.astro';
           </div>
         </article>
 
-        <!-- Projeto Vivências -->
-        <article class="proj-card" data-cat="design-grafico" data-reveal aria-labelledby="proj-vivencias">
-          <a href="projetos/unisenac_vivencias.html" class="proj-card__thumb" aria-label="Ver Projeto Vivências">
-            <img src="projetos/unisenac_vivencias/Banner_Vivencias_21_9.webp"
-                 alt="Capa do Projeto Vivências" width="1260" height="540" loading="lazy" />
+        <!-- Foto Correio do Povo — 2023 -->
+        <article class="proj-card" data-cat="fotografia" data-reveal data-reveal-delay="1" aria-labelledby="proj-correiodopovo">
+          <a href="https://www.correiodopovo.com.br/notícias/ensino/vestibular/inverno/2023/senac-rs-teoria-prática-e-vida-profissional-em-foco-1.1037907"
+             class="proj-card__thumb" aria-label="Ler matéria no Correio do Povo (abre em nova aba)">
+            <img src="https://www.correiodopovo.com.br/image/contentid/policy:1.1037910:1694700227/Unisenac%20fachada%20credito%20Filipe%20Velasco%20Duarte%20Delfino.jpeg?f=4x3&q=0.9&w=900&$p$f$q$w=d852081"
+                 alt="Fachada do UniSenac — foto publicada no Correio do Povo" width="800" height="600" loading="lazy" />
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-vivencias">Projeto Vivências</h3>
-              <span class="tag">Desi<br> Graf</span>
+              <h3 class="proj-card__title" id="proj-correiodopovo">Foto — Correio do Povo</h3>
+              <span class="tag">Foto<br>graf</span>
             </div>
             <p class="proj-card__desc">
-              Identidade visual desenvolvida para a colaboração do UniSenac com a RBS TV.
-              Desenvolvido por alunos de Produção Multimídia.
+              Convidado para fotografar a fachada do Centro Universitário Senac.
+              Imagem publicada e creditada em matéria do jornal Correio do Povo.
             </p>
             <div class="projeto__tech">
               <span class="tech-tag">Fotografia</span>
-              <span class="tech-tag">Identidade Visual</span>
+              <span class="tech-tag">Lightroom</span>
             </div>
             <div class="proj-card__actions">
-              <a href="projetos/unisenac_vivencias.html" class="btn btn--primary">Ver projeto ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Alças -->
-        <article class="proj-card" data-cat="design-grafico" data-reveal aria-labelledby="proj-alcas">
-          <a href="projetos/mobi_alcas.html" class="proj-card__thumb" aria-label="Ver Projeto Alças">
-            <img src="projetos/mobi_alcas/Banner_Alças_21_9.webp"
-                 alt="Capa do Projeto Alças" width="1260" height="540" loading="lazy" />
-          </a>
-          <div class="proj-card__body">
-            <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-alcas">Alças <br> Flat <br>Customic</h3>
-              <span class="tag">PROD<br> MULT</span>
-            </div>
-            <p class="proj-card__desc">
-              Planejado para promover um novo produto Customic nas lojas Mobifans.
-              <br>Com o intuito de desenvolver conteúdos majoritariamente para as redes sociais.
-            </p>
-            <div class="projeto__tech">
-              <span class="tech-tag">Fotografia</span>
-              <span class="tech-tag">Identidade Visual</span>
-            </div>
-            <div class="proj-card__actions">
-              <a href="projetos/mobi_alcas.html" class="btn btn--primary">Ver projeto ↗</a>
+              <a href="https://www.correiodopovo.com.br/notícias/ensino/vestibular/inverno/2023/senac-rs-teoria-prática-e-vida-profissional-em-foco-1.1037907"
+                 class="btn btn--primary">Ler matéria ↗</a>
             </div>
           </div>
         </article>
