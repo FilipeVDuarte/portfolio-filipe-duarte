@@ -88,6 +88,38 @@ const galleryItems = [
   },
   {
     src: '/projetos/cavaleiro_de_latao/processo_02.webp',
+    alt: 'Desenvolvimento inicial da arte conceitual em 3D no Blender, criando a base para a estética do jogo',
+    caption: 'Desenvolvimento inicial',
+    captionEn: 'Initial Development',
+    tool: 'Aseprite',
+    phase: 'reference' as const,
+  },
+  {
+    src: '/projetos/cavaleiro_de_latao/processo_03.webp',
+    alt: 'Mapa criado com assets do Tiny Swords',
+    caption: 'Mapa com Assets free',
+    captionEn: 'Map with Free Assets',
+    tool: 'Godot',
+    phase: 'reference' as const,
+  },
+  {
+    src: '/projetos/cavaleiro_de_latao/processo_04.webp',
+    alt: 'Primeiras versões dos inimigos',
+    caption: 'Inimigos · Referência',
+    captionEn: 'Enemies · Reference',
+    tool: 'Aseprite',
+    phase: 'reference' as const,
+  },
+  {
+    src: '/projetos/cavaleiro_de_latao/processo_05.webp',
+    alt: 'Pausa no projeto, para uma mudança de planos',
+    caption: 'Trocar texto aqui',
+    captionEn: 'Tavern · 3D Reference',
+    tool: 'Blender',
+    phase: 'reference' as const,
+  },
+  {
+    src: '/projetos/cavaleiro_de_latao/processo_02.webp',
     alt: 'Ficino e sprites finais em pixel art no Aseprite',
     caption: 'Ficino · Sprites Finais',
     captionEn: 'Ficino · Final Sprites',
@@ -107,7 +139,7 @@ const repoStats = [
 ---
 
 <CaseStudy
-  caseTitle="Cavaleiro de Latão"
+  caseTitle="Cavaleiro de Latão - Jogo"
   caseDesc="Cavaleiro de Latão — roguelike autoral desenvolvido em Godot. Arte mista 3D/2D, narrativa de autodescoberta e exportação para HTML5."
   casePath="/projetos/cavaleiro_de_latao.html"
   ogImage="/projetos/cavaleiro_de_latao/Banner_Cavaleiro_21_9.webp"
@@ -129,10 +161,10 @@ const repoStats = [
   <section class="case-header" aria-labelledby="case-title">
     <div class="container">
       <p class="case-header__eyebrow" data-en="Case · Game Dev · Original">
-        Case · Game Dev · Autoral
+        Gestão Ágil · Game Dev · Pivot de Projeto
       </p>
       <h1 class="case-header__title" id="case-title">
-        Cavaleiro<br />de Latão.
+        Cavaleiro <br> de Latão
       </h1>
       <div class="case-header__meta">
         <span class="case-header__date" data-en="Aug 2022 → current (Released: Jul 31, 2024)">Ago 2022 → atual (Lançamento: Jul 31, 2024)</span>
@@ -163,32 +195,63 @@ const repoStats = [
       <div class="case-grid-2" data-reveal>
         <div>
           <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5); margin-bottom: var(--space-5);">
-            <p class="section-label" style="margin-bottom: var(--space-2);">Origem</p>
-            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+            <p class="section-label" style="margin-bottom: var(--space-2);" data-en="Origin">Origem</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);" data-en="A simple medieval tavern became the starting point for an entire universe. The setting gave birth to the character; the character gave birth to the narrative.">
               Uma simples taverna medieval virou o ponto de partida de um universo inteiro. Do ambiente surgiu o personagem; do personagem surgiu a narrativa.
             </p>
           </div>
           <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
-            <p class="section-label" style="margin-bottom: var(--space-2);">Desafio central</p>
-            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
-              Aprender uma engine nova (Godot), criar toda a arte do zero e manter coerência narrativa ao mesmo tempo. Tudo isso como projeto solo e autoral, sem prazo externo.
+            <p class="section-label" style="margin-bottom: var(--space-2);" data-en="Core challenge">Desafio central</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);" data-en="The original project spanned 2 years with an unfeasible Zelda-inspired scope. The challenge became a practical exercise in Multimedia Production: drastically reduce the scope, pivot the genre to survival, and deliver a functional build in a 42-day sprint.">
+              O projeto original durou 2 anos com um escopo inviável inspirado em Zelda. O desafio tornou-se um exercício prático de Produção Multimídia: reduzir o escopo
+              drasticamente, pivotar o gênero para sobrevivência (Vampire Survivors) e entregar uma versão funcional em uma sprint de 42 dias.
             </p>
           </div>
         </div>
         <div style="display: flex; flex-direction: column; gap: var(--space-5);">
           <div style="border: var(--border-thick); background: var(--color-yellow); box-shadow: var(--shadow-sm); padding: var(--space-5);">
-            <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);">Oportunidade</p>
-            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);">
+            <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);" data-en="Opportunity">Oportunidade</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);" data-en="Build a complete game — mechanics, art, and code — and publish it accessible to anyone directly in the browser, no installation required.">
               Construir um jogo completo, com mecânicas, arte e código e publicá-lo acessível a qualquer pessoa diretamente no navegador, sem instalação.
             </p>
           </div>
           <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
-            <p class="section-label" style="margin-bottom: var(--space-2);">Público-alvo</p>
-            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+            <p class="section-label" style="margin-bottom: var(--space-2);" data-en="Target audience">Público-alvo</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);" data-en="Players 14+ interested in indie survival games with original narrative, Brazilian folklore, and retro pixel art aesthetic.">
               Jogadores a partir de 14 anos interessados em jogos independentes de sobrevivência com narrativa autoral, folclore brasileiro e estética pixel art retrô.
             </p>
           </div>
         </div>
+      </div>
+
+      <!-- NARRATIVA -->
+      <div class="case-section__header" style="margin-top: var(--space-10);">
+        <p class="section-label" data-en="Universe & Characters">Universo & Personagens</p>
+        <span class="case-section__note" data-en="story · characters · twist">história · personagens · twist</span>
+      </div>
+
+      <p class="case-narrative" data-reveal data-reveal-delay="1" data-en="Ficino Flores is the son of a florist who grew up curious and adventurous. After his father Altair's mysterious disappearance, he sets off on a journey — that becomes a story of self-discovery. Altair was once a knight of a metallic order, who later chose a quiet life with his son. He was captured by the sorcerer Edius and transformed into a colossal brass dragon, the continent of Auslone's final threat.">
+        <strong>Ficino Flores</strong> é filho de um florista, cresceu curioso e aventureiro. Após o desaparecimento misterioso de seu pai <strong>Altair</strong>, parte em jornada que se torna uma história de autodescoberta. Altair foi um grande cavaleiro de uma ordem metálica que escolheu uma vida tranquila com o filho — até ser capturado pelo bruxo <strong>Edius</strong> e transformado num colossal dragão de latão, o desafio final do continente de Auslone.
+      </p>
+
+      <p class="case-narrative" data-reveal data-reveal-delay="1" data-en="The brass armor holds the key to the narrative: forged with magical properties, it adapts to whoever wears it — giving physical form to the theme of identity and self-discovery that runs through the story. Edius, the main villain, conceals the darkest twist of all: he is Ficino himself, from another timeline.">
+        A <strong>armadura de latão</strong> guarda a chave da narrativa: forjada com propriedades mágicas, ela se adapta àquele que está vestindo — dando forma física ao tema de identidade e autodescoberta que percorre toda a história. <strong>Edius</strong>, o vilão principal, esconde o twist mais sombrio: ele é o próprio Ficino de outra linha temporal.
+      </p>
+
+      <!-- FOLCLORE -->
+      <div class="case-section__header" style="margin-top: var(--space-10);">
+        <p class="section-label" data-en="Brazilian Folklore as Enemy Gallery">Folclore Brasileiro como Galeria de Inimigos</p>
+        <span class="case-section__note" data-en="differentiation · cultural identity">diferencial · identidade cultural</span>
+      </div>
+
+      <p class="case-narrative" data-reveal data-reveal-delay="1" data-en="The game's main differentiator isn't just the pixel art aesthetic — it's the enemy roster built entirely from Brazilian folklore. Instead of generic fantasy monsters, Ficino faces Corpo Seco, Cucas, Mula Sem Cabeça, Quibungo, Mapinguari, and others from the tradition, each with specific origins and behaviors. The Capiguará — a fearsome half-capybara, half-maned wolf hybrid — is the first boss. The goal: show that Brazilian folklore goes far beyond the most familiar figures.">
+        O diferencial do jogo não é só a estética pixel art — é a galeria de inimigos construída inteiramente a partir do <strong>folclore brasileiro</strong>. Em vez de monstros genéricos de fantasia, Ficino enfrenta Corpo Seco, Cucas, Mula Sem Cabeça, Quibungo, Mapinguari e outros da tradição, cada um com origens e comportamentos específicos. O <strong>Capiguará</strong> — mistura feroz de capivara e lobo-guará — é o primeiro boss. O objetivo: mostrar que o folclore brasileiro vai muito além dos personagens mais superficiais.
+      </p>
+
+      <div class="folklore-tags" data-reveal style="display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-8);">
+        {['Capiguará', 'Corpo Seco', 'Cuca', 'Mula Sem Cabeça', 'Quibungo', 'Mapinguari', 'Matinta', 'Papa Figo', 'Mãe-do-Ouro', 'Capelobo', 'Zaoris', 'Gralha-Azul'].map(nome => (
+          <span class="tech-tag">{nome}</span>
+        ))}
       </div>
 
       <CaseMethodology steps={methodologySteps} />
@@ -219,9 +282,9 @@ const repoStats = [
         </div>
         <div class="role-card">
           <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
-          <h3 class="role-card__title">Progra<br>mação</h3>
+          <h3 class="role-card__title">Produção & Gestão</h3>
           <p class="role-card__desc" style="text-align: justify;">
-            Desenvolvimento completo em GDScript na Godot 4.2: GameManager singleton (autoload), sinais tipados no Player, MobSpawner com PathFollow2D e query de física 2D, DifficultySystem matemático. Suporte a gamepad e exportação HTML5.
+            Gerenciamento do cronograma de 42 dias, corte de features não essenciais, definição do pipeline misto (3D para 2D) para otimização de tempo e documentação técnica utilizando a metodologia de Jim Wallman.
           </p>
         </div>
       </div>
@@ -239,7 +302,7 @@ const repoStats = [
       <CaseAssetGallery items={galleryItems} />
 
       <p class="case-narrative" data-reveal data-reveal-delay="1">
-        A decisão mais importante do processo foi a <strong>transição da arte conceitual 3D para o 2D</strong>. O Blender foi mantido como ferramenta de referência, modelos 3D geram perspectivas e proporções consistentes que seriam impossíveis de manter manualmente. A partir dessas referências, cada sprite foi redesenhado em pixel art no Aseprite, criando uma estética coesa que mistura solidez tridimensional com o charme da arte em pixels.
+        A decisão de utilizar o Blender como base não foi apenas estética, foi uma estratégia de otimização de tempo. Para cumprir o prazo da sprint de 42 dias, os modelos 3D garantiram perspectivas e proporções consistentes rapidamente. A partir dessas referências, cada sprite foi redesenhado em pixel art no Aseprite, viabilizando a entrega da arte de todo o jogo por uma única pessoa no prazo estipulado.
       </p>
 
       <p class="case-narrative" data-reveal data-reveal-delay="1">
@@ -266,6 +329,15 @@ const repoStats = [
           <span class="case-img-pair__caption" data-en="WORLD · NARRATIVE ATMOSPHERE">MUNDO · ATMOSFERA NARRATIVA</span>
         </div>
       </div>
+
+      <div class="case-section__header" style="margin-top: var(--space-10);">
+        <p class="section-label" data-en="Soundtrack">Trilha Sonora</p>
+        <span class="case-section__note" data-en="8-bit · neo-classical · 100% Brazilian">8-bit · neo-clássica · 100% brasileira</span>
+      </div>
+
+      <p class="case-narrative" data-reveal data-reveal-delay="1" data-en="The soundtrack follows the same cultural identity logic as the enemy roster: all pieces are exclusively based on Brazilian works, rearranged in a neo-classical style that emulates the 8-bit aesthetic of classic videogames. Produced in GarageBand, the goal is to create a nostalgic atmosphere that reinforces the connection between the game's content and Brazilian cultural identity — an audio-visual coherence that supports the folklore as a differentiator.">
+        A trilha sonora segue a mesma lógica de identidade cultural da galeria de inimigos: todas as peças são <strong>exclusivamente baseadas em obras brasileiras</strong>, reinterpretadas em estilo neo-clássico que emula a estética 8-bits dos videogames clássicos. Produzida no GarageBand, o objetivo é criar uma atmosfera nostálgica que reforça a conexão entre o conteúdo do jogo e a identidade cultural brasileira — uma coerência audiovisual que sustenta o folclore como diferencial.
+      </p>
 
     </div>
   </section>

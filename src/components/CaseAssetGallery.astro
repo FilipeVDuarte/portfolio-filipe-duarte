@@ -14,14 +14,36 @@ interface Props {
   phaseALabelEn?: string;
   phaseBLabel?: string;
   phaseBLabelEn?: string;
+  phaseCLabel?: string;
+  phaseCLabelEn?: string;
+  phaseDLabel?: string;
+  phaseDLabelEn?: string;
+  phaseELabel?: string;
+  phaseELabelEn?: string;
+  phaseFLabel?: string;
+  phaseFLabelEn?: string;
+  phaseGLabel?: string;
+  phaseGLabelEn?: string;
+  phaseHLabel?: string;
+  phaseHLabelEn?: string;
+  phaseILabel?: string;
+  phaseILabelEn?: string;
+  phaseJLabel?: string;
+  phaseJLabelEn?: string;
 }
 
 const {
   items,
-  phaseALabel = 'Referência 3D · Blender',
-  phaseALabelEn = '3D Reference · Blender',
-  phaseBLabel = 'Pixel Art Final · Aseprite',
-  phaseBLabelEn = 'Final Pixel Art · Aseprite',
+  phaseALabel = 'Modelagem 3D',
+  phaseALabelEn = '3D Modeling',
+  phaseBLabel = 'Sprites',
+  phaseBLabelEn = 'Sprites',
+  phaseCLabel = 'Mapa',
+  phaseCLabelEn = 'Map',
+  phaseDLabel = 'Inimigos',
+  phaseDLabelEn = 'Enemies',
+  phaseELabel = 'Pausa',
+  phaseELabelEn = 'Pause',
 } = Astro.props;
 
 const refItems  = items.filter(i => i.phase === 'reference');
@@ -34,6 +56,13 @@ const finalItems = items.filter(i => i.phase === 'final');
       <div class="asset-gallery__phase-header">
         <span class="asset-gallery__phase-badge" data-en={phaseALabelEn}>{phaseALabel}</span>
         <span class="asset-gallery__phase-arrow" aria-hidden="true">→</span>
+        <span class="asset-gallery__phase-badge" data-en={phaseBLabelEn}>{phaseBLabel}</span>
+        <span class="asset-gallery__phase-arrow" aria-hidden="true">→</span>
+        <span class="asset-gallery__phase-badge" data-en={phaseCLabelEn}>{phaseCLabel}</span>
+        <span class="asset-gallery__phase-arrow" aria-hidden="true">→</span>
+        <span class="asset-gallery__phase-badge" data-en={phaseDLabelEn}>{phaseDLabel}</span>
+        <span class="asset-gallery__phase-arrow" aria-hidden="true">→</span>
+        <span class="asset-gallery__phase-badge" data-en={phaseELabelEn}>{phaseELabel}</span>
       </div>
       <div class="asset-gallery__grid">
         {refItems.map((item) => (
@@ -57,14 +86,22 @@ const finalItems = items.filter(i => i.phase === 'final');
 
   {refItems.length > 0 && finalItems.length > 0 && (
     <div class="asset-gallery__evolution" aria-hidden="true">
-      <span class="asset-gallery__evolution-label" data-en="visual evolution ↓">evolução visual ↓</span>
+      <span class="asset-gallery__evolution-label" data-en="visual evolution ↓">Mudanças de planos ↓</span>
     </div>
   )}
 
   {finalItems.length > 0 && (
     <div class="asset-gallery__phase">
       <div class="asset-gallery__phase-header">
-        <span class="asset-gallery__phase-badge asset-gallery__phase-badge--final" data-en={phaseBLabelEn}>{phaseBLabel}</span>
+        <span class="asset-gallery__phase-badge asset-gallery__phase-badge--final" data-en={phaseFLabelEn}>{phaseFLabel}</span>
+        <span class="asset-gallery__phase-arrow" aria-hidden="true">→</span>
+        <span class="asset-gallery__phase-badge asset-gallery__phase-badge--final" data-en={phaseGLabelEn}>{phaseGLabel}</span>
+        <span class="asset-gallery__phase-arrow" aria-hidden="true">→</span>
+        <span class="asset-gallery__phase-badge asset-gallery__phase-badge--final" data-en={phaseHLabelEn}>{phaseHLabel}</span>
+        <span class="asset-gallery__phase-arrow" aria-hidden="true">→</span>
+        <span class="asset-gallery__phase-badge asset-gallery__phase-badge--final" data-en={phaseILabelEn}>{phaseILabel}</span>
+        <span class="asset-gallery__phase-arrow" aria-hidden="true">→</span>
+        <span class="asset-gallery__phase-badge asset-gallery__phase-badge--final" data-en={phaseJLabelEn}>{phaseJLabel}</span>
       </div>
       <div class="asset-gallery__grid">
         {finalItems.map((item) => (
