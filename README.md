@@ -1,9 +1,55 @@
-# Portfolio — Filipe Duarte
+<div align="center">
 
-**Diretor Criativo & Desenvolvedor**  
-Site: [filipeduarte.netlify.app](https://filipeduarte.netlify.app)
+# Filipe Duarte — Portfolio
 
-Portfolio pessoal com design Neo-Brutalista, suporte a PT/EN, modo escuro e estudos de caso documentados.
+[![Astro](https://img.shields.io/badge/Astro-6.4.2-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
+[![Site](https://img.shields.io/website?url=https%3A%2F%2Ffilipeduarte.netlify.app&style=for-the-badge&label=deploy&color=00C7B7)](https://filipeduarte.netlify.app)
+
+<br/>
+
+<table>
+  <tr>
+    <td><img src="public/img/og-image.jpg" alt="Portfolio — light mode" width="480"/></td>
+    <td><img src="public/img/og-image-dark.jpg" alt="Portfolio — dark mode" width="480"/></td>
+  </tr>
+</table>
+
+</div>
+
+---
+
+**PT** — Portfolio pessoal de Filipe Duarte, Diretor Criativo & Desenvolvedor. Estudos de caso de branding, motion design, desenvolvimento web e jogos — construídos com Astro, design Neo-Brutalista e atenção obsessiva aos detalhes.
+
+**EN** — Personal portfolio of Filipe Duarte, Creative Director & Developer. Case studies on branding, motion design, web development and games — built with Astro, Neo-Brutalist design and obsessive attention to detail.
+
+→ **[filipeduarte.netlify.app](https://filipeduarte.netlify.app)**
+
+---
+
+## Páginas / Pages
+
+| Rota | PT | EN |
+|------|----|----|
+| `/` | Homepage | Homepage |
+| `/projetos` | Grade de projetos | Projects grid |
+| `/sobre` | Trajetória e carreira | About & career |
+| `/criticas` | Críticas de filmes | Film reviews |
+| `/kit` | Design system | Design system |
+
+### Estudos de caso / Case studies
+
+| Slug | Projeto |
+|------|---------|
+| `/projetos/mobi_studio` | Customizador interativo de capas (Canvas API) |
+| `/projetos/mobi_3d` | Renders e animações 3D de produtos |
+| `/projetos/mobi_estampas` | +70 estampas autorais |
+| `/projetos/mobi_ric` | Identidade — Rap In Cena festival |
+| `/projetos/mobi_alcas` | Campanha de alças |
+| `/projetos/mobi_namorados` | Audiovisual — Dia dos Namorados |
+| `/projetos/mobi_placas` | Gráficos para placas e carteiras |
+| `/projetos/animas_cavalry` | 19 experimentos de motion procedural |
+| `/projetos/cavaleiro_de_latao` | Jogo roguelike em Godot |
+| `/projetos/unisenac_vivencias` | Identidade visual universitária |
 
 ---
 
@@ -11,195 +57,64 @@ Portfolio pessoal com design Neo-Brutalista, suporte a PT/EN, modo escuro e estu
 
 | Camada | Tecnologia |
 |--------|-----------|
-| Framework | Astro 6.4.2 (output estático) |
-| Estilização | CSS3 puro com custom properties |
+| Framework | [Astro](https://astro.build) 6.4.2 — output estático |
+| Estilização | CSS3 puro com custom properties (Neo-Brutalista) |
 | Interatividade | Vanilla JavaScript |
-| Animações | CSS transitions + Lottie.js |
-| Fontes | Self-hosted WOFF2 (Syne, Inter, Space Mono) |
-| Dados | JSON, CSV (integração Letterboxd) |
-| Hosting | Netlify |
-| Build | Clean-CSS + Astro CLI |
-| Node | 22 |
+| Animações | Lottie.js + CSS transitions |
+| Fontes | Self-hosted WOFF2 — Syne, Inter, Space Mono |
+| Dados | JSON + CSV (integração Letterboxd) |
+| Deploy | Netlify (Node 22) |
 
 ---
 
-## Comandos
+## Rodando localmente / Running locally
 
 ```bash
-npm run dev          # servidor de desenvolvimento
-npm run build        # minifica CSS + build Astro → dist/
-npm run preview      # preview do build estático
+# instalar dependências
+npm install
+
+# servidor de desenvolvimento
+npm run dev
+
+# build de produção (minifica CSS + compila Astro)
+npm run build
+
+# preview do build estático
+npm run preview
 ```
 
 ---
 
-## Estrutura do Projeto
+## Funcionalidades / Features
 
-```
-portfolio-filipe-duarte/
-├── src/
-│   ├── pages/
-│   │   ├── index.astro                # Homepage
-│   │   ├── projetos.astro             # Grade de projetos filtrável
-│   │   ├── sobre.astro                # Sobre / carreira
-│   │   ├── criticas.astro             # Críticas de filmes (Letterboxd)
-│   │   ├── kit.astro                  # Design system / componentes
-│   │   └── projetos/                  # Estudos de caso
-│   │       ├── mobi_studio.astro
-│   │       ├── mobi_3d.astro
-│   │       ├── mobi_estampas.astro
-│   │       ├── mobi_ric.astro
-│   │       ├── mobi_alcas.astro
-│   │       ├── mobi_namorados.astro
-│   │       ├── mobi_placas.astro
-│   │       ├── animas_cavalry.astro
-│   │       ├── cavaleiro_de_latao.astro
-│   │       └── unisenac_vivencias.astro
-│   ├── layouts/
-│   │   ├── Base.astro                 # Layout mestre (meta, nav, footer)
-│   │   └── CaseStudy.astro            # Template para estudos de caso
-│   ├── components/
-│   │   ├── Nav.astro                  # Header + menu mobile
-│   │   ├── Footer.astro               # Footer (variante minimal / contato)
-│   │   ├── CustomCursor.astro         # Cursor SVG contextual
-│   │   ├── CaseAssetGallery.astro     # Galeria de assets por fase
-│   │   ├── CaseMethodology.astro      # Cards de metodologia
-│   │   └── CaseRepoStats.astro        # Cards de stats do repositório
-│   └── data/
-│       ├── letterboxd/                # Exports CSV do Letterboxd
-│       └── letterboxd-archive.json    # JSON consolidado de filmes
-├── public/
-│   ├── css/
-│   │   ├── style.css                  # Stylesheet principal (~5000 linhas)
-│   │   ├── style.min.css              # Versão minificada (gerada no build)
-│   │   └── case.css                   # Estilos específicos de estudos de caso
-│   ├── js/
-│   │   ├── main.js                    # Interações, i18n, tema, filtros
-│   │   └── lottie.min.js              # Player Lottie
-│   ├── assets/
-│   │   ├── fonts/                     # WOFF2 self-hosted
-│   │   ├── Anima_hero.json            # Animação Lottie do hero
-│   │   ├── i18n.json                  # Traduções PT ↔ EN
-│   │   ├── FD - Wordmark.svg          # Logotipo
-│   │   └── Mouse_*.svg                # Cursores (4 variantes × 2 temas)
-│   ├── img/
-│   │   ├── og-image.jpg               # OG meta image (claro)
-│   │   ├── og-image-dark.jpg          # OG meta image (escuro)
-│   │   └── webp/                      # Banners responsivos dos projetos
-│   ├── projetos/                      # Assets dos estudos de caso
-│   │   ├── mobi_studio/
-│   │   ├── mobi_3d/
-│   │   ├── mobi_estampas/
-│   │   ├── mobi_ric/
-│   │   ├── mobi_alcas/
-│   │   ├── mobi_namorados/
-│   │   ├── mobi_placas/
-│   │   ├── animas_cavalry/
-│   │   ├── cavaleiro_de_latao/
-│   │   └── unisenac_vivencias/
-│   ├── robots.txt
-│   ├── sitemap.xml
-│   └── llms.txt                       # Contexto para modelos de IA
-├── scripts/
-│   └── generate-letterboxd-archive.mjs  # Processa CSVs → JSON consolidado
-├── astro.config.mjs
-├── netlify.toml
-└── package.json
-```
+- **i18n PT/EN** — tradução client-side via atributos `data-en`
+- **Dark mode** — tema completo via CSS custom properties
+- **Cursor customizado** — 4 estados × 2 temas
+- **Filtro de projetos** — por categoria, sem reload
+- **Letterboxd** — RSS + CSV → JSON consolidado via script local
+- **SEO** — JSON-LD, OG tags, canonical, sitemap, robots.txt
+- **Performance** — fontes self-hosted, imagens WebP, CSS minificado
 
 ---
 
-## Páginas
+## Contato / Contact
 
-| Rota | Página |
-|------|--------|
-| `/` | Homepage com hero animado, projetos em destaque e contato |
-| `/projetos` | Grade com 13 projetos filtrável por categoria |
-| `/sobre` | Timeline de carreira, certificações e depoimentos |
-| `/criticas` | Críticas de filmes integradas ao Letterboxd |
-| `/kit` | Design system com tipografia, cores e componentes |
-
-### Estudos de Caso (`/projetos/*`)
-
-| Slug | Projeto |
-|------|---------|
-| `mobi_studio` | Customizador interativo de capas (Canvas API) |
-| `mobi_3d` | Renders e animações 3D de produtos |
-| `mobi_estampas` | Mais de 70 estampas autorais |
-| `mobi_ric` | Identidade visual — Rap In Cena festival |
-| `mobi_alcas` | Campanha de alças de bolsa |
-| `mobi_namorados` | Audiovisual de Dia dos Namorados |
-| `mobi_placas` | Gráficos para placas, carteiras e bolsas |
-| `animas_cavalry` | 19 experimentos de motion design procedural |
-| `cavaleiro_de_latao` | Jogo roguelike em Godot |
-| `unisenac_vivencias` | Identidade visual universitária |
+<div>
+  <a href="https://www.linkedin.com/in/filipe-velasco/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-filipe--velasco-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+  </a>
+  &nbsp;
+  <a href="mailto:filipe.velascoduarte@gmail.com">
+    <img src="https://img.shields.io/badge/Email-filipe.velascoduarte%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
+  </a>
+</div>
 
 ---
 
-## Design System
+## Licença / License
 
-**Estética:** Neo-Brutalista — bordas sólidas, sombras offset sem blur, cores de alta saturação.
+**PT** — Este repositório é público para fins de visualização e referência. Todo o conteúdo (código, design, assets e estudos de caso) é de autoria de Filipe Duarte. Reprodução ou uso comercial sem autorização expressa é proibido.
 
-**Fontes:**
-- Display: Syne (variável 100–900)
-- Corpo: Inter (variável)
-- Mono: Space Mono (400, 700)
+**EN** — This repository is public for viewing and reference purposes only. All content (code, design, assets and case studies) is authored by Filipe Duarte. Reproduction or commercial use without explicit permission is prohibited.
 
-**Tokens principais (CSS Custom Properties):**
-- Cores: `--color-bg`, `--color-ink`, `--color-yellow`, `--color-teal`, `--color-pink`, `--color-purple`
-- Tipografia: escala fluida com `clamp()` de `--text-xs` até `--text-hero`
-- Espaçamento: `--space-1` a `--space-32` (0.25rem – 8rem)
-- Sombras: offset 3px–12px, sem blur (Neo-Brutalista)
-- Transições: `--transition-fast` (120ms), `--transition-base` (220ms)
-
-**Modo escuro:** sobrescreve todos os tokens via `html[data-theme="dark"]`.
-
----
-
-## Funcionalidades
-
-- **i18n PT/EN** — atributos `data-en` para tradução client-side
-- **Dark Mode** — toggle com persistência de sessão
-- **Cursor customizado** — 4 estados (padrão, hover, click, click+hover) × 2 temas
-- **Filtro de projetos** — filtragem por categoria sem reload
-- **Carrossel de certificações** — draggable/swipeable
-- **Reveal on scroll** — IntersectionObserver
-- **Integração Letterboxd** — RSS + CSV → JSON consolidado
-- **SEO completo** — JSON-LD, OG tags, canonical, sitemap, robots.txt
-
----
-
-## SEO & Meta
-
-- JSON-LD: `Person`, `WebSite`, `CollectionPage`, `Article` (por estudo de caso)
-- OG/Twitter tags em todas as páginas
-- Canonical URLs apontando para `filipeduarte.netlify.app`
-- Sitemap XML e robots.txt
-
----
-
-## Deploy
-
-Hospedado na **Netlify** com deploy automático a partir do branch `main`.
-
-```toml
-# netlify.toml
-[build]
-  command = "npm run build"
-  publish = "dist"
-
-[build.environment]
-  NODE_VERSION = "22"
-```
-
----
-
-## Integração Letterboxd
-
-Os dados de filmes são gerados localmente a partir dos exports CSV do Letterboxd:
-
-```bash
-node scripts/generate-letterboxd-archive.mjs
-```
-
-O script consolida ratings, reviews, diary, likes e dados do RSS em um único `src/data/letterboxd-archive.json` consumido pela página `/criticas`.
+© 2025 Filipe Duarte — Todos os direitos reservados / All rights reserved.
