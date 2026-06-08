@@ -4,6 +4,7 @@
 
 [![Astro](https://img.shields.io/badge/Astro-6.4.2-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
 [![Site](https://img.shields.io/website?url=https%3A%2F%2Ffilipeduarte.netlify.app&style=for-the-badge&label=deploy&color=00C7B7)](https://filipeduarte.netlify.app)
+[![License](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=for-the-badge)](LICENSE.md)
 
 <br/>
 
@@ -113,8 +114,10 @@ npm run preview
 
 ## Licença / License
 
-**PT** — Este repositório é público para fins de visualização e referência. Todo o conteúdo (código, design, assets e estudos de caso) é de autoria de Filipe Duarte. Reprodução ou uso comercial sem autorização expressa é proibido.
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey?style=flat-square)](LICENSE.md)
 
-**EN** — This repository is public for viewing and reference purposes only. All content (code, design, assets and case studies) is authored by Filipe Duarte. Reproduction or commercial use without explicit permission is prohibited.
+**PT** — Este projeto está licenciado sob [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](LICENSE.md). Você pode visualizar e compartilhar o material com atribuição, mas **não pode usá-lo comercialmente nem criar obras derivadas**.
 
-© 2026 Filipe Duarte — Todos os direitos reservados / All rights reserved.
+**EN** — This project is licensed under [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International](LICENSE.md). You may view and share the material with attribution, but **commercial use and derivative works are not permitted**.
+
+© 2026 Filipe Duarte
