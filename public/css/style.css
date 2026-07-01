@@ -113,15 +113,6 @@ html[data-theme="dark"] .timeline__date {
   background: #2A2A2D;
 }
 
-/* Badges hero: restora o comportamento original no dark mode
-   (as cores escurecidas para WCAG são apenas para o tema claro) */
-html[data-theme="dark"] .hero__role:nth-child(3) {
-  background: var(--color-purple);
-}
-html[data-theme="dark"] .hero__role:nth-child(4) {
-  color: var(--color-white);
-}
-
 /* ============================================
    DESIGN TOKENS / CSS VARIABLES
    ============================================ */
@@ -194,6 +185,7 @@ html[data-theme="dark"] .hero__role:nth-child(4) {
   /* --- Raios --- */
   --radius-sm: 2px;
   --radius-md: 4px;
+  --radius-pill: 999px;
 
   /* --- Transições --- */
   --transition-fast: 120ms ease;
@@ -305,27 +297,9 @@ button {
   letter-spacing: 0.08em;
   padding: var(--space-1) var(--space-3);
   border: var(--border);
-  background: var(--color-yellow);
-  box-shadow: var(--shadow-sm);
-}
-
-.tag--dark {
-  background: var(--color-ink);
-  color: var(--color-bg);
-}
-
-.tag--red {
-  background: var(--color-pink);
-  color: var(--color-white);
-}
-
-.tag--green {
-  background: var(--color-teal);
-}
-
-.tag--blue {
-  background: var(--color-blue);
-  color: var(--color-white);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  color: var(--color-ink);
 }
 
 .tag--ghost {
@@ -692,8 +666,9 @@ button {
   letter-spacing: 0.08em;
   padding: var(--space-1) var(--space-4);
   border: var(--border);
-  background: var(--color-teal);
-  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-pill);
+  background: var(--color-white);
+  color: var(--color-ink);
 }
 
 .hero__status-dot::before {
@@ -788,8 +763,9 @@ button {
   letter-spacing: 0.04em;
   padding: var(--space-2) var(--space-5);
   border: var(--border-thick);
+  border-radius: var(--radius-pill);
   background: var(--color-white);
-  box-shadow: var(--shadow-md);
+  color: var(--color-ink);
   transition: var(--transition-fast);
   /* Entrada staggered — atrasada para cada pill */
   animation: fadeInUp 0.45s ease both;
@@ -800,20 +776,6 @@ button {
 .hero__role:nth-child(3) { animation-delay: 0.21s; }
 .hero__role:nth-child(4) { animation-delay: 0.29s; }
 .hero__role:nth-child(5) { animation-delay: 0.37s; }
-
-.hero__role:nth-child(2) {
-  background: var(--color-teal);
-}
-
-.hero__role:nth-child(3) {
-  background: #5C2EFF; /* #7C4DFF → 3.96:1 fail; #5C2EFF → 5.69:1 WCAG AA ✓ */
-  color: var(--color-white);
-}
-
-.hero__role:nth-child(4) {
-  background: var(--color-pink);
-  color: var(--color-ink); /* var(--color-white) → 3.13:1 fail; ink → 4.52:1 WCAG AA ✓ */
-}
 
 .hero__rating {
   margin-top: var(--space-4);
@@ -1195,6 +1157,7 @@ button {
   letter-spacing: 0.06em;
   padding: var(--space-1) var(--space-2);
   border: var(--border);
+  border-radius: var(--radius-pill);
   background: var(--color-bg);
 }
 

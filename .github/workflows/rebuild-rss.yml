@@ -1,0 +1,23 @@
+name: Rebuild site (fresh Letterboxd RSS)
+
+# O site é estático: src/pages/criticas.astro busca o RSS do Letterboxd
+# apenas no momento do build. Sem um rebuild recorrente, a página fica
+# presa nos dados do último deploy. Este workflow dispara um novo build
+# no Netlify em intervalos regulares para manter o Diário de Cinema atualizado.
+
+on:
+  schedule:
+    - cron: '0 11 * * *' # todos os dias às 08:00 (America/Sao_Paulo, UTC-3)
+  workflow_dispatch: {} # permite disparar manualmente pela aba Actions
+
+jobs:
+  trigger-netlify-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Chamar o Build Hook do Netlify
+        run: |
+          if [ -z "${{ secrets.NETLIFY_BUILD_HOOK }}" ]; then
+            echo "Secret NETLIFY_BUILD_HOOK não configurado. Veja README/handoff para instruções."
+            exit 1
+          fi
+          curl -sf -X POST "${{ secrets.NETLIFY_BUILD_HOOK }}"
