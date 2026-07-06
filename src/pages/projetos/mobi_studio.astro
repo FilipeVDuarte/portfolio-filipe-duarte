@@ -23,6 +23,29 @@ const codeBlock = `<span class="tok-comment">// buildColoredEstampa — coloriza
   );
   <span class="tok-keyword">return</span> URL.createObjectURL(blob); <span class="tok-comment">// revogado antes da próxima chamada</span>
 }`;
+
+const codeBlockEN = `<span class="tok-comment">// buildColoredEstampa — native SVG colorization with no extra Canvas or external libraries</span>
+<span class="tok-keyword">async function</span> <span class="tok-fn">buildColoredEstampa</span>(svgPath, bgColor, fgColor) {
+  <span class="tok-keyword">const</span> res  = <span class="tok-keyword">await</span> fetch(svgPath);
+  <span class="tok-keyword">const</span> text = <span class="tok-keyword">await</span> res.text();
+  <span class="tok-keyword">const</span> doc  = <span class="tok-keyword">new</span> DOMParser().parseFromString(text, <span class="tok-string">'image/svg+xml'</span>);
+  <span class="tok-keyword">const</span> svg  = doc.querySelector(<span class="tok-string">'svg'</span>);
+
+  <span class="tok-comment">// inject the background rect before anything else</span>
+  <span class="tok-keyword">const</span> rect = doc.createElementNS(<span class="tok-string">'http://www.w3.org/2000/svg'</span>, <span class="tok-string">'rect'</span>);
+  rect.setAttribute(<span class="tok-string">'width'</span>, <span class="tok-string">'100%'</span>); rect.setAttribute(<span class="tok-string">'height'</span>, <span class="tok-string">'100%'</span>);
+  rect.setAttribute(<span class="tok-string">'fill'</span>, bgColor);
+  svg.insertBefore(rect, svg.firstChild);
+
+  <span class="tok-comment">// paint every path with fgColor</span>
+  svg.querySelectorAll(<span class="tok-string">'path'</span>).forEach(p => p.setAttribute(<span class="tok-string">'fill'</span>, fgColor));
+
+  <span class="tok-keyword">const</span> blob = <span class="tok-keyword">new</span> Blob(
+    [<span class="tok-keyword">new</span> XMLSerializer().serializeToString(doc)],
+    { type: <span class="tok-string">'image/svg+xml'</span> }
+  );
+  <span class="tok-keyword">return</span> URL.createObjectURL(blob); <span class="tok-comment">// revoked before the next call</span>
+}`;
 ---
 
 <CaseStudy
@@ -81,29 +104,29 @@ const codeBlock = `<span class="tok-comment">// buildColoredEstampa — coloriza
       </div>
       <div class="case-grid-2" data-reveal>
         <div>
-          <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-6);">
+          <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-6);" data-en="<strong style='color: var(--color-ink);'>Mobifans</strong> sells personalized smartphone cases, but had no way to show the customer how the artwork would look applied to the device before purchase. The process was manual, slow, and depended on a salesperson being available on the spot to put together a preview.">
             A <strong style="color: var(--color-ink);">Mobifans</strong> vende capinhas personalizadas de smartphone, mas não tinha como mostrar ao cliente como a arte ficaria aplicada no aparelho antes da compra. O processo era manual, lento, e dependia de um vendedor na hora para montar um preview.
           </p>
-          <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted);">
+          <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted);" data-en="The gap was clear: build a web tool that either the customer or the kiosk salesperson could use to view the case in real time, with full control over the artwork's position, scale and rotation. No middlemen, no waiting.">
             A lacuna era clara: criar uma ferramenta web que permitisse ao próprio cliente ou ao vendedor no quiosque. Poder visualizar a capinha em tempo real, com controle total de posição, escala e rotação da arte. Sem intermediários, sem espera.
           </p>
         </div>
         <div style="display: flex; flex-direction: column; gap: var(--space-5);">
           <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
-            <p class="section-label" style="margin-bottom: var(--space-2);">Contexto</p>
-            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+            <p class="section-label" style="margin-bottom: var(--space-2);" data-en="Context">Contexto</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);" data-en="Mobifans wanted to bring the personalization experience back, since one of the reasons they had stopped offering personalized cases was the lack of an updated tool for it that was also easy to use for lightweight tasks.">
               A mobifans queria trazer a experiência de personalização de volta, dado que um dos motivos para que parassem de produzir as personalizadas. Era a falta de uma ferramenta atualizada para isso e que facilitada para o uso leve.
             </p>
           </div>
           <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
-            <p class="section-label" style="margin-bottom: var(--space-2);">Problema central</p>
-            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+            <p class="section-label" style="margin-bottom: var(--space-2);" data-en="Core problem">Problema central</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);" data-en="The tools they used were heavy, slow, and dependent on third parties — creating a lot of friction in production.">
               As ferramentas que utilizavam eram pesadas, lentas, e dependiam de terceiros. Gerando muito ruído na produção.
             </p>
           </div>
           <div style="border: var(--border-thick); background: var(--color-yellow); box-shadow: var(--shadow-sm); padding: var(--space-5);">
-            <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);">Oportunidade</p>
-            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);">
+            <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);" data-en="Opportunity">Oportunidade</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);" data-en="Build a native web customizer (with no heavy dependencies) capable of running on any device.">
               Construir um personalizador web nativo (sem dependências pesadas) capaz de rodar em qualquer dispositivo.
             </p>
           </div>
@@ -123,21 +146,21 @@ const codeBlock = `<span class="tok-comment">// buildColoredEstampa — coloriza
         <div class="role-card">
           <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
           <h3 class="role-card__title">Design</h3>
-          <p class="role-card__desc" style="text-align: justify;">
+          <p class="role-card__desc" style="text-align: justify;" data-en="Based on the visual identity Mobifans conveys, which is quite plural in several senses, I chose Neo-Brutalism, creating a Design System to unify the whole art direction. It served as a visual test, aiming to carry this identity forward into Mobifans's future new site.">
             Baseando na identidade visual que a mobifans transpassa, sendo muito plural em diversos sentidos. Escolhi o estilo Neo-Brutalismo, criando um Design System para unificar toda direção de arte. Servindo de teste visual, visando levar essa ID para o futuro novo site da Mobifans.
           </p>
         </div>
         <div class="role-card">
           <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
           <h3 class="role-card__title">Front-end</h3>
-          <p class="role-card__desc" style="text-align: justify;">
+          <p class="role-card__desc" style="text-align: justify;" data-en="2D Canvas engine with 3 rendering layers, drag & drop, scroll-to-zoom, rotation, dynamic layouts (1/2/3/4/6 slots), undo history and high-resolution export via html2canvas.">
             Motor Canvas 2D com 3 camadas de renderização, drag & drop, zoom por scroll, rotação, layouts dinâmicos (1/2/3/4/6 slots), histórico de undo e exportação em alta resolução via html2canvas.
           </p>
         </div>
         <div class="role-card">
           <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
-          <h3 class="role-card__title">Deploy</h3>
-          <p class="role-card__desc" style="text-align: justify;">
+          <h3 class="role-card__title" data-en="Deployment">Deploy</h3>
+          <p class="role-card__desc" style="text-align: justify;" data-en="Hosting on Netlify with automatic deploy via Git, serverless backend with Netlify Functions + Express, and CI/CD setup for the v1.x version cycle.">
             Hospedagem no Netlify com deploy automático via Git, backend serverless com Netlify Functions + Express, e configuração de CI/CD para o ciclo de versões v1.x.
           </p>
         </div>
@@ -164,28 +187,28 @@ const codeBlock = `<span class="tok-comment">// buildColoredEstampa — coloriza
         </div>
       </div>
 
-      <p class="case-narrative" data-reveal data-reveal-delay="1">
+      <p class="case-narrative" data-reveal data-reveal-delay="1" data-en="The most important architectural decision was to abandon React in favor of <strong>static HTML + vanilla JavaScript</strong> (v1.0). This eliminated bundle overhead, sped up loading and simplified maintenance. The Canvas engine was built from scratch with the <strong>native 2D Canvas API</strong> — three overlapping layers: base mockup, image slots with per-area hit detection, and a mask overlay with support for camera cutouts.">
         A decisão arquitetural mais importante foi abandonar React em favor de <strong>HTML estático + JavaScript Vanilla</strong> (v1.0). Isso eliminou o overhead de bundle, acelerou o carregamento e simplificou a manutenção. O motor Canvas foi construído do zero com a <strong>Canvas API 2D nativa</strong> — três camadas sobrepostas: mockup base, slots de imagem com hit-detection por área, e overlay de máscara com suporte a buracos de câmera.
       </p>
 
-      <p class="case-narrative" data-reveal data-reveal-delay="1">
+      <p class="case-narrative" data-reveal data-reveal-delay="1" data-en="For the <strong>Ready-Made Stamps</strong> (v1.7), the challenge was to dynamically colorize SVGs without an extra Canvas or external libraries. The solution: fetch the SVG → DOMParser → inject a background <code style='font-family: var(--font-mono); font-size: 0.85em; background: var(--color-surface); padding: 2px 6px; border: var(--border);'>&lt;rect&gt;</code> → paint the paths with the foreground color → XMLSerializer → Blob URL. No memory leaks, with <code style='font-family: var(--font-mono); font-size: 0.85em; background: var(--color-surface); padding: 2px 6px; border: var(--border);'>URL.revokeObjectURL()</code> applied before each new generation.">
         Para as <strong>Estampas Prontas</strong> (v1.7), o desafio era colorizar SVGs dinamicamente sem Canvas extra ou bibliotecas externas. A solução: fetch do SVG → DOMParser → injeção de <code style="font-family: var(--font-mono); font-size: 0.85em; background: var(--color-surface); padding: 2px 6px; border: var(--border);">&lt;rect&gt;</code> de fundo → pintura de paths com cor de foreground → XMLSerializer → Blob URL. Sem vazamento de memória, com <code style="font-family: var(--font-mono); font-size: 0.85em; background: var(--color-surface); padding: 2px 6px; border: var(--border);">URL.revokeObjectURL()</code> aplicado antes de cada nova geração.
       </p>
 
-      <div class="case-code" data-reveal data-reveal-delay="2" role="region" aria-label="Função buildColoredEstampa — colorização de SVG nativa" set:html={codeBlock} />
+      <div class="case-code" data-reveal data-reveal-delay="2" role="region" aria-label="Função buildColoredEstampa — colorização de SVG nativa" data-en={codeBlockEN} set:html={codeBlock} />
 
       <div class="case-img-trio" data-reveal>
         <div>
           <img class="case-img-trio__img" src="/projetos/mobi_studio/processo_03.webp" alt="Layouts dinâmicos — 1/2/3/4/6 slots" />
-          <span class="case-img-pair__caption" data-en="LAYOUT PERSONALIZÁVEL · 1/2/3/4/6 SLOTS">LAYOUT PERSONALIZÁVEL · 1/2/3/4/6 SLOTS</span>
+          <span class="case-img-pair__caption" data-en="CUSTOMIZABLE LAYOUT · 1/2/3/4/6 SLOTS">LAYOUT PERSONALIZÁVEL · 1/2/3/4/6 SLOTS</span>
         </div>
         <div>
           <img class="case-img-trio__img" src="/projetos/mobi_studio/processo_04.webp" alt="Catálogo de estampas SVG com seletor de cores" />
-          <span class="case-img-pair__caption" data-en="CATÁLOGO DE ESTAMPAS · SELETOR DE CORES">CATÁLOGO DE ESTAMPAS · SELETOR DE CORES</span>
+          <span class="case-img-pair__caption" data-en="STAMP CATALOG · COLOR PICKER">CATÁLOGO DE ESTAMPAS · SELETOR DE CORES</span>
         </div>
         <div>
           <img class="case-img-trio__img" src="/projetos/mobi_studio/processo_05.webp" alt="Exportação de preview em alta resolução" />
-          <span class="case-img-pair__caption" data-en="EXPORTAÇÃO · ALTA RESOLUÇÃO">EXPORTAÇÃO · ALTA RESOLUÇÃO</span>
+          <span class="case-img-pair__caption" data-en="EXPORT · HIGH RESOLUTION">EXPORTAÇÃO · ALTA RESOLUÇÃO</span>
         </div>
       </div>
 
@@ -211,7 +234,7 @@ const codeBlock = `<span class="tok-comment">// buildColoredEstampa — coloriza
               <p class="metric-card__label" data-en="Commits · 13 versions">Commits · 13 versões</p>
             </div>
           </div>
-          <p class="case-resultado__impact">
+          <p class="case-resultado__impact" data-en="<strong>From zero to production in 28 days.</strong> MobiStudio was built from scratch — no framework, no UI library — delivering a complete Canvas engine with drag, zoom, rotation, 6 dynamic layouts, color-customizable SVG stamps and high-resolution export. It's in production on Netlify with automatic deploy via Git, serving Mobifans's kiosks.<br>I'm currently working on <strong>version 2.0</strong>, which will add text support. After that, I'll prepare it to connect with e-commerce.">
             <strong>De zero a produção em 28 dias.</strong> O MobiStudio foi construído do zero — sem framework, sem biblioteca de UI — e foi entregue um motor Canvas completo com drag, zoom, rotação, 6 layouts dinâmicos, estampas SVG personalizáveis por cor e exportação em alta resolução. Está em produção no Netlify com deploy automático via Git, servindo os quiosques da Mobifans.
             <br>
             Atualmente estou trabalhando na <strong>versão 2.0</strong>, que trará a adição de textos. E após isso, irei preparar para ser conectado ao E-Commerce.
@@ -237,7 +260,7 @@ const codeBlock = `<span class="tok-comment">// buildColoredEstampa — coloriza
       <a href="mobi_ric.html" class="case-next__card" data-reveal>
         <div>
           <p class="case-next__label" data-en="Next case →">Próximo case →</p>
-          <p class="case-next__title">Rap in<br />Cena.</p>
+          <p class="case-next__title" data-en="Rap in<br />Cena.">Rap in<br />Cena.</p>
         </div>
         <img class="case-next__thumb" src="/projetos/mobi_ric/Banner_MobiNoRIC_21_9.webp" alt="Thumbnail Rap in Cena" loading="lazy" />
         <span class="case-next__arrow" aria-hidden="true">→</span>

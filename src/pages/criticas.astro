@@ -205,17 +205,19 @@ const totalMaratonas = months.filter(m => m.marathon).length;
   <div class="cd-wrap">
 
     <nav class="cd-category-nav" aria-label="Menu do Repertório">
-      <a href="/criticas" class="cd-cat-item is-active">Cinema</a>
-      <span class="cd-cat-item is-disabled">Séries <span class="cd-cat-soon">(Em breve)</span></span>
-      <span class="cd-cat-item is-disabled">Músicas <span class="cd-cat-soon">(Em breve)</span></span>
-      <span class="cd-cat-item is-disabled">Jogos <span class="cd-cat-soon">(Em breve)</span></span>
+      <a href="/criticas" class="cd-cat-item is-active" data-en="Cinema">Cinema</a>
+      <span class="cd-cat-item is-disabled" data-en={`Series <span class="cd-cat-soon">(Coming soon)</span>`}>Séries <span class="cd-cat-soon">(Em breve)</span></span>
+      <span class="cd-cat-item is-disabled" data-en={`Music <span class="cd-cat-soon">(Coming soon)</span>`}>Músicas <span class="cd-cat-soon">(Em breve)</span></span>
+      <span class="cd-cat-item is-disabled" data-en={`Games <span class="cd-cat-soon">(Coming soon)</span>`}>Jogos <span class="cd-cat-soon">(Em breve)</span></span>
     </nav>
 
     <!-- PAGE HEAD -->
     <div class="cd-pagehead">
-      <div class="cd-eyebrow">Diário de Cinema · desde Jan / 2026</div>
-      <h1 class="cd-hero">DIÁRIO DE<br /><span class="cd-stroke">CINEMA</span></h1>
-      <p class="cd-lead">
+      <div class="cd-eyebrow" data-en="Cinema Diary · since Jan / 2026">Diário de Cinema · desde Jan / 2026</div>
+      <h1 class="cd-hero" data-en={`CINEMA<br /><span class="cd-stroke">DIARY</span>`}>DIÁRIO DE<br /><span class="cd-stroke">CINEMA</span></h1>
+      <p class="cd-lead" data-en={`My reviews and analyses imported from Letterboxd. The <b>highlights</b> open the
+        reading; the rest is organized <b>chronologically by month</b>, in an immersive grid
+        of posters.`}>
         Minhas críticas e análises importadas do Letterboxd. Os <b>destaques</b> abrem a
         leitura; o restante é organizado <b>cronologicamente por mês</b>, em grid imersivo
         de pôsteres.
@@ -223,15 +225,15 @@ const totalMaratonas = months.filter(m => m.marathon).length;
       <div class="cd-summary">
         <div class="cd-stat">
           <div class="cd-stat__v">{allFilms.length}</div>
-          <div class="cd-stat__l">Filmes registrados</div>
+          <div class="cd-stat__l" data-en="Films logged">Filmes registrados</div>
         </div>
         <div class="cd-stat">
           <div class="cd-stat__v"><span class="cd-pink">★</span> {avgGlobal}</div>
-          <div class="cd-stat__l">Nota média</div>
+          <div class="cd-stat__l" data-en="Average rating">Nota média</div>
         </div>
         <div class="cd-stat">
           <div class="cd-stat__v">{months.length}</div>
-          <div class="cd-stat__l">Meses registrados</div>
+          <div class="cd-stat__l" data-en="Months logged">Meses registrados</div>
         </div>
         <div class="cd-stat">
           <div class="cd-stat__v">{totalMaratonas}</div>
@@ -247,13 +249,13 @@ const totalMaratonas = months.filter(m => m.marathon).length;
     <div id="destaques"></div>
     <div class="cd-section-label">
       <span class="cd-sl-ix">01</span>
-      <h2 class="cd-sl-h2">Destaques · Top Rated</h2>
+      <h2 class="cd-sl-h2" data-en="Highlights · Top Rated">Destaques · Top Rated</h2>
       <span class="cd-sl-rule"></span>
-      <span class="cd-sl-aside">★ 4,5 e acima · leitura aberta</span>
+      <span class="cd-sl-aside" data-en="★ 4.5 and above · open reading">★ 4,5 e acima · leitura aberta</span>
     </div>
 
     {destaques.length === 0 && (
-      <p class="cd-meta" style="margin:var(--space-8) 0; color:var(--color-muted)">
+      <p class="cd-meta" style="margin:var(--space-8) 0; color:var(--color-muted)" data-en="No highlights yet — films with ★ 4.5+ will appear here.">
         Nenhum destaque ainda — filmes com ★ 4,5+ aparecerão aqui.
       </p>
     )}
@@ -287,8 +289,8 @@ const totalMaratonas = months.filter(m => m.marathon).length;
           <div class="cd-featured__footer">
             <h3 class="cd-featured-title">{f.filmTitle}</h3>
             <div class="cd-featured-meta-grid">
-              <span>VISTO EM</span><span>{monthLabel(f.month)}</span>
-              <span>DIREÇÃO</span><span>{f.director ?? 'Não informada'}</span>
+              <span data-en="WATCHED ON">VISTO EM</span><span>{monthLabel(f.month)}</span>
+              <span data-en="DIRECTION">DIREÇÃO</span><span>{f.director ?? 'Não informada'}</span>
             </div>
           </div>
         </article>
@@ -304,9 +306,9 @@ const totalMaratonas = months.filter(m => m.marathon).length;
     <div id="listagem"></div>
     <div class="cd-section-label">
       <span class="cd-sl-ix">02</span>
-      <h2 class="cd-sl-h2">Listagem por Mês</h2>
+      <h2 class="cd-sl-h2" data-en="Listing by Month">Listagem por Mês</h2>
       <span class="cd-sl-rule"></span>
-      <span class="cd-sl-aside">Grid imersivo · 4 colunas · 2:3</span>
+      <span class="cd-sl-aside" data-en="Immersive grid · 4 columns · 2:3">Grid imersivo · 4 colunas · 2:3</span>
     </div>
 
     {months.map((m) => {
@@ -334,11 +336,11 @@ const totalMaratonas = months.filter(m => m.marathon).length;
             <div class="cd-month__agg">
               <div class="cd-stat">
                 <div class="cd-stat__v">{m.films.length}</div>
-                <div class="cd-stat__l">Filmes</div>
+                <div class="cd-stat__l" data-en="Films">Filmes</div>
               </div>
               <div class="cd-stat">
                 <div class="cd-stat__v">★ {m.avgRating}</div>
-                <div class="cd-stat__l">Média</div>
+                <div class="cd-stat__l" data-en="Average">Média</div>
               </div>
             </div>
           </div>
@@ -364,7 +366,7 @@ const totalMaratonas = months.filter(m => m.marathon).length;
                   }
                   <div class="cd-overlay" aria-hidden="true">
                     <span set:html={starsHTML(f.rating)} />
-                    <span class="cd-cue">Ler crítica →</span>
+                    <span class="cd-cue" data-en="Read review →">Ler crítica →</span>
                   </div>
                 </div>
 
@@ -380,7 +382,7 @@ const totalMaratonas = months.filter(m => m.marathon).length;
     })}
 
     <div class="cd-foot">
-      <span class="cd-meta">
+      <span class="cd-meta" data-en={`Cinema Diary · Filipe Duarte · <a href="https://letterboxd.com/pipo_criticas/" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline">letterboxd.com/pipo_criticas</a>`}>
         Diário de Cinema · Filipe Duarte ·
         <a href="https://letterboxd.com/pipo_criticas/" target="_blank" rel="noopener noreferrer"
            style="color:inherit; text-decoration:underline">letterboxd.com/pipo_criticas</a>
@@ -409,13 +411,14 @@ const totalMaratonas = months.filter(m => m.marathon).length;
           <div id="cdMdBadges" style="margin-top:var(--space-3); display:flex; gap:var(--space-2); flex-wrap:wrap;"></div>
         </div>
       </div>
-      <div id="cdMdSpoiler" class="cd-spoiler-notice" style="display:none">
+      <div id="cdMdSpoiler" class="cd-spoiler-notice" style="display:none" data-en="⚠ This review may contain spoilers.">
         ⚠ Esta crítica pode conter spoilers.
       </div>
       <div class="cd-modal__review" id="cdMdReview"></div>
       <div class="cd-modal__cta">
-        <span class="cd-modal__note">Abre a publicação original no Letterboxd</span>
-        <a class="cd-btn-lb" id="cdMdLink" href="#" target="_blank" rel="noopener noreferrer">
+        <span class="cd-modal__note" data-en="Opens the original post on Letterboxd">Abre a publicação original no Letterboxd</span>
+        <a class="cd-btn-lb" id="cdMdLink" href="#" target="_blank" rel="noopener noreferrer" data-en={`<span class="cd-btn-lb__dots"><i></i><i></i><i></i></span>
+          View on Letterboxd ↗`}>
           <span class="cd-btn-lb__dots"><i></i><i></i><i></i></span>
           Ver no Letterboxd ↗
         </a>

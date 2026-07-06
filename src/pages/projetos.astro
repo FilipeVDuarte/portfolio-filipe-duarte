@@ -37,7 +37,7 @@ import Base from '../layouts/Base.astro';
   <!-- PROJETOS GRID -->
   <section class="projetos-page" aria-labelledby="projetos-title">
     <div class="container">
-      <h2 class="sr-only" id="projetos-title">Lista de projetos</h2>
+      <h2 class="sr-only" id="projetos-title" data-en="Project list">Lista de projetos</h2>
 
       <!-- FILTER BAR -->
       <div class="filter-bar" role="group" aria-label="Filtrar por categoria">
@@ -48,10 +48,11 @@ import Base from '../layouts/Base.astro';
         <button class="filter-btn" data-filter="design-grafico" aria-pressed="false"
           data-en="Graphic Design">Design Gráfico</button>
         <button class="filter-btn" data-filter="3d" aria-pressed="false">3D</button>
-        <button class="filter-btn" data-filter="audiovisual" aria-pressed="false">Audiovisual</button>
+        <button class="filter-btn" data-filter="audiovisual" aria-pressed="false"
+          data-en="Audiovisual">Audiovisual</button>
         <button class="filter-btn" data-filter="fotografia" aria-pressed="false"
           data-en="Photography">Fotografia</button>
-        <span class="filter-bar__count" aria-live="polite" aria-atomic="true" id="filter-count">13 projetos</span>
+        <span class="filter-bar__count" aria-live="polite" aria-atomic="true" id="filter-count" data-en="13 projects">13 projetos</span>
       </div>
 
       <!-- GRID -->
@@ -68,24 +69,24 @@ import Base from '../layouts/Base.astro';
                 <div style="width:20px;height:20px;background:#FF2D55;border:2px solid rgba(255,255,255,.2);"></div>
                 <div style="width:20px;height:20px;background:#F2F0EF;border:2px solid rgba(255,255,255,.2);"></div>
               </div>
-              <p style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.04em;color:var(--color-bg);line-height:1;">Design<br>Kit</p>
+              <p style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.04em;color:var(--color-bg);line-height:1;" data-en="Design<br>Kit">Design<br>Kit</p>
             </div>
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-designkit">Design Kit</h3>
-              <span class="tag">Dev<br>Web</span>
+              <h3 class="proj-card__title" id="proj-designkit" data-en="Design Kit">Design Kit</h3>
+              <span class="tag" data-en="Dev<br>Web">Dev<br>Web</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="Design system built from scratch for this portfolio — color tokens, typography, shadows and every reusable component. Pure CSS, no frameworks.">
               Sistema de design construído do zero para esse portfólio — tokens de cor, tipografia, sombras e todos os componentes reutilizáveis. CSS puro, sem frameworks.
             </p>
             <div class="projeto__tech">
               <span class="tech-tag">CSS</span>
-              <span class="tech-tag">Design System</span>
-              <span class="tech-tag">Neo-Brutalismo</span>
+              <span class="tech-tag" data-en="Design System">Design System</span>
+              <span class="tech-tag" data-en="Neo-Brutalism">Neo-Brutalismo</span>
             </div>
             <div class="proj-card__actions">
-              <a href="kit.html" class="btn btn--primary">Ver Design Kit →</a>
+              <a href="kit.html" class="btn btn--primary" data-en="View Design Kit →">Ver Design Kit →</a>
             </div>
           </div>
         </article>
@@ -94,8 +95,8 @@ import Base from '../layouts/Base.astro';
         <article class="proj-card" data-cat="audiovisual" data-reveal data-reveal-delay="1" aria-labelledby="proj-cavalry">
           <a href="projetos/animas_cavalry.html" class="proj-card__thumb" aria-label="Ver Animações Cavalry">
             <div style="position:absolute;inset:0;background:#0a0a0a;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:var(--space-5);">
-              <span style="font-family:var(--font-mono);font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,.35);">Motion · Generativo</span>
-              <p style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.04em;color:#fff;line-height:1.05;">Animações<br>Cavalry.</p>
+              <span style="font-family:var(--font-mono);font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,.35);" data-en="Motion · Generative">Motion · Generativo</span>
+              <p style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:800;text-transform:uppercase;letter-spacing:-0.04em;color:#fff;line-height:1.05;" data-en="Cavalry<br>Animations.">Animações<br>Cavalry.</p>
             </div>
             <video class="proj-card__hover" muted loop playsinline aria-hidden="true">
               <source src="projetos/animas_cavalry/01_Wavy Lines.webm" type="video/webm" />
@@ -103,19 +104,19 @@ import Base from '../layouts/Base.astro';
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-cavalry">Animações Cavalry</h3>
-              <span class="tag">Audi<br>visu</span>
+              <h3 class="proj-card__title" id="proj-cavalry" data-en="Cavalry Animations">Animações Cavalry</h3>
+              <span class="tag" data-en="Audio<br>visual">Audi<br>visu</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="19 experiments in procedural motion design — noise, physics, shaders, morphology and generative effects created in Cavalry.">
               19 experimentos em motion design procedural — ruído, física, shaders, morfologia e efeitos generativos criados no Cavalry.
             </p>
             <div class="projeto__tech">
               <span class="tech-tag">Cavalry</span>
               <span class="tech-tag">Motion Design</span>
-              <span class="tech-tag">Generativo</span>
+              <span class="tech-tag" data-en="Generative">Generativo</span>
             </div>
             <div class="proj-card__actions">
-              <a href="projetos/animas_cavalry.html" class="btn btn--primary">Ver galeria ↗</a>
+              <a href="projetos/animas_cavalry.html" class="btn btn--primary" data-en="View gallery ↗">Ver galeria ↗</a>
             </div>
           </div>
         </article>
@@ -131,10 +132,11 @@ import Base from '../layouts/Base.astro';
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-mobistudio">MobiStudio</h3>
-              <span class="tag">Dev<br>Web</span>
+              <h3 class="proj-card__title" id="proj-mobistudio" data-en="MobiStudio">MobiStudio</h3>
+              <span class="tag" data-en="Dev<br>Web">Dev<br>Web</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="Interactive phone case customizer. Canvas API engine with zoom, rotation and drag.
+              From problem to production deploy.">
               Customizador interativo de capinhas. Motor Canvas API com zoom, rotação e arraste.
               Do problema ao deploy em produção.
             </p>
@@ -144,7 +146,7 @@ import Base from '../layouts/Base.astro';
               <span class="tech-tag">Netlify</span>
             </div>
             <div class="proj-card__actions">
-              <a href="projetos/mobi_studio.html" class="btn btn--primary">Ver projeto ↗</a>
+              <a href="projetos/mobi_studio.html" class="btn btn--primary" data-en="View project ↗">Ver projeto ↗</a>
             </div>
           </div>
         </article>
@@ -160,10 +162,11 @@ import Base from '../layouts/Base.astro';
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-estampas">Estampas MobiStudio</h3>
-              <span class="tag">Desi<br>Graf</span>
+              <h3 class="proj-card__title" id="proj-estampas" data-en="MobiStudio Patterns">Estampas MobiStudio</h3>
+              <span class="tag" data-en="Graph<br>Design">Desi<br>Graf</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="70+ custom pattern designs for MobiStudio.
+              Graphic production combined with the proprietary interactive tool.">
               70+ artes para estampas personalizadas dentro do MobiStudio.
               Produção gráfica unida à ferramenta interativa proprietária.
             </p>
@@ -172,7 +175,7 @@ import Base from '../layouts/Base.astro';
               <span class="tech-tag">Photoshop</span>
             </div>
             <div class="proj-card__actions">
-              <a href="projetos/mobi_estampas.html" class="btn btn--primary">Ver projeto ↗</a>
+              <a href="projetos/mobi_estampas.html" class="btn btn--primary" data-en="View project ↗">Ver projeto ↗</a>
             </div>
           </div>
         </article>
@@ -185,10 +188,11 @@ import Base from '../layouts/Base.astro';
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-mobifans3d">3D Mobifans</h3>
+              <h3 class="proj-card__title" id="proj-mobifans3d" data-en="3D Mobifans">3D Mobifans</h3>
               <span class="tag">3D</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="From supplier to feed: technical modeling based on real measurements, product renders
+              and animations published on Mobifans' Instagram — including the Animation Triad.">
               Do fornecedor ao feed: modelagem técnica a partir de medidas reais, renders de produto
               e animações publicadas no Instagram da Mobifans — incluindo a Tríade de Animações.
             </p>
@@ -198,7 +202,7 @@ import Base from '../layouts/Base.astro';
               <span class="tech-tag">Motion</span>
             </div>
             <div class="proj-card__actions">
-              <a href="projetos/mobi_3d.html" class="btn btn--primary">Ver projeto ↗</a>
+              <a href="projetos/mobi_3d.html" class="btn btn--primary" data-en="View project ↗">Ver projeto ↗</a>
             </div>
           </div>
         </article>
@@ -211,10 +215,11 @@ import Base from '../layouts/Base.astro';
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-wallets">Placas, Wallets e Crossbody</h3>
-              <span class="tag">Desi<br>Graf</span>
+              <h3 class="proj-card__title" id="proj-wallets" data-en="Plaques, Wallets and Crossbody Bags">Placas, Wallets e Crossbody</h3>
+              <span class="tag" data-en="Graph<br>Design">Desi<br>Graf</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="Graphic campaign for new Mobifans products with digital and printed pieces
+              in a consistent visual identity.">
               Campanha gráfica para novos produtos Mobifans com peças digitais e impressas
               de identidade visual consistente.
             </p>
@@ -223,7 +228,7 @@ import Base from '../layouts/Base.astro';
               <span class="tech-tag">Photoshop</span>
             </div>
             <div class="proj-card__actions">
-              <a href="projetos/mobi_placas.html" class="btn btn--primary">Ver projeto ↗</a>
+              <a href="projetos/mobi_placas.html" class="btn btn--primary" data-en="View project ↗">Ver projeto ↗</a>
             </div>
           </div>
         </article>
@@ -236,19 +241,20 @@ import Base from '../layouts/Base.astro';
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-alcas">Alças <br> Flat <br>Customic</h3>
-              <span class="tag">PROD<br> MULT</span>
+              <h3 class="proj-card__title" id="proj-alcas" data-en="Flat <br> Straps <br>Customic">Alças <br> Flat <br>Customic</h3>
+              <span class="tag" data-en="PROD<br> MULT">PROD<br> MULT</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="Planned to promote a new Customic product in Mobifans stores.
+              <br>Aimed at developing content primarily for social media.">
               Planejado para promover um novo produto Customic nas lojas Mobifans.
               <br>Com o intuito de desenvolver conteúdos majoritariamente para as redes sociais.
             </p>
             <div class="projeto__tech">
-              <span class="tech-tag">Fotografia</span>
-              <span class="tech-tag">Identidade Visual</span>
+              <span class="tech-tag" data-en="Photography">Fotografia</span>
+              <span class="tech-tag" data-en="Visual Identity">Identidade Visual</span>
             </div>
             <div class="proj-card__actions">
-              <a href="projetos/mobi_alcas.html" class="btn btn--primary">Ver projeto ↗</a>
+              <a href="projetos/mobi_alcas.html" class="btn btn--primary" data-en="View project ↗">Ver projeto ↗</a>
             </div>
           </div>
         </article>
@@ -264,10 +270,11 @@ import Base from '../layouts/Base.astro';
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-rapincena">Rap In Cena</h3>
-              <span class="tag">Desi<br>Graf</span>
+              <h3 class="proj-card__title" id="proj-rapincena" data-en="Rap In Cena">Rap In Cena</h3>
+              <span class="tag" data-en="Graph<br>Design">Desi<br>Graf</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="Complete visual kit for Mobifans' participation in Brazil's biggest
+              Hip-Hop festival.">
               Enxoval visual completo para a participação da Mobifans no maior festival
               de Hip-Hop do Brasil.
             </p>
@@ -277,7 +284,7 @@ import Base from '../layouts/Base.astro';
               <span class="tech-tag">CMYK</span>
             </div>
             <div class="proj-card__actions">
-              <a href="projetos/mobi_ric.html" class="btn btn--primary">Ver projeto ↗</a>
+              <a href="projetos/mobi_ric.html" class="btn btn--primary" data-en="View project ↗">Ver projeto ↗</a>
             </div>
           </div>
         </article>
@@ -293,10 +300,11 @@ import Base from '../layouts/Base.astro';
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-dnamorados">Audiovisual — Dia dos Namorados</h3>
-              <span class="tag">Audi<br>visu</span>
+              <h3 class="proj-card__title" id="proj-dnamorados" data-en="Audiovisual — Valentine's Day">Audiovisual — Dia dos Namorados</h3>
+              <span class="tag" data-en="Audio<br>visual">Audi<br>visu</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="Complete audiovisual production for Mobifans' Valentine's Day campaign:
+              filming, editing and motion graphics.">
               Produção audiovisual completa para campanha de Dia dos Namorados da Mobifans:
               captação, edição e motion graphics.
             </p>
@@ -305,7 +313,7 @@ import Base from '../layouts/Base.astro';
               <span class="tech-tag">After Effects</span>
             </div>
             <div class="proj-card__actions">
-              <a href="projetos/mobi_namorados.html" class="btn btn--primary">Ver projeto ↗</a>
+              <a href="projetos/mobi_namorados.html" class="btn btn--primary" data-en="View project ↗">Ver projeto ↗</a>
             </div>
           </div>
         </article>
@@ -318,10 +326,10 @@ import Base from '../layouts/Base.astro';
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-cavaleiro">Cavaleiro de Latão</h3>
+              <h3 class="proj-card__title" id="proj-cavaleiro" data-en="Cavaleiro de Latão">Cavaleiro de Latão</h3>
               <span class="tag">3D</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="Original roguelike developed in Godot with mixed 3D/2D art, Brazilian folklore as the enemy roster, and HTML5 export.">
               Roguelike autoral desenvolvido em Godot com arte mista 3D/2D, folclore brasileiro como galeria de inimigos e exportação HTML5.
             </p>
             <div class="projeto__tech">
@@ -330,7 +338,7 @@ import Base from '../layouts/Base.astro';
               <span class="tech-tag">Aseprite</span>
             </div>
             <div class="proj-card__actions">
-              <a href="projetos/cavaleiro_de_latao.html" class="btn btn--primary">Ver projeto ↗</a>
+              <a href="projetos/cavaleiro_de_latao.html" class="btn btn--primary" data-en="View project ↗">Ver projeto ↗</a>
             </div>
           </div>
         </article>
@@ -343,19 +351,20 @@ import Base from '../layouts/Base.astro';
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-vivencias">Projeto Vivências</h3>
-              <span class="tag">Desi<br> Graf</span>
+              <h3 class="proj-card__title" id="proj-vivencias" data-en="Vivências Project">Projeto Vivências</h3>
+              <span class="tag" data-en="Graph<br> Design">Desi<br> Graf</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="Visual identity developed for UniSenac's collaboration with RBS TV.
+              Created by Multimedia Production students.">
               Identidade visual desenvolvida para a colaboração do UniSenac com a RBS TV.
               Desenvolvido por alunos de Produção Multimídia.
             </p>
             <div class="projeto__tech">
-              <span class="tech-tag">Fotografia</span>
-              <span class="tech-tag">Identidade Visual</span>
+              <span class="tech-tag" data-en="Photography">Fotografia</span>
+              <span class="tech-tag" data-en="Visual Identity">Identidade Visual</span>
             </div>
             <div class="proj-card__actions">
-              <a href="projetos/unisenac_vivencias.html" class="btn btn--primary">Ver projeto ↗</a>
+              <a href="projetos/unisenac_vivencias.html" class="btn btn--primary" data-en="View project ↗">Ver projeto ↗</a>
             </div>
           </div>
         </article>
@@ -370,21 +379,22 @@ import Base from '../layouts/Base.astro';
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-hackathon">Hackathon UniSenac</h3>
-              <span class="tag">Foto<br>graf</span>
+              <h3 class="proj-card__title" id="proj-hackathon" data-en="UniSenac Hackathon">Hackathon UniSenac</h3>
+              <span class="tag" data-en="Photo<br>graphy">Foto<br>graf</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="Staff participation with full photographic coverage of the event
+              throughout the 24-hour hackathon.">
               Participação como Staff com cobertura fotográfica completa do evento
               ao longo das 24 horas de hackathon.
             </p>
             <div class="projeto__tech">
-              <span class="tech-tag">Fotografia</span>
+              <span class="tech-tag" data-en="Photography">Fotografia</span>
               <span class="tech-tag">Lightroom</span>
             </div>
             <div class="proj-card__actions">
               <a href="https://www.instagram.com/unisenacrs/p/CwVGaW9O7M_/"
                  target="_blank" rel="noopener noreferrer"
-                 class="btn btn--primary">Ver fotos ↗</a>
+                 class="btn btn--primary" data-en="View photos ↗">Ver fotos ↗</a>
             </div>
           </div>
         </article>
@@ -398,20 +408,21 @@ import Base from '../layouts/Base.astro';
           </a>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title" id="proj-correiodopovo">Foto — Correio do Povo</h3>
-              <span class="tag">Foto<br>graf</span>
+              <h3 class="proj-card__title" id="proj-correiodopovo" data-en="Photo — Correio do Povo">Foto — Correio do Povo</h3>
+              <span class="tag" data-en="Photo<br>graphy">Foto<br>graf</span>
             </div>
-            <p class="proj-card__desc">
+            <p class="proj-card__desc" data-en="Invited to photograph the facade of Centro Universitário Senac.
+              Image published and credited in a Correio do Povo newspaper feature.">
               Convidado para fotografar a fachada do Centro Universitário Senac.
               Imagem publicada e creditada em matéria do jornal Correio do Povo.
             </p>
             <div class="projeto__tech">
-              <span class="tech-tag">Fotografia</span>
+              <span class="tech-tag" data-en="Photography">Fotografia</span>
               <span class="tech-tag">Lightroom</span>
             </div>
             <div class="proj-card__actions">
               <a href="https://www.correiodopovo.com.br/notícias/ensino/vestibular/inverno/2023/senac-rs-teoria-prática-e-vida-profissional-em-foco-1.1037907"
-                 class="btn btn--primary">Ler matéria ↗</a>
+                 class="btn btn--primary" data-en="Read article ↗">Ler matéria ↗</a>
             </div>
           </div>
         </article>

@@ -24,6 +24,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "preview"],
       "port": 4321
+    },
+    {
+      "name": "ps2-memcard",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8090", "--directory", "projetos/ideias_a_implementar/PlayStation 2 Memory Card Layout"],
+      "port": 8090
     }
   ]
 }

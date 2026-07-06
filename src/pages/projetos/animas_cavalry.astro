@@ -42,8 +42,8 @@ const videos = readdirSync(videosDir)
         <div class="case-header__tags">
           <span class="tech-tag">Cavalry</span>
           <span class="tech-tag">Motion Design</span>
-          <span class="tech-tag">Generativo</span>
-          <span class="tech-tag">Procedural</span>
+          <span class="tech-tag" data-en="Generative">Generativo</span>
+          <span class="tech-tag" data-en="Procedural">Procedural</span>
         </div>
       </div>
     </div>
@@ -58,23 +58,23 @@ const videos = readdirSync(videosDir)
       </div>
       <div class="case-grid-2" data-reveal>
         <div>
-          <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-6);">
+          <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); margin-bottom: var(--space-6);" data-en="<strong style='color: var(--color-ink);'>Cavalry</strong> is a procedural motion design tool that lets you build animations through node systems — no manual keyframes. Each animation here is an isolated experiment exploring a different idea: noise, physics, shaders, morphology, particles.">
             O <strong style="color: var(--color-ink);">Cavalry</strong> é uma ferramenta de motion design procedural que permite criar animações através de sistemas de nós — sem keyframes manuais. Cada animação aqui é um experimento isolado explorando uma ideia diferente: ruído, física, shaders, morfologia, partículas.
           </p>
-          <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted);">
+          <p style="font-size: var(--text-base); line-height: 1.75; color: var(--color-muted);" data-en="The series is focused on learning and exploration. Each file is a question: <em>what happens if I combine this operator with that one?</em> Hover over any animation to see it loop.">
             A série tem foco em aprendizado e exploração. Cada arquivo é uma pergunta: <em>o que acontece se eu combinar esse operador com esse outro?</em> Passe o mouse sobre qualquer animação para ver ela em loop.
           </p>
         </div>
         <div style="display: flex; flex-direction: column; gap: var(--space-5);">
           <div style="border: var(--border-thick); background: var(--color-surface); box-shadow: var(--shadow-sm); padding: var(--space-5);">
-            <p class="section-label" style="margin-bottom: var(--space-2);">Ferramenta</p>
-            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);">
+            <p class="section-label" style="margin-bottom: var(--space-2);" data-en="Tool">Ferramenta</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-muted);" data-en="Cavalry — motion design based on procedural node systems. Visual programming logic applied to animation.">
               Cavalry — motion design baseado em sistemas de nós procedurais. Lógica de programação visual aplicada à animação.
             </p>
           </div>
           <div style="border: var(--border-thick); background: var(--color-yellow); box-shadow: var(--shadow-sm); padding: var(--space-5);">
-            <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);">{videos.length} Experimentos</p>
-            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);">
+            <p class="section-label" style="margin-bottom: var(--space-2); color: var(--color-ink);" data-en={`${videos.length} Experiments`}>{videos.length} Experimentos</p>
+            <p style="font-size: var(--text-sm); line-height: 1.6; color: var(--color-ink);" data-en="Each animation explores a different system or effect — from oscillators and waves to text morphing and generative shaders.">
               Cada animação explora um sistema ou efeito diferente — de osciladores e ondas até morphing de texto e shaders generativos.
             </p>
           </div>

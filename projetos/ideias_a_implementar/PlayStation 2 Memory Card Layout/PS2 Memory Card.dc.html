@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+  <style>
+    * { font-family: 'Press Start 2P', 'Courier New', monospace; }
+  </style>
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+</helmet>
+<div style="position:fixed;inset:0;overflow:hidden;background:{{ bgStyle }};transition:background 0.15s linear;user-select:none;">
+
+  <!-- 3d canvas overlay (fullscreen so the focused icon can translate into the detail view) -->
+  <canvas ref="{{ canvasRef }}" style="position:fixed;inset:0;pointer-events:none;z-index:1;"></canvas>
+
+  <!-- header -->
+  <div style="position:absolute;z-index:2;top:28px;left:36px;color:#f2f2f2;">
+    <div style="font-size:13px;line-height:1.6;letter-spacing:0.5px;color:#ffd400;text-shadow:2px 2px 0 rgba(0,0,0,0.5);">Memory Card <span style="font-size:10px;color:#f2f2f2;">(PS2)/1</span></div>
+    <div style="font-size:10px;margin-top:8px;color:#e4e4e4;text-shadow:2px 2px 0 rgba(0,0,0,0.5);">{{ freeKB }} KB Free</div>
+  </div>
+
+  <div style="position:absolute;z-index:2;top:28px;right:36px;text-align:right;color:#ffd400;font-size:13px;line-height:1.8;text-shadow:2px 2px 0 rgba(0,0,0,0.5);max-width:360px;display:{{ titleDisplay }};">
+    <sc-for list="{{ selectedTitleLines }}" as="line" hint-placeholder-count="2">
+      <div>{{ line }}</div>
+    </sc-for>
+  </div>
+
+  <!-- grid (invisible hit-areas; the 3d icons render on the canvas layer, aligned to these cell centers) -->
+  <div ref="{{ gridRef }}" style="position:absolute;z-index:2;top:110px;left:50%;transform:translateX(-50%);display:grid;grid-template-columns:repeat(5, 118px);grid-template-rows:repeat(3, 110px);column-gap:34px;row-gap:8px;display:{{ gridDisplay }};">
+    <sc-for list="{{ slots }}" as="slot" hint-placeholder-count="15">
+      <div onClick="{{ slot.onSelect }}" style="width:118px;height:130px;cursor:pointer;"></div>
+    </sc-for>
+  </div>
+
+  <!-- detail panel -->
+  <div style="position:absolute;z-index:2;top:32%;right:9%;width:32%;color:#f4f4f4;display:{{ detailDisplay }};">
+    <div style="font-size:15px;color:#ffffff;text-shadow:2px 2px 0 rgba(0,0,0,0.5);margin-bottom:22px;line-height:1.6;">{{ detailName }}</div>
+    <div style="font-size:10px;color:#dfe6ff;opacity:0.85;margin-bottom:10px;">DATE&nbsp;&nbsp;{{ detailDate }}</div>
+    <div style="font-size:10px;color:#dfe6ff;opacity:0.85;margin-bottom:30px;">SIZE&nbsp;&nbsp;{{ detailSize }}</div>
+
+    <div onClick="{{ onOptionCopy }}" style="font-size:11px;padding:10px 16px;margin-bottom:10px;border-radius:4px;cursor:pointer;color:{{ copyColor }};background:{{ copyBg }};box-shadow:{{ copyShadow }};">COPY</div>
+    <div onClick="{{ onOptionDelete }}" style="font-size:11px;padding:10px 16px;border-radius:4px;cursor:pointer;color:{{ deleteColor }};background:{{ deleteBg }};box-shadow:{{ deleteShadow }};">DELETE</div>
+  </div>
+
+  <!-- bottom legend -->
+  <div style="position:absolute;z-index:2;bottom:26px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:40px;color:#f0f0f0;font-size:11px;text-shadow:2px 2px 0 rgba(0,0,0,0.5);">
+    <div onClick="{{ onEnter }}" style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;color:#5aa7ff;font-weight:bold;font-size:14px;">✕</span>
+      <span>Enter</span>
+    </div>
+    <div onClick="{{ onBack }}" style="display:flex;align-items:center;gap:10px;cursor:pointer;">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;color:#57d68d;font-weight:bold;font-size:13px;">△</span>
+      <span>Back</span>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 960, &quot;height&quot;: 720}}">
+const TITLES = [
+  ["NEON", "DRIFT"], ["IRON", "MERIDIAN"], ["GHOST", "HARBOR"], ["CRIMSON", "YARD"], ["SOLAR", "VALE"],
+  ["OBSIDIAN", "PATH"], ["VELVET", "CIRCUIT"], ["ASHFALL"], ["TIDEBREAK"], ["COBALT", "REIGN"],
+  ["DUSTLINE"], ["PALE", "ORBIT"], ["WOLFSBANE"], ["SILT &", "STEEL"], ["HOLLOWMERE"]
+];
+
+const COLORS = [0xd7d7dc, 0x3b6fd1, 0x8a8f96, 0xc8c840, 0x2f3a4a,
+  0xb04b8f, 0x6b6f76, 0x3f8f5a, 0x8a3f2f, 0x5a3f8f,
+  0x4f4f52, 0xd9c26a, 0xb0344a, 0xc9a86a, 0x4a6a8f];
+
+const SIZES = TITLES.map((_, i) => (380 + i * 53) + ' KB');
+const DATES = TITLES.map((_, i) => {
+  const day = String((i % 28) + 1).padStart(2, '0');
+  const month = String(((i * 3) % 12) + 1).padStart(2, '0');
+  return `2024/${month}/${day}`;
+});
+
+const GRID_BG = 'radial-gradient(ellipse 130% 90% at 50% 12%, #9b9d9f 0%, #83858a 32%, #616266 68%, #47484b 100%)';
+const DETAIL_BG = 'radial-gradient(ellipse 140% 100% at 22% 45%, #8f1620 0%, #4a0f18 40%, #142a52 74%, #0b1730 100%)';
+
+class Component extends DCLogic {
+  state = { selectedIndex: 0, mode: 'grid', detailOption: 0 };
+
+  canvasRef = React.createRef();
+  gridRef = React.createRef();
+  icons = [];
+  glowSprite = null;
+  raf = null;
+  gridPositions = [];
+  _lastGridKey = '';
+  _lastWinKey = '';
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.onKeyDown);
+    window.addEventListener('resize', this.onResize);
+    this.waitForThree();
+  }
+
+  waitForThree = () => {
+    if (typeof THREE === 'undefined' || !THREE.WebGLRenderer) {
+      requestAnimationFrame(this.waitForThree);
+      return;
+    }
+    try {
+      this.setupThree();
+    } catch (err) {
+      console.error('PS2 memory card: setupThree failed', err);
+    }
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onKeyDown);
+    window.removeEventListener('resize', this.onResize);
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.renderer) this.renderer.dispose();
+  }
+
+  onKeyDown = (e) => {
+    const { mode, selectedIndex, detailOption } = this.state;
+    if (mode === 'grid') {
+      const cols = 5, total = 15;
+      let idx = selectedIndex;
+      if (e.key === 'ArrowRight') idx = (idx + 1) % total;
+      else if (e.key === 'ArrowLeft') idx = (idx - 1 + total) % total;
+      else if (e.key === 'ArrowDown') idx = (idx + cols) % total;
+      else if (e.key === 'ArrowUp') idx = (idx - cols + total) % total;
+      else if (e.key === 'Enter' || e.key === 'x' || e.key === 'X') {
+        e.preventDefault();
+        this.confirmSelection();
+        return;
+      } else return;
+      e.preventDefault();
+      this.setState({ selectedIndex: idx });
+    } else {
+      if (e.key === 'Escape' || e.key === 'Backspace') {
+        e.preventDefault();
+        this.goBack();
+        return;
+      }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        this.setState({ detailOption: detailOption === 0 ? 1 : 0 });
+      }
+    }
+  };
+
+  onResize = () => {
+    this.sizeCanvas();
+  };
+
+  confirmSelection = () => {
+    if (this.state.mode !== 'grid') return;
+    this.setState({ mode: 'detail', detailOption: 0 });
+  };
+
+  goBack = () => {
+    if (this.state.mode !== 'detail') return;
+    this.setState({ mode: 'grid' });
+  };
+
+  onSlotClick = (i) => {
+    if (this.state.mode !== 'grid') return;
+    if (this.state.selectedIndex === i) this.confirmSelection();
+    else this.setState({ selectedIndex: i });
+  };
+
+  sizeCanvas() {
+    if (!this.renderer) return;
+    const canvas = this.canvasRef.current;
+    const w = window.innerWidth, h = window.innerHeight;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    this.renderer.setPixelRatio(window.devicePixelRatio || 1);
+    this.renderer.setSize(w, h, false);
+    if (this.camera) {
+      this.camera.aspect = w / h;
+      this.camera.updateProjectionMatrix();
+    }
+  }
+
+  makeRadialTexture(inner, outer, size) {
+    size = size || 128;
+    const cnv = document.createElement('canvas');
+    cnv.width = cnv.height = size;
+    const ctx = cnv.getContext('2d');
+    const grd = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    grd.addColorStop(0, inner);
+    grd.addColorStop(1, outer);
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, size, size);
+    const tex = new THREE.CanvasTexture(cnv);
+    tex.needsUpdate = true;
+    return tex;
+  }
+
+  makeIcon(color) {
+    const group = new THREE.Group();
+    const core = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(0.62, 0),
+      new THREE.MeshPhongMaterial({ color, shininess: 130, specular: 0xffffff })
+    );
+    group.add(core);
+
+    const shadow = new THREE.Mesh(
+      new THREE.PlaneGeometry(1.7, 1.7),
+      new THREE.MeshBasicMaterial({ map: this.shadowTex, transparent: true, depthWrite: false })
+    );
+    shadow.rotation.x = -Math.PI / 2;
+    shadow.position.y = -0.66;
+    group.add(shadow);
+
+    return { group, core, scaleCurrent: 1, rotY: 0 };
+  }
+
+  screenToWorld(px, py) {
+    const camera = this.camera;
+    const ndcX = (px / window.innerWidth) * 2 - 1;
+    const ndcY = -(py / window.innerHeight) * 2 + 1;
+    const vec = new THREE.Vector3(ndcX, ndcY, 0.5).unproject(camera);
+    const dir = vec.sub(camera.position).normalize();
+    const dist = -camera.position.z / dir.z;
+    return camera.position.clone().add(dir.multiplyScalar(dist));
+  }
+
+  updateGridPositions() {
+    if (!this.gridRef.current) return;
+    const cells = this.gridRef.current.children;
+    const positions = [];
+    for (let i = 0; i < cells.length; i++) {
+      const r = cells[i].getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height * 0.42;
+      positions.push(this.screenToWorld(cx, cy));
+    }
+    this.gridPositions = positions;
+
+    const r0 = cells[0].getBoundingClientRect();
+    const cy0 = r0.top + r0.height * 0.42;
+    const leftW = this.screenToWorld(r0.left, cy0);
+    const rightW = this.screenToWorld(r0.right, cy0);
+    const worldWidth = leftW.distanceTo(rightW);
+    this.baseScale = (worldWidth * 0.68) / 1.24;
+  }
+
+  setupThree() {
+    if (this.renderer) return;
+    const canvas = this.canvasRef.current;
+    if (!canvas) return;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setClearColor(0x000000, 0);
+    this.renderer = renderer;
+
+    const scene = new THREE.Scene();
+    this.scene = scene;
+
+    const camera = new THREE.PerspectiveCamera(34, window.innerWidth / window.innerHeight, 0.1, 30);
+    camera.position.set(0, 0, 8);
+    camera.lookAt(0, 0, 0);
+    this.camera = camera;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+    const key = new THREE.DirectionalLight(0xffffff, 1.35);
+    key.position.set(0.6, 2.2, 2.4);
+    scene.add(key);
+
+    this.shadowTex = this.makeRadialTexture('rgba(0,0,0,0.55)', 'rgba(0,0,0,0)');
+    const glowTex = this.makeRadialTexture('rgba(200,230,255,0.95)', 'rgba(200,230,255,0)');
+    const glowSprite = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: glowTex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
+    }));
+    glowSprite.scale.set(2.4, 2.4, 1);
+    glowSprite.visible = false;
+    scene.add(glowSprite);
+    this.glowSprite = glowSprite;
+
+    for (let i = 0; i < 15; i++) {
+      const rec = this.makeIcon(COLORS[i % COLORS.length]);
+      scene.add(rec.group);
+      this.icons.push(rec);
+    }
+
+    this.sizeCanvas();
+
+    const frame = () => {
+      this.raf = requestAnimationFrame(frame);
+      try {
+        this.tick();
+      } catch (err) {
+        console.error('PS2 memory card render loop error:', err);
+      }
+    };
+
+    const waitForLayout = () => {
+      if (this.gridRef.current && this.gridRef.current.getBoundingClientRect().width > 0) {
+        this.updateGridPositions();
+        frame();
+      } else {
+        requestAnimationFrame(waitForLayout);
+      }
+    };
+    waitForLayout();
+  }
+
+  tick() {
+    const winKey = window.innerWidth + 'x' + window.innerHeight;
+    if (winKey !== this._lastWinKey) {
+      this._lastWinKey = winKey;
+      this.sizeCanvas();
+    }
+    if (this.gridRef.current) {
+      const r = this.gridRef.current.getBoundingClientRect();
+      const key = r.left + ',' + r.top + ',' + r.width + ',' + r.height;
+      if (key !== this._lastGridKey && r.width > 0) {
+        this._lastGridKey = key;
+        this.updateGridPositions();
+      }
+    }
+
+    const { mode, selectedIndex } = this.state;
+    const time = performance.now() / 1000;
+    const detailTarget = mode === 'detail'
+      ? this.screenToWorld(window.innerWidth * 0.27, window.innerHeight * 0.52)
+      : null;
+
+    const base = this.baseScale || 1;
+
+    for (let i = 0; i < this.icons.length; i++) {
+      const rec = this.icons[i];
+      const isSelected = i === selectedIndex;
+      const target = mode === 'detail' ? (isSelected ? detailTarget : null) : this.gridPositions[i];
+      if (target) rec.group.position.lerp(target, 0.18);
+
+      const targetScale = mode === 'detail' ? (isSelected ? base * 2.3 : 0) : (isSelected ? base * 1.2 : base);
+
+      if (isSelected) {
+        rec.scaleCurrent += (targetScale - rec.scaleCurrent) * 0.22;
+        rec.rotY += 0.035;
+      } else {
+        rec.scaleCurrent = targetScale;
+        rec.rotY = 0;
+      }
+
+      rec.group.visible = rec.scaleCurrent > 0.01;
+      rec.group.scale.setScalar(Math.max(rec.scaleCurrent, 0.0001));
+      rec.group.rotation.y = rec.rotY;
+    }
+
+    const selRec = this.icons[selectedIndex];
+    if (selRec && selRec.group.visible) {
+      this.glowSprite.visible = true;
+      this.glowSprite.position.copy(selRec.group.position);
+      this.glowSprite.position.z -= 0.35;
+      const pulse = 1 + 0.18 * Math.sin(time * 4);
+      const glowBase = (mode === 'detail' ? 3.2 : 2.4) * base;
+      this.glowSprite.scale.set(glowBase * pulse, glowBase * pulse, 1);
+      this.glowSprite.material.opacity = 0.55 + 0.25 * Math.sin(time * 4);
+    } else {
+      this.glowSprite.visible = false;
+    }
+
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  renderVals() {
+    const { selectedIndex, mode, detailOption } = this.state;
+    const isDetail = mode === 'detail';
+
+    const slots = TITLES.map((_, i) => ({
+      onSelect: () => this.onSlotClick(i)
+    }));
+
+    const activeColor = '#ffffff';
+    const activeBg = '#2f6fe0';
+    const activeShadow = '0 0 10px rgba(60,120,255,0.7)';
+    const idleColor = '#dfe6ff';
+    const idleBg = 'rgba(255,255,255,0.06)';
+    const idleShadow = 'none';
+
+    return {
+      slots,
+      canvasRef: this.canvasRef,
+      gridRef: this.gridRef,
+      freeKB: '2,138',
+      selectedTitleLines: TITLES[selectedIndex],
+      titleDisplay: isDetail ? 'none' : 'block',
+      gridDisplay: isDetail ? 'none' : 'grid',
+      detailDisplay: isDetail ? 'block' : 'none',
+      detailName: TITLES[selectedIndex].join(' '),
+      detailDate: DATES[selectedIndex],
+      detailSize: SIZES[selectedIndex],
+      bgStyle: isDetail ? DETAIL_BG : GRID_BG,
+      copyColor: detailOption === 0 ? activeColor : idleColor,
+      copyBg: detailOption === 0 ? activeBg : idleBg,
+      copyShadow: detailOption === 0 ? activeShadow : idleShadow,
+      deleteColor: detailOption === 1 ? activeColor : idleColor,
+      deleteBg: detailOption === 1 ? activeBg : idleBg,
+      deleteShadow: detailOption === 1 ? activeShadow : idleShadow,
+      onOptionCopy: () => this.setState({ detailOption: 0 }),
+      onOptionDelete: () => this.setState({ detailOption: 1 }),
+      onBack: () => this.goBack(),
+      onEnter: () => this.confirmSelection()
+    };
+  }
+}
+
+</script>
+</body>
+</html>

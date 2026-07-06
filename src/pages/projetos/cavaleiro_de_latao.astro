@@ -29,6 +29,31 @@ const codeBlock = `<span class="tok-comment"># DifficultySystem — rampa linear
 
   mob_spawner.mob_per_minute = spawn_rate`;
 
+const codeBlockEN = `<span class="tok-comment"># DifficultySystem — linear ramp modulated by a sine wave</span>
+<span class="tok-keyword">extends</span> Node
+
+<span class="tok-keyword">@export var</span> mob_spawner: MobSpawner
+<span class="tok-keyword">@export var</span> initial_spawn_rate: <span class="tok-keyword">float</span> = <span class="tok-string">60.0</span>
+<span class="tok-keyword">@export var</span> spawn_rate_per_minute: <span class="tok-keyword">float</span> = <span class="tok-string">30.0</span>
+<span class="tok-keyword">@export var</span> wave_duration: <span class="tok-keyword">float</span> = <span class="tok-string">20.0</span>
+<span class="tok-keyword">@export var</span> break_intensity: <span class="tok-keyword">float</span> = <span class="tok-string">0.5</span>
+
+<span class="tok-keyword">var</span> time: <span class="tok-keyword">float</span> = <span class="tok-string">0.0</span>
+
+<span class="tok-keyword">func</span> <span class="tok-fn">_process</span>(delta):
+  <span class="tok-keyword">if</span> GameManager.is_game_over: <span class="tok-keyword">return</span>
+  time += delta
+
+  <span class="tok-comment"># Linear ramp: spawn rate grows with session time</span>
+  <span class="tok-keyword">var</span> spawn_rate = initial_spawn_rate + spawn_rate_per_minute * (time / <span class="tok-string">60.0</span>)
+
+  <span class="tok-comment"># Sine wave: creates pressure peaks and valleys every wave_duration</span>
+  <span class="tok-keyword">var</span> sin_wave = sin((time * TAU) / wave_duration)
+  <span class="tok-keyword">var</span> wave_factor = remap(sin_wave, <span class="tok-string">-1.0</span>, <span class="tok-string">1.0</span>, break_intensity, <span class="tok-string">1.0</span>)
+  spawn_rate *= wave_factor
+
+  mob_spawner.mob_per_minute = spawn_rate`;
+
 const methodologySteps = [
   {
     num: '01',
@@ -252,22 +277,22 @@ const repoStats = [
       <div class="case-grid-3" data-reveal>
         <div class="role-card">
           <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
-          <h3 class="role-card__title">Game Design</h3>
-          <p class="role-card__desc" style="text-align: justify;">
+          <h3 class="role-card__title" data-en="Game Design">Game Design</h3>
+          <p class="role-card__desc" style="text-align: justify;" data-en="Roguelike / Vampire Survivors-style mechanics with a progression loop structured by the &quot;It's Only a Game&quot; methodology. A narrative built around the protagonist's father's disappearance, a 1–2h session with three explorable paths, and an upgrade system between waves.">
             Mecânicas de Roguelike/Vampire-survivor com loop de progressão estruturado pela metodologia "It's Only a Game". Narrativa sobre o desaparecimento do pai do protagonista, sessão de 1–2h com três caminhos exploráveis e sistema de upgrades entre ondas.
           </p>
         </div>
         <div class="role-card">
           <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
-          <h3 class="role-card__title">Arte</h3>
-          <p class="role-card__desc" style="text-align: justify;">
+          <h3 class="role-card__title" data-en="Art">Arte</h3>
+          <p class="role-card__desc" style="text-align: justify;" data-en="Mixed pipeline: 3D models in Blender used only as a reference for perspective and proportion — never as final art. Each sprite was manually redrawn in pixel art in Aseprite, with post-processing in Photoshop and vector elements in Illustrator.">
             Pipeline misto: modelos 3D no Blender como referência de perspectiva e proporção. Nunca como arte final. Cada sprite redesenhado manualmente em pixel art no Aseprite, tratamento no Photoshop e elementos vetoriais no Illustrator.
           </p>
         </div>
         <div class="role-card">
           <span class="role-card__label" data-en="Responsibility">Responsabilidade</span>
-          <h3 class="role-card__title">Produção & Gestão</h3>
-          <p class="role-card__desc" style="text-align: justify;">
+          <h3 class="role-card__title" data-en="Production & Management">Produção & Gestão</h3>
+          <p class="role-card__desc" style="text-align: justify;" data-en="Managed the 42-day schedule, cut non-essential features, defined the mixed pipeline (3D to 2D) for time optimization, and handled technical documentation using Jim Wallman's methodology.">
             Gerenciamento do cronograma de 42 dias, corte de features não essenciais, definição do pipeline misto (3D para 2D) para otimização de tempo e documentação técnica utilizando a metodologia de Jim Wallman.
           </p>
         </div>
@@ -285,19 +310,19 @@ const repoStats = [
 
       <CaseAssetGallery items={galleryItems} />
 
-      <p class="case-narrative" data-reveal data-reveal-delay="1">
+      <p class="case-narrative" data-reveal data-reveal-delay="1" data-en="The decision to use Blender as a base wasn't just aesthetic — it was a time-optimization strategy. To meet the 42-day sprint deadline, the 3D models quickly guaranteed consistent perspectives and proportions. From those references, each sprite was redrawn in pixel art in Aseprite, making it feasible for a single person to deliver the art for the entire game within the deadline.">
         A decisão de utilizar o Blender como base não foi apenas estética, foi uma estratégia de otimização de tempo. Para cumprir o prazo da sprint de 42 dias, os modelos 3D garantiram perspectivas e proporções consistentes rapidamente. A partir dessas referências, cada sprite foi redesenhado em pixel art no Aseprite, viabilizando a entrega da arte de todo o jogo por uma única pessoa no prazo estipulado.
       </p>
 
-      <p class="case-narrative" data-reveal data-reveal-delay="1">
+      <p class="case-narrative" data-reveal data-reveal-delay="1" data-en="The <strong>node architecture</strong> followed Godot's single-responsibility principle: <code>GameManager</code> (autoload singleton) centralizes the global state of player position, counters, and the game-over flag, so scenes never need to reference each other directly. <code>Player</code> (CharacterBody2D) registers itself in <code>_ready()</code> and exposes typed signals (<code>coin_collected</code>, <code>quest_collected</code>) that any system can consume without coupling. <code>MobSpawner</code> walks a circular <code>PathFollow2D</code> via <code>progress_ratio = randf()</code> to generate spawn points outside the field of view, with a 2D physics query that discards positions overlapping walls before instancing the scene.">
         A <strong>arquitetura de nodes</strong> seguiu o princípio de responsabilidade única da Godot: o <code>GameManager</code> (autoload singleton) centraliza o estado global da posição do jogador, contadores e flag de game over. Sem que as cenas precisem se referenciar diretamente. O <code>Player</code> (CharacterBody2D) registra-se no <code>_ready()</code> e expõe sinais tipados (<code>coin_collected</code>, <code>quest_collected</code>) que qualquer sistema pode consumir sem acoplamento. O <code>MobSpawner</code> percorre um <code>PathFollow2D</code> circular via <code>progress_ratio = randf()</code> para gerar pontos de spawn fora do campo de visão, com uma query de física 2D que descarta posições sobrepostas a paredes antes de instanciar a cena.
       </p>
 
-      <p class="case-narrative" data-reveal data-reveal-delay="1">
+      <p class="case-narrative" data-reveal data-reveal-delay="1" data-en="The biggest game design challenge was creating <strong>tension without explicit waves</strong>. The solution was a purely mathematical <code>DifficultySystem</code>: a linear ramp raises the spawn rate over session time, while a sine wave mapped to the <code>[break_intensity, 1.0]</code> range via <code>remap()</code> modulates that rate, generating natural peaks and valleys of pressure every 20 seconds. All parameters are <code>@export</code>, so pacing adjustments happened directly in the Inspector editor without touching code.">
         O maior desafio de game design foi criar <strong>tensão sem ondas explícitas</strong>. A solução foi um <code>DifficultySystem</code> puramente matemático: uma rampa linear eleva a taxa de spawn com o tempo de sessão, enquanto uma onda senoidal mapeada para o intervalo <code>[break_intensity, 1.0]</code> via <code>remap()</code> modula essa taxa, gerando picos e vales naturais de pressão a cada 20 segundos. Todos os parâmetros são <code>@export</code>, então o ajuste de ritmo acontecia direto no editor Inspector sem tocar no código.
       </p>
 
-      <div class="case-code" data-reveal data-reveal-delay="2" role="region" aria-label="GDScript — DifficultySystem com rampa linear modulada por onda senoidal" set:html={codeBlock} />
+      <div class="case-code" data-reveal data-reveal-delay="2" role="region" aria-label="GDScript — DifficultySystem com rampa linear modulada por onda senoidal" data-en={codeBlockEN} set:html={codeBlock} />
 
       <div class="case-section__header" style="margin-top: var(--space-10);">
         <p class="section-label" data-en="Soundtrack">Trilha Sonora</p>
@@ -369,7 +394,7 @@ const repoStats = [
             stats={repoStats}
             repoUrl="https://github.com/filipeduarte/cavaleiro-de-latao"
           />
-          <p class="case-resultado__impact">
+          <p class="case-resultado__impact" data-en="<strong>From boredom to launch.</strong> Cavaleiro de Latão went from an improvised 3D scene to a complete Alpha-version game, published in HTML5 in July 2024. The 75 commits recorded on GitHub cover 27 GDScript files handling movement, spawning, dynamic difficulty, UI, and export, plus balancing iterations and accessibility tweaks with subtitles. The Godot 4.2 engine in Forward Plus mode enabled direct export to HTML5 with no installation required.<br /><br />The project remains in active development, with plans to expand the narrative, add new scenarios, and evolve the progression system in future versions.">
             <strong>Do tédio ao lançamento.</strong> O Cavaleiro de Latão passou de uma cena 3D improvisada a um jogo completo em versão Alpha, publicado em HTML5 em julho de 2024. Os 75 commits registrados no GitHub cobrem 27 scripts GDScript com movimentação, spawner, dificuldade dinâmica, UI e exportação além de iterações de balanceamento e ajustes de acessibilidade com legendas. A engine Godot 4.2 em modo Forward Plus viabilizou a exportação direta para HTML5 sem necessidade de instalação.
             <br /><br />
             O projeto segue em desenvolvimento ativo com planos de expandir a narrativa, adicionar novos cenários e evoluir o sistema de progressão para versões futuras.
@@ -398,7 +423,7 @@ const repoStats = [
       <a href="mobi_studio.html" class="case-next__card" data-reveal>
         <div>
           <p class="case-next__label" data-en="Next case →">Próximo case →</p>
-          <p class="case-next__title">Mobi<br />Studio.</p>
+          <p class="case-next__title" data-en="Mobi<br />Studio.">Mobi<br />Studio.</p>
         </div>
         <img class="case-next__thumb" src="/projetos/mobi_studio/Banner_MobiStudio_21_9.webp" alt="Thumbnail MobiStudio" loading="lazy" />
         <span class="case-next__arrow" aria-hidden="true">→</span>

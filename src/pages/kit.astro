@@ -278,9 +278,9 @@ import Base from '../layouts/Base.astro';
   <!-- HERO -->
   <div class="kit-hero">
     <div class="container">
-      <p class="kit-hero__label">Design System · Neo-Brutalismo</p>
+      <p class="kit-hero__label" data-en="Design System · Neo-Brutalism">Design System · Neo-Brutalismo</p>
       <h1 class="kit-hero__title">Design Kit</h1>
-      <p class="kit-hero__desc">
+      <p class="kit-hero__desc" data-en="All the tokens, components and visual patterns built for this portfolio. System developed from scratch — no external frameworks. Pure CSS with variables.">
         Todos os tokens, componentes e padrões visuais construídos para esse portfólio.
         Sistema desenvolvido do zero — sem frameworks externos. CSS puro com variáveis.
       </p>
@@ -290,18 +290,18 @@ import Base from '../layouts/Base.astro';
   <!-- NAV ÂNCORAS -->
   <div class="kit-nav">
     <div class="container" style="display:flex; gap: var(--space-2); flex-wrap: wrap;">
-      <a href="#cores">Cores</a>
-      <a href="#tipografia">Tipografia</a>
-      <a href="#sombras">Sombras</a>
+      <a href="#cores" data-en="Colors">Cores</a>
+      <a href="#tipografia" data-en="Typography">Tipografia</a>
+      <a href="#sombras" data-en="Shadows">Sombras</a>
       <a href="#tags">Tags</a>
-      <a href="#botoes">Botões</a>
+      <a href="#botoes" data-en="Buttons">Botões</a>
       <a href="#chips">Chips</a>
       <a href="#cards">Cards</a>
       <a href="#timeline">Timeline</a>
       <a href="#quote">Pull-quote</a>
-      <a href="#contato">Contato</a>
-      <a href="#filtros">Filtros</a>
-      <a href="#secoes">Seções</a>
+      <a href="#contato" data-en="Contact">Contato</a>
+      <a href="#filtros" data-en="Filters">Filtros</a>
+      <a href="#secoes" data-en="Sections">Seções</a>
     </div>
   </div>
 
@@ -310,10 +310,10 @@ import Base from '../layouts/Base.astro';
     <div class="container">
       <div class="kit-section__header">
         <p class="kit-section__num">01</p>
-        <h2 class="kit-section__title">Cores</h2>
+        <h2 class="kit-section__title" data-en="Colors">Cores</h2>
       </div>
 
-      <p class="kit-item__label" style="margin-bottom: var(--space-5);">Paleta principal (light mode)</p>
+      <p class="kit-item__label" style="margin-bottom: var(--space-5);" data-en="Main palette (light mode)">Paleta principal (light mode)</p>
       <div class="kit-color-grid">
         <div class="kit-color">
           <div class="kit-color__swatch" style="background:#F2F0EF; border-bottom: 2px solid #1b1b1d;"></div>
@@ -351,7 +351,7 @@ import Base from '../layouts/Base.astro';
 
       <div class="kit-separator"></div>
 
-      <p class="kit-item__label" style="margin-bottom: var(--space-5);">Paleta dark mode</p>
+      <p class="kit-item__label" style="margin-bottom: var(--space-5);" data-en="Dark mode palette">Paleta dark mode</p>
       <div class="kit-color-grid">
         <div class="kit-color">
           <div class="kit-color__swatch" style="background:#1B1B1D;"></div>
@@ -382,10 +382,10 @@ import Base from '../layouts/Base.astro';
     <div class="container">
       <div class="kit-section__header">
         <p class="kit-section__num">02</p>
-        <h2 class="kit-section__title">Tipografia</h2>
+        <h2 class="kit-section__title" data-en="Typography">Tipografia</h2>
       </div>
 
-      <p class="kit-item__label" style="margin-bottom: var(--space-3);">Fontes</p>
+      <p class="kit-item__label" style="margin-bottom: var(--space-3);" data-en="Fonts">Fontes</p>
       <div class="kit-canvas" style="margin-bottom: var(--space-10);">
         <div class="kit-item">
           <span class="kit-item__label">Display · Syne</span>
@@ -394,17 +394,17 @@ import Base from '../layouts/Base.astro';
         </div>
         <div class="kit-item">
           <span class="kit-item__label">Body · Inter</span>
-          <p style="font-family: var(--font-body); font-size: var(--text-base);">Inter — Texto corrido, descrições, parágrafos e conteúdo geral do portfólio.</p>
+          <p style="font-family: var(--font-body); font-size: var(--text-base);" data-en="Inter — Running text, descriptions, paragraphs and general portfolio content.">Inter — Texto corrido, descrições, parágrafos e conteúdo geral do portfólio.</p>
           <span class="kit-item__code">--font-body</span>
         </div>
         <div class="kit-item">
           <span class="kit-item__label">Mono · Space Mono</span>
-          <p style="font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">SPACE MONO — LABELS, TAGS &amp; METADADOS</p>
+          <p style="font-family: var(--font-mono); font-size: var(--text-sm); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;" data-en="SPACE MONO — LABELS, TAGS &amp; METADATA">SPACE MONO — LABELS, TAGS &amp; METADADOS</p>
           <span class="kit-item__code">--font-mono</span>
         </div>
       </div>
 
-      <p class="kit-item__label" style="margin-bottom: var(--space-4);">Escala (Syne · fluid)</p>
+      <p class="kit-item__label" style="margin-bottom: var(--space-4);" data-en="Scale (Syne · fluid)">Escala (Syne · fluid)</p>
       <div style="border: var(--border);">
         <div class="kit-type-row">
           <span class="kit-type-row__meta">--text-hero<br>clamp(2–8rem)</span>
@@ -412,11 +412,11 @@ import Base from '../layouts/Base.astro';
         </div>
         <div class="kit-type-row">
           <span class="kit-type-row__meta">--text-4xl<br>clamp(2–5.5rem)</span>
-          <span style="font-family:var(--font-display); font-size:var(--text-4xl); font-weight:800; text-transform:uppercase; letter-spacing:-0.04em; line-height:1;">Projetos.</span>
+          <span style="font-family:var(--font-display); font-size:var(--text-4xl); font-weight:800; text-transform:uppercase; letter-spacing:-0.04em; line-height:1;" data-en="Projects.">Projetos.</span>
         </div>
         <div class="kit-type-row">
           <span class="kit-type-row__meta">--text-3xl<br>clamp(1.375–3.5rem)</span>
-          <span style="font-family:var(--font-display); font-size:var(--text-3xl); font-weight:800; text-transform:uppercase; letter-spacing:-0.03em; line-height:1.05;">Sobre mim.</span>
+          <span style="font-family:var(--font-display); font-size:var(--text-3xl); font-weight:800; text-transform:uppercase; letter-spacing:-0.03em; line-height:1.05;" data-en="About me.">Sobre mim.</span>
         </div>
         <div class="kit-type-row">
           <span class="kit-type-row__meta">--text-2xl<br>clamp(1.75–2.5rem)</span>
@@ -424,33 +424,33 @@ import Base from '../layouts/Base.astro';
         </div>
         <div class="kit-type-row">
           <span class="kit-type-row__meta">--text-xl<br>clamp(1.375–1.75rem)</span>
-          <span style="font-family:var(--font-display); font-size:var(--text-xl); font-weight:800; text-transform:uppercase; letter-spacing:-0.02em;">Design + Código</span>
+          <span style="font-family:var(--font-display); font-size:var(--text-xl); font-weight:800; text-transform:uppercase; letter-spacing:-0.02em;" data-en="Design + Code">Design + Código</span>
         </div>
         <div class="kit-type-row">
           <span class="kit-type-row__meta">--text-lg<br>clamp(1.125–1.375rem)</span>
-          <span style="font-family:var(--font-body); font-size:var(--text-lg); line-height:1.5;">Texto de bio e descrições em destaque</span>
+          <span style="font-family:var(--font-body); font-size:var(--text-lg); line-height:1.5;" data-en="Bio text and featured descriptions">Texto de bio e descrições em destaque</span>
         </div>
         <div class="kit-type-row">
           <span class="kit-type-row__meta">--text-base<br>clamp(1–1.125rem)</span>
-          <span style="font-family:var(--font-body); font-size:var(--text-base); line-height:1.6;">Parágrafo padrão, conteúdo corrido do portfólio.</span>
+          <span style="font-family:var(--font-body); font-size:var(--text-base); line-height:1.6;" data-en="Standard paragraph, running portfolio content.">Parágrafo padrão, conteúdo corrido do portfólio.</span>
         </div>
         <div class="kit-type-row">
           <span class="kit-type-row__meta">--text-sm<br>clamp(0.875–1rem)</span>
-          <span style="font-family:var(--font-body); font-size:var(--text-sm); line-height:1.65;">Descrições de cards e legendas de projeto.</span>
+          <span style="font-family:var(--font-body); font-size:var(--text-sm); line-height:1.65;" data-en="Card descriptions and project captions.">Descrições de cards e legendas de projeto.</span>
         </div>
         <div class="kit-type-row">
           <span class="kit-type-row__meta">--text-xs<br>clamp(0.75–0.875rem)</span>
-          <span style="font-family:var(--font-mono); font-size:var(--text-xs); font-weight:700; text-transform:uppercase; letter-spacing:0.08em;">TAGS · LABELS · METADADOS</span>
+          <span style="font-family:var(--font-mono); font-size:var(--text-xs); font-weight:700; text-transform:uppercase; letter-spacing:0.08em;" data-en="TAGS · LABELS · METADATA">TAGS · LABELS · METADADOS</span>
         </div>
       </div>
 
       <div class="kit-separator"></div>
 
-      <p class="kit-item__label" style="margin-bottom: var(--space-5);">Utilitários de texto</p>
+      <p class="kit-item__label" style="margin-bottom: var(--space-5);" data-en="Text utilities">Utilitários de texto</p>
       <div class="kit-canvas">
         <div class="kit-item">
           <span class="kit-item__label">.highlight</span>
-          <p style="font-family:var(--font-display); font-size:var(--text-xl); font-weight:800; text-transform:uppercase;">Vamos criar algo <span class="highlight">juntos?</span></p>
+          <p style="font-family:var(--font-display); font-size:var(--text-xl); font-weight:800; text-transform:uppercase;" data-en="Let&apos;s create something <span class='highlight'>together?</span>">Vamos criar algo <span class="highlight">juntos?</span></p>
         </div>
         <div class="kit-item">
           <span class="kit-item__label">.highlight-yellow</span>
@@ -465,7 +465,7 @@ import Base from '../layouts/Base.astro';
     <div class="container">
       <div class="kit-section__header">
         <p class="kit-section__num">03</p>
-        <h2 class="kit-section__title">Sombras &amp; Bordas</h2>
+        <h2 class="kit-section__title" data-en="Shadows &amp; Borders">Sombras &amp; Bordas</h2>
       </div>
 
       <div class="kit-canvas" style="margin-bottom: var(--space-10);">
@@ -490,11 +490,11 @@ import Base from '../layouts/Base.astro';
       <div class="kit-canvas">
         <div class="kit-item">
           <span class="kit-item__label">--border (2px)</span>
-          <div style="border: var(--border); padding: var(--space-5) var(--space-8); font-family:var(--font-mono); font-size:var(--text-xs); font-weight:700; text-transform:uppercase;">Border padrão</div>
+          <div style="border: var(--border); padding: var(--space-5) var(--space-8); font-family:var(--font-mono); font-size:var(--text-xs); font-weight:700; text-transform:uppercase;" data-en="Standard border">Border padrão</div>
         </div>
         <div class="kit-item">
           <span class="kit-item__label">--border-thick (3px)</span>
-          <div style="border: var(--border-thick); padding: var(--space-5) var(--space-8); font-family:var(--font-mono); font-size:var(--text-xs); font-weight:700; text-transform:uppercase;">Border espessa</div>
+          <div style="border: var(--border-thick); padding: var(--space-5) var(--space-8); font-family:var(--font-mono); font-size:var(--text-xs); font-weight:700; text-transform:uppercase;" data-en="Thick border">Border espessa</div>
         </div>
       </div>
     </div>
@@ -515,15 +515,15 @@ import Base from '../layouts/Base.astro';
         </div>
         <div class="kit-item">
           <span class="kit-item__label">.tag--dark</span>
-          <span class="tag tag--dark">Projeto Autoral</span>
+          <span class="tag tag--dark" data-en="Personal Project">Projeto Autoral</span>
         </div>
         <div class="kit-item">
           <span class="kit-item__label">.tag--red</span>
-          <span class="tag tag--red">Urgente</span>
+          <span class="tag tag--red" data-en="Urgent">Urgente</span>
         </div>
         <div class="kit-item">
           <span class="kit-item__label">.tag--green</span>
-          <span class="tag tag--green">Disponível</span>
+          <span class="tag tag--green" data-en="Available">Disponível</span>
         </div>
         <div class="kit-item">
           <span class="kit-item__label">.tag--blue</span>
@@ -556,8 +556,8 @@ import Base from '../layouts/Base.astro';
         <div class="kit-item">
           <span class="kit-item__label">.available-badge</span>
           <div style="display:flex; gap: var(--space-3); flex-wrap:wrap;">
-            <span class="available-badge">Presencial</span>
-            <span class="available-badge">Híbrido</span>
+            <span class="available-badge" data-en="On-site">Presencial</span>
+            <span class="available-badge" data-en="Hybrid">Híbrido</span>
             <span class="available-badge">Freelance</span>
           </div>
         </div>
@@ -568,11 +568,11 @@ import Base from '../layouts/Base.astro';
       <div class="kit-canvas">
         <div class="kit-item">
           <span class="kit-item__label">.section-label</span>
-          <p class="section-label">01 — Destaques</p>
+          <p class="section-label" data-en="01 — Highlights">01 — Destaques</p>
         </div>
         <div class="kit-item">
           <span class="kit-item__label">.hero__status-dot</span>
-          <span class="hero__status-dot">Disponível para oportunidades</span>
+          <span class="hero__status-dot" data-en="Available for opportunities">Disponível para oportunidades</span>
         </div>
       </div>
     </div>
@@ -583,17 +583,17 @@ import Base from '../layouts/Base.astro';
     <div class="container">
       <div class="kit-section__header">
         <p class="kit-section__num">05</p>
-        <h2 class="kit-section__title">Botões</h2>
+        <h2 class="kit-section__title" data-en="Buttons">Botões</h2>
       </div>
 
       <div class="kit-canvas">
         <div class="kit-item">
           <span class="kit-item__label">.btn--primary</span>
-          <a href="#" class="btn btn--primary">Ver Projetos →</a>
+          <a href="#" class="btn btn--primary" data-en="View Projects →">Ver Projetos →</a>
         </div>
         <div class="kit-item">
           <span class="kit-item__label">.btn--secondary</span>
-          <a href="#" class="btn btn--secondary">Ver todos →</a>
+          <a href="#" class="btn btn--secondary" data-en="View all →">Ver todos →</a>
         </div>
         <div class="kit-item">
           <span class="kit-item__label">.btn--yellow</span>
@@ -615,7 +615,7 @@ import Base from '../layouts/Base.astro';
         </div>
         <div class="kit-item">
           <span class="kit-item__label">.nav__cta</span>
-          <a href="#" class="nav__cta">Contato →</a>
+          <a href="#" class="nav__cta" data-en="Contact →">Contato →</a>
         </div>
       </div>
     </div>
@@ -631,7 +631,7 @@ import Base from '../layouts/Base.astro';
 
       <div class="kit-canvas--col">
         <div class="kit-item">
-          <span class="kit-item__label">.skill-chip — com ícone externo</span>
+          <span class="kit-item__label" data-en=".skill-chip — with external icon">.skill-chip — com ícone externo</span>
           <div class="skill-chips">
             <span class="skill-chip">
               <img src="https://skillicons.dev/icons?i=figma&theme=dark" alt="" width="18" height="18" loading="lazy" />
@@ -659,7 +659,7 @@ import Base from '../layouts/Base.astro';
         <div class="kit-separator"></div>
 
         <div class="kit-item">
-          <span class="kit-item__label">.stack__item — versão dark (fundo escuro)</span>
+          <span class="kit-item__label" data-en=".stack__item — dark version (dark background)">.stack__item — versão dark (fundo escuro)</span>
           <div class="kit-dark-bg">
             <div class="stack__items">
               <span class="stack__item">
@@ -669,7 +669,7 @@ import Base from '../layouts/Base.astro';
               <span class="stack__item">
                 <img src="https://skillicons.dev/icons?i=ae&theme=dark" alt="" width="20" height="20" loading="lazy" />
                 After Effects
-                <span class="stack__badge">Proficiente</span>
+                <span class="stack__badge" data-en="Proficient">Proficiente</span>
               </span>
               <span class="stack__item">
                 <img src="https://skillicons.dev/icons?i=blender&theme=dark" alt="" width="20" height="20" loading="lazy" />
@@ -690,24 +690,24 @@ import Base from '../layouts/Base.astro';
         <h2 class="kit-section__title">Cards</h2>
       </div>
 
-      <p class="kit-item__label" style="margin-bottom: var(--space-6);">.proj-card — card de projeto (grade)</p>
+      <p class="kit-item__label" style="margin-bottom: var(--space-6);" data-en=".proj-card — project card (grid)">.proj-card — card de projeto (grade)</p>
       <div style="display:grid; grid-template-columns: repeat(3,1fr); gap: var(--space-5); margin-bottom: var(--space-12);" class="kit-proj-mock">
         <article class="proj-card">
           <div class="proj-card__thumb">
-            <div style="position:absolute;inset:0;background:var(--color-ink);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.12);font-family:var(--font-display);font-weight:800;font-size:var(--text-2xl);text-transform:uppercase;">Imagem</div>
+            <div style="position:absolute;inset:0;background:var(--color-ink);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.12);font-family:var(--font-display);font-weight:800;font-size:var(--text-2xl);text-transform:uppercase;" data-en="Image">Imagem</div>
           </div>
           <div class="proj-card__body">
             <div class="proj-card__header">
-              <h3 class="proj-card__title">Nome do Projeto</h3>
+              <h3 class="proj-card__title" data-en="Project Name">Nome do Projeto</h3>
               <span class="tag">Dev<br>Web</span>
             </div>
-            <p class="proj-card__desc">Descrição breve do projeto, ferramentas e contexto de entrega.</p>
+            <p class="proj-card__desc" data-en="Brief project description, tools and delivery context.">Descrição breve do projeto, ferramentas e contexto de entrega.</p>
             <div class="projeto__tech">
               <span class="tech-tag">JavaScript</span>
               <span class="tech-tag">Figma</span>
             </div>
             <div class="proj-card__actions">
-              <a href="#" class="btn btn--primary">Ver projeto ↗</a>
+              <a href="#" class="btn btn--primary" data-en="View project ↗">Ver projeto ↗</a>
             </div>
           </div>
         </article>
@@ -715,29 +715,29 @@ import Base from '../layouts/Base.astro';
         <div class="value-box">
           <div class="value-box__icon">🎨</div>
           <p class="value-box__title">.value-box</p>
-          <p class="value-box__text">Caixa de valor — usada na seção "Sobre" para destacar competências e diferenciais.</p>
+          <p class="value-box__text" data-en='Value box — used in the "About" section to highlight skills and differentiators.'>Caixa de valor — usada na seção "Sobre" para destacar competências e diferenciais.</p>
         </div>
 
         <div class="depoimento-card">
-          <p class="depoimento-card__text">"Profissional excepcional, dedicado e com talento único para resolver problemas."</p>
+          <p class="depoimento-card__text" data-en="&quot;Exceptional professional, dedicated and with a unique talent for solving problems.&quot;">"Profissional excepcional, dedicado e com talento único para resolver problemas."</p>
           <div class="depoimento-card__author">
-            <span class="depoimento-card__name">Fulano de Tal</span>
-            <span class="depoimento-card__role">Cargo · Empresa · (2025)</span>
+            <span class="depoimento-card__name" data-en="John Doe">Fulano de Tal</span>
+            <span class="depoimento-card__role" data-en="Role · Company · (2025)">Cargo · Empresa · (2025)</span>
           </div>
         </div>
       </div>
 
-      <p class="kit-item__label" style="margin-bottom: var(--space-6);">.edu-card — formação &amp; certificações</p>
+      <p class="kit-item__label" style="margin-bottom: var(--space-6);" data-en=".edu-card — education &amp; certifications">.edu-card — formação &amp; certificações</p>
       <div style="display:grid; grid-template-columns: repeat(3,1fr); gap: var(--space-5); margin-bottom: var(--space-12);">
         <div class="edu-card">
-          <p class="edu-card__type">🎓 Graduação</p>
-          <p class="edu-card__title">Produção Multimídia</p>
+          <p class="edu-card__type" data-en="🎓 Degree">🎓 Graduação</p>
+          <p class="edu-card__title" data-en="Multimedia Production">Produção Multimídia</p>
           <p class="edu-card__institution">Centro Universitário Senac</p>
           <p class="edu-card__period">2022–2025</p>
-          <p class="edu-card__desc">Habilitação completa em design, código, 3D e audiovisual.</p>
+          <p class="edu-card__desc" data-en="Complete qualification in design, code, 3D and audiovisual.">Habilitação completa em design, código, 3D e audiovisual.</p>
         </div>
         <div class="edu-card">
-          <p class="edu-card__type">✦ Certificação</p>
+          <p class="edu-card__type" data-en="✦ Certification">✦ Certificação</p>
           <p class="edu-card__title">Adobe Certified Professional</p>
           <p class="edu-card__institution">Adobe</p>
           <p class="edu-card__period">2024</p>
@@ -745,30 +745,30 @@ import Base from '../layouts/Base.astro';
         </div>
         <div class="cert-card">
           <p class="cert-card__org">Anthropic</p>
-          <p class="cert-card__title">.cert-card — Carrossel de certifs</p>
+          <p class="cert-card__title" data-en=".cert-card — Certification carousel">.cert-card — Carrossel de certifs</p>
           <p class="cert-card__year">2024</p>
         </div>
       </div>
 
-      <p class="kit-item__label" style="margin-bottom: var(--space-6);">.dev-card — fundo escuro (em desenvolvimento)</p>
+      <p class="kit-item__label" style="margin-bottom: var(--space-6);" data-en=".dev-card — dark background (in development)">.dev-card — fundo escuro (em desenvolvimento)</p>
       <div class="kit-dark-bg" style="display:grid; grid-template-columns: repeat(3,1fr); gap: var(--space-4);">
         <div class="dev-card">
           <div class="dev-card__icon">⚡</div>
-          <p class="dev-card__title">Nome do Projeto</p>
-          <p class="dev-card__desc">Descrição do que está sendo desenvolvido e qual problema resolve.</p>
-          <p class="dev-card__status">Em desenvolvimento</p>
+          <p class="dev-card__title" data-en="Project Name">Nome do Projeto</p>
+          <p class="dev-card__desc" data-en="Description of what is being developed and what problem it solves.">Descrição do que está sendo desenvolvido e qual problema resolve.</p>
+          <p class="dev-card__status" data-en="In development">Em desenvolvimento</p>
         </div>
         <div class="dev-card">
           <div class="dev-card__icon">🛠️</div>
-          <p class="dev-card__title">Outro Projeto</p>
-          <p class="dev-card__desc">Contexto e tecnologias envolvidas no desenvolvimento.</p>
-          <p class="dev-card__status">Planejado</p>
+          <p class="dev-card__title" data-en="Another Project">Outro Projeto</p>
+          <p class="dev-card__desc" data-en="Context and technologies involved in the development.">Contexto e tecnologias envolvidas no desenvolvimento.</p>
+          <p class="dev-card__status" data-en="Planned">Planejado</p>
         </div>
         <div class="dev-card">
           <div class="dev-card__icon">🚀</div>
-          <p class="dev-card__title">Em Produção</p>
-          <p class="dev-card__desc">Projeto já finalizado e rodando em ambiente de produção.</p>
-          <p class="dev-card__status">Lançado</p>
+          <p class="dev-card__title" data-en="In Production">Em Produção</p>
+          <p class="dev-card__desc" data-en="Project already finished and running in a production environment.">Projeto já finalizado e rodando em ambiente de produção.</p>
+          <p class="dev-card__status" data-en="Launched">Lançado</p>
         </div>
       </div>
     </div>
@@ -785,16 +785,16 @@ import Base from '../layouts/Base.astro';
       <div class="timeline">
         <div class="timeline__item">
           <div class="timeline__date">
-            <span class="timeline__period">Jan 2024 – Atual</span>
-            <span class="timeline__duration">1 ano e meio</span>
+            <span class="timeline__period" data-en="Jan 2024 – Present">Jan 2024 – Atual</span>
+            <span class="timeline__duration" data-en="1.5 years">1 ano e meio</span>
           </div>
           <div class="timeline__content">
-            <p class="timeline__company">Empresa</p>
-            <p class="timeline__role">Designer Multimídia</p>
+            <p class="timeline__company" data-en="Company">Empresa</p>
+            <p class="timeline__role" data-en="Multimedia Designer">Designer Multimídia</p>
             <div class="timeline__highlights">
-              <p class="timeline__highlight">Criação de identidade visual do zero ao deploy</p>
-              <p class="timeline__highlight">Desenvolvimento de ferramenta web proprietária</p>
-              <p class="timeline__highlight">Produção audiovisual para campanhas sazonais</p>
+              <p class="timeline__highlight" data-en="Visual identity creation from scratch to deployment">Criação de identidade visual do zero ao deploy</p>
+              <p class="timeline__highlight" data-en="Development of proprietary web tool">Desenvolvimento de ferramenta web proprietária</p>
+              <p class="timeline__highlight" data-en="Audiovisual production for seasonal campaigns">Produção audiovisual para campanhas sazonais</p>
             </div>
             <span class="timeline__badge">✦ Adobe Certified</span>
           </div>
@@ -813,15 +813,15 @@ import Base from '../layouts/Base.astro';
 
       <div class="pull-quote">
         <span class="pull-quote__mark" aria-hidden="true">"</span>
-        <p class="pull-quote__text">
+        <p class="pull-quote__text" data-en="Exceptional professional — combines technical creativity with speed of execution. From briefing to final product without losing quality.">
           Profissional excepcional — une criatividade técnica com velocidade de execução. Do briefing ao produto final sem perder qualidade.
         </p>
         <div class="pull-quote__footer">
           <div class="pull-quote__author">
-            <span class="pull-quote__name">Nome do Autor</span>
-            <span class="pull-quote__role">Cargo · Empresa · (Ano)</span>
+            <span class="pull-quote__name" data-en="Author Name">Nome do Autor</span>
+            <span class="pull-quote__role" data-en="Role · Company · (Year)">Cargo · Empresa · (Ano)</span>
           </div>
-          <a href="#" class="pull-quote__link">Ver todas as recomendações →</a>
+          <a href="#" class="pull-quote__link" data-en="See all recommendations →">Ver todas as recomendações →</a>
         </div>
       </div>
     </div>
@@ -869,13 +869,13 @@ import Base from '../layouts/Base.astro';
       </div>
 
       <div class="filter-bar">
-        <button class="filter-btn active">Todos</button>
+        <button class="filter-btn active" data-en="All">Todos</button>
         <button class="filter-btn">Web Design</button>
-        <button class="filter-btn">Design Gráfico</button>
+        <button class="filter-btn" data-en="Graphic Design">Design Gráfico</button>
         <button class="filter-btn">3D</button>
         <button class="filter-btn">Audiovisual</button>
-        <button class="filter-btn">Fotografia</button>
-        <span class="filter-bar__count">10 projetos</span>
+        <button class="filter-btn" data-en="Photography">Fotografia</button>
+        <span class="filter-bar__count" data-en="10 projects">10 projetos</span>
       </div>
     </div>
   </section>
@@ -885,17 +885,17 @@ import Base from '../layouts/Base.astro';
     <div class="container">
       <div class="kit-section__header">
         <p class="kit-section__num">12</p>
-        <h2 class="kit-section__title">Padrões de Seção</h2>
+        <h2 class="kit-section__title" data-en="Section Patterns">Padrões de Seção</h2>
       </div>
 
       <div class="kit-canvas--col">
         <div class="kit-item">
-          <span class="kit-item__label">.page-header — cabeçalho de página interna</span>
+          <span class="kit-item__label" data-en=".page-header — internal page header">.page-header — cabeçalho de página interna</span>
           <div style="border: var(--border-thick); padding: var(--space-10) var(--space-8); background: var(--color-bg);">
-            <p class="page-header__eyebrow">Acervo completo</p>
+            <p class="page-header__eyebrow" data-en="Full archive">Acervo completo</p>
             <div class="page-header__grid">
-              <h2 class="page-header__title">Projetos.</h2>
-              <p class="page-header__desc">O acervo cobre 4+ anos de trabalho — design, código, 3D e audiovisual.</p>
+              <h2 class="page-header__title" data-en="Projects.">Projetos.</h2>
+              <p class="page-header__desc" data-en="The archive covers 4+ years of work — design, code, 3D and audiovisual.">O acervo cobre 4+ anos de trabalho — design, código, 3D e audiovisual.</p>
             </div>
           </div>
         </div>
@@ -903,22 +903,22 @@ import Base from '../layouts/Base.astro';
         <div class="kit-separator"></div>
 
         <div class="kit-item">
-          <span class="kit-item__label">.stats-strip — strip de estatísticas (Sobre)</span>
+          <span class="kit-item__label" data-en=".stats-strip — statistics strip (About)">.stats-strip — strip de estatísticas (Sobre)</span>
           <div class="stats-strip">
             <div class="stats-strip__item">
-              <p class="stats-strip__label">Carreira</p>
+              <p class="stats-strip__label" data-en="Career">Carreira</p>
               <p class="stats-strip__num">4+</p>
-              <p class="stats-strip__sub">anos de experiência</p>
+              <p class="stats-strip__sub" data-en="years of experience">anos de experiência</p>
             </div>
             <div class="stats-strip__item">
-              <p class="stats-strip__label">Avaliações internas</p>
+              <p class="stats-strip__label" data-en="Internal ratings">Avaliações internas</p>
               <p class="stats-strip__num">9,56</p>
-              <p class="stats-strip__sub">/10 média</p>
+              <p class="stats-strip__sub" data-en="/10 average">/10 média</p>
             </div>
             <div class="stats-strip__item">
-              <p class="stats-strip__label">Projetos</p>
+              <p class="stats-strip__label" data-en="Projects">Projetos</p>
               <p class="stats-strip__num">10+</p>
-              <p class="stats-strip__sub">no portfólio</p>
+              <p class="stats-strip__sub" data-en="in the portfolio">no portfólio</p>
             </div>
           </div>
         </div>
@@ -926,7 +926,7 @@ import Base from '../layouts/Base.astro';
         <div class="kit-separator"></div>
 
         <div class="kit-item">
-          <span class="kit-item__label">[data-reveal] — animação de entrada (IntersectionObserver)</span>
+          <span class="kit-item__label" data-en="[data-reveal] — entrance animation (IntersectionObserver)">[data-reveal] — animação de entrada (IntersectionObserver)</span>
           <div style="display:flex; gap: var(--space-4); flex-wrap:wrap;">
             <div style="border:var(--border-thick); padding: var(--space-6) var(--space-8); background: var(--color-bg); box-shadow: var(--shadow-md); font-family:var(--font-mono); font-size:var(--text-xs); font-weight:700; text-transform:uppercase;">data-reveal</div>
             <div style="border:var(--border-thick); padding: var(--space-6) var(--space-8); background: var(--color-bg); box-shadow: var(--shadow-md); font-family:var(--font-mono); font-size:var(--text-xs); font-weight:700; text-transform:uppercase;">data-reveal-delay="1"</div>

@@ -174,14 +174,14 @@ npm run preview      # preview do build estático
 
 ## 9. Pendências conhecidas
 
-### ⚠️ Secret `NETLIFY_BUILD_HOOK` não configurado (confirmado via `gh secret list` em 2026-07-01 — lista vazia)
-O workflow de rebuild diário existe mas **vai falhar** até isso ser configurado:
-1. Netlify → Site settings → Build & deploy → Build hooks → **Add build hook** (branch `main`). Copiar a URL.
-2. GitHub → repo Settings → Secrets and variables → Actions → **New repository secret** →
-   nome `NETLIFY_BUILD_HOOK`, valor = URL do passo 1.
-3. Depois disso o workflow funciona sozinho (cron diário + botão manual).
-
-Isso não pode ser feito via CLI sem acesso aos dois painéis — ação pendente do usuário.
+### ✅ Secret `NETLIFY_BUILD_HOOK` configurado e workflow validado (2026-07-06)
+Secret criado em 2026-07-05T17:29:31Z (confirmado via `gh secret list`). As 5 execuções
+anteriores (`gh run list`) falharam por terem rodado **antes** do secret existir — todas
+com duração de 5-9s, batendo no `exit 1` do guard clause. Disparei manualmente
+(`gh workflow run rebuild-rss.yml`) em 2026-07-06 14:11 UTC para confirmar: **sucesso**
+(run `28797932700`, o `curl -sf` para o Build Hook retornou OK). O workflow está
+funcional; só falta observar se a próxima execução agendada (`0 11 * * *`) dispara
+normalmente (o cron do GitHub Actions costuma atrasar 1-2h em horários de pico, não é bug).
 
 ### ❓ Cursor nativo visível por baixo do customizado (produção)
 Não reproduzido localmente. Hipóteses: deploy do Netlify desatualizado em relação ao `main`
@@ -223,6 +223,26 @@ Não fazem parte do site — são referência para quem trabalha no projeto:
 
 > Entradas mais recentes no topo. Histórico de decisões e descobertas pontuais — para o estado
 > atual/arquitetura, veja as seções acima.
+
+### 2026-07-06 — Verificação de saúde geral
+
+**Pedido:** conferir se está tudo funcionando corretamente.
+
+**Verificado:**
+- **Pills:** `--radius-pill`, `.tag`, `.hero__status-dot`, `.hero__role` e `.tech-tag`
+  continuam corretos em `style.css` e `style.min.css` (commitados). Re-testado
+  visualmente no `astro dev` (light/dark) — sem erros de console.
+- **Build de produção:** `npm run build` completo sem erros — 15 páginas geradas.
+- **Workflow de rebuild:** secret `NETLIFY_BUILD_HOOK` **já foi configurado pelo usuário**
+  (criado 2026-07-05T17:29:31Z). As execuções agendadas de 07-02 a 07-05 falharam porque
+  rodaram antes do secret existir. Disparei manualmente (`gh workflow run rebuild-rss.yml`)
+  para validar com o secret já presente → **sucesso** (run `28797932700`). Workflow
+  confirmado funcional — ver seção 9.
+- **Cursor duplicado:** segue não reproduzido/não resolvido — nada de novo a reportar,
+  continua exigindo reprodução ao vivo (ver seção 9).
+- 17 arquivos fora do escopo desta tarefa seguem modificados e não commitados na árvore
+  de trabalho (`main.js`, `Footer.astro`, várias páginas — provavelmente trabalho de i18n
+  em andamento). Não foram tocados nem commitados por mim.
 
 ### 2026-07-01
 

@@ -242,6 +242,16 @@
       }
     });
 
+    // External-link "opens in new tab" indicator (WCAG 2.1 SC 2.4.4)
+    var newTabSuffix = lang === 'en' ? ' (opens in new tab)' : ' (abre em nova aba)';
+    document.querySelectorAll('a[target="_blank"]').forEach(function (link) {
+      if (link.dataset.baseLabel !== undefined) {
+        link.setAttribute('aria-label', link.dataset.baseLabel + newTabSuffix);
+      }
+      var indicator = link.querySelector('.js-new-tab-indicator');
+      if (indicator) indicator.textContent = newTabSuffix;
+    });
+
     document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
 
     if (langBtn) {
@@ -272,15 +282,15 @@
   /* ------------------------------------------
      LINKS EXTERNOS — indicador para screen readers
      WCAG 2.1 SC 2.4.4
+     (o sufixo é aplicado/atualizado em applyLang, para acompanhar o idioma)
   ------------------------------------------ */
   document.querySelectorAll('a[target="_blank"]').forEach(function (link) {
     var label = link.getAttribute('aria-label');
     if (label) {
-      link.setAttribute('aria-label', label + ' (abre em nova aba)');
+      link.dataset.baseLabel = label;
     } else {
       var indicator = document.createElement('span');
-      indicator.className = 'sr-only';
-      indicator.textContent = ' (abre em nova aba)';
+      indicator.className = 'sr-only js-new-tab-indicator';
       link.appendChild(indicator);
     }
   });
