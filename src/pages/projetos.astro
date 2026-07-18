@@ -52,11 +52,36 @@ import Base from '../layouts/Base.astro';
           data-en="Audiovisual">Audiovisual</button>
         <button class="filter-btn" data-filter="fotografia" aria-pressed="false"
           data-en="Photography">Fotografia</button>
-        <span class="filter-bar__count" aria-live="polite" aria-atomic="true" id="filter-count" data-en="13 projects">13 projetos</span>
+        <span class="filter-bar__count" aria-live="polite" aria-atomic="true" id="filter-count" data-en="14 projects">14 projetos</span>
       </div>
 
       <!-- GRID -->
       <div class="projetos-grid" id="projetos-grid">
+
+        <!-- Serra Gaúcha — Raiz e Colheita — Jul 2026 -->
+        <article class="proj-card" data-cat="design-grafico" data-reveal aria-labelledby="proj-serragaucha">
+          <a href="projetos/serra_gaucha.html" class="proj-card__thumb" aria-label="Ver Serra Gaúcha — Raiz e Colheita">
+            <img src="projetos/serra_gaucha/Banner_KeyVisual.png"
+                 alt="Key Visual da marca Serra Gaúcha — Raiz e Colheita" width="1618" height="694" loading="eager" class="proj-card__static" />
+          </a>
+          <div class="proj-card__body">
+            <div class="proj-card__header">
+              <h3 class="proj-card__title" id="proj-serragaucha" data-en="Serra Gaúcha — Raiz e Colheita">Serra Gaúcha — Raiz e Colheita</h3>
+              <span class="tag" data-en="Graph<br>Design">Desi<br>Graf</span>
+            </div>
+            <p class="proj-card__desc" data-en="Territorial branding for the SERRA GAÚCHA (G30) brand creation contest — logotype, brand manual and applications for 49 municipalities, built in 17 days.">
+              Branding territorial para o Concurso de Criação da Marca SERRA GAÚCHA (G30) — logotipo, manual de identidade e aplicações para 49 municípios, construído em 17 dias.
+            </p>
+            <div class="projeto__tech">
+              <span class="tech-tag">Figma</span>
+              <span class="tech-tag" data-en="Territorial Branding">Branding Territorial</span>
+              <span class="tech-tag" data-en="Brand Manual">Manual de Marca</span>
+            </div>
+            <div class="proj-card__actions">
+              <a href="projetos/serra_gaucha.html" class="btn btn--primary" data-en="View project ↗">Ver projeto ↗</a>
+            </div>
+          </div>
+        </article>
 
         <!-- Design Kit — Mai 2026 -->
         <article class="proj-card" data-cat="dev-web" data-reveal aria-labelledby="proj-designkit">
