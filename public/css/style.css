@@ -230,7 +230,7 @@ html[data-theme="dark"] .timeline__date {
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -239,7 +239,7 @@ body {
   color: var(--color-ink);
   background-color: var(--color-bg);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
 }
 

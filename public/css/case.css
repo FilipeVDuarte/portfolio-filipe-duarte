@@ -31,6 +31,16 @@
 .case-img-pair__item { display: flex; flex-direction: column; gap: var(--space-3); }
 .case-img-pair__img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: var(--border-thick); display: block; }
 .case-img-pair__caption { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); }
+.logo-variants { margin-bottom: var(--space-10); }
+.logo-variants__group-title { font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); margin-bottom: var(--space-3); padding-top: var(--space-2); }
+.logo-variants__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); margin-bottom: var(--space-6); }
+@media (min-width: 640px) { .logo-variants__grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 900px) { .logo-variants__grid { grid-template-columns: repeat(5, 1fr); } }
+.logo-variants__item { border: var(--border-thick); background: var(--color-surface); display: flex; flex-direction: column; }
+.logo-variants__img-area { aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center; padding: var(--space-3); background: #F2EFF8; }
+.logo-variants__img-area--negativo { background: #262420; }
+.logo-variants__img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.logo-variants__caption { font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-muted); text-align: center; padding: var(--space-2); border-top: var(--border); }
 .case-narrative { font-size: var(--text-base); line-height: 1.75; color: var(--color-muted); max-width: 72ch; margin-bottom: var(--space-8); }
 .case-narrative strong { color: var(--color-ink); }
 .case-code { background: var(--color-ink); color: var(--color-bg); border: var(--border-thick); box-shadow: var(--shadow-md); padding: var(--space-6) var(--space-8); font-family: var(--font-mono); font-size: var(--text-xs); line-height: 1.8; white-space: pre; overflow-x: auto; margin-bottom: var(--space-8); }

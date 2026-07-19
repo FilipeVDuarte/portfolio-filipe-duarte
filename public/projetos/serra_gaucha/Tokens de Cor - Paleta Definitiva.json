@@ -1,0 +1,59 @@
+{
+  "global": {
+    "verde-araucaria": {
+      "value": "#2E4634",
+      "type": "color",
+      "description": "Verde Araucária — cor principal do sistema (Direção 02, Gralha e Araucária). Vem da copa em \"guarda-chuva\" da araucária. Base do logotipo e da maior parte das aplicações institucionais.\nRole: principal\nPantone: 553 C\nRGB: 46, 70, 52\nCMYK: 34, 0, 26, 73\nHSB: 135°, 34%, 27%"
+    },
+    "verde-araucaria-claro": {
+      "value": "#5C7A63",
+      "type": "color",
+      "description": "Verde Araucária, tinta clara — fundos e variações tonais do verde principal. Não substitui o verde base, só amplia o range tonal.\nRole: principal (tinta clara)\nPantone: 5615 C (extraído de PANTONE Color Bridge Coated-V4.acb, ΔE 3.18)\nRGB: 92, 122, 99\nCMYK: 25, 0, 19, 52\nHSB: 134°, 25%, 48%"
+    },
+    "marrom-pinhao": {
+      "value": "#8C5A3C",
+      "type": "color",
+      "description": "Marrom Pinhão (antigo Terra Semente) — cor principal, par do Verde Araucária. Representa o solo/semente, o pinhão caído depois do gesto de dispersão da gralha. Junto ao Verde Araucária forma a combinação cromática principal do sistema — raiz e copa, semente e árvore.\nRole: principal\nPantone: 7568 C (extraído de PANTONE Color Bridge Coated-V4.acb, ΔE 2.30)\nRGB: 140, 90, 60\nCMYK: 0, 36, 57, 45\nHSB: 23°, 57%, 55%"
+    },
+    "ceu-amanhecer": {
+      "value": "#6497F4",
+      "type": "color",
+      "description": "Céu Amanhecer — evoca o voo da gralha e o céu da Serra ao amanhecer, sem pintar a ave de azul literal. Versão revista: tom mais saturado e vívido que a anterior (#A9B9C9), funciona como acento de apoio com presença própria — pode ser usado em detalhes, ícones e elementos de destaque secundário, mas ainda sem competir em peso com a combinação principal Verde Araucária + Marrom Pinhão.\nRole: apoio (acento vívido)\nPantone: 2124 C (match aproximado, ΔE 10.16 no Solid Coated / ΔE 20.59 no Color Bridge Coated — sem correspondência fiel nas bibliotecas oficiais, confirmar em leque físico)\nRGB: 100, 151, 244\nCMYK: 59, 38, 0, 4\nHSB: 219°, 59%, 96%"
+    },
+    "ambar-vindima": {
+      "value": "#F4851E",
+      "type": "color",
+      "description": "Âmbar Vindima — apoio de acento pontual, a luz dourada da colheita. Nunca usado como base/grande área — disputaria peso com a combinação principal Verde Araucária + Marrom Pinhão.\nRole: apoio\nPantone: 715 C\nRGB: 244, 133, 30\nCMYK: 0, 45, 88, 4\nHSB: 29°, 88%, 96%"
+    },
+    "ambar-vindima-texto": {
+      "value": "#7A5208",
+      "type": "color",
+      "description": "Âmbar Vindima, variante texto AA — uso quando o âmbar precisa funcionar como texto sobre fundo claro.\nRole: apoio (variante texto AA)\nPantone: 140 C (extraído de PANTONE Color Bridge Coated-V4.acb, ΔE 5.93 — variante de contraste, match aproximado)\nRGB: 122, 82, 8\nCMYK: 0, 33, 94, 52\nHSB: 39°, 93%, 48%"
+    },
+    "roxo-tannat": {
+      "value": "#980A80",
+      "type": "color",
+      "description": "Roxo Tannat — apoio de uso mínimo e pontual, mantém o vínculo simbólico com a microrregião Uva e Vinho sem competir em peso com a combinação principal.\nRole: apoio\nPantone: 2355 C (código já adotado nas peças anteriores — atenção: a extração das bibliotecas oficiais aponta 2415 C como o match visual mais próximo do HEX atual, ΔE 4.67 vs ΔE 8.52 do 2355 C; confirmar em leque físico qual usar antes do fechamento)\nRGB: 152, 10, 128\nCMYK: 0, 94, 16, 40\nHSB: 310°, 93%, 60%"
+    },
+    "grafite-basalto": {
+      "value": "#262420",
+      "type": "color",
+      "description": "Grafite Basalto — neutro escuro do sistema, herdado da pedra basáltica dos Caminhos de Pedra. Substitui o preto puro em texto e UI dark. Inalterado.\nRole: apoio (substitui o preto puro)\nPantone: Black C\nRGB: 38, 36, 32\nCMYK: 0, 5, 16, 85\nHSB: 40°, 16%, 15%"
+    },
+    "bruma-fina": {
+      "value": "#F2EFF8",
+      "type": "color",
+      "description": "Bruma Fina — neutro claro do sistema. Substitui o branco puro como fundo base da marca. Inalterado.\nRole: apoio (substitui o branco puro)\nPantone: 663 C\nRGB: 242, 239, 248\nCMYK: 2, 4, 0, 3\nHSB: 260°, 4%, 97%"
+    },
+    "branco": {
+      "value": "#FFFFFF",
+      "type": "color",
+      "description": "Branco puro — uso utilitário apenas (ex.: máscaras, fundos técnicos). Não deve ser usado como substituto de Bruma Fina nas aplicações da marca.\nRole: utilitário (não é cor de marca)\nPantone: —\nRGB: 255, 255, 255\nCMYK: 0, 0, 0, 0\nHSB: 0°, 0%, 100%"
+    },
+    "preto": {
+      "value": "#000000",
+      "type": "color",
+      "description": "Preto puro — uso utilitário apenas (ex.: máscaras, fundos técnicos). Não deve ser usado como substituto de Grafite Basalto nas aplicações da marca.\nRole: utilitário (não é cor de marca)\nPantone: —\nRGB: 0, 0, 0\nCMYK: 0, 0, 0, 100\nHSB: 0°, 0%, 0%"
+    }
+  }
+}

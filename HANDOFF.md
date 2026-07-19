@@ -5,7 +5,7 @@
 > todos neste arquivo. Ao terminar uma sessão de trabalho relevante, **atualize as seções
 > pertinentes acima** e adicione uma entrada no [Log de sessões](#log-de-sessões) no final.
 >
-> Última atualização: 2026-07-01
+> Última atualização: 2026-07-19
 
 ---
 
@@ -84,6 +84,7 @@ _docs/                  # documentação auxiliar (NÃO faz parte do site, só r
 
 | Slug                 | Projeto                                        |
 | --------------------- | ----------------------------------------------- |
+| `serra_gaucha`       | Branding territorial — Concurso Marca SERRA GAÚCHA (G30), 49 municípios |
 | `mobi_studio`        | Customizador interativo de capas (Canvas API)   |
 | `mobi_3d`            | Renders e animações 3D de produtos            |
 | `mobi_estampas`      | +70 estampas autorais                           |
@@ -190,6 +191,12 @@ Não reproduzido localmente. Hipóteses: deploy do Netlify desatualizado em rela
 recente; se sim, reproduzir com o usuário (navegador/SO exatos, se acontece em toda página ou só
 sobre elementos específicos como `<video>`/iframes, se hard-refresh resolve).
 
+### ✅ Imagens da galeria "Serra Gaúcha" otimizadas (2026-07-19)
+Ao criar o case `serra_gaucha` (2026-07-18), as imagens de aplicações tinham sido
+copiadas em alta resolução (4000×2667px+, até 6.6MB cada) sem otimização. Confirmado em
+2026-07-19: `public/projetos/serra_gaucha/aplicacoes/*.webp` já existe (24K–164K cada) e
+`serra_gaucha.astro` referencia essas versões `.webp` — pendência resolvida.
+
 ### Consistência de pills pendente (menor)
 `.cd-chip` em [src/pages/criticas.astro](src/pages/criticas.astro) (chips do Diário de Cinema)
 não foi incluído na padronização de pills de 2026-07-01 (não foi pedido pelo usuário, e já não
@@ -223,6 +230,45 @@ Não fazem parte do site — são referência para quem trabalha no projeto:
 
 > Entradas mais recentes no topo. Histórico de decisões e descobertas pontuais — para o estado
 > atual/arquitetura, veja as seções acima.
+
+### 2026-07-18 a 2026-07-19 — Novo case "Serra Gaúcha — Raiz e Colheita"
+
+**Pedido:** criar página de estudo de caso para o projeto de branding territorial
+"Serra Gaúcha — Raiz e Colheita" (Concurso de Criação da Marca SERRA GAÚCHA / G30),
+incluindo um leitor de PDF embutido para o Manual de Identidade Visual; depois, revisar
+e fechar a página de projetos (banner do card + comportamento de hover).
+
+**Feito:**
+- **Novo case criado:** `src/pages/projetos/serra_gaucha.astro`, seguindo o padrão de
+  `mobi_3d.astro` (layout `CaseStudy.astro`). Seções: hero, contexto/briefing (49
+  municípios, 4 pilares, prazo de 17 dias), papel no projeto, processo/solução (conceito
+  "Raiz e Colheita", símbolo gralha-azul/araucária), mapa interativo dos municípios por
+  microrregião (SVG + JS inline), leitor de documentos com abas (MIV / Defesa Conceitual
+  / Aplicações Exemplificadas, via `<iframe>` + botão de download), galeria de aplicações
+  (mockups de vinho, geleia, chá, placas, outdoor, gravura em madeira), e resultado
+  (honesto: projeto não avançou aos 10 semifinalistas de 48 propostas).
+- **Assets:** `pdf/`, `logos/` (expandido para lockups — Default, Duo Color, Selo, em
+  variações horizontal/vertical/cor — substituindo o set antigo de 5 PNGs de logo),
+  `aplicacoes/*.webp` (imagens de mockup otimizadas, 24K–164K cada, eram JPGs/PNGs de até
+  6.6MB na versão inicial), `Banner_KeyVisual.png` e `Banner_portfolio.png` (banner
+  separado para o card da listagem), `Tokens de Cor - Paleta Definitiva.json`,
+  `mapa-municipios.svg`.
+- **Listagem (`projetos.astro`):** card do case adicionado no topo do grid (categoria
+  `design-grafico`), contador de filtro em "14 projetos". Banner do card trocado de
+  `Banner_KeyVisual.png` para `Banner_portfolio.png` (consistência com o hero do case).
+  Removida a classe `proj-card__static` da imagem do card — sem vídeo de hover para esse
+  projeto, a classe fazia a imagem sumir (`opacity: 0`) ao passar o mouse, já que essa
+  regra CSS existe para dar lugar a um `<video class="proj-card__hover">` que este card
+  não tem. Confirmado via `getComputedStyle` que a opacidade permanece `1` no hover.
+- **Imagens da galeria:** confirmado que já estavam otimizadas em `.webp` e que a página
+  referencia essas versões (não os originais grandes) — ver seção 9.
+- **HANDOFF-serra-gaucha-page.md removido** (era um handoff temporário da sessão anterior
+  que criou a página; conteúdo relevante consolidado aqui).
+
+**Notas:**
+- Página revisada e aprovada pelo usuário antes do fechamento desta sessão.
+- Leitor de PDF via `<iframe>` não foi testado em mobile Safari/iOS nesta sessão (pode
+  forçar download em vez de preview inline) — considerar se vale a pena revisitar.
 
 ### 2026-07-06 — Verificação de saúde geral
 
