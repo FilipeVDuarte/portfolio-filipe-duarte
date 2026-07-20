@@ -318,6 +318,9 @@ import CaseStudy from '../../layouts/CaseStudy.astro';
           function setActive(stepNum) {
             steps.forEach((s) => s.classList.toggle('is-active', s.dataset.step === stepNum));
             images.forEach((img) => img.classList.toggle('is-active', img.dataset.stepImg === stepNum));
+            // Mobile: card only starts floating over previous steps once
+            // step 01 is left behind — keeps it out of the way while text 01 reads.
+            media.classList.toggle('is-pinned', stepNum !== '1');
           }
 
           const observer = new IntersectionObserver(
@@ -375,6 +378,7 @@ import CaseStudy from '../../layouts/CaseStudy.astro';
         .symbol-story { display: grid; grid-template-columns: 1fr; gap: var(--space-6); margin-bottom: var(--space-10); }
         @media (min-width: 800px) { .symbol-story { grid-template-columns: 1fr 1fr; gap: var(--space-10); align-items: start; } }
         .symbol-story__media { order: -1; }
+        @media (max-width: 799px) { .symbol-story__media.is-pinned { position: sticky; top: calc(60px + var(--space-4)); z-index: 5; } }
         @media (min-width: 800px) { .symbol-story__media { order: 0; position: sticky; top: calc(60px + var(--space-6)); height: min(70vh, 620px); } }
         .symbol-story__media-inner { position: relative; aspect-ratio: 16 / 10; border: var(--border-thick); box-shadow: var(--shadow-xl); overflow: hidden; background: var(--color-ink); }
         @media (min-width: 800px) { .symbol-story__media-inner { aspect-ratio: 4 / 3; transition: transform 0.2s ease-out; } }

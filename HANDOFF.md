@@ -231,6 +231,31 @@ Não fazem parte do site — são referência para quem trabalha no projeto:
 > Entradas mais recentes no topo. Histórico de decisões e descobertas pontuais — para o estado
 > atual/arquitetura, veja as seções acima.
 
+### 2026-07-19 — Fix mobile: card flutuante na seção "Processo & Solução" (Serra Gaúcha)
+
+**Pedido:** na versão mobile do case `serra_gaucha`, seção 03 ("Processo & Solução"), o card
+da imagem (`.symbol-story__media`) trocava de imagem mas ficava parado no topo, sem acompanhar
+o scroll como no desktop (que usa `position: sticky` + `translateY` calculado). Pedido: enquanto
+o texto 01 estiver em foco, o card fica onde está; a partir do texto 02, o card passa a "flutuar"
+sobre o texto anterior (02 sobre 01, 03 sobre 02, 04 sobre 03), permanecendo sobre o 04 até o fim
+da seção, com o mesmo comportamento invertido ao rolar para cima.
+
+**Feito:** em [src/pages/projetos/serra_gaucha.astro](src/pages/projetos/serra_gaucha.astro),
+reaproveitado o `IntersectionObserver` que já existia (trocava texto/imagem ativos):
+- JS: `setActive()` agora também alterna a classe `is-pinned` no `.symbol-story__media` — ativa
+  a partir do step 2, desativa ao voltar para o step 1.
+- CSS: nova regra `@media (max-width: 799px) { .symbol-story__media.is-pinned { position:
+  sticky; top: calc(60px + var(--space-4)); z-index: 5; } }` — o desktop (`min-width: 800px`)
+  já tinha seu próprio `sticky` sempre ativo, não foi tocado.
+
+**Verificação:** `astro dev` em porta alternativa (a 4321 já estava ocupada por outro processo
+não relacionado ao preview), viewport mobile 375×812. Automação de scroll via `scrollIntoView`/
+`scrollTo` se mostrou pouco confiável para dar tempo do `IntersectionObserver` disparar (efeito
+de scroll simulado, não bug do código); validado de forma direta via `getComputedStyle` +
+`getBoundingClientRect`: com a classe `is-pinned` ativa, o card fica em `position: sticky`,
+`top: 76px`, e o texto 01 confirmadamente passa por baixo dele (`overlapsStep1: true`). Aprovado
+pelo usuário.
+
 ### 2026-07-18 a 2026-07-19 — Novo case "Serra Gaúcha — Raiz e Colheita"
 
 **Pedido:** criar página de estudo de caso para o projeto de branding territorial
